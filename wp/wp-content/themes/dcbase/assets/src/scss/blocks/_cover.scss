@@ -1,0 +1,23 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// COVER
+//// --------------------------------------------------------------------------
+
+.wp-block-cover {
+	&.aligncenter {}
+	&.alignleft {}
+	&.alignright {}
+	&.is-light {}
+	.wp-block-cover__background {
+		&.has-background-dim:not([class*="-background-color"]) {}
+		@for $i from 1 through 10 {
+			&.has-background-dim-#{ $i * 10 } {}
+		}
+		&.has-background-gradient {}
+	}
+	.wp-block-cover__image-background {}
+	.wp-block-cover__video-background {}
+	.wp-block-cover__inner-container {}
+}

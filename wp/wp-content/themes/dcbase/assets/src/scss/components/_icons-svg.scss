@@ -1,0 +1,45 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// ICONS - SVG
+//// --------------------------------------------------------------------------
+//// Example for adding icon. The svg-map in dist/images/svg-map.svg should be added inside <body> tag.
+//// 
+//// <span class="icon-wrapper">
+//// 	<svg class="icon icon-angle-right"><use xlink:href="#icon-angle-right"></use></svg></span>
+//// </span>
+
+#svg-map {
+	@include mixins.sr-only;
+}
+
+.icon-wrapper {
+	display: inline-block;
+	@include mixins.sizing(theme.$icon-size, theme.$icon-size);
+	line-height: theme.$icon-size;
+	svg {
+		display: block;
+		fill: theme.$color-01;
+		@include mixins.sizing(100%, 100%);
+		line-height: 1;
+	}
+}
+
+.icon-wrapper--small {
+	$icon-size-small: calc(theme.$icon-size / 2);
+	@include mixins.sizing($icon-size-small, $icon-size-small);
+	line-height: $icon-size-small;
+}
+
+.icon-wrapper--large {
+	$icon-size-large: calc(theme.$icon-size * 1.5);
+	@include mixins.sizing($icon-size-large, $icon-size-large);
+	line-height: $icon-size-large;
+}
+
+.icon-wrapper--xlarge {
+	$icon-size-xlarge: calc(theme.$icon-size * 2);
+	@include mixins.sizing($icon-size-xlarge, $icon-size-xlarge);
+	line-height: $icon-size-xlarge;
+}

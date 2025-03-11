@@ -1,0 +1,18 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// CATEGORIES
+//// --------------------------------------------------------------------------
+
+.wp-block-categories {
+	&.wp-block-categories-list {
+		.cat-item {
+			a {}
+		}
+	}
+	&.wp-block-categories-dropdown {
+		label {}
+		select {}
+	}
+}

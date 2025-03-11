@@ -1,0 +1,20 @@
+.DS_Store
+.env
+.husky
+.vscode/
+coverage/
+node_modules/
+
+# WordPress Ignore
+wp/*
+wp/wp-content/*
+wp/wp-content/themes/*
+wp/wp-content/plugins/*
+
+# WordPress Add
+!wp/wp-content
+!wp/wp-content/plugins/
+!wp/wp-content/themes/
+!wp/wp-content/plugins/custom-stuff/
+!wp/wp-content/themes/dcbase/
+!wp/wp-content/themes/dctest/

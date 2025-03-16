@@ -1,0 +1,67 @@
+// Use utils and theme variables
+@use '../_config/styles/utils/_functions';
+@use '../_config/styles/utils/_mixins';
+@use '../_config/styles/theme/_theme';
+
+//// IMAGES
+//// --------------------------------------------------------------------------
+	
+	img {
+		display: block;
+		max-width: 100%;
+		border: 0;
+	}
+	.image-wrapper {
+		img {
+			line-height: 0;
+		}
+	}
+	.image-wrapper-fluid {
+		position: relative;
+		height: 0;
+		padding-bottom: 100%;
+		img {
+			@include mixins.sizing(auto, auto);
+			max-height: 100%;
+			@include mixins.position-fill(auto);
+		}
+	}
+	.image-wrapper-fit {
+		img {
+			@include mixins.sizing(100%, 100%);
+			@include mixins.object-fit(center, cover)
+		}
+	}
+	.image-wrapper-bg {
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+		img {
+			@include mixins.sr-only;
+		}
+	}
+	.image-wrapper-align-center {
+		img {
+			margin: 0 auto;
+		}
+	}
+	.image-wrapper-align-left img {
+		margin: 0 auto 0 0;
+	}
+	.image-wrapper-align-right img {
+		margin: 0 0 0 auto;
+	}
+	.image-wrapper-float-left {
+		float: left;
+		clear: left;
+	}
+	.image-wrapper-float-left, .spacing-reset > .image-wrapper-float-left {
+		margin-right: theme.$spacing-x4;
+	}
+	.image-wrapper-float-right {
+		float: right;
+		clear: right;
+	}
+	.image-wrapper-float-right, .spacing-reset > .image-wrapper-float-right {
+		margin-left: theme.$spacing-x4;
+	}

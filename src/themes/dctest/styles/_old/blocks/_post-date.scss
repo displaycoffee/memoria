@@ -1,0 +1,12 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// POST DATE
+//// --------------------------------------------------------------------------
+
+.wp-block-post-date {
+	time {
+		a {}
+	}
+}

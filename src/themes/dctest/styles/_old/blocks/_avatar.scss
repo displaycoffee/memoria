@@ -1,0 +1,15 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// AVATAR
+//// --------------------------------------------------------------------------
+
+.wp-block-avatar {
+	&.aligncenter {}
+	&.alignright {}
+	img {}
+    a {
+		img {}
+	}
+}

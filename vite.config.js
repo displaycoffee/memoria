@@ -29,11 +29,20 @@ export default defineConfig({
 		emptyOutDir: true,
 		rollupOptions: {
 			input: {
-				plugin1: fileURLToPath(new URL(`./src/${wpMap.plugin1}/assets/bundle.js`, import.meta.url)),
-				theme1: fileURLToPath(new URL(`./src/${wpMap.theme1}/assets/js/bundle.js`, import.meta.url)),
-				theme2: fileURLToPath(new URL(`./src/${wpMap.theme2}/assets/js/bundle.js`, import.meta.url)),
+				plugin1: fileURLToPath(new URL(`./src/${wpMap.plugin1}/index.js`, import.meta.url)),
+				theme1: fileURLToPath(new URL(`./src/${wpMap.theme1}/index.js`, import.meta.url)),
+				theme2: fileURLToPath(new URL(`./src/${wpMap.theme2}/index.js`, import.meta.url)),
 			},
 			output: {
+				manualChunks: (id) => {
+					if (id.includes('custom-stuff')) {
+						return 'plugin1';
+					} else if (id.includes('dcbase')) {
+						return 'dcbase';
+					} else if (id.includes('dctest')) {
+						return 'dctest';
+					}
+				},
 				assetFileNames: (file) => {
 					const path = getWPPath(file);
 					if (file.name.includes('.css')) {
@@ -43,8 +52,7 @@ export default defineConfig({
 					}
 				},
 				chunkFileNames: (file) => {
-					const path = getWPPath(file);
-					return `${path}/assets/js/bundle.${file.name.toLowerCase()}.js`;
+					return `assets/js/bundle.${file.name.toLowerCase()}.js`;
 				},
 				entryFileNames: (file) => {
 					return `wp-content/${wpMap[file.name]}/assets/js/bundle.js`;

@@ -1,0 +1,14 @@
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// POST NAVIGATION LINK
+//// --------------------------------------------------------------------------
+
+.wp-block-post-navigation-link {
+	&.post-navigation-link-previous {}
+	&.post-navigation-link-next {}
+	a {
+		.post-navigation-link__label {}
+		.post-navigation-link__title {}
+	}
+}

@@ -3,31 +3,29 @@
 	"version": "1.0.0",
 	"description": "Custom WordPress template.",
 	"main": "bundle.js",
+	"type": "module",
 	"keywords": [],
 	"author": "displaycoffee",
 	"license": "ISC",
 	"scripts": {
-		"build": "webpack --config webpack.prod.js",
-		"dev": "webpack --watch --config webpack.dev.js",
-		"format": "prettier --write \"wp/**/*.{js,jsx,ts,tsx}\"",
-		"lint": "eslint \"wp/**/*.{js,jsx,ts,tsx}\" --quiet"
+		"build": "vite build",
+		"dev": "vite --host",
+		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
+		"preview": "vite preview"
 	},
 	"devDependencies": {
-		"browser-sync-webpack-plugin": "^2.3.0",
-		"css-loader": "^7.1.2",
+		"@vitejs/plugin-basic-ssl": "^1.1.0",
+		"@vitejs/plugin-react": "^4.3.1",
 		"eslint": "^9.22.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-import": "^2.30.0",
 		"eslint-plugin-jsx-a11y": "^6.10.0",
 		"eslint-plugin-react": "^7.36.1",
 		"eslint-plugin-react-hooks": "^5.2.0",
-		"mini-css-extract-plugin": "^2.9.2",
 		"prettier": "^3.3.3",
-		"raw-loader": "^4.0.2",
 		"sass": "1.78.0",
-		"sass-loader": "^16.0.5",
-		"webpack": "^5.98.0",
-		"webpack-cli": "^6.0.1"
+		"vite": "^5.4.7"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "^5.56.2",

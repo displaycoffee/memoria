@@ -4,17 +4,20 @@
 .vscode/
 coverage/
 node_modules/
+dist/
 
-# WordPress Ignore
-wp/*
-wp/wp-content/*
-wp/wp-content/themes/*
-wp/wp-content/plugins/*
+# Ignore Most WP files in public
+public/**
+public/wp-content/plugins/**
+public/wp-content/themes/**
 
-# WordPress Add
-!wp/wp-content
-!wp/wp-content/plugins/
-!wp/wp-content/themes/
-!wp/wp-content/plugins/custom-stuff/
-!wp/wp-content/themes/dcbase/
-!wp/wp-content/themes/dctest/
+# Add back in certain plugins and themes
+!public/wp-content
+!public/wp-content/plugins
+!public/wp-content/plugins/custom-stuff
+!public/wp-content/plugins/custom-stuff/**
+!public/wp-content/themes
+!public/wp-content/themes/dcbase
+!public/wp-content/themes/dcbase/**
+!public/wp-content/themes/dctest
+!public/wp-content/themes/dctest/**

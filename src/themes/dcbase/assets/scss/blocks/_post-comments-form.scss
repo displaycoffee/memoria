@@ -1,0 +1,57 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// POST COMMENTS FORM
+//// --------------------------------------------------------------------------
+
+.wp-block-post-comments-form {
+	.comment-reply-title {
+		small { 
+			a {} 
+		}
+	}
+	.comment-form {
+		.logged-in-as {
+			a {}
+			.required-field-message {
+				.required {}
+			}
+		}
+		.comment-notes {
+			.email-notes {}
+			.required-field-message {}
+		}
+		.comment-form-comment {
+			label {
+				.required {}
+			}
+			textarea {}
+		}
+		.comment-form-author {
+			label {
+				.required {}
+			}
+			input[type='text'] {}
+		}
+		.comment-form-email {
+			label {
+				.required {}
+			}
+			input[type='email'] {}
+		}
+		.comment-form-url {
+			label {
+				.required {}
+			}
+			input[type='url'] {}
+		}
+		.comment-form-cookies-consent {
+			input[type='checkbox'] {}
+			label {}
+		}
+		.wp-block-button {
+			.wp-block-button__link {}
+		}
+	}
+}

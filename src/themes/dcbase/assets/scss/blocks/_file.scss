@@ -1,0 +1,12 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// FILE
+//// --------------------------------------------------------------------------
+
+.wp-block-file {
+	a {}
+	a:not(.wp-block-file__button) {}
+	.wp-block-file__button {}
+}

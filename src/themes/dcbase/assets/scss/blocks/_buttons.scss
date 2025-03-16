@@ -1,0 +1,47 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// BUTTONS
+//// --------------------------------------------------------------------------
+
+.wp-block-buttons {
+	&.aligncenter {}
+	&.has-custom-font-size {}
+	&.is-content-justification-left {}
+	&.is-content-justification-center {}
+	&.is-content-justification-right {}
+	&.is-content-justification-space-between {}
+	&.is-vertical {
+		.wp-block-button {
+			&.wp-block-button__width-25 {}
+			&.wp-block-button__width-50 {}
+			&.wp-block-button__width-75 {}
+			&.wp-block-button__width-100 {}
+		}
+	}
+}
+
+//// BUTTON
+//// --------------------------------------------------------------------------
+
+.wp-block-button {
+	&.has-custom-width {}
+	&.has-custom-font-size {}
+	&.is-style-squared {}
+	&.is-style-outline {
+		.wp-block-button__link {
+			&:not(.has-background) {}
+			&:not(.has-text-color) {}
+		}
+	}
+	&.no-border-radius {}
+	&.wp-block-button__width-25 {}
+	&.wp-block-button__width-50 {}
+	&.wp-block-button__width-75 {}
+	&.wp-block-button__width-100 {}
+	.wp-block-button__link {
+		&.aligncenter {}
+		&.alignright {}
+	}
+}

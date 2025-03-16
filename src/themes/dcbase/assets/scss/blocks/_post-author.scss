@@ -1,0 +1,23 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// POST AUTHOR
+//// --------------------------------------------------------------------------
+
+.wp-block-post-author {
+	.wp-block-post-author__avatar {
+		.avatar {}
+	}
+	.wp-block-post-author__content {
+		p {}
+		.wp-block-post-author__byline {}
+		.wp-block-post-author__name {}
+		.wp-block-post-author__bio {}
+	}
+}
+
+//// POST AUTHOR BIOGRAPHY
+//// --------------------------------------------------------------------------
+
+.wp-block-post-author-biography {}

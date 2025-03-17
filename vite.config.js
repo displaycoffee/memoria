@@ -3,18 +3,21 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 
-/* set mapping for multiple WP entry types */
-const wpMap = {
-	plugin1: 'plugins/custom-stuff',
-	theme1: 'themes/dcbase',
-	theme2: 'themes/dctest',
+/* array of entry points */
+const entries = ['plugins/custom-stuff', 'themes/dcbase', 'themes/dctest'];
+
+/* set map for multiple entries */
+const map = {
+	paths: {},
+	inputs: {},
 };
 
-/* get WP path */
-const getWPPath = (file) => {
-	const splitName = file.name.split('.');
-	return `wp-content/${wpMap[splitName[0]]}`;
-};
+/* add entry objects to map */
+entries.forEach((entry, index) => {
+	const key = `entry${index + 1}`;
+	map.paths[key] = entry;
+	map.inputs[key] = fileURLToPath(new URL(`./src/${entry}/index.js`, import.meta.url));
+});
 
 export default defineConfig({
 	root: 'src',
@@ -29,22 +32,21 @@ export default defineConfig({
 		emptyOutDir: true,
 		rollupOptions: {
 			input: {
-				plugin1: fileURLToPath(new URL(`./src/${wpMap.plugin1}/index.js`, import.meta.url)),
-				theme1: fileURLToPath(new URL(`./src/${wpMap.theme1}/index.js`, import.meta.url)),
-				theme2: fileURLToPath(new URL(`./src/${wpMap.theme2}/index.js`, import.meta.url)),
+				...map.inputs,
 			},
 			output: {
+				inlineDynamicImports: true,
 				manualChunks: (id) => {
-					if (id.includes('custom-stuff')) {
-						return 'plugin1';
-					} else if (id.includes('dcbase')) {
-						return 'dcbase';
-					} else if (id.includes('dctest')) {
-						return 'dctest';
+					for (const path in map.paths) {
+						console.log('id', id);
+						if (id.includes(map.paths[path])) {
+							return path;
+						}
 					}
 				},
 				assetFileNames: (file) => {
-					const path = getWPPath(file);
+					const splitName = file.name.split('.');
+					const path = `wp-content/${map.paths[splitName[0]]}`;
 					if (file.name.includes('.css')) {
 						return `${path}/assets/[ext]/styles.css`;
 					} else {
@@ -55,7 +57,7 @@ export default defineConfig({
 					return `assets/js/bundle.${file.name.toLowerCase()}.js`;
 				},
 				entryFileNames: (file) => {
-					return `wp-content/${wpMap[file.name]}/assets/js/bundle.js`;
+					return `wp-content/${map.paths[file.name]}/assets/js/bundle.js`;
 				},
 			},
 		},

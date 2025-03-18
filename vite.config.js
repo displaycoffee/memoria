@@ -35,10 +35,8 @@ export default defineConfig({
 				...map.inputs,
 			},
 			output: {
-				inlineDynamicImports: true,
 				manualChunks: (id) => {
 					for (const path in map.paths) {
-						console.log('id', id);
 						if (id.includes(map.paths[path])) {
 							return path;
 						}

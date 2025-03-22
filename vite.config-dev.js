@@ -1,13 +1,22 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import basicSsl from '@vitejs/plugin-basic-ssl';
+import { viteUtils } from './vite.utils';
 
 export default defineConfig({
-	root: 'src',
-	publicDir: '../public',
-	plugins: [react(), basicSsl()],
+	//root: 'src',
+	publicDir: false,
+	plugins: viteUtils.plugins,
 	server: {
-		host: 'localhost',
 		port: 3000,
+		proxy: {
+			// string shorthand:
+			// http://localhost:5173/foo
+			//   -> http://localhost:4567/foo
+			'/': 'http://localhost/memoria',
+			//port: 3000,
+		},
 	},
+	// server: {
+	// 	host: 'localhost',
+	// 	port: 3000,
+	// },
 });

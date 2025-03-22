@@ -24,8 +24,14 @@ export default defineConfig({
 	publicDir: '../public',
 	plugins: [react(), basicSsl()],
 	server: {
-		host: 'localhost',
 		port: 3000,
+		proxy: {
+			// string shorthand:
+			// http://localhost:5173/foo
+			//   -> http://localhost:4567/foo
+			'/': 'http://localhost/memoria',
+			//port: 3000,
+		},
 	},
 	build: {
 		outDir: '../dist',

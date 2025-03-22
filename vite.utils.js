@@ -1,9 +1,12 @@
 import { fileURLToPath } from 'url';
+import react from '@vitejs/plugin-react';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 
 export const viteUtils = {
-	setInput: (name, path) => {
+	plugins: [react(), basicSsl()],
+	setInput: (name, path, file) => {
 		return {
-			[`${name}`]: fileURLToPath(new URL(`./src/${path}/index.js`, import.meta.url)),
+			[`${name}`]: fileURLToPath(new URL(`./src/${path}/${file}`, import.meta.url)),
 		};
 	},
 	assetFileNames: (file, path) => {

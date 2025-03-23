@@ -6,12 +6,13 @@ const name = `dctest`;
 const path = `themes/${name}`;
 
 export default defineConfig({
-	// root: 'src',
+	root: 'src',
 	publicDir: '../public',
 	plugins: viteUtils.plugins,
 	build: {
 		outDir: '../dist',
 		emptyOutDir: false,
+		manifest: `vite-manifest-${name}.json`,
 		rollupOptions: {
 			input: viteUtils.setInput(name, path, 'index.js'),
 			output: {

@@ -1,3 +1,5 @@
+import 'vite/modulepreload-polyfill';
+
 /* Local styles */
 import './styles/styles.scss';
 

@@ -1,6 +1,8 @@
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import basicSsl from '@vitejs/plugin-basic-ssl';
+import liveReload from 'vite-plugin-live-reload';
+import VitePluginBrowserSync from 'vite-plugin-browser-sync';
 
 const customHmr = () => {
 	return {
@@ -24,7 +26,13 @@ const customHmr = () => {
 };
 
 export const viteUtils = {
-	plugins: [react(), basicSsl(), customHmr()],
+	// plugins: [
+	// 	react(),
+	// 	basicSsl(),
+	// 	liveReload(['./public/wp-content/plugins/**/*.php', './public/wp-content/themes/**/*.php']),
+	// 	VitePluginBrowserSync(),
+	// ],
+	plugins: [react(), basicSsl()],
 	setInput: (name, path, file) => {
 		return {
 			[`${name}`]: fileURLToPath(new URL(`./src/${path}/${file}`, import.meta.url)),

@@ -1,4 +1,7 @@
-// /* Local styles */
+// import { polyfill } from './polyfill.js';
+// polyfill();
+
+/* Local styles */
 import './styles/styles.scss';
 
 /* Local scripts */

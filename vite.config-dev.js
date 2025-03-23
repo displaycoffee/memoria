@@ -2,12 +2,12 @@ import { defineConfig } from 'vite';
 import { viteUtils } from './vite.utils';
 
 export default defineConfig({
-	// root: 'src',
-	// publicDir: false,
+	publicDir: false,
 	plugins: viteUtils.plugins,
 	server: {
 		host: 'localhost',
 		port: 3000,
+		//origin: 'http://localhost/memoria',
 		proxy: {
 			// string shorthand:
 			// http://localhost:5173/foo

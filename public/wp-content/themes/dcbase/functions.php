@@ -36,7 +36,8 @@ function dcbase_scripts() {
 	$whitelist = getWhitelist();
 	if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
 		wp_enqueue_script('vite', 'https://localhost:3000/@vite/client');
-		wp_enqueue_script('dcbase-bundle', 'https://localhost:3000/src/themes/dcbase/index.js', [], wp_get_theme()->get('Version'), );
+		//wp_enqueue_script('dcbase-bundle1', 'https://localhost:3000/dist/wp-content/themes/dcbase/assets/js/bundle.js', [], wp_get_theme()->get('Version'), );
+		wp_enqueue_script('dcbase-bundle2', 'https://localhost:3000/src/themes/dcbase/index.js', [], wp_get_theme()->get('Version'), );
 	} else {
 		wp_enqueue_script('dcbase-bundle', get_theme_file_uri('assets/js/bundle.js'));
 	}
@@ -45,7 +46,7 @@ add_action('wp_enqueue_scripts', 'dcbase_scripts');
 
 // 
 function add_attribute_to_script_tag($tag, $handle, $src) {
-	if (in_array($handle, ['vite', 'dcbase-bundle'])) {
+	if (in_array($handle, ['vite', 'dcbase-bundle1', 'dcbase-bundle2'])) {
         return '<script type="module" src="' . esc_url($src) . '"></script>';
     }
 

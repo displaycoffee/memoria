@@ -6,7 +6,7 @@ const name = `custom-stuff`;
 const path = `plugins/${name}`;
 
 export default defineConfig({
-	root: 'src',
+	// root: 'src',
 	publicDir: '../public',
 	plugins: viteUtils.plugins,
 	build: {

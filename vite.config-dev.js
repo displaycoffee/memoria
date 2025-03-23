@@ -2,8 +2,8 @@ import { defineConfig } from 'vite';
 import { viteUtils } from './vite.utils';
 
 export default defineConfig({
-	root: 'src',
-	publicDir: false,
+	// root: 'src',
+	// publicDir: false,
 	plugins: viteUtils.plugins,
 	server: {
 		host: 'localhost',

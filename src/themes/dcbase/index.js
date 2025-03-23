@@ -1,4 +1,4 @@
-/* Local styles */
+// /* Local styles */
 import './styles/styles.scss';
 
 /* Local scripts */

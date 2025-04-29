@@ -9,7 +9,7 @@
 	"license": "ISC",
 	"scripts": {
 		"build": "vite build -c vite.config-custom-stuff.js && vite build -c vite.config-dcbase.js && vite build -c vite.config-dctest.js",
-		"dev": "vite -c vite.config-dev.js",
+		"dev": "vite -c vite.config.js",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
 		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
 		"preview": "vite preview"

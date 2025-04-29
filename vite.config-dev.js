@@ -7,6 +7,12 @@ export default defineConfig({
 	server: {
 		host: 'localhost',
 		port: 3000,
+		hmr: {
+			host: 'localhost',
+		},
+		watch: {
+			usePolling: true,
+		},
 		//origin: 'http://localhost/memoria',
 		proxy: {
 			// string shorthand:

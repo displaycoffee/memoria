@@ -25,18 +25,20 @@ export default defineConfig({
 	plugins: [react(), basicSsl()],
 	server: {
 		port: 3000,
-		proxy: {
-			// string shorthand:
-			// http://localhost:5173/foo
-			//   -> http://localhost:4567/foo
-			'/': 'http://localhost/memoria',
-			//port: 3000,
-		},
+		// proxy: {
+		// 	// string shorthand:
+		// 	// http://localhost:5173/foo
+		// 	//   -> http://localhost:4567/foo
+		// 	'/': 'http://localhost/memoria',
+		// 	//port: 3000,
+		// },
 	},
 	build: {
 		outDir: '../dist',
 		emptyOutDir: true,
+		manifest: true,
 		rollupOptions: {
+			//input: 'src/themes/dcbase/index.js',
 			input: {
 				...map.inputs,
 			},

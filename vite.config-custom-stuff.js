@@ -1,9 +1,12 @@
 import { defineConfig } from 'vite';
 import { viteUtils } from './vite.utils';
 
+/* Entries config */
+const entries = viteUtils.entries;
+
 /* Set variables for vite configs */
-const name = `custom-stuff`;
-const path = `plugins/${name}`;
+const name = entries['custom-stuff'].name;
+const path = `${entries['custom-stuff'].path}/${name}`;
 
 export default defineConfig({
 	root: 'src',
@@ -12,7 +15,6 @@ export default defineConfig({
 	build: {
 		outDir: '../dist',
 		emptyOutDir: false,
-		manifest: `vite-manifest-${name}.json`,
 		rollupOptions: {
 			input: viteUtils.setInput(name, path, 'index.js'),
 			output: {

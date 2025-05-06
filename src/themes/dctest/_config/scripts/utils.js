@@ -1,6 +1,3 @@
-/* React */
-import { createRoot } from 'react-dom/client';
-
 export const utils = {
 	handleize: (value) => {
 		// Format value for html classes
@@ -21,15 +18,6 @@ export const utils = {
 			// Observe to toggle sticky class
 			const stickyObserver = new IntersectionObserver(([e]) => stickyCallback(e), stickyOptions);
 			stickyObserver.observe(element);
-		}
-	},
-	renderTarget: (element, component) => {
-		// Render target for app
-		const targetElement = document.querySelector(element);
-		const targetHasChildren = targetElement && targetElement?.children && targetElement.children.length !== 0 ? true : false;
-		if (!targetHasChildren) {
-			const targetTarget = createRoot(targetElement);
-			targetTarget.render(component);
 		}
 	},
 	scrollTo: (e, selector, offset) => {

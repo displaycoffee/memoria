@@ -1,71 +1,47 @@
-import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import basicSsl from '@vitejs/plugin-basic-ssl';
+import { viteUtils } from './vite.utils';
 
-/* array of entry points */
-const entries = ['plugins/custom-stuff', 'themes/dcbase', 'themes/dctest'];
+/* Entries config */
+const entries = viteUtils.entries;
 
-/* set map for multiple entries */
-const map = {
-	paths: {},
-	inputs: {},
-};
+/* Create inputs map */
+let inputs = {};
 
-/* add entry objects to map */
-entries.forEach((entry, index) => {
-	const key = `entry${index + 1}`;
-	map.paths[key] = entry;
-	map.inputs[key] = fileURLToPath(new URL(`./src/${entry}/index.js`, import.meta.url));
+for (let entry in viteUtils.entries) {
+	const currentEntry = viteUtils.entries[entry];
+	const name = currentEntry.name;
+	const path = `${currentEntry.path}/${name}`;
+
+	inputs = {
+		...inputs,
+		...viteUtils.setInput(name, path, 'index.js'),
+	};
+}
+
+/* Create plugins */
+let plugins = viteUtils.plugins;
+plugins.unshift({
+	name: 'php',
+	handleHotUpdate({ file, server }) {
+		if (file.endsWith('.php')) {
+			server.ws.send({ type: 'full-reload', path: '*' });
+		}
+	},
 });
 
 export default defineConfig({
 	root: 'src',
 	publicDir: '../public',
-	plugins: [react(), basicSsl()],
+	plugins: plugins,
 	server: {
+		host: 'localhost',
 		port: 3000,
-		// proxy: {
-		// 	// string shorthand:
-		// 	// http://localhost:5173/foo
-		// 	//   -> http://localhost:4567/foo
-		// 	'/': 'http://localhost/memoria',
-		// 	//port: 3000,
-		// },
 	},
 	build: {
 		outDir: '../dist',
-		emptyOutDir: true,
-		manifest: true,
+		emptyOutDir: false,
 		rollupOptions: {
-			//input: 'src/themes/dcbase/index.js',
-			input: {
-				...map.inputs,
-			},
-			output: {
-				manualChunks: (id) => {
-					for (const path in map.paths) {
-						if (id.includes(map.paths[path])) {
-							return path;
-						}
-					}
-				},
-				assetFileNames: (file) => {
-					const splitName = file.name.split('.');
-					const path = `wp-content/${map.paths[splitName[0]]}`;
-					if (file.name.includes('.css')) {
-						return `${path}/assets/[ext]/styles.css`;
-					} else {
-						return `${path}/assets/[ext]/[name].[ext]`;
-					}
-				},
-				chunkFileNames: (file) => {
-					return `assets/js/bundle.${file.name.toLowerCase()}.js`;
-				},
-				entryFileNames: (file) => {
-					return `wp-content/${map.paths[file.name]}/assets/js/bundle.js`;
-				},
-			},
+			input: inputs,
 		},
 	},
 });

@@ -1,5 +1,3 @@
-import 'vite/modulepreload-polyfill';
-
 /* Local styles */
 import './styles/styles.scss';
 
@@ -9,7 +7,7 @@ import { utils } from './_config/scripts/utils';
 import { variables } from './_config/scripts/variables';
 
 /* Testing */
-console.log('hello from custom stuff plugin', theme, utils, variables);
+console.log('hello from custom-stuff', theme, utils, variables);
 
 /* Local scripts */
 import './scripts/test.js';

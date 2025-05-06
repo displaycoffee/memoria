@@ -1,37 +1,22 @@
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import basicSsl from '@vitejs/plugin-basic-ssl';
-import liveReload from 'vite-plugin-live-reload';
-import VitePluginBrowserSync from 'vite-plugin-browser-sync';
-
-const customHmr = () => {
-	return {
-		name: 'custom-hmr',
-		//enforce: 'post',
-		hotUpdate({ type, file, timestamp, modules, read, server }) {
-			if (file.endsWith('.php')) {
-				console.log('stuff: ', type);
-				console.log('stuff: ', file);
-				console.log('stuff: ', timestamp);
-				console.log('stuff: ', modules);
-				console.log('stuff: ', read);
-
-				server.ws.send({
-					type: 'full-reload',
-					path: '*',
-				});
-			}
-		},
-	};
-};
 
 export const viteUtils = {
-	// plugins: [
-	// 	react(),
-	// 	basicSsl(),
-	// 	liveReload(['./public/wp-content/plugins/**/*.php', './public/wp-content/themes/**/*.php']),
-	// 	VitePluginBrowserSync(),
-	// ],
+	entries: {
+		'custom-stuff': {
+			name: 'custom-stuff',
+			path: 'plugins',
+		},
+		dcbase: {
+			name: 'dcbase',
+			path: 'themes',
+		},
+		dctest: {
+			name: 'dctest',
+			path: 'themes',
+		},
+	},
 	plugins: [react(), basicSsl()],
 	setInput: (name, path, file) => {
 		return {

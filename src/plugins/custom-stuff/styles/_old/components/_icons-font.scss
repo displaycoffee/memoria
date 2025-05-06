@@ -1,0 +1,358 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// ICONS - FONT KIT
+//// --------------------------------------------------------------------------
+
+@font-face {
+	font-family: 'Base Icons';
+	src: url(theme.$font-path + 'base-icons.woff2') format('woff2'),
+		 url(theme.$font-path + 'base-icons.woff') format('woff'),
+		 url(theme.$font-path + 'base-icons.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+//// ICONS - FONT
+//// --------------------------------------------------------------------------
+
+.icon {
+	display: inline-block;
+	speak: never;
+	font-family: 'Base Icons';
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	font-size: mixins.em(theme.$font-size-base, rem);
+	line-height: 1;
+	text-transform: none;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-angle-left:before {
+	content: mixins.unicode(f104);
+}
+
+.icon-angle-right:before {
+	content: mixins.unicode(f105);
+}
+
+.icon-angle-up:before {
+	content: mixins.unicode(f106);
+}
+
+.icon-angle-down:before {
+	content: mixins.unicode(f107);
+}
+
+.icon-chevron-left:before {
+	content: mixins.unicode(f053);
+}
+
+.icon-chevron-right:before {
+	content: mixins.unicode(f054);
+}
+
+.icon-chevron-up:before {
+	content: mixins.unicode(f077);
+}
+
+.icon-chevron-down:before {
+	content: mixins.unicode(f078);
+}
+
+.icon-angle-double-left:before {
+	content: mixins.unicode(f100);
+}
+
+.icon-angle-double-right:before {
+	content: mixins.unicode(f101);
+}
+
+.icon-angle-double-up:before {
+	content: mixins.unicode(f102);
+}
+
+.icon-angle-double-down:before {
+	content: mixins.unicode(f103);
+}
+
+.icon-check-thin:before {
+	content: mixins.unicode(e900);
+}
+
+.icon-plus-thin:before {
+	content: mixins.unicode(e901);
+}
+
+.icon-minus-thin:before {
+	content: mixins.unicode(e902);
+}
+
+.icon-close-thin:before {
+	content: mixins.unicode(e903);
+}
+
+.icon-check:before {
+	content: mixins.unicode(f00c);
+}
+
+.icon-plus:before {
+	content: mixins.unicode(e904);
+}
+
+.icon-minus:before {
+	content: mixins.unicode(e905);
+}
+
+.icon-close:before {
+	content: mixins.unicode(f00d);
+}
+
+.icon-asterisk:before {
+	content: mixins.unicode(f069);
+}
+
+.icon-menu:before {
+	content: mixins.unicode(e906);
+}
+
+.icon-gear:before {
+	content: mixins.unicode(e907);
+}
+
+.icon-gears:before {
+	content: mixins.unicode(e908);
+}
+
+.icon-filter:before {
+	content: mixins.unicode(e909);
+}
+
+.icon-heart:before {
+	content: mixins.unicode(f004);
+}
+
+.icon-star:before {
+	content: mixins.unicode(f005);
+}
+
+.icon-pencil:before {
+	content: mixins.unicode(f040);
+}
+
+.icon-quill:before {
+	content: mixins.unicode(e907);
+}
+
+.icon-pen:before {
+	content: mixins.unicode(e908);
+}
+
+.icon-tv:before {
+	content: mixins.unicode(e95b);
+}
+
+.icon-video:before {
+	content: mixins.unicode(e913);
+}
+
+.icon-camera:before {
+	content: mixins.unicode(e914);
+}
+
+.icon-film:before {
+	content: mixins.unicode(f008);
+}
+
+.icon-book:before {
+	content: mixins.unicode(f02d);
+}
+
+.icon-books:before {
+	content: mixins.unicode(e920);
+}
+
+.icon-search:before {
+	content: mixins.unicode(f002);
+}
+
+.icon-home:before {
+	content: mixins.unicode(f015);
+}
+
+.icon-tag:before {
+	content: mixins.unicode(f02b);
+}
+
+.icon-calendar:before {
+	content: mixins.unicode(f073);
+}
+
+.icon-comment:before {
+	content: mixins.unicode(f075);
+}
+
+.icon-comments:before {
+	content: mixins.unicode(f086);
+}
+
+.icon-inbox:before {
+	content: mixins.unicode(f01c);
+}
+
+.icon-folder:before {
+	content: mixins.unicode(f07c);
+}
+
+.icon-envelope:before {
+	content: mixins.unicode(f0e0);
+}
+
+.icon-paper-plane:before {
+	content: mixins.unicode(f1d8);
+}
+
+.icon-monitor:before {
+	content: mixins.unicode(f26c);
+}
+
+.icon-pinterest:before {
+	content: mixins.unicode(f231);
+}
+
+.icon-digg:before {
+	content: mixins.unicode(f1a6);
+}
+
+.icon-reddit:before {
+	content: mixins.unicode(f281);
+}
+
+.icon-linkedin:before {
+	content: mixins.unicode(f0e1);
+}
+
+.icon-instagram:before {
+	content: mixins.unicode(f16d);
+}
+
+.icon-facebook:before {
+	content: mixins.unicode(f09a);
+}
+
+.icon-youtube:before {
+	content: mixins.unicode(f16a);
+}
+
+.icon-youtube-logo:before {
+	content: mixins.unicode(f167);
+}
+
+.icon-twitter:before {
+	content: mixins.unicode(f099);
+}
+
+.icon-stumbleupon:before {
+	content: mixins.unicode(f1a4);
+}
+
+.icon-librarything:before {
+	content: mixins.unicode(e90a);
+}
+
+.icon-tiktok:before {
+	content: mixins.unicode(e90b);
+}
+
+.icon-slack:before {
+	content: mixins.unicode(e90c);
+}
+
+.icon-medium:before {
+	content: mixins.unicode(e90d);
+}
+
+.icon-imdb:before {
+	content: mixins.unicode(e90e);
+}
+
+.icon-goodreads:before {
+	content: mixins.unicode(e90f);
+}
+
+.icon-discord:before {
+	content: mixins.unicode(e910);
+}
+
+.icon-yelp:before {
+	content: mixins.unicode(e911);
+}
+
+.icon-wikipedia:before {
+	content: mixins.unicode(e912);
+}
+
+.icon-vimeo:before {
+	content: mixins.unicode(e915);
+}
+
+.icon-twitch:before {
+	content: mixins.unicode(e916);
+}
+
+.icon-tumblr:before {
+	content: mixins.unicode(e917);
+}
+
+.icon-steam:before {
+	content: mixins.unicode(e918);
+}
+
+.icon-spotify:before {
+	content: mixins.unicode(e919);
+}
+
+.icon-skype:before {
+	content: mixins.unicode(e91a);
+}
+
+.icon-soundcloud:before {
+	content: mixins.unicode(e91b);
+}
+
+.icon-paypal:before {
+	content: mixins.unicode(e91c);
+}
+
+.icon-github:before {
+	content: mixins.unicode(e91d);
+}
+
+.icon-behance:before {
+	content: mixins.unicode(e91e);
+}
+
+.icon-apple:before {
+	content: mixins.unicode(e91f);
+}
+
+.icon-amazon:before {
+	content: mixins.unicode(e921);
+}
+
+.icon-wordpress:before {
+	content: mixins.unicode(e922);
+}
+
+.icon-bandcamp:before {
+	content: mixins.unicode(e923);
+}
+
+.icon-etsy:before {
+	content: mixins.unicode(e924);
+}

@@ -1,0 +1,126 @@
+
+
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// GENERAL TEXT ELEMENTS
+//// --------------------------------------------------------------------------
+
+html, body {
+	font-family: theme.$font-family-01;
+}
+
+html {
+	text-size-adjust: 100%;
+	font-size: theme.$font-size-base;
+	line-height: 1;
+}
+
+body {
+	font-size: mixins.em(theme.$font-size-global, rem);
+	font-weight: normal;
+	color: theme.$color-01;
+	line-height: 1.5;
+}
+
+b, strong {
+	font-weight: theme.$font-weight;
+}
+
+dfn, em, i {
+	font-style: theme.$font-style;
+}
+
+a, abbr[title] {
+	text-decoration: none;
+}
+
+a {
+	color: theme.$color-03;
+	background-color: transparent;
+	transition: color 0.3s ease-in-out;
+	&:active, &:hover {
+		outline: 0;
+		color: theme.$color-01;
+	}
+}
+
+mark {
+	background: theme.$color-04;
+}
+
+small {
+	font-size: 80%;
+}
+
+sub, sup {
+	position: relative;
+	vertical-align: baseline;
+	font-size: 75%;
+	line-height: 0;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+//// HEADERS
+//// --------------------------------------------------------------------------
+
+h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h6, .h6 {
+	font-family: theme.$font-family-02;
+	color: theme.$color-01;
+	a {
+		color: inherit;
+		&:hover {
+			color: theme.$color-03;
+		}
+	}
+}
+
+h1, .h1 {
+	font-size: mixins.em(34px, rem);
+}
+
+h2, .h2 {
+	font-size: mixins.em(30px, rem);
+}
+
+h3, .h3 {
+	font-size: mixins.em(26px, rem);
+}
+
+h4, .h4 {
+	font-size: mixins.em(22px, rem);
+}
+
+h5, h6, .h5, .h6 {
+	font-size: mixins.em(20px, rem);
+}
+
+//// CONTENT BLOCKS
+//// --------------------------------------------------------------------------
+
+code, kbd, pre, samp {
+	background: theme.$color-01;
+	padding: theme.$spacing-x4;
+	font-family: 'Courier New', monospace;
+	font-size: mixins.em(16px, rem);
+	color: theme.$color-02;
+	white-space: pre-wrap;
+}
+
+pre code {
+	padding: 0;
+	margin: 0;
+}
+
+blockquote {
+	max-width: 90%;
+	margin: 0 auto theme.$spacing-x4 auto;
+}

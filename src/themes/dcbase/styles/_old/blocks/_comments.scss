@@ -1,0 +1,60 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// COMMENTS
+//// --------------------------------------------------------------------------
+
+.wp-block-post-comments {}
+
+//// COMMENTS PAGINATION
+//// --------------------------------------------------------------------------
+
+.wp-block-comments-pagination {
+	.wp-block-comments-pagination-previous {}
+	.wp-block-comments-pagination-previous-arrow {}
+	.wp-block-comments-pagination-next {}
+	.wp-block-comments-pagination-next-arrow {}
+	.wp-block-comments-pagination-numbers {
+		.page-numbers {
+			&.current {}
+		}
+	}
+}
+
+//// COMMENTS TEMPLATE
+//// --------------------------------------------------------------------------
+
+.wp-block-comment-template {
+	.comment {
+		.wp-block-columns {
+			.wp-block-column {
+				.wp-block-avatar {}
+				.wp-block-comment-author-name {}
+				.wp-block-group {
+					.wp-block-comment-date {
+						time {
+							a {}
+						}
+					}
+					.wp-block-comment-edit-link {
+						a {}
+					}
+				}
+				.wp-block-comment-content {
+					p {
+						.comment-awaiting-moderation {}
+					}
+				}
+				.wp-block-comment-reply-link {
+					.comment-reply-link {}
+				}
+			}
+		}
+	}	
+}
+
+//// COMMENTS TITLE
+//// --------------------------------------------------------------------------
+
+.wp-block-comments-title {}

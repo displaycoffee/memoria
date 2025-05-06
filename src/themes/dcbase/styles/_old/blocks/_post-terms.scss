@@ -1,0 +1,14 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// POST TERMS
+//// --------------------------------------------------------------------------
+//// Note: labeled as "Categories" or "Tags" block in editor.
+
+.wp-block-post-terms {
+	a {}
+	.wp-block-post-terms__separator {}
+	.wp-block-post-terms__prefix {}
+	.wp-block-post-terms__suffix {}
+}

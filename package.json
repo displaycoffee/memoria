@@ -1,0 +1,49 @@
+{
+	"name": "memoria",
+	"version": "1.0.0",
+	"description": "Custom WordPress template.",
+	"main": "bundle.js",
+	"type": "module",
+	"keywords": [],
+	"author": "displaycoffee",
+	"license": "ISC",
+	"scripts": {
+		"build": "vite build -c vite.config-custom-stuff.js && vite build -c vite.config-dcbase.js && vite build -c vite.config-dctest.js",
+		"dev": "vite --host",
+		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
+		"preview": "vite preview"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-basic-ssl": "^2.0.0",
+		"@vitejs/plugin-react": "^4.3.4",
+		"eslint": "^9.22.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-import": "^2.30.0",
+		"eslint-plugin-jsx-a11y": "^6.10.0",
+		"eslint-plugin-react": "^7.36.1",
+		"eslint-plugin-react-hooks": "^5.2.0",
+		"prettier": "^3.3.3",
+		"sass": "1.78.0",
+		"vite": "^6.2.2"
+	},
+	"dependencies": {
+		"@tanstack/react-query": "^5.56.2",
+		"glob": "^11.0.1",
+		"react": "^18.3.1",
+		"react-cookie": "^7.2.0",
+		"react-dom": "^18.3.1",
+		"react-router-dom": "^6.26.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/displaycoffee/memoria.git"
+	},
+	"bugs": {
+		"url": "https://github.com/displaycoffee/memoria/issues"
+	},
+	"homepage": "https://github.com/displaycoffee/memoria#readme",
+	"browserslist": [
+		"last 2 versions"
+	]
+}

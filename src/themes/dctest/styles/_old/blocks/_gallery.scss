@@ -1,0 +1,18 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// GALLERY
+//// --------------------------------------------------------------------------
+
+.wp-block-gallery {
+	&.has-nested-images {}
+	&.is-cropped {}
+	.wp-block-image {
+		&.has-custom-border {}
+		&.is-style-rounded {}
+		img {}
+		.wp-element-caption {}
+	}
+	.blocks-gallery-caption {}
+}

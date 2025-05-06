@@ -1,0 +1,23 @@
+.DS_Store
+.env
+.husky
+.vscode/
+coverage/
+node_modules/
+dist/
+
+# Ignore Most WP files in public
+public/**
+public/wp-content/plugins/**
+public/wp-content/themes/**
+
+# Add back in certain plugins and themes
+!public/wp-content
+!public/wp-content/plugins
+!public/wp-content/plugins/custom-stuff
+!public/wp-content/plugins/custom-stuff/**
+!public/wp-content/themes
+!public/wp-content/themes/dcbase
+!public/wp-content/themes/dcbase/**
+!public/wp-content/themes/dctest
+!public/wp-content/themes/dctest/**

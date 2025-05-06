@@ -1,0 +1,22 @@
+{
+	"version": 2,
+	"settings": {},
+    "styles": {},
+	"templateParts": [
+		{
+			"area": "header",
+			"name": "header",
+			"title": "Header - Main"
+		},
+		{
+			"area": "header",
+			"name": "header-index",
+			"title": "Header - Index"
+		},
+		{
+			"area": "footer",
+			"name": "footer",
+			"title": "Footer"
+		}
+	]
+}

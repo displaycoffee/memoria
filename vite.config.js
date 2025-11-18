@@ -34,8 +34,13 @@ export default defineConfig({
 	publicDir: '../public',
 	plugins: plugins,
 	server: {
-		host: 'localhost',
-		port: 3000,
+		host: '0.0.0.0',
+		port: 5173,
+		strictPort: true,
+		origin: `${'https://wordpress.ddev.site'.replace(/:\d+$/, '')}:5173`,
+		cors: {
+			origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
+		},
 	},
 	build: {
 		outDir: '../dist',

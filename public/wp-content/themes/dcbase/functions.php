@@ -26,16 +26,16 @@ function dcbase_setup() {
 }
 add_action('after_setup_theme', 'dcbase_setup');
 
-/* Set whitelist for checking if on localhost */
+/* Set whitelist for checking if on dev */
 function getWhitelist() {
-	return array('127.0.0.1', '::1', 'localhost');
+	$domain = $_SERVER['HTTP_HOST'];
+	return str_contains($domain, 'ddev.site') ? true : false;
 }
 
 /* Enqueue scripts */
 function dcbase_scripts() {
-	$whitelist = getWhitelist();
-	if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
-		wp_enqueue_script('vite-index', 'https://localhost:3000/themes/dcbase/index.js', [], wp_get_theme()->get('Version'), );
+	if (getWhitelist()) {
+		wp_enqueue_script('vite-index', 'https://localhost:5173/themes/dcbase/index.js', [], wp_get_theme()->get('Version'), );
 	} else {
 		wp_enqueue_script('dcbase-bundle', get_theme_file_uri('assets/js/bundle.js'));
 	}
@@ -53,8 +53,7 @@ add_filter('script_loader_tag', 'add_attribute_to_script_tag', 10, 3);
 
 /* Enqueue styles */
 function dcbase_styles() {
-	$whitelist = getWhitelist();
-	if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+	if (getWhitelist()) {
 		// Local styles will be served from index.js script
 	} else {
 		wp_enqueue_style('dcbase-styles', get_theme_file_uri('assets/css/styles.css'), [], wp_get_theme()->get('Version'));

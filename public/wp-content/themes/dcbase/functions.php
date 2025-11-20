@@ -35,7 +35,7 @@ function getWhitelist() {
 /* Enqueue scripts */
 function dcbase_scripts() {
 	if (getWhitelist()) {
-		wp_enqueue_script('vite-index', 'https://localhost:5173/themes/dcbase/index.js', [], wp_get_theme()->get('Version'), );
+		wp_enqueue_script('vite-index', 'https://localhost:3000/themes/dcbase/index.js', [], wp_get_theme()->get('Version'), );
 	} else {
 		wp_enqueue_script('dcbase-bundle', get_theme_file_uri('assets/js/bundle.js'));
 	}

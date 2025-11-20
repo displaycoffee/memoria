@@ -2,6 +2,7 @@
 .env
 .husky
 .vscode/
+.ddev/
 coverage/
 node_modules/
 dist/

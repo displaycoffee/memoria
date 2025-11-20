@@ -35,9 +35,9 @@ export default defineConfig({
 	plugins: plugins,
 	server: {
 		host: '0.0.0.0',
-		port: 5173,
+		port: 3000,
 		strictPort: true,
-		origin: `${'https://wordpress.ddev.site'.replace(/:\d+$/, '')}:5173`,
+		origin: `${'https://wordpress.ddev.site'.replace(/:\d+$/, '')}:3000`,
 		cors: {
 			origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
 		},

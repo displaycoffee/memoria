@@ -1,0 +1,20 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// POST FEATURED IMAGE
+//// --------------------------------------------------------------------------
+
+.wp-block-post-featured-image {
+	a {
+		img {}
+	}
+	img {}
+	.wp-block-post-featured-image__overlay {
+		&.has-background-dim:not([class*="-background-color"]) {}
+		@for $i from 1 through 10 {
+			&.has-background-dim-#{ $i * 10 } {}
+		}
+		&.has-background-gradient {}
+	}
+}

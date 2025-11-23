@@ -1,0 +1,52 @@
+//// BREAKPOINTS
+//// --------------------------------------------------------------------------
+//// Note: set without unit
+
+$bp-01: 541;
+$bp-02: 768;
+$bp-03: 992;
+$bp-04: 1200;
+
+//// SPACING
+//// --------------------------------------------------------------------------
+
+$spacing-x1: 5px;
+$spacing-x2: $spacing-x1 * 2;
+$spacing-x3: $spacing-x1 * 3;
+$spacing-x4: $spacing-x1 * 4;
+$spacing-x5: $spacing-x1 * 5;
+$spacing-x6: $spacing-x1 * 6;
+$spacing-x7: $spacing-x1 * 7;
+$spacing-x8: $spacing-x1 * 8; 
+$spacing-x12: $spacing-x1 * 12;
+
+//// COLORS
+//// --------------------------------------------------------------------------
+
+$color-01: #333333; // main
+$color-02: #fdfdfd; // light text
+$color-03: #6a5acd; // links
+$color-04: #f1f169; // highlights
+$color-05: #999999;
+$color-06: '';
+$color-07: '';
+$color-08: '';
+$color-09: '';
+$color-10: '';
+
+//// FONTS
+//// --------------------------------------------------------------------------
+
+$font-path: '../../../assets/dist/fonts/';
+$font-family-01: 'Arial Narrow', Arial, san-serif;
+$font-family-02: 'Garamond', 'Times New Roman', serif;
+$font-weight: bold;
+$font-style: italic;
+$font-transform: '';
+$font-size-global: 16px;
+$font-size-base: 16px;	
+
+//// ICONS
+//// --------------------------------------------------------------------------
+
+$icon-size: 16px;

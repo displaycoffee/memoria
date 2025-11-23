@@ -1,0 +1,12 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// PAGE LIST
+//// --------------------------------------------------------------------------
+
+.wp-block-page-list {
+	.wp-block-pages-list__item {
+		.wp-block-pages-list__item__link {}
+	}
+}

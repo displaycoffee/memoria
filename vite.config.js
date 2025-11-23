@@ -37,7 +37,7 @@ export default defineConfig({
 		host: '0.0.0.0',
 		port: 3000,
 		strictPort: true,
-		origin: `${'https://wordpress.ddev.site'.replace(/:\d+$/, '')}:3000`,
+		origin: `${'https://memoria.ddev.site'.replace(/:\d+$/, '')}:3000`,
 		cors: {
 			origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
 		},

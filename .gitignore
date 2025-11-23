@@ -22,3 +22,5 @@ public/wp-content/themes/**
 !public/wp-content/themes/dcbase/**
 !public/wp-content/themes/dctest
 !public/wp-content/themes/dctest/**
+!public/wp-content/themes/memoria
+!public/wp-content/themes/memoria/**

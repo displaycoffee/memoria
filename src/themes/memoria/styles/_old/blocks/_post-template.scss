@@ -1,0 +1,10 @@
+// Use helpers and theme variables
+@use '../helpers/_mixins';
+@use '../theme/_theme';
+
+//// POST TEMPLATE
+//// --------------------------------------------------------------------------
+
+.wp-block-post-template {
+	.wp-block-post {}
+}

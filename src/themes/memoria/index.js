@@ -7,7 +7,7 @@ import { utils } from './_config/scripts/utils';
 import { variables } from './_config/scripts/variables';
 
 /* Testing */
-console.log('hello from dcbase', theme, utils, variables);
+console.log('hello from memoria', theme, utils, variables);
 
 /* Local scripts */
 import './scripts/test.js';

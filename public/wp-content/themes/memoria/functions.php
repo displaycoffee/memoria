@@ -61,6 +61,24 @@ function memoria_styles() {
 }
 add_action('wp_enqueue_scripts', 'memoria_styles');
 
+function prefix_remove_core_block_styles() {
+	// wp_dequeue_style( 'wp-block-library' );
+	// wp_dequeue_style( 'wp-block-library-theme' );
+	// wp_dequeue_style( 'wc-block-styles' ); // REMOVE WOOCOMMERCE BLOCK CSS
+	wp_dequeue_style( 'global-styles' ); // REMOVE THEME.JSON
+	wp_dequeue_style( 'block-style-variation-styles' ); // REMOVE THEME.JSON
+	wp_dequeue_style( 'core-block-supports' );
+
+	global $wp_styles;
+
+	foreach ( $wp_styles->queue as $key => $handle ) {
+		if ( strpos( $handle, 'wp-block-' ) === 0 ) {
+			wp_dequeue_style( $handle );
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'prefix_remove_core_block_styles' );
+
 // // Adds theme support for post formats.
 // if ( ! function_exists( 'twentytwentyfive_post_format_setup' ) ) :
 // 	/**

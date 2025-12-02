@@ -1,5 +1,5 @@
 /* Local styles */
-import './styles/styles.scss';
+//import './styles/styles.scss';
 
 /* Local scripts */
 import { theme } from './_config/scripts/theme';

@@ -1,9 +1,8 @@
 <?php
-/**
-* This file has been left empty on purpose.
-*
-* @link https://core.trac.wordpress.org/ticket/54272
-*
-* @package memoria
-* @since 1.0.0
-*/
+get_header();
+if ( have_posts() ) : while ( have_posts() ) : the_post();
+get_template_part( 'entry' );
+comments_template();
+endwhile; endif;
+get_template_part( 'nav', 'below' );
+get_footer();

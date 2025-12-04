@@ -1,36 +1,32 @@
-== memoria ==
+=== memoria ===
 
-Contributors: displaycoffee
-Requires at least: 6.8
+Contributors: webguyio
+Donate link: https://opencollective.com/memoria
+Theme link: https://opencollective.com/memoria
+Tags: accessibility-ready, one-column, two-columns, custom-menu, featured-images, microformats, sticky-post, threaded-comments, translation-ready
+Requires at least: 5.2
 Tested up to: 6.8
-Requires PHP: 5.7
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-
+Stable tag: trunk
+License: GNU General Public License v3 or Later
+License URI: https://www.gnu.org/licenses/gpl.html
 
 == Description ==
 
-Boilerplate WordPress theme created by Adria (displaycoffee)
+YOU MAY DELETE THIS FILE AND ANY OTHER FILE(S) BEFORE STARTING YOUR PROJECT
 
+memoria is the definitive WordPress boilerplate starter theme. I've carefully constructed the most clean and minimalist theme possible for designers and developers to use as a base to build websites for clients or to build completely custom themes from scratch. Clean, simple, unstyled, semi-minified, unformatted, and valid code, SEO-friendly, jQuery-enabled, no programmer comments, standardized and as white label as possible, and most importantly, the CSS is reset for cross-browser-compatability, with no intrusive visual CSS styles added whatsoever. A perfect skeleton theme. For support and suggestions, go to: https://github.com/webguyio/memoria/issues. Thank you.
 
-== Changelog ==
+If you're creating your own theme or client project, open up all files and do a "Find and Replace All" on the word "memoria" with your own project name.
 
-= 1.0.0 =
-* Initial release
+Learn about more ways to use memoria and precautions to take at: https://memoria.me/.
 
+=== License ===
 
-== Copyright ==
+In its unchanged and original state:
 
-memoria WordPress Theme, (C) 2025 displaycoffee
-memoria is distributed under the terms of the GNU GPL.
+memoria WordPress Theme 2011-2026
+memoria is distributed under the terms of the GNU GPL
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
+The memoria theme package and all files contained within are distributed under the terms of the GNU GPL v3 or Later (https://www.gnu.org/licenses/gpl.html).
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
+Once you've significantly changed the theme to build your own unique project, either for yourself or for a client under a different theme name (as is encouraged), you're entirely welcome to copyright and license that project as you see fit.

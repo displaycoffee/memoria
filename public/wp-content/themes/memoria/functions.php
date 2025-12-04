@@ -1,6 +1,6 @@
 <?php
 /**
-* Memoria functions and definitions.
+* memoria functions and definitions.
 *
 * @link https://developer.wordpress.org/themes/basics/theme-functions/
 *
@@ -8,7 +8,33 @@
 * @since 1.0.0
 */
 
-/* Add theme support */
+// Add theme support
+function memoria_setup() {
+	// load_theme_textdomain( 'memoria', get_template_directory() . '/languages' );
+	add_theme_support( 'title-tag' );
+	// add_theme_support( 'automatic-feed-links' );
+	// add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'custom-logo' );
+	// add_theme_support( 'html5', array( 'search-form', 'comment-list', 'comment-form', 'gallery', 'caption', 'style', 'script', 'navigation-widgets' ) );
+	// add_theme_support( 'responsive-embeds' );
+	// add_theme_support( 'align-wide' );
+	// add_theme_support( 'wp-block-styles' );
+	// add_theme_support( 'editor-styles' );
+	// add_editor_style( 'editor-style.css' );
+	// add_theme_support( 'appearance-tools' );
+	// add_theme_support( 'woocommerce' );
+
+	// global $content_width;
+
+	// if ( !isset( $content_width ) ) {
+	// 	$content_width = 1920;
+	// }
+
+	// register_nav_menus( array( 'main-menu' => esc_html__( 'Main Menu', 'memoria' ) ) );
+}
+add_action( 'after_setup_theme', 'memoria_setup' );
+
+// Add theme support
 // function memoria_setup() {
 // 	// Load additional block styles
 // 	$styled_blocks = ['quote'];
@@ -26,58 +52,63 @@
 // }
 // add_action('after_setup_theme', 'memoria_setup');
 
-/* Check if on dev / local */
-function checkDev() {
+// Check if on dev / local
+function memoria_check_dev() {
 	$domain = $_SERVER['HTTP_HOST'];
 	return str_contains($domain, 'ddev.site') ? true : false;
 }
 
-/* Enqueue scripts */
+// Enqueue scripts
 function memoria_scripts() {
-	if (checkDev()) {
-		wp_enqueue_script('vite-index', 'https://localhost:3000/themes/memoria/index.js', [], wp_get_theme()->get('Version'), );
+	if ( memoria_check_dev() ) {
+		wp_enqueue_script( 'vite-index', 'https://localhost:3000/themes/memoria/index.js', [], wp_get_theme()->get('Version') );
 	} else {
-		wp_enqueue_script('memoria-bundle', get_theme_file_uri('assets/js/bundle.js'));
+		wp_enqueue_script( 'memoria-bundle', get_theme_file_uri('assets/js/bundle.js') );
 	}
 }
 add_action('wp_enqueue_scripts', 'memoria_scripts');
 
-/* Add attribute to vite script */ 
-function add_attribute_to_script_tag($tag, $handle, $src) {
-	if (in_array($handle, ['vite', 'memoria-bundle1', 'vite-index'])) {
+// Add attribute to vite script 
+function memoria_add_attribute_to_script_tag($tag, $handle, $src) {
+	$scriptArray = ['vite', 'memoria-bundle1', 'vite-index'];
+	if ( in_array( $handle, $scriptArray ) ) {
 		return '<script type="module" src="' . esc_url($src) . '"></script>';
 	}
     return $tag;
 }
-add_filter('script_loader_tag', 'add_attribute_to_script_tag', 10, 3);
+add_filter( 'script_loader_tag', 'memoria_add_attribute_to_script_tag', 10, 3 );
 
-/* Enqueue styles */
+// Enqueue styles
 function memoria_styles() {
-	if (checkDev()) {
+	if ( memoria_check_dev() ) {
 		// Local styles will be served from index.js script
 	} else {
-		wp_enqueue_style('memoria-styles', get_theme_file_uri('assets/css/styles.css'), [], wp_get_theme()->get('Version'));
+		wp_enqueue_style( 'memoria-styles', get_theme_file_uri('assets/css/styles.css'), [], wp_get_theme()->get('Version') );
 	}
 }
-add_action('wp_enqueue_scripts', 'memoria_styles');
+add_action( 'wp_enqueue_scripts', 'memoria_styles' );
 
-function prefix_remove_core_block_styles() {
+// Remove certain core styles
+function memoria_remove_core_styles() {
 	// wp_dequeue_style( 'wp-block-library' );
 	// wp_dequeue_style( 'wp-block-library-theme' );
 	// wp_dequeue_style( 'wc-block-styles' ); // REMOVE WOOCOMMERCE BLOCK CSS
-	wp_dequeue_style( 'global-styles' ); // REMOVE THEME.JSON
-	wp_dequeue_style( 'block-style-variation-styles' ); // REMOVE THEME.JSON
-	wp_dequeue_style( 'core-block-supports' );
+	wp_dequeue_style( 'global-styles' );
+	wp_dequeue_style( 'classic-theme' );
+	// wp_dequeue_style( 'block-style-variation-styles' ); // REMOVE THEME.JSON
+	// wp_dequeue_style( 'core-block-supports' );
 
-	global $wp_styles;
+	// global $wp_styles;
 
-	foreach ( $wp_styles->queue as $key => $handle ) {
-		if ( strpos( $handle, 'wp-block-' ) === 0 ) {
-			wp_dequeue_style( $handle );
-		}
-	}
+	// foreach ( $wp_styles->queue as $key => $handle ) {
+	// 	if ( strpos( $handle, 'wp-block-' ) === 0 ) {
+	// 		wp_dequeue_style( $handle );
+	// 	}
+	// }
 }
-add_action( 'wp_enqueue_scripts', 'prefix_remove_core_block_styles' );
+// add_action( 'wp_enqueue_scripts', 'memoria_remove_core_styles', 100 );
+// remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+// remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
 
 // // Adds theme support for post formats.
 // if ( ! function_exists( 'twentytwentyfive_post_format_setup' ) ) :

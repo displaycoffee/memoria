@@ -8,6 +8,12 @@
 * @since 1.0.0
 */
 
+// Include extra function files
+require_once( 'functions/helpers.php' );
+
+// // Add config object as variable
+// $config = memoria_config();
+
 // Add theme support
 function memoria_setup() {
 	// load_theme_textdomain( 'memoria', get_template_directory() . '/languages' );

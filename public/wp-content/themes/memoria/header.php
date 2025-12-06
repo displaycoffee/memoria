@@ -1,6 +1,6 @@
 <?php
 	/**
-	* Template for header.
+	* Template for header
 	*
 	* Exit if accessed directly
 	**/
@@ -10,12 +10,17 @@
 <html <?php language_attributes(); ?>>
 	<head>
 		<?php get_template_part( 'template-parts/header/meta' ); ?>
+
 		<?php wp_head(); ?>
 	</head>
 
 	<body <?php body_class(); ?>>
 		<?php wp_body_open(); ?>
+
+		<?php get_template_part( 'template-parts/header/svg-map' ); ?>
+
 		<div class="container container-main">
 			<?php get_template_part( 'template-parts/header/header' ); ?>
-<div id="container">
-<main id="content" role="main">
+
+			<div id="container">
+				<main id="content" role="main">

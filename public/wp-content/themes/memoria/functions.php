@@ -1,6 +1,6 @@
 <?php
 /**
-* memoria functions and definitions.
+* memoria theme functions and definitions
 *
 * @link https://developer.wordpress.org/themes/basics/theme-functions/
 *
@@ -11,24 +11,25 @@
 // Include extra function files
 require_once( 'functions/helpers.php' );
 
-// // Add config object as variable
-// $config = memoria_config();
+// Add config object as variable
+$config = memoria_config();
 
 // Add theme support
-function memoria_setup() {
+function memoria_setup( $config ) {
 	// load_theme_textdomain( 'memoria', get_template_directory() . '/languages' );
 	add_theme_support( 'title-tag' );
 	// add_theme_support( 'automatic-feed-links' );
-	// add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'custom-logo' );
+	add_theme_support( 'html5', array( 'search-form' ) );
 	// add_theme_support( 'html5', array( 'search-form', 'comment-list', 'comment-form', 'gallery', 'caption', 'style', 'script', 'navigation-widgets' ) );
-	// add_theme_support( 'responsive-embeds' );
+	add_theme_support( 'responsive-embeds' );
 	// add_theme_support( 'align-wide' );
 	// add_theme_support( 'wp-block-styles' );
 	// add_theme_support( 'editor-styles' );
-	// add_editor_style( 'editor-style.css' );
 	// add_theme_support( 'appearance-tools' );
 	// add_theme_support( 'woocommerce' );
+	// add_editor_style( 'editor-style.css' );
 
 	// global $content_width;
 
@@ -36,9 +37,15 @@ function memoria_setup() {
 	// 	$content_width = 1920;
 	// }
 
-	// register_nav_menus( array( 'main-menu' => esc_html__( 'Main Menu', 'memoria' ) ) );
+	// Register navigation menus
+	register_nav_menus(
+		array(
+			'header' => esc_html__( 'Header menu', $config->settings->lang ),
+			'footer' => esc_html__( 'Footer menu', $config->settings->lang ),
+		)
+	);
 }
-add_action( 'after_setup_theme', 'memoria_setup' );
+add_action( 'after_setup_theme', function() use ( $config ) { memoria_setup( $config ); } );
 
 // Add theme support
 // function memoria_setup() {

@@ -19,18 +19,19 @@
 			'site'     => (object) [
 				'name'        => get_bloginfo( 'name' ) ? esc_attr( get_bloginfo( 'name' ) ) : false,
 				'description' => get_bloginfo( 'description' ) ? esc_attr( get_bloginfo( 'description' ) ) : false,
-				'url'         => get_bloginfo( 'wpurl' ) ? esc_url( get_bloginfo( 'wpurl' ) ) : false,
+				'url'         => esc_url( home_url( '/' ) ),
 				'type'        => 'blog',
 				'logo'        => false
 			],
 			'settings' => (object) [
 				'charset' => get_bloginfo( 'charset' ) ? esc_attr( get_bloginfo( 'charset' ) ) : 'UTF-8',
-				'locale'  => get_bloginfo( 'language' ) ? esc_attr( str_replace( '-', '_', get_bloginfo( 'language' ) ) ) : false
-			],
+				'locale'  => get_bloginfo( 'language' ) ? esc_attr( str_replace( '-', '_', get_bloginfo( 'language' ) ) ) : false,
+				'lang'    => $prefix
+			]
 			// 'id'      => get_queried_object_id() ? get_queried_object_id() : false,
 			// 'home'    => get_home_url( '/' ),
 			// 'images'  => (object) [],
-			// 'lang'    => $prefix,
+			// 
 			// 
 			// 'paths'   => (object) [
 			// 	'images' => $theme_assets . '/images',
@@ -48,7 +49,7 @@
 
 		// Get custom logo
 		$logo = get_theme_mod( 'custom_logo' );
-		$logo_src = wp_get_attachment_image_src( $logo , 'full' );
+		$logo_src = wp_get_attachment_image_src( $logo , 'medium' );
 		$config->site->logo = $logo_src && $logo_src[0] ? esc_url( $logo_src[0] ) : false;
 
 		// Check what type of page it is and assign page type

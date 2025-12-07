@@ -39,8 +39,8 @@ function memoria_setup() {
 	// Register navigation menus
 	register_nav_menus(
 		array(
-			'main'   => esc_html__( 'Main menu', $config->settings->lang ),
-			'footer' => esc_html__( 'Footer menu', $config->settings->lang )
+			'primary' => esc_html__( 'Primary menu', $config->settings->lang ),
+			'footer'  => esc_html__( 'Footer menu', $config->settings->lang )
 		)
 	);
 }

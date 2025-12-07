@@ -6,14 +6,13 @@
 	**/
 	if ( !defined( 'ABSPATH' ) ) { exit; }
 ?>
-<nav class="navigation navigation-main">
+<nav class="navigation navigation-primary">
 	<?php
 		wp_nav_menu(
 			array(
-				'theme_location' => 'main',
-				'menu_class'     => 'menu flex-wrap flex-align-items-center unstyled',
+				'theme_location' => 'primary',
+				'menu_class'     => 'menu unstyled',
 				'container'      => false,
-				'after'          => 'test 2', // add an icon here
 				'depth'          => 2
 			)
 		);

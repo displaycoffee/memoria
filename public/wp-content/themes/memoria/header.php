@@ -22,7 +22,7 @@
 		<div class="container container-main">
 			<?php get_template_part( 'template-parts/layout/header/header' ); ?>
 			
-			<?php get_template_part( 'template-parts/components/navigation/main' ); ?>
+			<?php get_template_part( 'template-parts/components/navigation/primary' ); ?>
 
 			<div id="container">
 				<main id="content" role="main">

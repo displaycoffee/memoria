@@ -1,0 +1,17 @@
+// DO NOT REMOVE!!
+// Note: this file used to add sass variables into components
+@use './_theme.scss' as theme;
+
+// Use sass:map and sass:meta to export values
+@use "sass:map";
+@use "sass:meta";
+
+// Map module-variables from theme file
+$exported: meta.module-variables(theme);
+
+:export {
+	bp01 : map.get($exported, 'bp-01');
+	bp02 : map.get($exported, 'bp-02');
+	bp03 : map.get($exported, 'bp-03');
+	bp04 : map.get($exported, 'bp-04');
+}

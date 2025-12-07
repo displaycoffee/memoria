@@ -27,17 +27,22 @@
 				'charset' => get_bloginfo( 'charset' ) ? esc_attr( get_bloginfo( 'charset' ) ) : 'UTF-8',
 				'locale'  => get_bloginfo( 'language' ) ? esc_attr( str_replace( '-', '_', get_bloginfo( 'language' ) ) ) : false,
 				'lang'    => $prefix
-			]
+			],
+			'dev'      => (object) [
+				'ddev'  => 'ddev.site',
+				'index' => 'https://localhost:3000/themes/memoria/targets/index/index.js'
+			],
+			'paths'    => (object) [
+				'css'    => $theme_assets . '/css',
+				'fonts'  => $theme_assets . '/fonts',
+				'images' => $theme_assets . '/images',
+				'js'     => $theme_assets . '/js'
+			],
 			// 'id'      => get_queried_object_id() ? get_queried_object_id() : false,
 			// 'home'    => get_home_url( '/' ),
 			// 'images'  => (object) [],
 			// 
 			// 
-			// 'paths'   => (object) [
-			// 	'images' => $theme_assets . '/images',
-			// 	'js'     => $theme_assets . '/js',
-			// 	'lang'   => $theme . '/languages'
-			// ],
 			// 'prefix'  => $prefix,
 			// 'search'  => (object) [
 			// 	'label'   => 'Search for:',

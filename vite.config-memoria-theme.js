@@ -5,8 +5,9 @@ import { viteUtils } from './vite.utils';
 const entries = viteUtils.entries;
 
 /* Set variables for vite configs */
-const name = entries.dctest.name;
-const path = `${entries.dctest.path}/${name}`;
+const name = entries.memoria.name;
+const path = `${entries.memoria.path}/${name}`;
+const index = `${entries.memoria.path}/${name}/${entries.memoria.index}`;
 
 export default defineConfig({
 	root: 'src',
@@ -16,7 +17,7 @@ export default defineConfig({
 		outDir: '../dist',
 		emptyOutDir: false,
 		rollupOptions: {
-			input: viteUtils.setInput(name, path, 'index.js'),
+			input: viteUtils.setInput(name, index, 'index.js'),
 			output: {
 				assetFileNames: (file) => {
 					return viteUtils.assetFileNames(file, path);

@@ -1,0 +1,43 @@
+// Use utils and theme variables
+@use '../../../_config/styles/utils/_functions';
+@use '../../../_config/styles/utils/_mixins';
+@use '../../../_config/styles/theme/_theme';
+
+//// ICONS - SVG
+//// --------------------------------------------------------------------------
+//// Example for adding icon. The svg-map in public/assets/images/theme/svg-map.svg should be added inside <body> tag.
+//// 
+//// <span class="icon-wrapper">
+//// 	<svg class="icon icon-angle-right"><use xlink:href="#icon-angle-right"></use></svg>
+//// </span>
+//// 
+//// In react components, xlink:href should become xlinkHref. 
+
+	// Style block
+
+	.icon-wrapper {
+		@include mixins.flex-layout((display: inline-flex, flex-flow: column nowrap));
+		@include mixins.flex(0 0 auto);
+		@include mixins.icon-sizing(theme.$icon-size);
+		.icon {
+			display: block;
+			margin: auto;
+			@include mixins.sizing(auto, auto);
+			max-width: 100%;
+			max-height: 100%;
+			line-height: 1;
+			fill: currentColor;
+		}
+	}
+	.icon-wrapper-small {
+		@include mixins.icon-sizing(theme.$icon-size - 2);
+	}
+	.icon-wrapper-large {
+		@include mixins.icon-sizing(theme.$icon-size + 2);
+	}
+	.icon-wrapper-x-large {
+		@include mixins.icon-sizing(theme.$icon-size + 4);
+	}
+	.icon-wrapper-xx-large {
+		@include mixins.icon-sizing(theme.$icon-size + 8);
+	}

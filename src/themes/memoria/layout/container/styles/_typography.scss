@@ -1,0 +1,140 @@
+// Use utils and theme variables
+@use '../../../_config/styles/utils/_functions';
+@use '../../../_config/styles/utils/_mixins';
+@use '../../../_config/styles/theme/_theme';
+
+//// FONT FACE
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$typography-font-01: Open Sans;
+	$typography-font-02: Montserrat;
+
+	// Style block
+
+	@if $typography-font-01 != false {
+		@include mixins.font-face($typography-font-01, theme.$font-path, open-sans-regular);
+		@include mixins.font-face($typography-font-01, theme.$font-path, open-sans-italic, $style: italic);
+		@include mixins.font-face($typography-font-01, theme.$font-path, open-sans-bold, $weight : 700);
+		@include mixins.font-face($typography-font-01, theme.$font-path, open-sans-bold-italic, $weight : 700, $style: italic);
+	}
+	@if $typography-font-02 != false {
+		@include mixins.font-face($typography-font-02, theme.$font-path, montserrat-regular);
+		@include mixins.font-face($typography-font-02, theme.$font-path, montserrat-italic, $style: italic);
+		@include mixins.font-face($typography-font-02, theme.$font-path, montserrat-bold, $weight : 700);
+		@include mixins.font-face($typography-font-02, theme.$font-path, montserrat-bold-italic, $weight : 700, $style: italic);
+	}
+
+//// GENERAL TEXT ELEMENTS
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	html, body {
+		font-family: theme.$font-family-01;
+	}
+	html {
+		text-size-adjust: 100%;
+		font-size: theme.$font-size-base;
+		line-height: 1;
+	}
+	body {
+		font-size: functions.em(theme.$font-size-global, rem);
+		font-weight: normal;
+		color: theme.$color-02;
+		line-height: 1.5;
+	}
+	b, strong {
+		font-weight: theme.$font-weight-01;
+	}
+	dfn, em, i {
+		font-style: italic;
+	}
+	a, abbr[title] {
+		text-decoration: none;
+	}
+	a, .a {
+		color: theme.$color-03;
+		@include mixins.transition(color 0.3s ease-in-out);
+		&:active, &:hover {
+			color: theme.$color-02;
+		}
+	}
+	mark {
+		background: theme.$color-10;
+	}
+	small {
+		font-size: 80%;
+	}
+	sub, sup {
+		position: relative;
+		vertical-align: baseline;
+		font-size: 75%;
+		line-height: 0;
+	}
+	sup {
+		top: -0.5em;
+	}
+	sub {
+		bottom: -0.25em;
+	}
+
+//// HEADERS
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+		font-family: theme.$font-family-02;
+		font-weight: theme.$font-weight-02;
+		@include mixins.if-exists((
+			font-style: theme.$font-style,
+			text-transform: theme.$font-transform
+		));
+		color: theme.$color-02;
+		a {
+			color: inherit;
+			&:hover {
+				color: theme.$color-03;
+			}
+		}
+	}
+	h1, .h1 {
+		font-size: functions.em(34px, rem);
+	}
+	h2, .h2 {
+		font-size: functions.em(30px, rem);
+	}
+	h3, .h3 {
+		font-size: functions.em(26px, rem);
+	}
+	h4, .h4 {
+		font-size: functions.em(22px, rem);
+	}
+	h5, h6, .h5, .h6 {
+		font-size: functions.em(20px, rem);
+	}
+
+//// CONTENT BLOCKS
+//// --------------------------------------------------------------------------
+
+	// Style block
+	
+	code, kbd, pre, samp {
+		background: theme.$color-02;
+		padding: theme.$spacing-x4;
+		font-family: 'Courier New', monospace;
+		font-size: functions.em(16px, rem);
+		color: theme.$color-01;
+		white-space: pre-wrap;
+		word-break: break-word;
+	}
+	pre code {
+		padding: 0;
+		margin: 0;
+	}
+	blockquote {
+		max-width: 90%;
+		margin: 0 auto theme.$spacing-x4 auto;
+	}

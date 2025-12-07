@@ -11,11 +11,10 @@
 // Include extra function files
 require_once( 'functions/helpers.php' );
 
-// Add config object as variable
-$config = memoria_config();
-
 // Add theme support
-function memoria_setup( $config ) {
+function memoria_setup() {
+	$config = memoria_config();
+
 	// load_theme_textdomain( 'memoria', get_template_directory() . '/languages' );
 	add_theme_support( 'title-tag' );
 	// add_theme_support( 'automatic-feed-links' );
@@ -40,12 +39,12 @@ function memoria_setup( $config ) {
 	// Register navigation menus
 	register_nav_menus(
 		array(
-			'header' => esc_html__( 'Header menu', $config->settings->lang ),
-			'footer' => esc_html__( 'Footer menu', $config->settings->lang ),
+			'main'   => esc_html__( 'Main menu', $config->settings->lang ),
+			'footer' => esc_html__( 'Footer menu', $config->settings->lang )
 		)
 	);
 }
-add_action( 'after_setup_theme', function() use ( $config ) { memoria_setup( $config ); } );
+add_action( 'after_setup_theme', 'memoria_setup' );
 
 // Add theme support
 // function memoria_setup() {
@@ -67,36 +66,44 @@ add_action( 'after_setup_theme', function() use ( $config ) { memoria_setup( $co
 
 // Check if on dev / local
 function memoria_check_dev() {
+	$config = memoria_config();
 	$domain = $_SERVER['HTTP_HOST'];
-	return str_contains($domain, 'ddev.site') ? true : false;
+
+	return str_contains( $domain, $config->dev->ddev ) ? true : false;
 }
 
 // Enqueue scripts
 function memoria_scripts() {
+	$config = memoria_config();
+
 	if ( memoria_check_dev() ) {
-		wp_enqueue_script( 'vite-index', 'https://localhost:3000/themes/memoria/index.js', [], wp_get_theme()->get('Version') );
+		wp_enqueue_script( 'vite-index', $config->dev->index, [], wp_get_theme()->get( 'Version' ) );
 	} else {
-		wp_enqueue_script( 'memoria-bundle', get_theme_file_uri('assets/js/bundle.js') );
+		wp_enqueue_script( 'memoria-bundle', $config->paths->js . '/bundle.js' );
 	}
 }
-add_action('wp_enqueue_scripts', 'memoria_scripts');
+add_action( 'wp_enqueue_scripts', 'memoria_scripts' );
 
 // Add attribute to vite script 
 function memoria_add_attribute_to_script_tag($tag, $handle, $src) {
-	$scriptArray = ['vite', 'memoria-bundle1', 'vite-index'];
-	if ( in_array( $handle, $scriptArray ) ) {
-		return '<script type="module" src="' . esc_url($src) . '"></script>';
+	$script_array = ['vite', 'memoria-bundle1', 'vite-index'];
+
+	if ( in_array( $handle, $script_array ) ) {
+		return '<script type="module" src="' . esc_url( $src ) . '"></script>';
 	}
+
     return $tag;
 }
 add_filter( 'script_loader_tag', 'memoria_add_attribute_to_script_tag', 10, 3 );
 
 // Enqueue styles
 function memoria_styles() {
+	$config = memoria_config();
+
+	// Local styles will be served from index.js script
 	if ( memoria_check_dev() ) {
-		// Local styles will be served from index.js script
 	} else {
-		wp_enqueue_style( 'memoria-styles', get_theme_file_uri('assets/css/styles.css'), [], wp_get_theme()->get('Version') );
+		wp_enqueue_style( 'memoria-styles', $config->paths->css . '/styles.css', [], wp_get_theme()->get( 'Version' ) );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'memoria_styles' );

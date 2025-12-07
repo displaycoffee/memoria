@@ -1,0 +1,282 @@
+// Use utils and theme variables
+@use '../../../_config/styles/utils/_functions';
+@use '../../../_config/styles/utils/_mixins';
+@use '../../../_config/styles/theme/_theme';
+
+//// ICONS - FONT FACE
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	@include mixins.font-face('Icons', theme.$font-path, icons);
+
+//// ICONS - FONT
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.icon {
+		display: inline-block;
+		font-family: 'Icons';
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		font-size: functions.em(theme.$font-size-base, rem);
+		line-height: 1;
+		text-transform: none;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	.icon-angle-left:before {
+		content: functions.unicode(f104);
+	}
+	.icon-angle-right:before {
+		content: functions.unicode(f105);
+	}
+	.icon-angle-up:before {
+		content: functions.unicode(f106);
+	}
+	.icon-angle-down:before {
+		content: functions.unicode(f107);
+	}
+	.icon-chevron-left:before {
+		content: functions.unicode(f053);
+	}
+	.icon-chevron-right:before {
+		content: functions.unicode(f054);
+	}
+	.icon-chevron-up:before {
+		content: functions.unicode(f077);
+	}
+	.icon-chevron-down:before {
+		content: functions.unicode(f078);
+	}
+	.icon-angle-double-left:before {
+		content: functions.unicode(f100);
+	}
+	.icon-angle-double-right:before {
+		content: functions.unicode(f101);
+	}
+	.icon-angle-double-up:before {
+		content: functions.unicode(f102);
+	}
+	.icon-angle-double-down:before {
+		content: functions.unicode(f103);
+	}
+	.icon-check-thin:before {
+		content: functions.unicode(e900);
+	}
+	.icon-plus-thin:before {
+		content: functions.unicode(e901);
+	}
+	.icon-minus-thin:before {
+		content: functions.unicode(e902);
+	}
+	.icon-close-thin:before {
+		content: functions.unicode(e903);
+	}
+	.icon-check:before {
+		content: functions.unicode(f00c);
+	}
+	.icon-plus:before {
+		content: functions.unicode(e904);
+	}
+	.icon-minus:before {
+		content: functions.unicode(e905);
+	}
+	.icon-close:before {
+		content: functions.unicode(f00d);
+	}
+	.icon-asterisk:before {
+		content: functions.unicode(f069);
+	}
+	.icon-menu:before {
+		content: functions.unicode(e906);
+	}
+	.icon-filter:before {
+		content: functions.unicode(e909);
+	}
+	.icon-gear:before {
+		content: functions.unicode(e907);
+	}
+	.icon-gears:before {
+		content: functions.unicode(e908);
+	}
+	.icon-heart:before {
+		content: functions.unicode(f004);
+	}
+	.icon-star:before {
+		content: functions.unicode(f005);
+	}
+	.icon-pencil:before {
+		content: functions.unicode(f040);
+	}
+	.icon-quill:before {
+		content: functions.unicode(e90a);
+	}
+	.icon-pen:before {
+		content: functions.unicode(e90b);
+	}
+	.icon-tv:before {
+		content: functions.unicode(e95b);
+	}
+	.icon-video:before {
+		content: functions.unicode(e913);
+	}
+	.icon-camera:before {
+		content: functions.unicode(e914);
+	}
+	.icon-film:before {
+		content: functions.unicode(f008);
+	}
+	.icon-book:before {
+		content: functions.unicode(f02d);
+	}
+	.icon-books:before {
+		content: functions.unicode(e920);
+	}
+	.icon-search:before {
+		content: functions.unicode(f002);
+	}
+	.icon-home:before {
+		content: functions.unicode(f015);
+	}
+	.icon-tag:before {
+		content: functions.unicode(f02b);
+	}
+	.icon-calendar:before {
+		content: functions.unicode(f073);
+	}
+	.icon-comment:before {
+		content: functions.unicode(f075);
+	}
+	.icon-comments:before {
+		content: functions.unicode(f086);
+	}
+	.icon-inbox:before {
+		content: functions.unicode(f01c);
+	}
+	.icon-folder:before {
+		content: functions.unicode(f07c);
+	}
+	.icon-envelope:before {
+		content: functions.unicode(f0e0);
+	}
+	.icon-paper-plane:before {
+		content: functions.unicode(f1d8);
+	}
+	.icon-monitor:before {
+		content: functions.unicode(f26c);
+	}
+	.icon-pinterest:before {
+		content: functions.unicode(f231);
+	}
+	.icon-digg:before {
+		content: functions.unicode(f1a6);
+	}
+	.icon-reddit:before {
+		content: functions.unicode(f281);
+	}
+	.icon-linkedin:before {
+		content: functions.unicode(f0e1);
+	}
+	.icon-instagram:before {
+		content: functions.unicode(f16d);
+	}
+	.icon-facebook:before {
+		content: functions.unicode(f09a);
+	}
+	.icon-youtube:before {
+		content: functions.unicode(f16a);
+	}
+	.icon-youtube-logo:before {
+		content: functions.unicode(f167);
+	}
+	.icon-twitter:before {
+		content: functions.unicode(f099);
+	}
+	.icon-stumbleupon:before {
+		content: functions.unicode(f1a4);
+	}
+	.icon-librarything:before {
+		content: functions.unicode(e90c);
+	}
+	.icon-tiktok:before {
+		content: functions.unicode(e90d);
+	}
+	.icon-slack:before {
+		content: functions.unicode(e90e);
+	}
+	.icon-medium:before {
+		content: functions.unicode(e90f);
+	}
+	.icon-imdb:before {
+		content: functions.unicode(e910);
+	}
+	.icon-goodreads:before {
+		content: functions.unicode(e911);
+	}
+	.icon-discord:before {
+		content: functions.unicode(e912);
+	}
+	.icon-yelp:before {
+		content: functions.unicode(e915);
+	}
+	.icon-wikipedia:before {
+		content: functions.unicode(e916);
+	}
+	.icon-vimeo:before {
+		content: functions.unicode(e917);
+	}
+	.icon-twitch:before {
+		content: functions.unicode(e918);
+	}
+	.icon-tumblr:before {
+		content: functions.unicode(e919);
+	}
+	.icon-steam:before {
+		content: functions.unicode(e91a);
+	}
+	.icon-spotify:before {
+		content: functions.unicode(e91b);
+	}
+	.icon-skype:before {
+		content: functions.unicode(e91c);
+	}
+	.icon-soundcloud:before {
+		content: functions.unicode(e91d);
+	}
+	.icon-paypal:before {
+		content: functions.unicode(e91e);
+	}
+	.icon-github:before {
+		content: functions.unicode(e91f);
+	}
+	.icon-behance:before {
+		content: functions.unicode(e921);
+	}
+	.icon-apple:before {
+		content: functions.unicode(e922);
+	}
+	.icon-amazon:before {
+		content: functions.unicode(e923);
+	}
+	.icon-wordpress:before {
+		content: functions.unicode(e924);
+	}
+	.icon-bandcamp:before {
+		content: functions.unicode(e925);
+	}
+	.icon-etsy:before {
+		content: functions.unicode(e926);
+	}
+	.icon-spinner:before {
+		content: functions.unicode(e928);
+	}
+	.icon-spinner1:before {
+		content: functions.unicode(e929);
+	}
+	.icon-equalizer:before {
+		content: functions.unicode(e927);
+	}

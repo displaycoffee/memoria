@@ -3,18 +3,18 @@ import react from '@vitejs/plugin-react';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 
 export const viteUtils = {
+	dev: 'https://memoria.ddev.site',
+	port: 3000,
 	entries: {
 		'custom-stuff': {
 			name: 'custom-stuff',
 			path: 'plugins',
+			index: 'targets/index',
 		},
-		dcbase: {
-			name: 'dcbase',
+		memoria: {
+			name: 'memoria',
 			path: 'themes',
-		},
-		dctest: {
-			name: 'dctest',
-			path: 'themes',
+			index: 'targets/index',
 		},
 	},
 	plugins: [react(), basicSsl()],

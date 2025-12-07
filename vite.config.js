@@ -7,8 +7,8 @@ const entries = viteUtils.entries;
 /* Create inputs map */
 let inputs = {};
 
-for (let entry in viteUtils.entries) {
-	const currentEntry = viteUtils.entries[entry];
+for (let entry in entries) {
+	const currentEntry = entries[entry];
 	const name = currentEntry.name;
 	const path = `${currentEntry.path}/${name}`;
 
@@ -35,9 +35,9 @@ export default defineConfig({
 	plugins: plugins,
 	server: {
 		host: '0.0.0.0',
-		port: 3000,
+		port: viteUtils.port,
 		strictPort: true,
-		origin: `${'https://memoria.ddev.site'.replace(/:\d+$/, '')}:3000`,
+		origin: `${viteUtils.dev.replace(/:\d+$/, '')}:${viteUtils.port}`,
 		cors: {
 			origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
 		},

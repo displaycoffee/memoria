@@ -52,23 +52,4 @@
 			<?php get_search_form(); ?>
 		</div>
 	</div>
-
-	<nav class="header-navigation">
-		<span class="icon-wrapper icon-wrapper-large">
-			<svg class="icon icon-equalizer">
-				<use xlink:href="#icon-equalizer"></use>
-			</svg>
-		</span>
-		<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'header',
-					'menu_class'     => 'menu flex-wrap flex-align-items-center unstyled',
-					'container'      => false,
-					'after'          => 'test 2', // add an icon here
-					'depth'          => 2
-				)
-			);
-		?>
-	</nav>
 </header>

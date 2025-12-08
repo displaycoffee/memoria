@@ -19,7 +19,7 @@
 
 		<?php get_template_part( 'template-parts/layout/header/svg-map' ); ?>
 
-		<div class="container container-main">
+		<div class="container">
 			<?php get_template_part( 'template-parts/layout/header/header' ); ?>
 			
 			<?php get_template_part( 'template-parts/components/navigation/primary' ); ?>

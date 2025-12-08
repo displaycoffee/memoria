@@ -17,7 +17,7 @@
 	$is_home = memoria_is_home();
 ?>
 <header class="header">
-	<div class="header-details site-details flex-wrap flex-align-items-center">
+	<div class="site-details flex-wrap flex-align-items-center">
 		<?php if ( $site->logo ) : ?>
 			<div class="site-logo">
 				<div class="image-wrapper">

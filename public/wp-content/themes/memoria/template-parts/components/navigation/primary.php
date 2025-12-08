@@ -1,6 +1,6 @@
 <?php
 	/**
-	* Main navigation
+	* Primary navigation
 	*
 	* Exit if accessed directly
 	**/

@@ -4,16 +4,11 @@ Framework to create WordPress projects. Primarily built with JavaScript, Sass, a
 
 This is named after the final dungeon in the game Final Fantasy IX -- the "Place of Memories".
 
-### wamp
+### ddev
 
-To use with Wamp, make an "Alias".
-
-- Click on the "Wamp" icon in Windows tray.
-- Then go to Apache > Alias directories > Add an alias.
-- Specify your alias name (`memoria`) and point it to your `public` directory. For example: `c:/Users/xxx/xxx/memoria/public`.
-- Assuming Wamp is running, you can now go to http://localhost/memoria and use Vite to build WordPress files.
-
-(**Note:** I do understand Wamp is outdated, but for now this is what I'm using to run php, Apache, etc..)
+- Go to `/mnt/c/Users/xxx/xxx/memoria`
+- Run `ddev start`
+- Go to `https://memoria.ddev.site`
 
 ### dist
 

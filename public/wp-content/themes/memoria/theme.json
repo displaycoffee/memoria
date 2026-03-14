@@ -6,12 +6,72 @@
 				{
 					"slug": "default",
 					"name": "Default",
-					"fontFamily": "'Open Sans', Helvetica, Arial, san-serif"
+					"fontFamily": "'Open Sans', Helvetica, Arial, san-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Open Sans",
+							"fontWeight": "700",
+							"fontStyle": "italic",
+							"fontStretch": "normal",
+							"src": ["file:./assets/fonts/open-sans-bold-italic.woff2"]
+						},
+						{
+							"fontFamily": "Open Sans",
+							"fontWeight": "700",
+							"fontStyle": "normal",
+							"fontStretch": "normal",
+							"src": ["file:./assets/fonts/open-sans-bold.woff2"]
+						},
+						{
+							"fontFamily": "Open Sans",
+							"fontWeight": "400",
+							"fontStyle": "italic",
+							"fontStretch": "normal",
+							"src": ["file:./assets/fonts/open-sans-italic.woff2"]
+						},
+						{
+							"fontFamily": "Open Sans",
+							"fontWeight": "400",
+							"fontStyle": "normal",
+							"fontStretch": "normal",
+							"src": ["file:./assets/fonts/open-sans-regular.woff2"]
+						}
+					]
 				},
 				{
 					"slug": "headers",
 					"name": "Headers",
-					"fontFamily": "'Montserrat', Helvetica, Arial, san-serif"
+					"fontFamily": "'Montserrat', Helvetica, Arial, san-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Montserrat",
+							"fontWeight": "700",
+							"fontStyle": "italic",
+							"fontStretch": "normal",
+							"src": ["file:./assets/fonts/montserrat-bold-italic.woff2"]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontWeight": "700",
+							"fontStyle": "normal",
+							"fontStretch": "normal",
+							"src": ["file:./assets/fonts/montserrat-bold.woff2"]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontWeight": "400",
+							"fontStyle": "italic",
+							"fontStretch": "normal",
+							"src": ["file:./assets/fonts/montserrat-italic.woff2"]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontWeight": "400",
+							"fontStyle": "normal",
+							"fontStretch": "normal",
+							"src": ["file:./assets/fonts/montserrat-regular.woff2"]
+						}
+					]
 				}
 			],
 			"fontSizes": [
@@ -41,6 +101,14 @@
 	"styles": {
 		"elements": {
 			"p": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--default)",
+					"fontSize": "var(--wp--preset--font-size--default)"
+				}
+			}
+		},
+		"blocks": {
+			"core/paragraph": {
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--default)",
 					"fontSize": "var(--wp--preset--font-size--default)"

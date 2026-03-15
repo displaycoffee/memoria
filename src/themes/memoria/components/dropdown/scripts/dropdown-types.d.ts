@@ -1,15 +1,30 @@
-/* React */
-import { ReactNode } from 'react';
-
 /* Type definitions */
-type DropdownOptions = {
-	container: boolean | string;
-	button: boolean | string;
-	content: boolean | string;
-	direction?: string;
-	icon?: boolean | string;
-	onHover?: boolean;
+type Dropdown = {
+	buttonLabel: string;
+	buttonLinkClass?: string;
+	buttonUrl?: string;
+	children: ReactNode;
+	closeOnClick?: boolean;
+};
+
+type DropdownButton = {
+	buttonLabel: string;
+	buttonLinkClass?: string;
+	buttonUrl?: string;
+	closeContent: MouseEventHandler<HTMLAnchorElement>;
+	toggleDropdown: MouseEventHandler<HTMLButtonElement>;
+};
+
+type DropdownContent = {
+	children: ReactNode;
+	closeContent: MouseEventHandler<HTMLDivElement>;
 };
 
 /* Export types */
-export type DropdownOptionsType = DropdownOptions;
+
+/* Export prop types */
+export type DropdownProps = Dropdown;
+
+export type DropdownButtonProps = DropdownButton;
+
+export type DropdownContentProps = DropdownContent;

@@ -1,0 +1,25 @@
+// Use utils and theme variables
+@use '../../../_config/styles/utils/_functions';
+@use '../../../_config/styles/utils/_mixins';
+@use '../../../_config/styles/theme/_theme';
+
+//// ERROR BOUNDARY
+//// --------------------------------------------------------------------------
+
+	// Colors
+
+	$error-boundary-color-01: theme.$color-10; // body background
+
+	// Configuration
+
+	$error-boundary-spacing: theme.$spacing-x4; // overall spacing of theme
+
+	// Style block
+
+	.error-boundary {
+		background-color: $error-boundary-color-01;
+		padding: theme.$spacing-x4;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}

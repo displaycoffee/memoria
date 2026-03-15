@@ -1,5 +1,5 @@
 // Use sass:map to get values from $exported map
-@use "sass:map";
+@use 'sass:map';
 
 // Animate
 // Example for $value: spin 2s infinite linear
@@ -211,6 +211,18 @@
 	}
 }
 
+// Add spacing for grid or flex layouts
+@mixin gap($gap) {
+	-ms-gap: $gap;
+	gap: $gap;
+}
+
+// Calculate child width when parent has gap (gap calculates differently when child width is a %)
+@mixin gap-width($gap, $columns) {
+	$columns-adjust: $columns - 1;
+	width: calc((100% - ($gap * $columns-adjust)) / $columns);
+}
+
 // Basic linear gradient
 @mixin gradient($color-01, $color-02, $direction-01, $direction-02) {
 	background-color: $color-01;
@@ -259,20 +271,12 @@
 	grid-template-columns: repeat(auto-fill, minmax($width, 1fr));
 }
 
-// Add spacing for grid or flex layouts
-@mixin grid-gap($gap) {
-	@if $gap != false {
-		-ms-gap: $gap;
-		gap: $gap;
-	}
-}
-
 // Inline block with vertical alignment
 @mixin grid-layout($gap: 5px, $width) {
 	display: -ms-grid;
 	display: grid;
 	@include grid-columns($width);
-	@include grid-gap($gap);
+	@include gap($gap);
 }
 
 // Resize icons
@@ -381,9 +385,12 @@
 }
 
 // Scrollbar
-@mixin scrollbar($selector, $width, $s-color-01: '', $s-color-02: '') {
+@mixin scrollbar($selector, $width, $height, $s-color-01: '', $s-color-02: '') {
 	#{$selector}::-webkit-scrollbar {
 		width: $width;
+	}
+	#{$selector}::-webkit-scrollbar {
+		height: $height;
 	}
 	@if $s-color-01 != '' {
 		#{$selector}::-webkit-scrollbar-track {

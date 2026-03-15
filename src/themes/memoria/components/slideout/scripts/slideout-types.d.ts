@@ -1,6 +1,3 @@
-/* React */
-import { ReactNode } from 'react';
-
 /* Type definitions */
 type SlideoutButton = {
 	outside: boolean;
@@ -13,7 +10,7 @@ type SlideoutOptions = {
 		closeOnClick: boolean;
 		content: ReactNode;
 		direction?: string;
-		id: string;
+		id?: string;
 		isDesktop: boolean;
 		label: string;
 		orientation?: string;

@@ -1,0 +1,15 @@
+// Use utils and theme variables
+@use '../../../_config/styles/utils/_functions';
+@use '../../../_config/styles/utils/_mixins';
+@use '../../../_config/styles/theme/_theme';
+
+//// FOOTER
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.footer {
+		p {
+			margin: 0;
+		}
+	}

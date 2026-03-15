@@ -77,7 +77,7 @@ function memoria_scripts() {
 	$config = memoria_config();
 
 	if ( memoria_check_dev() ) {
-		wp_enqueue_script( 'vite-index', $config->dev->index, [], wp_get_theme()->get( 'Version' ) );
+		wp_enqueue_script( 'vite-index', $config->dev->index, [], null );
 	} else {
 		wp_enqueue_script( 'memoria-bundle', $config->paths->js . '/bundle.js' );
 	}
@@ -126,6 +126,7 @@ function memoria_remove_core_styles() {
 	// 	}
 	// }
 }
+
 // add_action( 'wp_enqueue_scripts', 'memoria_remove_core_styles', 100 );
 // remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
 // remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );

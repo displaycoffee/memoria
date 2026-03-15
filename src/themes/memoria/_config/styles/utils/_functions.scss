@@ -14,39 +14,28 @@
 	@return calc($pixels / $context) * $multiplier;
 }
 
-// Create an optimized svg url - version: 1.0.6
-// From: https://codepen.io/jakob-e/full/doMoML
-@function svg-encode($svg) {
-	// Add missing namespace
-	@if not str-index($svg,xmlns) {
-		$svg: svg-str-replace($svg, '<svg','<svg xmlns="http://www.w3.org/2000/svg"');   
-	}
-
-	// Chunk up string in order to avoid "stack level too deep" error
-	$encoded:'';
-	$slice: 2000;
-	$index: 0;
-	$loops: ceil(calc(str-length($svg) / $slice));
-	@for $i from 1 through $loops {
-		$chunk: str-slice($svg, $index, $index + $slice - 1); 
-		// Encode
-		$chunk: svg-str-replace($chunk, '"', '\'');
-		$chunk: svg-str-replace($chunk, '%', '%25');
-		$chunk: svg-str-replace($chunk, '#', '%23');       
-		$chunk: svg-str-replace($chunk, '{', '%7B');
-		$chunk: svg-str-replace($chunk, '}', '%7D');         
-		$chunk: svg-str-replace($chunk, '<', '%3C');
-		$chunk: svg-str-replace($chunk, '>', '%3E');
-		$encoded: #{$encoded}#{$chunk};
-		$index: $index + $slice;
-	}
-	@return url("data:image/svg+xml,#{$encoded}");   
+// Helper function to replace characters in a string
+@function str-replace($string, $search, $replace: '') {
+	$index: str-index($string, $search);
+	@return if($index, str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace), $string);
 }
 
-// Helper function to replace characters in a svg string
-@function svg-str-replace($string, $search, $replace: '') {
-	$index: str-index($string, $search);
-	@return if($index, str-slice($string, 1, $index - 1) + $replace + svg-str-replace(str-slice($string, $index + str-length($search)), $search, $replace), $string);
+// Encode svg (mostly for use in background-image)
+@function svg-encode($svg) {
+	// Add missing namespace
+	@if not str-index($svg, xmlns) {
+		$svg: str-replace($svg, '<svg','<svg xmlns="http://www.w3.org/2000/svg"');   
+	}
+
+	// Encode characters in svg
+	$encoded: str-replace($svg, '%', '%25');
+	$encoded: str-replace($encoded, '#', '%23');
+	$encoded: str-replace($encoded, '{', '%7B');
+	$encoded: str-replace($encoded, '}', '%7D');
+	$encoded: str-replace($encoded, '<', '%3C');
+	$encoded: str-replace($encoded, '>', '%3E');
+
+	@return url("data:image/svg+xml, #{$encoded}");
 }
 
 // Source - [@Stephn-R] (https://github.com/sass/sass/issues/1395#issuecomment-57483844)
@@ -54,5 +43,5 @@
 // Input: unicode("e655")
 // Output: "\e655"
 @function unicode($str) {
-    @return unquote("\"") + unquote(str-insert($str, "\\", 1)) + unquote("\"");
+	@return unquote("\"") + unquote(str-insert($str, "\\", 1)) + unquote("\"");
 }

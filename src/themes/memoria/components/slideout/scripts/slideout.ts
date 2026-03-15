@@ -57,7 +57,7 @@ export const slideout = {
 			}
 		},
 	},
-	toggle: (e: EventType, id: string | boolean) => {
+	toggle: (e: EventsType, id: string | boolean) => {
 		e.preventDefault();
 		const { config, set } = slideout;
 		const classes = config.classes;

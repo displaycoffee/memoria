@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_template_part( 'template-parts/layout/header/header' ); ?>
 <article id="post-0" class="post not-found" role="alert">
 <header class="header">
 <h1 class="entry-title" itemprop="name"><?php esc_html_e( 'Not Found', 'memoria' ); ?></h1>

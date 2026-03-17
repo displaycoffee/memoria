@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_template_part( 'template-parts/layout/header/header' ); ?>
 <header class="header">
 <h1 class="entry-title" itemprop="name"><?php the_archive_title(); ?></h1>
 <div class="archive-meta" itemprop="description"><?php if ( '' != get_the_archive_description() ) { echo wp_kses_post( get_the_archive_description() ); } ?></div>

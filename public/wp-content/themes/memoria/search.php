@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_template_part( 'template-parts/layout/header/header' ); ?>
 <?php if ( have_posts() ) : ?>
 <header class="header">
 <h1 class="entry-title" itemprop="name"><?php printf( esc_html__( 'Search Results for: %s', 'memoria' ), esc_html( get_search_query() ) ); ?></h1>

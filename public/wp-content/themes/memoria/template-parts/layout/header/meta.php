@@ -1,11 +1,11 @@
 <?php
 	/**
-	* Meta tags for header
+	* Template for head element meta tags
 	*
 	* Exit if accessed directly
 	**/
-	if ( !defined( 'ABSPATH' ) ) { exit; }	
-	
+	if ( !defined( 'ABSPATH' ) ) { exit; }
+
 	// Add config object
 	$config = memoria_config();
 
@@ -37,4 +37,4 @@
 <?php if ( $site->logo ) : ?>
 	<meta property="og:image" content="<?php echo $site->logo; ?>" />
 <?php endif; ?>
-<meta property="og:type" content="<?php echo $site->type; ?>" />	
+<meta property="og:type" content="<?php echo $site->type; ?>" />

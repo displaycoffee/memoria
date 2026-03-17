@@ -1,55 +1,24 @@
 <?php
 	/**
-	* Main header used throughout site
+	* Template for header include
 	*
 	* Exit if accessed directly
 	**/
 	if ( !defined( 'ABSPATH' ) ) { exit; }
-
-	// Add config object
-	$config = memoria_config();
-	
-	// Get objects from config
-	$site = $config->site;
-	$settings = $config->settings;
-
-	// Determine if page is front or home page
-	$is_home = memoria_is_home();
 ?>
-<header class="header">
-	<div class="site-details flex-wrap flex-align-items-center">
-		<?php if ( $site->logo ) : ?>
-			<div class="site-logo">
-				<div class="image-wrapper">
-					<a href="<?php echo $site->url; ?>">
-						<?php if ( $site->name ) : ?>
-							<img src="<?php echo $site->logo; ?>" alt="<?php echo $site->name; ?>" title="<?php echo $site->name; ?>" loading="lazy" />
-						<?php else : ?>
-							<img src="<?php echo $site->logo; ?>" loading="lazy" />
-						<?php endif; ?>
-						</a>
-				</div>
-			</div>
-		<?php endif; ?>
+<!doctype html>
+<html <?php language_attributes(); ?>>
+	<?php get_template_part( 'template-parts/layout/header/head' ); ?>
 
-		<?php if ( $site->name ) : ?>
-			<div class="site-name">
-				<h1>
-					<a href="<?php echo $site->url; ?>">
-						<?php echo $site->name; ?>
-					</a>
-				</h1>
-			</div>
-		<?php endif; ?>
+	<body <?php body_class(); ?>>
+		<?php wp_body_open(); ?>
 
-		<?php if ( $site->description ) : ?>
-			<div class="site-description">
-				<p><?php echo $site->description; ?></p>
-			</div>
-		<?php endif; ?>
+		<?php get_template_part( 'template-parts/components/blocks/svg-map' ); ?>
 
-		<div class="site-search">
-			<?php get_search_form(); ?>
-		</div>
-	</div>
-</header>
+		<div class="container">
+			<?php get_template_part( 'template-parts/layout/header/header-main' ); ?>
+			
+			<?php get_template_part( 'template-parts/components/navigation/primary' ); ?>
+
+			<div id="container">
+				<main id="content" role="main">

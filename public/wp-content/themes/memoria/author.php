@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_template_part( 'template-parts/layout/header/header' ); ?>
 <header class="header">
 <?php the_post(); ?>
 <h1 class="entry-title author" itemprop="name"><?php the_author_link(); ?></h1>

@@ -19,7 +19,7 @@
 			'site'     => (object) [
 				'name'        => get_bloginfo( 'name' ) ? esc_attr( get_bloginfo( 'name' ) ) : false,
 				'description' => get_bloginfo( 'description' ) ? esc_attr( get_bloginfo( 'description' ) ) : false,
-				'url'         => esc_url( home_url( '/' ) ),
+				'url'         => esc_url( rtrim( home_url( '/' ), '/') ),
 				'type'        => 'blog',
 				'logo'        => false
 			],
@@ -38,18 +38,18 @@
 				'images' => $theme_assets . '/images',
 				'js'     => $theme_assets . '/js'
 			],
+			'search'   => (object) [
+				'prefix'  => 'search-form-',
+				'label'   => 'Search for:',
+				'results' => 'Search results for:',
+				'text'    => 'Search'
+			],
 			// 'id'      => get_queried_object_id() ? get_queried_object_id() : false,
 			// 'home'    => get_home_url( '/' ),
 			// 'images'  => (object) [],
 			// 
 			// 
 			// 'prefix'  => $prefix,
-			// 'search'  => (object) [
-			// 	'label'   => 'Search for:',
-			// 	'results' => 'Search results for:',
-			// 	'text'    => 'Search'
-			// ],
-			// 
 		];
 
 		// Get custom logo

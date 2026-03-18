@@ -15,5 +15,6 @@
 ?>
 <head>
 	<?php get_template_part( 'template-parts/layout/header/meta' ); ?>
+	
 	<?php wp_head(); ?>
 </head>

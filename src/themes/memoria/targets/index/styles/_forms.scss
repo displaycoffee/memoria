@@ -8,13 +8,50 @@
 
 	// Style block
 
-	button:not(.unstyled) {
-		height: 40px;
-		line-height: 40px;
-		@include mixins.ellipsis;
+	input[type='search'], input[type='text'], .input, button:not(.unstyled), .button:not(.unstyled) {
+		padding: 0 theme.$spacing-x2;
+		margin: 0;
+		background-color: theme.$color-01;
+		border: 1px solid theme.$color-04;
+		height: 35px;
+		line-height: 33px;
 	}
-	button.unstyled {
+	button:not(.unstyled), .button:not(.unstyled) {
+		@include mixins.flex-layout((display: inline-flex, align-items: center));
+		@include mixins.gap(theme.$spacing-x1);
+		@include mixins.ellipsis;
+		cursor: pointer;
+	}
+	button.unstyled, .button.unstyled {
 		padding: 0;
 		background-color: transparent;
 		border: 0;
+		cursor: pointer;
+	}
+	input[type='search'], input[type='text'], .input {
+		outline: 0;
+	}
+	label {
+		margin: 0;
+		&[for] {
+			cursor: pointer;
+		}
+	}
+	.form-field {
+		@include mixins.flex-layout((align-items: center));
+		@include mixins.gap(theme.$spacing-x2);
+	}
+	.form-field-close {
+		position: relative;
+		.input:focus ~ .button-close, .button-close.button-active {
+			opacity: 1;
+		}
+		.input {
+			padding-right: theme.$spacing-x4 + 14;
+		}
+		.button-close {
+			@include mixins.position($type: absolute, $top: 0, $bottom: 0, $right: theme.$spacing-x2);
+			margin: auto 0;
+			opacity: 0;
+		}	
 	}

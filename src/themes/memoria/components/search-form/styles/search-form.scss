@@ -3,18 +3,9 @@
 @use '../../../_config/styles/utils/_mixins';
 @use '../../../_config/styles/theme/_theme';
 
-//// FORMS
+//// SEARCH FORM
 //// --------------------------------------------------------------------------
 
-	// Style block
-
-	button:not(.unstyled) {
-		height: 40px;
-		line-height: 40px;
-		@include mixins.ellipsis;
-	}
-	button.unstyled {
-		padding: 0;
-		background-color: transparent;
-		border: 0;
+	.search-form {
+		@include mixins.gap(theme.$spacing-x2);
 	}

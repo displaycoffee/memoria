@@ -49,7 +49,7 @@
 		<?php endif; ?>
 
 		<div class="site-search">
-			<?php get_search_form(); ?>
+			<?php get_template_part( 'template-parts/components/search-form/search-form', '', array( 'id' => 'header' ) ); ?>
 		</div>
 	</div>
 </header>

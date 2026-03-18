@@ -13,12 +13,12 @@
 	<body <?php body_class(); ?>>
 		<?php wp_body_open(); ?>
 
-		<?php get_template_part( 'template-parts/components/blocks/svg-map' ); ?>
+		<?php get_template_part( 'template-parts/components/svg-map/svg-map' ); ?>
 
 		<div class="container">
 			<?php get_template_part( 'template-parts/layout/header/header-main' ); ?>
 			
 			<?php get_template_part( 'template-parts/components/navigation/primary' ); ?>
 
-			<div id="container">
-				<main id="content" role="main">
+			<main id="content" role="main">
+				

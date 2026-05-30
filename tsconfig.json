@@ -1,17 +1,19 @@
 {
 	"compilerOptions": {
-		"outDir": "dist",
+		"outDir": "./dist",
+		"rootDir": "./src",
 		"allowJs": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"jsx": "react-jsx",
-		"module": "ES2022",
-		"moduleResolution": "node",
+		"module": "esnext",
+		"moduleResolution": "bundler",
 		"noFallthroughCasesInSwitch": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"strict": true,
-		"target": "ES2022"
+		"target": "ES2022",
+		"types": ["vite/client"]
 	},
 	"include": ["src"],
 	"exclude": ["dist"]

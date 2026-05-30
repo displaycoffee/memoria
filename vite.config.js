@@ -32,7 +32,11 @@ plugins.unshift({
 export default defineConfig({
 	root: 'src',
 	publicDir: '../public',
+	envDir: '../',
 	plugins: plugins,
+	resolve: {
+		dedupe: ['react', 'react-dom'],
+	},
 	server: {
 		host: '0.0.0.0',
 		port: viteUtils.port,

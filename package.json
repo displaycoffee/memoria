@@ -7,6 +7,7 @@
 	"keywords": [],
 	"author": "displaycoffee",
 	"license": "ISC",
+	"homepage": "https://github.com/displaycoffee/memoria#readme",
 	"scripts": {
 		"build": "vite build -c vite.config-custom-stuff.js && vite build -c vite.config-memoria-theme.js",
 		"dev": "vite --host",
@@ -31,12 +32,11 @@
 		"prettier": "^3.8.1",
 		"sass": "1.78.0",
 		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.58.0",
 		"vite": "^7.3.1"
 	},
 	"dependencies": {
-		"@tanstack/react-query": "^5.90.21",
 		"react": "^19.2.4",
-		"react-cookie": "^8.0.1",
 		"react-dom": "^19.2.4",
 		"react-router-dom": "^7.13.0"
 	},
@@ -47,7 +47,6 @@
 	"bugs": {
 		"url": "https://github.com/displaycoffee/memoria/issues"
 	},
-	"homepage": "https://github.com/displaycoffee/memoria#readme",
 	"browserslist": [
 		"last 2 versions"
 	]

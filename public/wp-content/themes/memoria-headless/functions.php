@@ -11,9 +11,13 @@
 
 require_once get_template_directory() . '/functions-options.php';
 
-// Makes nav menus available
+// Theme support declarations
 add_action('after_setup_theme', function () {
 	add_theme_support('menus');
+	add_theme_support('post-thumbnails');
+	add_theme_support('post-formats', ['aside', 'audio', 'gallery', 'image', 'link', 'quote', 'video']);
+	add_theme_support('align-wide');
+	add_theme_support('html5', ['gallery', 'caption']);
 });
 
 // Register nav menus so they appear in WP admin and are queryable

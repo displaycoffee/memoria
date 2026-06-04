@@ -1,15 +1,17 @@
 <?php
 /**
 * Memoria theme functions and definitions
-* Note: This theme is not use on the frontend. It is only for connecting to the headless frontend.
-* 
+* Note: This theme is not used on the frontend. It is only for connecting to the headless frontend.
+*
 * @link https://developer.wordpress.org/themes/basics/theme-functions/
 *
 * @package memoria
 * @since 1.0.0
 */
 
-// Makes nav menus available via REST API (/wp-json/wp/v2/menus)
+require_once get_template_directory() . '/functions-options.php';
+
+// Makes nav menus available
 add_action('after_setup_theme', function () {
 	add_theme_support('menus');
 });
@@ -22,7 +24,7 @@ add_action('init', function () {
 	]);
 });
 
-// Allow Astro dev server to call the REST API without CORS errors
+// Allow Astro dev server to call the API without CORS errors
 add_action('rest_api_init', function () {
 	remove_filter('rest_pre_serve_request', 'rest_send_cors_headers');
 
@@ -42,3 +44,10 @@ add_action('rest_api_init', function () {
 		return $value;
 	});
 });
+
+// Remove unused Appearance submenu items (priority 999 ensures WP has registered them first)
+add_action('admin_menu', function () {
+	remove_submenu_page('themes.php', 'theme-editor.php');            // Theme File Editor
+	remove_submenu_page('themes.php', 'site-editor.php?p=/pattern');  // Patterns
+	remove_submenu_page('themes.php', 'font-library.php');            // Fonts
+}, 999);

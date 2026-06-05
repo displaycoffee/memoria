@@ -43,9 +43,9 @@
 //// FONTS
 //// --------------------------------------------------------------------------
 
-	$font-path: 'wp-content/themes/dctest/assets/fonts/';
-	$font-family-01: 'Open Sans', Helvetica, Arial, san-serif; // main font family: used for most text elements
-	$font-family-02: 'Montserrat', Helvetica, Arial, san-serif; // header font family: used in header elements
+	$font-path: '/assets/fonts/';
+	$font-family-01: 'Open Sans', 'Fallback', san-serif; // main font family: used for most text elements
+	$font-family-02: 'Montserrat', 'Fallback Bold', san-serif; // header font family: used in header elements
 	$font-weight-01: 700; // main font weight: used for things like bold text and active selections
 	$font-weight-02: 700; // header font weight: used in header elements
 	$font-style: false;

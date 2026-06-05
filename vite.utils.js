@@ -5,19 +5,17 @@ import basicSsl from '@vitejs/plugin-basic-ssl';
 export const viteUtils = {
 	dev: 'https://memoria.ddev.site',
 	port: 3000,
+	plugins: [react(), basicSsl()],
 	entries: {
 		'custom-stuff': {
 			name: 'custom-stuff',
 			path: 'plugins',
-			index: 'targets/index',
 		},
 		memoria: {
 			name: 'memoria',
 			path: 'themes',
-			index: 'targets/index',
 		},
 	},
-	plugins: [react(), basicSsl()],
 	setInput: (name, path, file) => {
 		return {
 			[`${name}`]: fileURLToPath(new URL(`./src/${path}/${file}`, import.meta.url)),

@@ -1,0 +1,50 @@
+// Use utils and theme variables
+@use '../../../_config/styles/utils/_functions';
+@use '../../../_config/styles/utils/_mixins';
+@use '../../../_config/styles/theme/_theme';
+
+//// NAVIGATION
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.navigation {
+		.navigation-list {
+			@include mixins.flex-layout((align-items: center));
+			@include mixins.gap(theme.$spacing-x4);
+			margin: 0 0 theme.$spacing-x4 0;
+			.navigation-list-item {
+				&:has(.dropdown) {
+					position: relative;
+					@include mixins.flex-layout((flex-flow: row nowrap, align-items: center));
+					@include mixins.gap(theme.$spacing-x1);
+					.dropdown {
+						position: static;
+						.dropdown-button {
+							padding: 0;
+							line-height: 1.5;
+							height: auto;
+							border: 0;
+							background-color: transparent;
+						}
+						.dropdown-content {
+							right: auto;
+							min-width: 200px;
+							margin-top: theme.$spacing-x2;
+						}
+					}
+				}
+				.navigation-link-active {
+					font-weight: theme.$font-weight-01;
+				}
+			}
+			.navigation-list-submenu {
+				.navigation-list-item {
+					margin: 0 0 theme.$spacing-x1 0;
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+	}

@@ -9,10 +9,11 @@
 * @since 1.0.0
 */
 
-require_once get_template_directory() . '/functions-options.php';
+// Include theme files
+require_once get_template_directory() . '/pages/options.php';
 
 // Theme support declarations
-add_action('after_setup_theme', function () {
+add_action('after_setup_theme', function() {
 	add_theme_support('menus');
 	add_theme_support('post-thumbnails');
 	add_theme_support('post-formats', ['aside', 'audio', 'gallery', 'image', 'link', 'quote', 'video']);
@@ -21,7 +22,7 @@ add_action('after_setup_theme', function () {
 });
 
 // Register nav menus so they appear in WP admin and are queryable
-add_action('init', function () {
+add_action('init', function() {
 	register_nav_menus([
 		'primary' => __('Primary Navigation'),
 		'footer'  => __('Footer Navigation'),
@@ -29,14 +30,11 @@ add_action('init', function () {
 });
 
 // Allow Astro dev server to call the API without CORS errors
-add_action('rest_api_init', function () {
+add_action('rest_api_init', function() {
 	remove_filter('rest_pre_serve_request', 'rest_send_cors_headers');
 
 	add_filter('rest_pre_serve_request', function ($value) {
-		$allowed = [
-			'http://localhost:4321', // Astro default dev port
-		];
-
+		$allowed = ['http://localhost:4321'];
 		$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 
 		if (in_array($origin, $allowed, true)) {
@@ -50,7 +48,7 @@ add_action('rest_api_init', function () {
 });
 
 // Remove unused Appearance submenu items (priority 999 ensures WP has registered them first)
-add_action('admin_menu', function () {
+add_action('admin_menu', function() {
 	global $submenu;
 
 	// Customizer slug includes a dynamic ?return=... param so remove_submenu_page can't match it — scan directly

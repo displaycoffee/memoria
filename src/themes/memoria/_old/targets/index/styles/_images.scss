@@ -1,0 +1,13 @@
+// Use utils and theme variables
+@use '../../../_config/styles/utils/_functions';
+@use '../../../_config/styles/utils/_mixins';
+@use '../../../_config/styles/theme/_theme';
+
+//// IMAGES
+//// --------------------------------------------------------------------------
+	
+	img {
+		display: block;
+		max-width: 100%;
+		border: 0;
+	}

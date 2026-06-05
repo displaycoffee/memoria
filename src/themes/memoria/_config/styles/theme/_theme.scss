@@ -32,7 +32,7 @@
 	$color-01: #fdfdfd; // main
 	$color-02: #333333; // light text
 	$color-03: #6a5acd; // links
-	$color-04: #333333; // form field borders
+	$color-04: false;
 	$color-05: false;
 	$color-06: false;
 	$color-07: rgba(#000000, 0.75); // overlay
@@ -43,9 +43,9 @@
 //// FONTS
 //// --------------------------------------------------------------------------
 
-	$font-path: '/wp-content/themes/memoria/assets/fonts/';
-	$font-family-01: var(--wp--preset--font-family--default); // main font family: used for most text elements
-	$font-family-02: var(--wp--preset--font-family--headers); // header font family: used in header elements
+	$font-path: '/assets/fonts/';
+	$font-family-01: 'Open Sans', 'Fallback', san-serif; // main font family: used for most text elements
+	$font-family-02: 'Montserrat', 'Fallback Bold', san-serif; // header font family: used in header elements
 	$font-weight-01: 700; // main font weight: used for things like bold text and active selections
 	$font-weight-02: 700; // header font weight: used in header elements
 	$font-style: false;

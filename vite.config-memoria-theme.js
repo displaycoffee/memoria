@@ -7,17 +7,20 @@ const entries = viteUtils.entries;
 /* Set variables for vite configs */
 const name = entries.memoria.name;
 const path = `${entries.memoria.path}/${name}`;
-const index = `${entries.memoria.path}/${name}/${entries.memoria.index}`;
 
 export default defineConfig({
 	root: 'src',
 	publicDir: '../public',
+	envDir: '../',
 	plugins: viteUtils.plugins,
 	build: {
 		outDir: '../dist',
 		emptyOutDir: false,
+		modulePreload: {
+			polyfill: false,
+		},
 		rollupOptions: {
-			input: viteUtils.setInput(name, index, 'index.js'),
+			input: viteUtils.setInput(name, path, 'index.ts'),
 			output: {
 				assetFileNames: (file) => {
 					return viteUtils.assetFileNames(file, path);

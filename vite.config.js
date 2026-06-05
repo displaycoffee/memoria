@@ -11,7 +11,6 @@ for (let entry in entries) {
 	const currentEntry = entries[entry];
 	const name = currentEntry.name;
 	const path = `${currentEntry.path}/${name}`;
-
 	inputs = {
 		...inputs,
 		...viteUtils.setInput(name, path, 'index.js'),
@@ -34,9 +33,6 @@ export default defineConfig({
 	publicDir: '../public',
 	envDir: '../',
 	plugins: plugins,
-	resolve: {
-		dedupe: ['react', 'react-dom'],
-	},
 	server: {
 		host: '0.0.0.0',
 		port: viteUtils.port,
@@ -46,9 +42,15 @@ export default defineConfig({
 			origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
 		},
 	},
+	resolve: {
+		dedupe: ['react', 'react-dom'],
+	},
 	build: {
 		outDir: '../dist',
 		emptyOutDir: false,
+		modulePreload: {
+			polyfill: false,
+		},
 		rollupOptions: {
 			input: inputs,
 		},

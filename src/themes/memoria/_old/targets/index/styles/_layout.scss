@@ -1,0 +1,109 @@
+// Use utils and theme variables
+@use '../../../_config/styles/utils/_functions';
+@use '../../../_config/styles/utils/_mixins';
+@use '../../../_config/styles/theme/_theme';
+
+//// FLEX
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.flex-wrap {
+		@include mixins.flex-layout;
+	}
+	.flex-align-content-center {
+		@include mixins.flex-parent(align-content, center);
+	}
+	.flex-nowrap {
+		@include mixins.flex-layout((flex-flow: row nowrap));
+	}
+	.flex-align-items-center {
+		@include mixins.flex-parent(align-items, center);
+	}
+	.flex-justify-content-center {
+		@include mixins.flex-parent(justify-content, center);
+	}
+
+//// ROWS / COLUMNS
+//// --------------------------------------------------------------------------
+
+	// Configuration
+	
+	$row-spacing: (
+		theme.$spacing-x1, 
+		theme.$spacing-x2, 
+		theme.$spacing-x3, 
+		theme.$spacing-x4,
+		theme.$spacing-x5, 
+		theme.$spacing-x6, 
+		theme.$spacing-x7, 
+		theme.$spacing-x8
+	); // Array of spacing values
+
+	// Style block
+
+	.row {
+		.column {
+			min-width: 1px;
+		}
+		[class*='column-width-'], .column-width-100 {
+			width: 100%;
+		}
+	}
+	.row-fit {
+		.column {	
+			@include mixins.flex;
+		}
+	}
+	.row-auto {
+		.column {	
+			@include mixins.flex(0 1 auto);
+		}
+	}
+	.row-wrap {
+		@extend .flex-wrap;
+	}
+	.row-nowrap {
+		@extend .flex-nowrap;
+	}
+	.row-align-content-center {
+		@extend .flex-align-content-center;
+	}
+	.row-align-items-center {
+		@extend .flex-align-items-center;
+	}
+	.row-justify-content-center {
+		@extend .flex-justify-content-center;
+	}
+
+	// Create row spacing styles by looping through $row-spacing
+	@each $row in $row-spacing {
+		$row-class: calc($row / 1px);
+		.row-spacing-#{$row-class} {
+			@include mixins.gap($row);
+			@include mixins.respond-min(theme.$bp-02) {
+				[class*='column-width-'] {
+					@include mixins.gap-width($row, 2);
+				}
+				.column-width-100 {
+					width: 100%;
+				}
+			}
+			@include mixins.respond-min(theme.$bp-03) {
+				.column-width-33, .column-width-25 {
+					@include mixins.gap-width($row, 3);
+				}
+				.column-width-20 {
+					@include mixins.gap-width($row, 4);
+				}
+			}
+			@include mixins.respond-min(theme.$bp-04) {
+				.column-width-25 {
+					@include mixins.gap-width($row, 4);
+				}
+				.column-width-20 {
+					@include mixins.gap-width($row, 5);
+				}
+			}
+		}
+	}

@@ -11,12 +11,16 @@ const path = `${entries['custom-stuff'].path}/${name}`;
 export default defineConfig({
 	root: 'src',
 	publicDir: '../public',
+	envDir: '../',
 	plugins: viteUtils.plugins,
 	build: {
 		outDir: '../dist',
 		emptyOutDir: false,
+		modulePreload: {
+			polyfill: false,
+		},
 		rollupOptions: {
-			input: viteUtils.setInput(name, path, 'index.js'),
+			input: viteUtils.setInput(name, path, 'index.ts'),
 			output: {
 				assetFileNames: (file) => {
 					return viteUtils.assetFileNames(file, path);

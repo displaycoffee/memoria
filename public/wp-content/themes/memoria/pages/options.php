@@ -84,6 +84,7 @@ add_action('admin_enqueue_scripts', function(string $hook): void {
 
 	// Enqueue scripts and styles
 	wp_enqueue_media();
+	
 	if ($is_dev) {
 		// Dev: load from Vite server
 		wp_enqueue_script('vite-index', $config->dev->index, null, null, ['in_footer' => true]);
@@ -95,7 +96,7 @@ add_action('admin_enqueue_scripts', function(string $hook): void {
 });
 
 // Add attribute to vite script 
-function memoria_add_attribute_to_script_tag($tag, $handle, $src) {
+function memoria_add_attribute_to_script_tag(string $tag, string $handle, string $src): string {
 	$script_array = ['vite', 'memoria-bundle1', 'vite-index'];
 
 	if (in_array($handle, $script_array)) {
@@ -209,21 +210,21 @@ add_action('graphql_register_types', function() use($fields)  {
 });
 
 // Loop through fields and add settings
-function memoria_add_fields($fields, $section) {
+function memoria_add_fields(object $fields, string $section): void {
 	foreach ($fields as $key => $label) {
 		add_settings_field($key, $label->label, $label->field, MEMORIA_SLUG, $section, ['key' => $key]);
 	}
 }
 
 // Build GraphQL type map from a fields object
-function memoria_add_types($fields, &$types) {
+function memoria_add_types(object $fields, array &$types): void {
 	foreach ($fields as $key => $label) {
 		$types[$label->graphQL] = ['type' => 'String'];
 	}
 }
 
 // Loop through fields and register settings
-function memoria_register_fields($fields, $section) {
+function memoria_register_fields(object $fields, string $section): void {
 	foreach ($fields as $key => $label) {
 		register_setting(MEMORIA_OPTIONS, $key, ['sanitize_callback' => $label->sanitize_callback]);
 	}

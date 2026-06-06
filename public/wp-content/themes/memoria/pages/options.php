@@ -73,7 +73,7 @@ $fields = (object) [
 ];
 
 // Enqueue media library scripts on options page
-add_action('admin_enqueue_scripts', function(string $hook): void {
+function memoria_enqueue_options_scripts(string $hook): void {
 	$config = memoria_config();
 	$is_dev = memoria_is_dev();
 	$version = wp_get_theme()->get('Version');
@@ -93,10 +93,11 @@ add_action('admin_enqueue_scripts', function(string $hook): void {
 		wp_enqueue_script('memoria-admin-scripts', $config->paths->js . '/bundle.js', null, $version, ['in_footer' => true]);
 		wp_enqueue_style('memoria-admin-styles', $config->paths->css . '/styles.css', null, $version);
 	}
-});
+}
+add_filter('admin_enqueue_scripts', 'memoria_enqueue_options_scripts', 10, 3);
 
 // Add attribute to vite script 
-function memoria_add_attribute_to_script_tag(string $tag, string $handle, string $src): string {
+function memoria_add_script_attribute(string $tag, string $handle, string $src): string {
 	$script_array = ['vite', 'memoria-bundle1', 'vite-index'];
 
 	if (in_array($handle, $script_array)) {
@@ -105,10 +106,10 @@ function memoria_add_attribute_to_script_tag(string $tag, string $handle, string
 
     return $tag;
 }
-add_filter('script_loader_tag', 'memoria_add_attribute_to_script_tag', 10, 3);
+add_filter('script_loader_tag', 'memoria_add_script_attribute', 10, 3);
 
 // Add Theme Options page under Appearance in WP admin
-add_action('admin_menu', function() {
+function memoria_add_theme_options(): void {
 	add_theme_page(
 		'Theme Options', // Page title
 		'Options', // Submenu label
@@ -116,10 +117,11 @@ add_action('admin_menu', function() {
 		MEMORIA_SLUG,
 		MEMORIA_OPTIONS . '_page'
 	);
-});
+}
+add_action('admin_menu', 'memoria_add_theme_options');
 
 // Register settings and fields
-add_action('admin_init', function() use($fields) {
+function memoria_build_theme_options($fields): void {
 	// START -- SITE IDENTITY SECTION
 
 	// Name
@@ -173,10 +175,11 @@ add_action('admin_init', function() use($fields) {
 
 	// Theme options — stored as a single serialized array
 	register_setting(MEMORIA_OPTIONS, MEMORIA_OPTIONS, ['sanitize_callback' => 'memoria_sanitize_options']);
-});
+}
+add_action('admin_init', function() use($fields) { memoria_build_theme_options($fields); });
 
 // Expose theme options to WPGraphQL
-add_action('graphql_register_types', function() use($fields)  {
+function memoria_register_graphql_options($fields): void {
 	$type = 'ThemeOptions';
 	$description = 'Memoria theme options';
 
@@ -207,7 +210,10 @@ add_action('graphql_register_types', function() use($fields)  {
 			return $values;
 		},
 	]);
-});
+}
+add_action('graphql_register_types', function() use($fields) { memoria_register_graphql_options($fields); });
+
+// Functions to build the above actions and filters
 
 // Loop through fields and add settings
 function memoria_add_fields(object $fields, string $section): void {

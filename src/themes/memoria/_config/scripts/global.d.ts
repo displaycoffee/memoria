@@ -10,6 +10,14 @@ type ObjectPrimitive = {
 };
 
 /* WordPress type definitions */
+type MediaPickerOptions = {
+	classes: ObjectString;
+	selectors: ObjectString;
+	text: {
+		[key: string]: ObjectString;
+	};
+};
+
 type WP = {
 	media(options: { title: string; button: { text: string }; multiple: boolean }): WPMediaFrame;
 };
@@ -39,6 +47,8 @@ declare global {
 	type ObjectPrimitiveProps = ObjectPrimitive;
 
 	/* Declare global WordPress types */
+	type MediaPickerOptionsType = MediaPickerOptions;
+
 	type WPMediaFrameType = WPMediaFrame;
 
 	const wp: WP;

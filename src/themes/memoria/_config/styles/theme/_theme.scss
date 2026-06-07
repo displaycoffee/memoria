@@ -15,7 +15,7 @@
 //// SPACING
 //// --------------------------------------------------------------------------
 
-	$spacing-x1: 5px;
+	$spacing-x1: 4px;
 	$spacing-x2: $spacing-x1 * 2;
 	$spacing-x3: $spacing-x1 * 3;
 	$spacing-x4: $spacing-x1 * 4;
@@ -32,8 +32,8 @@
 	$color-01: #fdfdfd; // main
 	$color-02: #333333; // light text
 	$color-03: #6a5acd; // links
-	$color-04: false;
-	$color-05: false;
+	$color-04: #b32d2e; // remove button red
+	$color-05: #ffffff;
 	$color-06: false;
 	$color-07: rgba(#000000, 0.75); // overlay
 	$color-08: false;

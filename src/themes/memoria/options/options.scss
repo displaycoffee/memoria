@@ -1,0 +1,65 @@
+// Use utils and theme variables
+@use '../_config/styles/utils/_functions';
+@use '../_config/styles/utils/_mixins';
+@use '../_config/styles/theme/_theme';
+
+//// THEME OPTIONS
+//// --------------------------------------------------------------------------
+
+	.memoria-theme-options {
+		.wrap {
+			form {
+				max-width: 750px;
+			}
+			.regular-text, textarea {
+				width: 100%;
+			}
+			.media-picker {
+				.media-picker-preview {
+					width: 100%;
+					height: 150px;
+					margin: 0 0 theme.$spacing-x4 0;
+					&:not(.site-icon-preview) {
+						.media-picker-wrap img {
+							object-fit: contain;
+							height: 100%;
+						}
+					}
+					&.has-media {
+						& ~ {
+							.media-picker-action-buttons {
+								margin: 0 0 theme.$spacing-x4 0;
+							}
+						}
+					}
+					.media-picker-wrap {
+						height: 100%;
+					}
+				}
+				.site-icon-preview {
+					height: 88px;
+				}
+				.media-picker-remove {
+					color: theme.$color-04;
+					&, &:hover {
+						border-color: theme.$color-04;
+					}
+					&:hover {
+						background: theme.$color-04;
+						color: theme.$color-05;
+						box-shadow: 0 0 0 1px theme.$color-04;
+					}
+				}
+			}
+			td:has(.character-count) {
+				position: relative;
+				.description {
+					padding-right: 65px;
+				}
+				.character-count {
+					@include mixins.position($type: absolute, $right: 10px, $top: auto);
+					padding-right: 0;
+				}
+			}
+		}
+	}

@@ -116,9 +116,12 @@ function memoria_register_graphql_options(object $sections_custom): void {
 					}
 
 					// Run shortcode-enabled fields through the parser so the API returns rendered
-					// HTML, matching how WPGraphQL exposes rendered post content
+					// HTML, matching how WPGraphQL exposes rendered post content.
+					// esc_html is intentionally omitted here — it would encode quotes and break
+					// attribute parsing (e.g. [a href="url"]). The value was already stripped of
+					// HTML on save via sanitize_textarea_field, so raw tags can't come through.
 					if (!empty($label->parse_shortcodes) && $value !== '') {
-						$value = do_shortcode(esc_html($value));
+						$value = do_shortcode($value);
 					}
 
 					$values[$label->graphQL] = $value;

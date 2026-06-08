@@ -11,12 +11,12 @@ if (!defined('ABSPATH')) { exit; }
 
 // [b]bold text[/b] -> <strong>bold text</strong>
 add_shortcode('b', function ($atts, $content = null): string {
-	return '<strong>' . esc_html($content ?? '') . '</strong>';
+	return '<strong>' . wp_kses_post(do_shortcode($content ?? '')) . '</strong>';
 });
 
 // [i]italic text[/i] -> <em>italic text</em>
 add_shortcode('i', function ($atts, $content = null): string {
-	return '<em>' . esc_html($content ?? '') . '</em>';
+	return '<em>' . wp_kses_post(do_shortcode($content ?? '')) . '</em>';
 });
 
 // [a href="https://example.com"]link text[/a] -> <a href="...">link text</a>
@@ -26,8 +26,8 @@ add_shortcode('a', function ($atts, $content = null): string {
 
 	// Drop the link wrapper entirely if the href is missing or fails URL sanitization
 	if (!$url) {
-		return esc_html($content ?? '');
+		return wp_kses_post(do_shortcode($content ?? ''));
 	}
 
-	return sprintf('<a href="%s" rel="noopener noreferrer">%s</a>', $url, esc_html($content ?? ''));
+	return sprintf('<a href="%s" target="_blank" rel="noreferrer">%s</a>', $url, wp_kses_post(do_shortcode($content ?? '')));
 });

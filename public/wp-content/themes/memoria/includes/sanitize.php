@@ -1,6 +1,6 @@
 <?php
 /**
-* Functions to sanitize field settings
+* Functions to sanitize fields
 *
 * @package memoria
 * @since 1.0.0

@@ -26,13 +26,6 @@ return (object) [
 					'description' => 'In a few words, explain what this site is about. Example: "Just another WordPress site."',
 					'sanitize_callback' => 'sanitize_text_field',
 				],
-				'site_icon' => (object) [
-					'label' => 'Site Icon',
-					'render' => 'memoria_render_media_picker_field',
-					'description' => 'The "Site Icon" is what you see in browser tabs, bookmark bars, and within the WordPress mobile apps. It should be square and at least <code>512 by 512</code> pixels.',
-					'sanitize_callback' => 'absint',
-					'is_icon' => true,
-				],
 			]
 		],
 	],
@@ -94,6 +87,7 @@ return (object) [
 					'type' => 'url',
 					'render' => 'memoria_render_media_picker_field',
 					'description' => 'Header logo. If left blank, no logo will show.',
+					'is_image' => true,
 					'sanitize_callback' => 'absint',
 					'graphQL' => 'headerLogo',
 				],

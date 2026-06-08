@@ -10,6 +10,7 @@
 */
 
 // Include theme files
+require_once get_template_directory() . '/includes/helpers.php';
 require_once get_template_directory() . '/pages/options.php';
 
 // Theme support declarations
@@ -21,6 +22,38 @@ function memoria_theme_setup(): void {
 	add_theme_support('html5', ['gallery', 'caption']);
 }
 add_action('after_setup_theme', 'memoria_theme_setup');
+
+// Enqueue media library scripts
+function memoria_enqueue_scripts(): void {
+	$config = memoria_config();
+	$is_dev = memoria_is_dev();
+	$version = wp_get_theme()->get('Version');
+
+	// Enqueue scripts and styles
+	wp_enqueue_media();
+	
+	if ($is_dev) {
+		// Dev: load from Vite server
+		wp_enqueue_script('vite-index', $config->dev->index, null, null, ['in_footer' => true]);
+	} else {
+		// Production: use bundled scripts
+		wp_enqueue_script('memoria-admin-scripts', $config->paths->js . '/bundle.js', null, $version, ['in_footer' => true]);
+		wp_enqueue_style('memoria-admin-styles', $config->paths->css . '/styles.css', null, $version);
+	}
+}
+add_filter('admin_enqueue_scripts', 'memoria_enqueue_scripts');
+
+// Add attribute to vite script 
+function memoria_add_script_attribute(string $tag, string $handle, string $src): string {
+	$script_array = ['vite', 'memoria-bundle1', 'vite-index'];
+
+	if (in_array($handle, $script_array)) {
+		return '<script type="module" src="' . esc_url($src) . '"></script>';
+	}
+
+    return $tag;
+}
+add_filter('script_loader_tag', 'memoria_add_script_attribute', 10, 3);
 
 // Register nav menus so they appear in WP admin and are queryable
 function memoria_init_menus(): void {

@@ -10,14 +10,14 @@
 */
 
 // Include theme files
-require_once get_template_directory() . '/includes/helpers.php';
-require_once get_template_directory() . '/pages/options.php';
+require_once get_template_directory() . '/functions-helpers.php';
+require_once get_template_directory() . '/pages/options/options.php';
+require_once get_template_directory() . '/pages/content/content.php';
 
 // Theme support declarations
 function memoria_theme_setup(): void {
 	add_theme_support('menus');
 	add_theme_support('post-thumbnails');
-	add_theme_support('post-formats', ['aside', 'audio', 'gallery', 'image', 'link', 'quote', 'video']);
 	add_theme_support('align-wide');
 	add_theme_support('html5', ['gallery', 'caption']);
 }

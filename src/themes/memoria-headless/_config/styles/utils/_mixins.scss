@@ -211,12 +211,12 @@
 }
 
 // Basic linear gradient
-@mixin gradient($color-01, $color-02, $direction-01, $direction-02) {
-	background-color: $color-01;
-	background-image: -webkit-linear-gradient($direction-02, $color-01, $color-02);
-	background-image: -o-linear-gradient($direction-02, $color-01, $color-02);
-	background-image: -moz-linear-gradient($direction-02, $color-01, $color-02);
-	background-image: linear-gradient($direction-01, $color-01, $color-02);
+@mixin gradient($color-03, $color-04, $direction-01, $direction-02) {
+	background-color: $color-03;
+	background-image: -webkit-linear-gradient($direction-02, $color-03, $color-04);
+	background-image: -o-linear-gradient($direction-02, $color-03, $color-04);
+	background-image: -moz-linear-gradient($direction-02, $color-03, $color-04);
+	background-image: linear-gradient($direction-01, $color-03, $color-04);
 }
 
 // Gradient - generate strips for gradients

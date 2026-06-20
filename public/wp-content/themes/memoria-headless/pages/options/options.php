@@ -10,18 +10,18 @@
 if (!defined('ABSPATH')) { exit; }
 
 // Include theme files
-require_once get_template_directory() . '/includes/helpers.php';
-require_once get_template_directory() . '/includes/fields.php';
-require_once get_template_directory() . '/includes/render.php';
-require_once get_template_directory() . '/includes/sanitize.php';
-require_once get_template_directory() . '/includes/shortcodes.php';
+require_once get_template_directory() . '/functions-helpers.php';
+require_once get_template_directory() . '/pages/options/options-fields.php';
+require_once get_template_directory() . '/pages/options/options-render.php';
+require_once get_template_directory() . '/pages/options/options-sanitize.php';
+require_once get_template_directory() . '/pages/options/options-shortcodes.php';
 
 // Variables
-define('MEMORIA_SLUG', 'memoria-theme-options');
-define('MEMORIA_OPTIONS', 'memoria_theme_options');
+define('MEMORIA_SLUG', 'memoria-headless-theme-options');
+define('MEMORIA_OPTIONS', 'memoria_headless_theme_options');
 
 // Define fields
-$sections = require get_template_directory() . '/pages/options-sections.php';
+$sections = require get_template_directory() . '/pages/options/options-sections.php';
 $sections_site = $sections->site;
 $sections_custom = $sections->custom;
 
@@ -32,7 +32,7 @@ function memoria_add_theme_options(): void {
 		'Options', // Submenu label
 		'manage_options',
 		MEMORIA_SLUG,
-		MEMORIA_OPTIONS . '_page'
+		'memoria_theme_options_page'
 	);
 }
 add_action('admin_menu', 'memoria_add_theme_options');

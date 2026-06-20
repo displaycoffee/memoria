@@ -1,13 +1,13 @@
-export const utils = {
-	getLast: (value: string | [], delimeter?: string) => {
+export const utils: UtilsType = {
+	getLast: (value: string | string[], delimeter?: string) => {
 		// Get last item in array
-		let valueArray = [] as string[] | number[];
+		let valueArray: string[] | number[] = [];
 		if (Array.isArray(value)) {
 			valueArray = value;
 		} else if (delimeter) {
 			valueArray = value.split(delimeter);
 		}
-		return valueArray[valueArray.length - 1];
+		return valueArray[valueArray.length - 1] ?? '';
 	},
 	getPage: () => {
 		// Get previous / parent page
@@ -21,7 +21,7 @@ export const utils = {
 			.replace(/[^\w\s]/g, '')
 			.replace(/\s/g, '-');
 	},
-	isSticky: (element: HTMLElement, stickyClass: string) => {
+	isSticky: (element: HTMLElement | null, stickyClass: string) => {
 		if (element) {
 			// Create options and callback for observer
 			const stickyOptions = { threshold: [1] };
@@ -34,17 +34,17 @@ export const utils = {
 			stickyObserver.observe(element);
 		}
 	},
-	scrollTo: (e: EventsType, selector: string | undefined, offset: number) => {
+	scrollTo: (e?: EventsType, selector?: string, offset?: number) => {
 		// Scroll to element on page
 		if (e) {
 			e.preventDefault();
 		}
 		const anchor = {
-			selector: selector,
-			offset: offset ? offset : 0,
+			selector: selector ?? '',
+			offset: offset ?? 0,
 			position: () => {
-				const anchorElement = anchor.selector && document.querySelector(anchor.selector) ? document.querySelector(anchor.selector) : false;
-				return anchorElement ? anchorElement.getBoundingClientRect().top + window.scrollY - anchor.offset : 0 - anchor.offset;
+				const anchorElement = anchor.selector ? document.querySelector(anchor.selector) : false;
+				return anchorElement ? anchorElement.getBoundingClientRect().top + window.scrollY - anchor.offset : -anchor.offset;
 			},
 		};
 		window.scroll({ top: anchor.position(), left: 0, behavior: 'smooth' });

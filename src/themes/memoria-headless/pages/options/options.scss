@@ -1,7 +1,7 @@
 // Use utils and theme variables
-@use '../_config/styles/utils/_functions';
-@use '../_config/styles/utils/_mixins';
-@use '../_config/styles/theme/_theme';
+@use '../../_config/styles/utils/_functions';
+@use '../../_config/styles/utils/_mixins';
+@use '../../_config/styles/theme/_theme';
 
 //// THEME OPTIONS
 //// --------------------------------------------------------------------------
@@ -35,14 +35,14 @@
 					height: 88px;
 				}
 				.media-picker-remove {
-					color: theme.$color-04;
+					color: theme.$color-06;
 					&, &:hover {
-						border-color: theme.$color-04;
+						border-color: theme.$color-06;
 					}
 					&:hover {
-						background: theme.$color-04;
-						color: theme.$color-05;
-						box-shadow: 0 0 0 1px theme.$color-04;
+						background: theme.$color-06;
+						color: theme.$color-01;
+						box-shadow: 0 0 0 1px theme.$color-06;
 					}
 				}
 			}

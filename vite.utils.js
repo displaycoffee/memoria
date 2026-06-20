@@ -12,7 +12,7 @@ export const viteUtils = {
 			path: 'plugins',
 		},
 		memoria: {
-			name: 'memoria',
+			name: 'memoria-headless',
 			path: 'themes',
 		},
 	},

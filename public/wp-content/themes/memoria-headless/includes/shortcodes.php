@@ -21,13 +21,19 @@ add_shortcode('i', function ($atts, $content = null): string {
 
 // [a href="https://example.com"]link text[/a] -> <a href="...">link text</a>
 add_shortcode('a', function ($atts, $content = null): string {
-	$atts = shortcode_atts(['href' => ''], $atts, 'a');
+	$atts = shortcode_atts(['href' => '', 'target' => ''], $atts, 'a');
 	$url = esc_url($atts['href']);
+	$target = esc_attr($atts['target']);
 
 	// Drop the link wrapper entirely if the href is missing or fails URL sanitization
 	if (!$url) {
 		return wp_kses_post(do_shortcode($content ?? ''));
 	}
 
-	return sprintf('<a href="%s" target="_blank" rel="noreferrer">%s</a>', $url, wp_kses_post(do_shortcode($content ?? '')));
+	// If target is defined, change link format
+	if ($target) {
+		return sprintf('<a href="%s" target="%s" rel="noreferrer">%s</a>', $url, $target, wp_kses_post(do_shortcode($content ?? '')));
+	} else {
+		return sprintf('<a href="%s">%s</a>', $url, wp_kses_post(do_shortcode($content ?? '')));
+	}
 });

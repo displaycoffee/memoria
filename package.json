@@ -9,7 +9,7 @@
 	"license": "ISC",
 	"homepage": "https://github.com/displaycoffee/memoria#readme",
 	"scripts": {
-		"build": "vite build -c vite.config-custom-stuff.js && vite build -c vite.config-memoria-theme.js",
+		"build": "vite build -c vite.config-custom-stuff.js && vite build -c vite.config-memoria-headless-theme.js",
 		"dev": "vite --host",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
 		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",

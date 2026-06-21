@@ -11,17 +11,17 @@ if (!defined('ABSPATH')) { exit; }
 
 // Include theme files
 require_once get_template_directory() . '/functions-helpers.php';
-require_once get_template_directory() . '/pages/options/options-fields.php';
-require_once get_template_directory() . '/pages/options/options-render.php';
-require_once get_template_directory() . '/pages/options/options-sanitize.php';
-require_once get_template_directory() . '/pages/options/options-shortcodes.php';
+require_once get_template_directory() . '/admin/options/options-fields.php';
+require_once get_template_directory() . '/admin/options/options-render.php';
+require_once get_template_directory() . '/admin/options/options-sanitize.php';
+require_once get_template_directory() . '/admin/options/options-shortcodes.php';
 
 // Variables
 define('MEMORIA_SLUG', 'memoria-headless-theme-options');
 define('MEMORIA_OPTIONS', 'memoria_headless_theme_options');
 
 // Define fields
-$sections = require get_template_directory() . '/pages/options/options-sections.php';
+$sections = require get_template_directory() . '/admin/options/options-sections.php';
 $sections_site = $sections->site;
 $sections_custom = $sections->custom;
 

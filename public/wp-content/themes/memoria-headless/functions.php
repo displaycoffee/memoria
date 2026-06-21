@@ -11,8 +11,8 @@
 
 // Include theme files
 require_once get_template_directory() . '/functions-helpers.php';
-require_once get_template_directory() . '/pages/options/options.php';
-require_once get_template_directory() . '/pages/content/content.php';
+require_once get_template_directory() . '/admin/options/options.php';
+require_once get_template_directory() . '/admin/content/content.php';
 
 // Theme support declarations
 function memoria_theme_setup(): void {

@@ -1,6 +1,6 @@
 /* Content - Posts and Pages */
-import './pages/content/content.scss';
+import './admin/content/content.scss';
 
 /* Options */
-import './pages/options/options.scss';
-import './pages/options/options';
+import './admin/options/options.scss';
+import './admin/options/options';

@@ -9,11 +9,9 @@ let inputs = {};
 
 for (let entry in entries) {
 	const currentEntry = entries[entry];
-	const name = currentEntry.name;
-	const path = `${currentEntry.path}/${name}`;
 	inputs = {
 		...inputs,
-		...viteUtils.setInput(name, path, 'index.js'),
+		...currentEntry.input,
 	};
 }
 

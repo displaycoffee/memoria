@@ -20,7 +20,7 @@ function memoria_config(): object {
 	$config = (object) [
 		'dev' => (object) [
 			'ddev' => 'ddev.site',
-			'index' => 'https://localhost:3000/themes/memoria-headless/index.ts'
+			'index' => 'https://localhost:3000/themes/memoria-headless/admin.ts'
 		],
 		'paths' => (object) [
 			'css' => $theme_assets . '/css',

@@ -37,8 +37,8 @@ function memoria_enqueue_scripts(): void {
 		wp_enqueue_script('vite-index', $config->dev->index, null, null, ['in_footer' => true]);
 	} else {
 		// Production: use bundled scripts
-		wp_enqueue_script('memoria-admin-scripts', $config->paths->js . '/bundle.js', null, $version, ['in_footer' => true]);
-		wp_enqueue_style('memoria-admin-styles', $config->paths->css . '/styles.css', null, $version);
+		wp_enqueue_script('memoria-admin-scripts', $config->paths->js . '/admin.js', null, $version, ['in_footer' => true]);
+		wp_enqueue_style('memoria-admin-styles', $config->paths->css . '/admin.css', null, $version);
 	}
 }
 add_filter('admin_enqueue_scripts', 'memoria_enqueue_scripts');

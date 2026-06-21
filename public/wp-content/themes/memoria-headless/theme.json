@@ -3,13 +3,13 @@
 	"settings": {
 		"color": {
 			"palette": [
-				{ "slug": "white", "name": "White", "color": "#ffffff" },
-				{ "slug": "black", "name": "Black", "color": "#000000" },
-				{ "slug": "background", "name": "Background", "color": "#fdfdfd" },
-				{ "slug": "text", "name": "Text", "color": "#333333" },
-				{ "slug": "link", "name": "Link", "color": "#6a5acd" },
-				{ "slug": "overlay", "name": "Overlay", "color": "rgba(0, 0, 0, 0.75)" },
-				{ "slug": "highlight", "name": "Highlight", "color": "#f7f79e" }
+				{ "slug": "color-01", "name": "White", "color": "#ffffff" },
+				{ "slug": "color-02", "name": "Black", "color": "#000000" },
+				{ "slug": "color-03", "name": "Background", "color": "#fdfdfd" },
+				{ "slug": "color-04", "name": "Text", "color": "#333333" },
+				{ "slug": "color-05", "name": "Link", "color": "#6a5acd" },
+				{ "slug": "color-09", "name": "Overlay", "color": "rgba(0, 0, 0, 0.75)" },
+				{ "slug": "color-12", "name": "Highlight", "color": "#f7f79e" }
 			]
 		},
 		"spacing": {
@@ -137,12 +137,19 @@
 		}
 	},
 	"styles": {
+		"color": {
+			"text": "var:preset|color|color-04"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--primary)",
+			"fontSize": "var(--wp--preset--font-size--normal)",
+			"lineHeight": 1.5
+		},
 		"elements": {
 			"heading": {
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--heading)",
-					"fontWeight": 700,
-					"lineHeight": 1.5
+					"fontWeight": 700
 				},
 				"spacing": {
 					"margin": {
@@ -182,15 +189,20 @@
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--h-6)"
 				}
+			},
+			"link": {
+				"color": {
+					"text": "var:preset|color|color-05"
+				},
+				":hover": {
+					"color": {
+						"text": "var:preset|color|color-04"
+					}
+				}
 			}
 		},
 		"blocks": {
 			"core/paragraph": {
-				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--primary)",
-					"fontSize": "var(--wp--preset--font-size--normal)",
-					"lineHeight": 1.5
-				},
 				"spacing": {
 					"margin": {
 						"top": "0",
@@ -201,11 +213,6 @@
 				}
 			},
 			"core/list": {
-				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--primary)",
-					"fontSize": "var(--wp--preset--font-size--normal)",
-					"lineHeight": 1.5
-				},
 				"spacing": {
 					"margin": {
 						"top": "0",

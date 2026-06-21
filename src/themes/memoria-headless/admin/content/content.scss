@@ -3,9 +3,15 @@
 @use '../../_config/styles/utils/_mixins';
 @use '../../_config/styles/theme/_theme';
 
-
 //// CONTENT - POSTS AND PAGES
 //// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$checkbox-mobile: 24px; // checkbox size for mobile
+	$checkbox-desktop: 16px; // checkbox size for desktop
+
+	// Style block
 
 	.metabox-location-side {
 		#poststuff {
@@ -59,7 +65,34 @@
 						}
 					}
 				}
-				.inside {}
+				.inside {
+					.components-checkbox-control__input-container {
+						margin-right: 8px;
+						width: $checkbox-mobile;
+						.components-checkbox-control__input[type='checkbox'], svg.components-checkbox-control__checked {
+							@include mixins.sizing($checkbox-mobile, $checkbox-mobile);
+						}
+					}
+				}
 			}	
+		}
+	}
+	@include mixins.respond-min(600px) {
+		.metabox-location-side {
+			#poststuff {
+				.postbox {
+					.inside {
+						.components-checkbox-control__input-container {
+							width: $checkbox-desktop;
+							.components-checkbox-control__input[type='checkbox'] {
+								@include mixins.sizing($checkbox-desktop, $checkbox-desktop);
+							}
+							svg.components-checkbox-control__checked {
+								@include mixins.sizing($checkbox-desktop + 4, $checkbox-desktop + 4);
+							}
+						}
+					}
+				}	
+			}
 		}
 	}

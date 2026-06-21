@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite';
-import { viteUtils } from './vite.utils';
+import { viteNames, viteUtils } from './vite.utils';
 
 /* Entries config */
 const entries = viteUtils.entries;
 
 /* Set variables for vite configs */
-const name = entries['custom-stuff'].name;
-const path = `${entries['custom-stuff'].path}/${name}`;
+const entryKey = entries[viteNames.custom];
+const name = entryKey.name;
+const path = `${entryKey.path}/${name}`;
 
 export default defineConfig({
 	root: 'src',
@@ -20,7 +21,7 @@ export default defineConfig({
 			polyfill: false,
 		},
 		rollupOptions: {
-			input: viteUtils.setInput(name, path, 'index.ts'),
+			input: entryKey.input,
 			output: {
 				assetFileNames: (file) => {
 					return viteUtils.assetFileNames(file, path);
@@ -28,8 +29,8 @@ export default defineConfig({
 				chunkFileNames: (file) => {
 					return viteUtils.chunkFileNames(file, path);
 				},
-				entryFileNames: () => {
-					return viteUtils.entryFileNames(path);
+				entryFileNames: (chunk) => {
+					return viteUtils.entryFileNames(path, chunk.name);
 				},
 			},
 		},

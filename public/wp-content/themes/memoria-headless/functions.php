@@ -97,6 +97,7 @@ function memoria_admin_menu_removal(): void {
 	}
 
 	remove_submenu_page('themes.php', 'theme-editor.php'); // Theme File Editor
+	remove_submenu_page('themes.php', 'site-editor.php'); // Design
 	remove_submenu_page('themes.php', 'site-editor.php?p=/pattern'); // Patterns
 	remove_submenu_page('themes.php', 'font-library.php'); // Fonts
 }

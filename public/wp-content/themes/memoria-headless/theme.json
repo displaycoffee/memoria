@@ -12,6 +12,10 @@
 				{ "slug": "color-12", "name": "Highlight", "color": "#f7f79e" }
 			]
 		},
+		"layout": {
+			"contentSize": "1220px",
+			"wideSize": "1560px"
+		},
 		"spacing": {
 			"spacingSizes": [
 				{ "slug": "x1", "name": "X1 — 5px", "size": "5px" },
@@ -134,9 +138,18 @@
 					"size": "2.125rem"
 				}
 			]
-		}
+		},
+		"useRootPaddingAwareAlignments": true
 	},
 	"styles": {
+		"spacing": {
+			"padding": {
+				"top": "var(--wp--preset--spacing--x-6)",
+				"right": "var(--wp--preset--spacing--x-6)",
+				"bottom": "var(--wp--preset--spacing--x-6)",
+				"left": "var(--wp--preset--spacing--x-6)"
+			}
+		},
 		"color": {
 			"text": "var:preset|color|color-04"
 		},

@@ -142,6 +142,7 @@
 		"useRootPaddingAwareAlignments": true
 	},
 	"styles": {
+		"css": "h1:where(.wp-block-heading).has-background, h2:where(.wp-block-heading).has-background, h3:where(.wp-block-heading).has-background, h4:where(.wp-block-heading).has-background, h5:where(.wp-block-heading).has-background, h6:where(.wp-block-heading).has-background, :root :where(p.has-background) { padding: var(--wp--preset--spacing--x-4); }",
 		"spacing": {
 			"padding": {
 				"top": "var(--wp--preset--spacing--x-6)",
@@ -236,8 +237,8 @@
 					"padding": {
 						"top": "0",
 						"right": "0",
-						"bottom": "var(--wp--preset--spacing--x-2)",
-						"left": "0"
+						"bottom": "0",
+						"left": "var(--wp--preset--spacing--x-4)"
 					}
 				}
 			}

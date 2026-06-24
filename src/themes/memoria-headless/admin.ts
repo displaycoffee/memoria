@@ -1,4 +1,4 @@
-/* Content - Posts and Pages */
+/* Content - posts and pages */
 import './admin/content/content.scss';
 
 /* Options */

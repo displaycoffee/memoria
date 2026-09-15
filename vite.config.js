@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { viteUtils } from './vite.utils';
+import { viteUtils } from './vite.utils.js';
 
 /* Entries config */
 const entries = viteUtils.entries;

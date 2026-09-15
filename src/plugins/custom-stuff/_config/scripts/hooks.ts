@@ -1,5 +1,6 @@
 /* Packages */
-import { MouseEvent, useEffect, useId, useState } from 'react';
+import type { MouseEvent } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 

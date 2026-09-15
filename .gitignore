@@ -1,9 +1,11 @@
 .DS_Store
 .env
 .env.production
-.husky
-.vscode/
+.astro/
+.claude/
 .ddev/
+.husky/
+.vscode/
 coverage/
 node_modules/
 dist/

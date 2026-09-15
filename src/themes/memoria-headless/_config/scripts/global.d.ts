@@ -1,3 +1,5 @@
+import type { SyntheticEvent } from 'react';
+
 /* Type definitions */
 type Events = SyntheticEvent | Event;
 

@@ -1,3 +1,4 @@
+/* Packages */
 import type { SyntheticEvent } from 'react';
 
 /* Type definitions */

@@ -10,7 +10,7 @@ import globals from 'globals';
 
 export default tseslint.config(
 	{
-		ignores: ['*.js'],
+		ignores: ['**/*.js'],
 	},
 	{
 		languageOptions: {

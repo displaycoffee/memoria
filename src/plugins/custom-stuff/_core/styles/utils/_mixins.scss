@@ -1,5 +1,8 @@
-// Use sass:map to get values from $exported map
+// Use sass imports
+@use "sass:list";
 @use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
 
 // Animate
 // Example for $value: spin 2s infinite linear
@@ -81,7 +84,7 @@
 // adapt   : 1 1 auto
 // default : 0 1 auto
 @mixin flex($value: '') {
-	$var-value: if($value != '', $value, 1 1 0%);
+	$var-value: if(sass($value != ''): $value; else: 1 1 0%);
 	-webkit-flex: $var-value;
 	-ms-flex: $var-value;
 	-moz-flex: $var-value;
@@ -111,7 +114,7 @@
 // Flex display
 // $type: inline or leave blank
 @mixin flex-display($type: '') {
-	$var-type: if($type != '', $type, flex);
+	$var-type: if(sass($type != ''): $type; else: flex);
 	display: -webkit-#{$var-type};
 	display: -ms-#{$var-type};
 	display: -moz-#{$var-type};
@@ -121,7 +124,7 @@
 // Flex flow
 // $flow: row/column wrap/nowrap
 @mixin flex-flow($flow: '') {
-	$var-flow: if($flow != '', $flow, row wrap);
+	$var-flow: if(sass($flow != ''): $flow; else: row wrap);
 	-webkit-flex-flow: $var-flow;
 	flex-flow: $var-flow;
 }
@@ -232,14 +235,14 @@
 
 	// Loop through colors and process gradient rule
 	@each $color in $map {
-		$index: index($map, $color) - 1;
-		$percentage: if($index == 0, calc(($index + 1) * $divider), calc($index * $divider));
+		$index: list.index($map, $color) - 1;
+		$percentage: if(sass($index == 0): calc(($index + 1) * $divider); else: calc($index * $divider));
 		@if ($index == 0) {
 			$gradients: $gradients + ($color calc($percentage * 1%));
 			$gradients-fallback: $color;
 		} @else {
 			$first-color: $separator $color calc($percentage * 1%);
-			$second-color: if($index == $length - 1, ($separator $color), ($separator $color calc(($percentage + $divider) * 1%)));
+			$second-color: if(sass($index == $length - 1): ($separator $color); else: ($separator $color calc(($percentage + $divider) * 1%)));
 			$gradients: $gradients + #{$first-color} + #{$second-color};
 		}
 	}
@@ -315,7 +318,7 @@
 }
 
 // Placeholder
-// Examples: @include placeholder {}, :focus{@include placeholder {}}, or input {@include placeholder {}}
+// Examples: @include mixins.placeholder {}, :focus{ @include mixins.placeholder {} }, or input { @include mixins.placeholder {} }
 @mixin placeholder {
 	&::-webkit-input-placeholder {@content}
 	&::-ms-input-placeholder {@content}
@@ -346,14 +349,17 @@
 
 // Absolute positioning to fill area
 @mixin position-fill($margin: '', $z: '') {
-	$var-margin: if($margin != '', $margin, auto);
+	$var-margin: if(sass($margin != ''): $margin; else: auto);
 	@include position($type: absolute, $top: 0, $bottom: 0, $right: 0, $left: 0, $z: $z);
 	margin: $var-margin;
 }
 
+// Breakpoint unit values
+$unitValues: 'px' 'cm' 'mm' 'in' 'pt' 'pc' 'dpi' 'dpcm' 'dppx' 'em' 'ex' 'rem' '%' 'vw' 'vh' 'vmin' 'vmax';
+
 // Responsive px breakpoint, pass in a pixel value
 @mixin respond($breakpoint) {
-	@if index('px' 'cm' 'mm' 'in' 'pt' 'pc' 'dpi' 'dpcm' 'dppx' 'em' 'ex' 'rem' '%' 'vw' 'vh' 'vmin' 'vmax', unit($breakpoint)) == null {
+	@if list.index($unitValues, math.unit($breakpoint)) == null {
 		$breakpoint: $breakpoint + 'px';
 	}
 	@media only screen and (max-width: $breakpoint) {
@@ -363,7 +369,7 @@
 
 // Responsive px breakpoint, pass in a pixel value
 @mixin respond-min($breakpoint) {
-	@if index('px' 'cm' 'mm' 'in' 'pt' 'pc' 'dpi' 'dpcm' 'dppx' 'em' 'ex' 'rem' '%' 'vw' 'vh' 'vmin' 'vmax', unit($breakpoint)) == null {
+	@if list.index($unitValues, math.unit($breakpoint)) == null {
 		$breakpoint: $breakpoint + 'px';
 	}
 	@media only screen and (min-width: $breakpoint) {
@@ -398,13 +404,17 @@
 }
 
 // Screen reader only (hides elements)
-@mixin sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
+@mixin sr-only($is-important: false) {
+	$important: if(sass($is-important == true): ' !important'; else: '');
+	position: absolute#{$important};
+	width: 1px#{$important};
+	height: 1px#{$important};
+	padding: 0#{$important};
+	margin: -1px#{$important};
+	overflow: hidden#{$important};
+	clip: rect(0, 0, 0, 0)#{$important};
+	white-space: nowrap#{$important};
+	border: 0#{$important};
 }
 
 // Underline styles

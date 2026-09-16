@@ -21,6 +21,6 @@ This is named after the final dungeon in the game Final Fantasy IX -- the "Place
 ### src
 
 - Dev environment is started with `npm run dev`
-- `_config` directory configures "global" settings
+- `_core` directory configures "global" settings
 - Organized other directories into folders as: `components` (shared elements), `context` (context providers), `layout` (layout elements), `pages` ("major" content), and `targets`
 - `targets` directory contains code that targets elements in index.html (`#index` and `#portal`)

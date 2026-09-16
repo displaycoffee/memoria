@@ -1,7 +1,7 @@
 /* Local scripts */
-import { theme } from './_config/scripts/theme';
-import { utils } from './_config/scripts/utils';
-import { variables } from './_config/scripts/variables';
+import { theme } from './_core/scripts/theme';
+import { utils } from './_core/scripts/utils';
+import { variables } from './_core/scripts/variables';
 
 /* Testing */
 console.log('hello from custom-stuff', theme, utils, variables);

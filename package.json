@@ -1,7 +1,8 @@
 {
 	"name": "memoria",
-	"version": "1.0.0",
+	"displayName": "Memoria",
 	"description": "Custom WordPress template.",
+	"version": "1.0.0",
 	"main": "bundle.js",
 	"type": "module",
 	"keywords": [],

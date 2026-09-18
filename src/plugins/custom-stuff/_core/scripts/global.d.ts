@@ -13,14 +13,14 @@ type ObjectPrimitive = {
 };
 
 declare global {
-	/* Declare global types */
+	// Declare global types
 	type EventsType = Events;
 
 	type ObjectStringType = ObjectString;
 
 	type ObjectPrimitiveType = ObjectPrimitive;
 
-	/* Declare global prop types */
+	// Declare global prop types
 	type ObjectPrimitiveProps = ObjectPrimitive;
 }
 

@@ -1,4 +1,6 @@
 // @ts-nocheck
+
+/* Packages */
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';

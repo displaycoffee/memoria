@@ -79,7 +79,7 @@ type WPMediaAttachment = WPMediaFrame & {
 };
 
 declare global {
-	/* Declare global types */
+	// Declare global types
 	type EventsType = Events;
 
 	type ObjectStringType = ObjectString;
@@ -92,10 +92,10 @@ declare global {
 
 	type VariablesType = Variables;
 
-	/* Declare global prop types */
+	// Declare global prop types
 	type ObjectPrimitiveProps = ObjectPrimitive;
 
-	/* Declare global WordPress types */
+	// Declare global WordPress types
 	type MediaPickerOptionsType = MediaPickerOptions;
 
 	type WPMediaFrameType = WPMediaFrame;

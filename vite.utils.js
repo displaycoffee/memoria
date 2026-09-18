@@ -1,15 +1,16 @@
+/* Packages */
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 
-// Set inputs for dev and build
+/* Set inputs for dev and build */
 const setInput = (name, path, file) => {
 	return {
 		[`${name}`]: fileURLToPath(new URL(`./src/${path}/${file}`, import.meta.url)),
 	};
 };
 
-// Config names
+/* Config names */
 export const viteNames = {
 	custom: 'custom-stuff',
 	headless: 'memoria-headless',

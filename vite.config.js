@@ -1,7 +1,10 @@
+/* Packages */
 import { defineConfig } from 'vite';
+
+/* Scripts */
 import { viteUtils } from './vite.utils.js';
 
-/* Entries config */
+/* Variables */
 const entries = viteUtils.entries;
 
 /* Create inputs map */

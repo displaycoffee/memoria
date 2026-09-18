@@ -1,10 +1,11 @@
+/* Packages */
 import { defineConfig } from 'vite';
+
+/* Scripts */
 import { viteNames, viteUtils } from './vite.utils.js';
 
-/* Entries config */
+/* Variables */
 const entries = viteUtils.entries;
-
-/* Set variables for vite configs */
 const entryKey = entries[viteNames.headless];
 const name = entryKey.name;
 const path = `${entryKey.path}/${name}`;

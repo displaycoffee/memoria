@@ -2,7 +2,7 @@
 // Note: this file used to add sass variables into components
 @use './_theme.scss' as theme;
 
-// Use sass:map and sass:meta to export values
+// Built-in Sass modules
 @use 'sass:map';
 @use 'sass:meta';
 

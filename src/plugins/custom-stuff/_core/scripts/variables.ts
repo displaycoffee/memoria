@@ -2,6 +2,6 @@
 const directory = '/burmecia';
 export const variables = {
 	paths: {
-		basename: window.location.pathname.includes(directory) ? directory : '',
+		basename: typeof window == 'object' && window.location.pathname.includes(directory) ? directory : '',
 	},
 };

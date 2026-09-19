@@ -1,4 +1,4 @@
-/* Local scripts */
+/* Scripts */
 import { theme } from './_core/scripts/theme';
 import { utils } from './_core/scripts/utils';
 import { variables } from './_core/scripts/variables';

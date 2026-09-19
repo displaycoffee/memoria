@@ -4,7 +4,6 @@ import { defineConfig } from 'vite';
 /* Scripts */
 import { viteNames, viteUtils } from './vite.utils.js';
 
-/* Variables */
 const entries = viteUtils.entries;
 const entryKey = entries[viteNames.custom];
 const name = entryKey.name;

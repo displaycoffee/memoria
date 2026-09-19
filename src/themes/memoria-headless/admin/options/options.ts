@@ -44,9 +44,7 @@ const initMediaPicker = (picker: HTMLElement) => {
 	const previewBrowser = picker.querySelector<HTMLImageElement>(selectors.previewBrowser);
 
 	// Check if any elements are present before proceeding
-	if (!selectButton || !removeButton || !input || !preview || !previewApp) {
-		return;
-	}
+	if (!selectButton || !removeButton || !input || !preview || !previewApp) return;
 
 	// Is the media-picker an icon selector?
 	const isIcon = preview.classList.contains('site-icon-preview');
@@ -58,9 +56,7 @@ const initMediaPicker = (picker: HTMLElement) => {
 		selectButton.textContent = isIcon ? (isAdd ? text.icon.change : text.icon.choose) : isAdd ? text.image.change : text.image.choose;
 		preview.classList.replace(isAdd ? classes.hidden : classes.hasMedia, isAdd ? classes.hasMedia : classes.hidden);
 		previewApp.setAttribute('src', url);
-		if (previewBrowser) {
-			previewBrowser.setAttribute('src', url);
-		}
+		if (previewBrowser) previewBrowser.setAttribute('src', url);
 		if (isAdd) {
 			removeButton.classList.remove(classes.hidden);
 		} else {

@@ -236,13 +236,13 @@
 	// Loop through colors and process gradient rule
 	@each $color in $map {
 		$index: list.index($map, $color) - 1;
-		$percentage: if(sass($index == 0): calc(($index + 1) * $divider); else: calc($index * $divider));
+		$percentage: if(sass($index == 0): ($index + 1) * $divider; else: $index * $divider);
 		@if ($index == 0) {
-			$gradients: $gradients + ($color calc($percentage * 1%));
+			$gradients: $gradients + ($color ($percentage * 1%));
 			$gradients-fallback: $color;
 		} @else {
-			$first-color: $separator $color calc($percentage * 1%);
-			$second-color: if(sass($index == $length - 1): ($separator $color); else: ($separator $color calc(($percentage + $divider) * 1%)));
+			$first-color: $separator $color ($percentage * 1%);
+			$second-color: if(sass($index == $length - 1): ($separator $color); else: ($separator $color (($percentage + $divider) * 1%)));
 			$gradients: $gradients + #{$first-color} + #{$second-color};
 		}
 	}

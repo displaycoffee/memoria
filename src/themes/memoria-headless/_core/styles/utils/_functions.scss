@@ -15,7 +15,7 @@
 	@if ($unit == 'rem') {
 		$multiplier: 1rem;
 	}
-	@return calc($pixels / $context) * $multiplier;
+	@return calc($pixels / $context * $multiplier);
 }
 
 // Helper function to replace characters in a string

@@ -1,5 +1,5 @@
 // Built-in Sass modules
-@use "sass:list";
+@use 'sass:list';
 @use 'sass:map';
 @use 'sass:math';
 @use 'sass:meta';
@@ -225,7 +225,7 @@
 // Gradient - generate strips for gradients
 @mixin gradient-stripes($map) {
 	// Variables for calculating colors for gradients
-	$length: length($map);
+	$length: list.length($map);
 	$divider: calc(100 / $length);
 	$separator: ',';
 

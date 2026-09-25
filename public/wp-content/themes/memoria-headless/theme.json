@@ -7,7 +7,7 @@
 				{ "slug": "color-02", "name": "Black", "color": "#000000" },
 				{ "slug": "color-03", "name": "Background", "color": "#fdfdfd" },
 				{ "slug": "color-04", "name": "Text", "color": "#333333" },
-				{ "slug": "color-05", "name": "Link", "color": "#6a5acd" },
+				{ "slug": "color-05", "name": "Link", "color": "#4762cb" },
 				{ "slug": "color-09", "name": "Overlay", "color": "rgba(0, 0, 0, 0.75)" },
 				{ "slug": "color-12", "name": "Highlight", "color": "#f7f79e" }
 			]

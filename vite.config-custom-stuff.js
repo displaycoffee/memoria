@@ -16,7 +16,7 @@ export default defineConfig({
 	plugins: viteUtils.plugins,
 	build: {
 		outDir: '../dist',
-		emptyOutDir: false,
+		emptyOutDir: true,
 		modulePreload: {
 			polyfill: false,
 		},

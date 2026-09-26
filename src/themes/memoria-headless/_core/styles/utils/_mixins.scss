@@ -417,7 +417,7 @@ $unitValues: 'px' 'cm' 'mm' 'in' 'pt' 'pc' 'dpi' 'dpcm' 'dppx' 'em' 'ex' 'rem' '
 	border: 0#{$important};
 }
 
-// Underline styles
+// Text-decoration styles - all
 @mixin text-decoration($thickness: 2px, $offset: 2px, $color: inherit) {
 	text-decoration: underline;
 	-webkit-text-decoration-color: $color;
@@ -427,6 +427,13 @@ $unitValues: 'px' 'cm' 'mm' 'in' 'pt' 'pc' 'dpi' 'dpcm' 'dppx' 'em' 'ex' 'rem' '
 	-moz-text-decoration-thickness: $thickness;
 	text-decoration-thickness: $thickness;
 	text-underline-offset: $offset;
+}
+
+// Text-decoration styles - color only
+@mixin text-decoration-color($color: inherit) {
+	-webkit-text-decoration-color: $color;
+	-moz-text-decoration-color: $color;
+	text-decoration-color: $color;
 }
 
 // For hiding / showing content

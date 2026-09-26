@@ -354,29 +354,19 @@
 	margin: $var-margin;
 }
 
-// Breakpoint unit values
-$unitValues: 'px' 'cm' 'mm' 'in' 'pt' 'pc' 'dpi' 'dpcm' 'dppx' 'em' 'ex' 'rem' '%' 'vw' 'vh' 'vmin' 'vmax';
-
-// Responsive px breakpoint, pass in a pixel value
-@mixin respond($breakpoint) {
+// Responsive media query rule
+@mixin respond($breakpoint, $rule: 'min-width') {
+	$unitValues: 'px' 'cm' 'mm' 'in' 'pt' 'pc' 'dpi' 'dpcm' 'dppx' 'em' 'ex' 'rem' '%' 'vw' 'vh' 'vmin' 'vmax';
+	@if not list.index(('min-width', 'max-width'), $rule) {
+		@error "respond() $rule must be 'min-width' or 'max-width', got '#{$rule}'.";
+	}
 	@if list.index($unitValues, math.unit($breakpoint)) == null {
 		$breakpoint: $breakpoint + 'px';
 	}
-	@media only screen and (max-width: $breakpoint) {
+	@media only screen and (#{$rule}: $breakpoint) {
 		@content;
 	}
 }
-
-// Responsive px breakpoint, pass in a pixel value
-@mixin respond-min($breakpoint) {
-	@if list.index($unitValues, math.unit($breakpoint)) == null {
-		$breakpoint: $breakpoint + 'px';
-	}
-	@media only screen and (min-width: $breakpoint) {
-		@content;
-	}
-}
-
 // Scrollbar
 @mixin scrollbar($selector, $width, $height, $s-color-01: '', $s-color-02: '') {
 	#{$selector}::-webkit-scrollbar {

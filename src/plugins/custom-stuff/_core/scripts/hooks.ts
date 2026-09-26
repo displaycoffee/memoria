@@ -10,16 +10,17 @@ export const useFormattedId = () => {
 	return id.slice(1, -1).replace(/^_|_$/g, '').replace(/_/g, '-');
 };
 
-export const useRespond = (bp: number) => {
-	const [match, setMatch] = useState(() => window.matchMedia(`(min-width: ${bp}px)`).matches);
+export const useRespond = (bp: string, rule?: 'min-width' | 'max-width') => {
+	const mediaQueryRule = `(${rule ?? 'min-width'}: ${bp})`;
+	const [match, setMatch] = useState(() => window.matchMedia(mediaQueryRule).matches);
 
 	// Update match state on media change
 	useEffect(() => {
-		const mediaQuery = window.matchMedia(`(min-width: ${bp}px)`);
+		const mediaQuery = window.matchMedia(mediaQueryRule);
 		const handler = (e: MediaQueryListEvent) => setMatch(e.matches);
 		mediaQuery.addEventListener('change', handler);
 		return () => mediaQuery.removeEventListener('change', handler);
-	}, [bp]);
+	}, [mediaQueryRule]);
 
 	return match;
 };

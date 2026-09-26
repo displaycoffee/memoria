@@ -77,7 +77,7 @@
 			}	
 		}
 	}
-	@include mixins.respond-min(600px) {
+	@include mixins.respond(600px) {
 		.metabox-location-side {
 			#poststuff {
 				.postbox {

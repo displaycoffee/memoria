@@ -10,7 +10,7 @@ import globals from 'globals';
 
 export default tseslint.config(
 	{
-		ignores: ['**/*.js'],
+		ignores: ['**/*.js', '!scripts/**/*.js'],
 	},
 	{
 		languageOptions: {
@@ -60,5 +60,9 @@ export default tseslint.config(
 			'react/prop-types': 'off',
 			'react-hooks/exhaustive-deps': 'error',
 		},
+	},
+	{
+		files: ['scripts/**/*.js'],
+		...tseslint.configs.disableTypeChecked,
 	},
 );

@@ -47,7 +47,7 @@
 			}
 		}
 	}
-	@include mixins.respond(theme.$bp-02) {
+	@include mixins.respond(theme.$breakpoint-md) {
 		.pages {
 			.page {
 				&, & .page-details {
@@ -72,7 +72,7 @@
 			}
 		}		
 	}
-	@include mixins.respond(theme.$bp-04) {
+	@include mixins.respond(theme.$breakpoint-xl) {
 		.pages {
 			.page {
 				@include mixins.gap-width(theme.$spacing-x4, 3);

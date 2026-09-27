@@ -9,6 +9,7 @@
 
 	// Imports
 
+	@use '../../../_core/styles/theme/_root';
 	@use './_reset';
 	@use './_typography';
 	@use './_base';
@@ -20,7 +21,7 @@
 
 	// Configuration 
 
-	$container-main-bp: theme.$bp-02; // breakpoint
+	$container-main-bp: theme.$breakpoint-md; // breakpoint
 	$container-main-spacing: theme.$spacing-x8; // spacing for layout
 	$container-main-sidebar-width: 300px; // width of sidebar
 

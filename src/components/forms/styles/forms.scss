@@ -259,7 +259,7 @@
 
 	// Configuration
 	
-	$forms-form-field-bp: theme.$bp-01; // breakpoint
+	$forms-form-field-bp: theme.$breakpoint-sm; // breakpoint
 	$forms-form-field-spacing: theme.$spacing-x4; // spacing for field wrapper
 	$forms-form-field-label-width: 100px; // width for field label
 	$forms-form-field-label-vertical: 5px; // position for label inside field wrapper

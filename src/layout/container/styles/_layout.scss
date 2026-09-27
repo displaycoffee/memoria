@@ -81,7 +81,7 @@
 		$row-class: calc($row / 1px);
 		.row-spacing-#{$row-class} {
 			@include mixins.gap($row);
-			@include mixins.respond(theme.$bp-02) {
+			@include mixins.respond(theme.$breakpoint-md) {
 				[class*='column-width-'] {
 					@include mixins.gap-width($row, 2);
 				}
@@ -89,7 +89,7 @@
 					width: 100%;
 				}
 			}
-			@include mixins.respond(theme.$bp-03) {
+			@include mixins.respond(theme.$breakpoint-lg) {
 				.column-width-33, .column-width-25 {
 					@include mixins.gap-width($row, 3);
 				}
@@ -97,7 +97,7 @@
 					@include mixins.gap-width($row, 4);
 				}
 			}
-			@include mixins.respond(theme.$bp-04) {
+			@include mixins.respond(theme.$breakpoint-xl) {
 				.column-width-25 {
 					@include mixins.gap-width($row, 4);
 				}

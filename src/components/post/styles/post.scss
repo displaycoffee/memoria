@@ -59,7 +59,7 @@
 			}
 		}
 	}
-	@include mixins.respond(theme.$bp-02) {
+	@include mixins.respond(theme.$breakpoint-md) {
 		.posts {
 			.post {
 				&, & .post-details {
@@ -84,7 +84,7 @@
 			}
 		}		
 	}
-	@include mixins.respond(theme.$bp-04) {
+	@include mixins.respond(theme.$breakpoint-xl) {
 		.posts {
 			.post {
 				@include mixins.gap-width(theme.$spacing-x4, 3);

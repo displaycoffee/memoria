@@ -32,7 +32,7 @@
 			}
 		}
 	}
-	@include mixins.respond(theme.$bp-02) {
+	@include mixins.respond(theme.$breakpoint-md) {
 		.footer {
 			.footer-blocks {
 				.footer-social {
@@ -44,7 +44,7 @@
 			}
 		}
 	}
-	@include mixins.respond(theme.$bp-03 - 1px, max-width) {
+	@include mixins.respond(theme.$breakpoint-lg - 1px, max-width) {
 		.footer {
 			.footer-blocks {
 				.footer-block {
@@ -53,7 +53,7 @@
 			}
 		}
 	}
-	@include mixins.respond(theme.$bp-02 - 1px, max-width) {
+	@include mixins.respond(theme.$breakpoint-md - 1px, max-width) {
 		.footer {
 			.footer-blocks {
 				.footer-block {

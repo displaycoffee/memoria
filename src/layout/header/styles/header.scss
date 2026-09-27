@@ -41,7 +41,7 @@
 			}
 		}
 	}
-	@include mixins.respond(theme.$bp-02) {
+	@include mixins.respond(theme.$breakpoint-md) {
 		.header {
 			.site-details {
 				.site-logo {

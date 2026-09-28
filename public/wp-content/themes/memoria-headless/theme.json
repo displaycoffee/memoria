@@ -67,7 +67,7 @@
 				{
 					"slug": "heading",
 					"name": "Montserrat",
-					"fontFamily": "'Montserrat', 'Fallback Bold', sans-serif",
+					"fontFamily": "'Montserrat', 'Fallback Header', sans-serif",
 					"fontFace": [
 						{
 							"fontFamily": "Montserrat",

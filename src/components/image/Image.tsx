@@ -43,6 +43,7 @@ export const Image = (props: ImageProps) => {
 
 	// Adjust image attributes
 	if (hasLazy) imageAttributes.loading = 'lazy';
+	// Add image class
 	if (imageClass) imageAttributes.className = imageClass;
 	if (hasWrapper && hasBg) {
 		if (!imageAttributes.className) {

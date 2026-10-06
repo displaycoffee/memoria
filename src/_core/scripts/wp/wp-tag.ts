@@ -1,63 +1,30 @@
 /* Scripts */
-import { utils } from '../utils';
-import { variables } from '../variables';
+import { utils } from '@/_core/scripts/utils';
+import { variables } from '@/_core/scripts/variables';
 
 export const wpTag = {
-	format: (data: TagRawType | TagsRawType) => {
+	format: (tag: TagRawType): TagType => {
 		// Format tag data
-		const formatData = (tag: TagRawType) => {
-			// Return formatted data
-			return {
-				content: tag?.description ?? '',
-				excerpt: tag?.description ? utils.any.truncate(utils.any.stripHTML(tag.description), 300) : '',
-				id: `tag-${tag?.tagId ?? 0}`,
-				name: tag?.name ?? '',
-				slug: tag?.slug ?? '',
-				url: tag?.uri ?? '',
-			};
+		// Return formatted data
+		return {
+			content: tag?.description ?? '',
+			excerpt: tag?.description ? utils.truncate(utils.stripHTML(tag.description), 300) : '',
+			id: `tag-${tag?.tagId ?? 0}`,
+			name: tag?.name ?? '',
+			slug: tag?.slug ?? '',
+			url: tag?.uri ?? '',
 		};
-
-		// If this is an array of tags, loop through tags
-		if (Array.isArray(data)) {
-			return data.map((tag: TagRawType) => {
-				return formatData(tag);
-			});
-		} else {
-			return formatData(data);
-		}
 	},
 	fetch: {
 		all: async () => {
-			let allData: TagsType = [];
-			let hasNextPage = true;
-			let after: string | null = null;
-			let page = 0;
-			const maxPages = 100;
+			// Fetch all tags
+			const nodes = await utils.fetchAll<TagRawType>({
+				connection: 'tags',
+				query: wpTag.query('query-all'),
+				url: variables.urls.graphQL,
+			});
 
-			// Loop through pages until all tags are fetched
-			while (hasNextPage && page < maxPages) {
-				page++;
-
-				// Fetch tag data
-				type TagsResponse = { tags: { pageInfo: { hasNextPage: boolean; endCursor: string | null }; nodes: TagsRawType } };
-				const data: TagsResponse = await utils.any.fetch({
-					query: wpTag.query('query-all'),
-					url: variables.urls.graphQL,
-					variables: { after },
-				});
-
-				// Format and set data
-				if (data?.tags?.nodes) {
-					allData = [...allData, ...(wpTag.format(data.tags.nodes) as TagsType)];
-				}
-
-				// If there is a next page, keep going
-				// Otherwise, end the loop
-				hasNextPage = data?.tags?.pageInfo?.hasNextPage ?? false;
-				after = data?.tags?.pageInfo?.endCursor ?? null;
-			}
-
-			return allData;
+			return nodes.map((node) => wpTag.format(node));
 		},
 	},
 	query: (format: GraphQLQueryFormatType) => {

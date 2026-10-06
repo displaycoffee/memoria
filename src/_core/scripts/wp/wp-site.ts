@@ -1,6 +1,6 @@
 /* Scripts */
-import { utils } from '../utils';
-import { variables } from '../variables';
+import { utils } from '@/_core/scripts/utils';
+import { variables } from '@/_core/scripts/variables';
 
 export const wpSite = {
 	format: (data: SiteRawType) => {
@@ -24,7 +24,7 @@ export const wpSite = {
 			};
 
 			// Fetch site data
-			const data = await utils.any.fetch<{
+			const data = await utils.fetch<{
 				generalSettings: { description: string; title: string };
 				readingSettings: { postsPerPage: number };
 			}>({

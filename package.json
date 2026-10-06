@@ -1,5 +1,5 @@
 {
-	"name": "memoria-astro",
+	"name": "memoria",
 	"displayName": "Memoria",
 	"description": "Astro WordPress theme.",
 	"version": "0.0.1",
@@ -7,45 +7,63 @@
 	"keywords": [],
 	"author": "displaycoffee",
 	"license": "ISC",
-	"homepage": "https://github.com/displaycoffee/memoria-astro",
+	"homepage": "https://github.com/displaycoffee/memoria",
 	"engines": {
 		"node": ">=22.12.0"
 	},
 	"scripts": {
-		"dev": "set NODE_OPTIONS=--use-system-ca && astro dev",
-		"build": "set NODE_OPTIONS=--use-system-ca && astro build && npx prettier --write \"dist/**/*.html\" --ignore-path NUL",
-		"build:preview": "set NODE_OPTIONS=--use-system-ca && astro build --mode preview && npx prettier --write \"dist/**/*.html\" --ignore-path NUL && astro preview --mode preview",
+		"generate:tokens": "tokens-generate",
+		"dev": "npm run generate:tokens && set NODE_OPTIONS=--use-system-ca && astro dev",
+		"build": "npm run generate:tokens && set NODE_OPTIONS=--use-system-ca && astro build && npx prettier --write \"dist/**/*.html\" --ignore-path /dev/null",
+		"build:preview": "npm run generate:tokens && set NODE_OPTIONS=--use-system-ca && astro build --mode preview && npx prettier --write \"dist/**/*.html\" --ignore-path /dev/null && astro preview --mode preview",
 		"preview": "astro preview",
 		"astro": "astro",
+		"check": "astro check",
 		"format": "prettier --write \"src/**/*.{astro,ts,tsx}\"",
 		"lint": "eslint \"src/**/*.{astro,ts,tsx}\" --quiet"
 	},
 	"devDependencies": {
-		"@astrojs/node": "^11.1.5",
-		"@astrojs/react": "^6.0.5",
+		"@astrojs/check": "^0.9.10",
+		"@astrojs/node": "^11.1.7",
+		"@astrojs/react": "^7.0.1",
+		"@displaycoffee/burmecia": "^1.1.1",
+		"@displaycoffee/styles": "^1.0.1",
+		"@displaycoffee/tokens": "^2.0.0",
+		"@eslint/js": "^9.39.5",
+		"@iconify-json/lucide": "^1.2.140",
+		"@svgr/core": "^8.1.0",
+		"@svgr/plugin-jsx": "^8.1.0",
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
-		"astro": "^7.3.2",
+		"astro": "^7.3.6",
+		"eslint": "^9.39.5",
 		"eslint-config-prettier": "^10.1.8",
+		"eslint-import-resolver-typescript": "^4.4.5",
 		"eslint-plugin-astro": "^1.7.0",
+		"eslint-plugin-import": "^2.32.0",
+		"eslint-plugin-jsx-a11y": "^6.10.2",
+		"eslint-plugin-react": "^7.37.5",
+		"eslint-plugin-react-hooks": "^7.1.1",
 		"globals": "17.12.0",
-		"prettier": "^3.9.6",
-		"prettier-plugin-astro": "^1.0.0",
-		"sass": "^1.104.1"
+		"prettier": "^3.9.9",
+		"prettier-plugin-astro": "^1.1.0",
+		"sass": "^1.105.1",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.70.0",
+		"unplugin-icons": "^24.0.0"
 	},
 	"dependencies": {
 		"@astrojs/sitemap": "^3.7.4",
-		"graphql": "^16.14.2",
-		"graphql-request": "^7.4.0",
+		"@displaycoffee/scripts": "^2.0.0",
 		"react": "^19.3.0",
 		"react-dom": "^19.3.0"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/displaycoffee/memoria-astro.git"
+		"url": "git+https://github.com/displaycoffee/memoria.git"
 	},
 	"bugs": {
-		"url": "https://github.com/displaycoffee/memoria-astro/issues"
+		"url": "https://github.com/displaycoffee/memoria/issues"
 	},
 	"browserslist": [
 		"last 2 versions"

@@ -1,6 +1,6 @@
 /* Scripts */
-import { utils } from '../utils';
-import { variables } from '../variables';
+import { utils } from '@/_core/scripts/utils';
+import { variables } from '@/_core/scripts/variables';
 import { wpImage } from './wp-image';
 
 export const wpThemeOptions = {
@@ -86,7 +86,7 @@ export const wpThemeOptions = {
 			};
 
 			// Fetch theme options data
-			const data = await utils.any.fetch<{ themeOptions: ThemeOptionsRawType }>({
+			const data = await utils.fetch<{ themeOptions: ThemeOptionsRawType }>({
 				query: wpThemeOptions.query('query'),
 				url: variables.urls.graphQL,
 			});

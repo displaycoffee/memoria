@@ -2,6 +2,7 @@
 type ContextValues = {
 	theme: ThemeType;
 	utils: UtilsType;
+	utilsBrowser: UtilsBrowserType;
 	variables: VariablesType;
 	wp: WPType;
 };

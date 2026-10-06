@@ -1,0 +1,19 @@
+{
+	"container": {
+		"$type": "dimension",
+		"width": { "$value": "1600px" }
+	},
+	"spacing": {
+		"$type": "dimension",
+		"x1": { "$value": "5px" },
+		"x2": { "$value": "10px" },
+		"x3": { "$value": "15px" },
+		"x4": { "$value": "20px" },
+		"x5": { "$value": "25px" },
+		"x6": { "$value": "30px" },
+		"x7": { "$value": "35px" },
+		"x8": { "$value": "40px" },
+		"x10": { "$value": "50px" },
+		"x12": { "$value": "60px" }
+	}
+}

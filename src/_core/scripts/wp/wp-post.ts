@@ -1,6 +1,6 @@
 /* Scripts */
-import { utils } from '../utils';
-import { variables } from '../variables';
+import { utils } from '@/_core/scripts/utils';
+import { variables } from '@/_core/scripts/variables';
 import { wpAuthor } from './wp-author';
 import { wpCategory } from './wp-category';
 import { wpImage } from './wp-image';
@@ -12,91 +12,55 @@ const settings = {
 };
 
 export const wpPost = {
-	format: (data: PostRawType | PostsRawType) => {
-		// Format post data
-		const formatData = (post: PostRawType) => {
-			// Create categories and tags
-			const categories: CategoriesType = [];
-			const tags: TagsType = [];
+	format: (post: PostRawType): PostType => {
+		// Create categories and tags
+		const categories: CategoriesType = [];
+		const tags: TagsType = [];
 
-			if (post?.categories?.nodes && post.categories.nodes.length !== 0) {
-				post.categories.nodes.forEach((node: CategoryRawType) => {
-					categories.push(wpCategory.format(node) as CategoryType);
-				});
-			}
-			if (post?.tags?.nodes && post.tags.nodes.length !== 0) {
-				post.tags.nodes.forEach((node: TagRawType) => {
-					tags.push(wpTag.format(node) as TagType);
-				});
-			}
-
-			// Return formatted data
-			return {
-				author: wpAuthor.format(post.author?.node) as AuthorType,
-				categories: categories,
-				content: post.content,
-				date: utils.any.getDate(post.date),
-				excerpt: utils.any.truncate(utils.any.stripHTML(post.excerpt), 300),
-				hideSidebar: post?.hideSidebar ?? false,
-				id: `post-${post.postId}`,
-				image: wpImage.format(`${post.title} - Featured Image`, true, post?.featuredImage),
-				slug: post.slug,
-				tags: tags,
-				title: post.title,
-				url: post.uri,
-			};
-		};
-
-		// If this is an array of posts, loop through posts
-		if (Array.isArray(data)) {
-			return data.map((post: PostRawType) => {
-				return formatData(post);
+		if (post?.categories?.nodes && post.categories.nodes.length !== 0) {
+			post.categories.nodes.forEach((node: CategoryRawType) => {
+				categories.push(wpCategory.format(node));
 			});
-		} else {
-			return formatData(data);
 		}
+		if (post?.tags?.nodes && post.tags.nodes.length !== 0) {
+			post.tags.nodes.forEach((node: TagRawType) => {
+				tags.push(wpTag.format(node));
+			});
+		}
+
+		// Return formatted data
+		return {
+			author: wpAuthor.format(post.author?.node),
+			categories: categories,
+			content: post.content,
+			date: utils.getDate(post.date),
+			excerpt: utils.truncate(utils.stripHTML(post.excerpt), 300),
+			hideSidebar: post?.hideSidebar ?? false,
+			id: `post-${post.postId}`,
+			image: wpImage.format(`${post.title} - Featured Image`, true, post?.featuredImage),
+			slug: post.slug,
+			tags: tags,
+			title: post.title,
+			url: post.uri,
+		};
 	},
 	fetch: {
 		all: async (slug?: string, type?: GraphQLPostWhereType) => {
-			let allData: PostsType = [];
-			let hasNextPage = true;
-			let after: string | null = null;
-			let page = 0;
-			const maxPages = 100;
+			// Fetch all posts, optionally filtered by author, category, or tag slug
+			const nodes = await utils.fetchAll<PostRawType>({
+				connection: 'posts',
+				query: type ? wpPost.query('query-all', undefined, type) : wpPost.query('query-all'),
+				url: variables.urls.graphQL,
+				variables: { slug },
+			});
 
-			// Loop through pages until all posts are fetched
-			while (hasNextPage && page < maxPages) {
-				page++;
-
-				// Build fetch options
-				const options = {
-					query: type ? wpPost.query('query-all', undefined, type) : wpPost.query('query-all'),
-					url: variables.urls.graphQL,
-					variables: { after, slug },
-				};
-
-				// Fetch post data
-				type PostsResponse = { posts: { pageInfo: { hasNextPage: boolean; endCursor: string | null }; nodes: PostsRawType } };
-				const data: PostsResponse = await utils.any.fetch(options);
-
-				// Format and set data
-				if (data?.posts?.nodes) {
-					allData = [...allData, ...(wpPost.format(data.posts.nodes) as PostsType)];
-				}
-
-				// If there is a next page, keep going
-				// Otherwise, end the loop
-				hasNextPage = data?.posts?.pageInfo?.hasNextPage ?? false;
-				after = data?.posts?.pageInfo?.endCursor ?? null;
-			}
-
-			return allData;
+			return nodes.map((node) => wpPost.format(node));
 		},
 		post: async (uri: string) => {
 			let postData: PostType | null = null;
 
 			// Fetch post data
-			const data = await utils.any.fetch<{ nodeByUri: PostRawType | null }>({
+			const data = await utils.fetch<{ nodeByUri: PostRawType | null }>({
 				query: wpPost.query('query'),
 				url: variables.urls.graphQL,
 				variables: { uri },
@@ -104,7 +68,7 @@ export const wpPost = {
 
 			// Format and set data
 			if (data?.nodeByUri) {
-				postData = wpPost.format(data.nodeByUri) as PostType;
+				postData = wpPost.format(data.nodeByUri);
 			}
 
 			return postData;
@@ -113,7 +77,7 @@ export const wpPost = {
 			let searchData: PostsType = [];
 
 			// Get posts data
-			const data = await utils.any.fetch<{ posts: { pageInfo: { hasNextPage: boolean }; nodes: PostsRawType } }>({
+			const data = await utils.fetch<{ posts: { pageInfo: { hasNextPage: boolean }; nodes: PostsRawType } }>({
 				query: wpPost.query('query-search', pageSize),
 				url,
 				variables: { query },
@@ -121,7 +85,7 @@ export const wpPost = {
 
 			// Format and set data
 			if (data?.posts?.nodes) {
-				searchData = wpPost.format(data.posts.nodes) as PostsType;
+				searchData = data.posts.nodes.map((node) => wpPost.format(node));
 			}
 
 			return {

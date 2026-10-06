@@ -1,6 +1,6 @@
 /* Scripts */
-import { utils } from '../utils';
-import { variables } from '../variables';
+import { utils } from '@/_core/scripts/utils';
+import { variables } from '@/_core/scripts/variables';
 
 export const wpMenu = {
 	format: (data: MenuRawNodesType, isChild: boolean) => {
@@ -32,7 +32,7 @@ export const wpMenu = {
 			let menuData: MenuType[] = [];
 
 			// Fetch menu data
-			const data = await utils.any.fetch<{ menu: { menuItems: { nodes: MenuRawNodesType[] } } }>({
+			const data = await utils.fetch<{ menu: { menuItems: { nodes: MenuRawNodesType[] } } }>({
 				url: variables.urls.graphQL,
 				query: wpMenu.query(),
 				variables: { id },

@@ -1,37 +1,33 @@
 /* Scripts */
 import type { APIRoute } from 'astro';
-import { wp } from '../_core/scripts/wp/wp';
-import { context } from '../context/scripts/context';
+import { colors } from '@/_core/data/colors';
+import { favicons } from '@/_core/data/favicons';
+import { wp } from '@/_core/scripts/wp/wp';
 
+/* Build the web app manifest from the WordPress site title and the color / favicon tokens */
 export const GET: APIRoute = async () => {
 	const site = await wp.site.site();
+
+	// Format manifest icons
+	const icons = favicons
+		.filter((favicon) => favicon.isManifest)
+		.map((favicon) => {
+			return {
+				src: favicon.src,
+				type: favicon.type,
+				sizes: favicon.sizes,
+				purpose: favicon.purpose,
+			};
+		});
 
 	const manifest = {
 		short_name: site.title,
 		name: site.title,
-		icons: [
-			{
-				src: '/favicon.svg',
-				type: 'image/svg+xml',
-				sizes: 'any',
-			},
-			{
-				src: '/favicon-192x192.png',
-				type: 'image/png',
-				sizes: '192x192',
-				purpose: 'any',
-			},
-			{
-				src: '/favicon-512x512.png',
-				type: 'image/png',
-				sizes: '512x512',
-				purpose: 'maskable',
-			},
-		],
+		icons: icons,
 		start_url: '.',
 		display: 'standalone',
-		theme_color: context.theme.colors.color03,
-		background_color: context.theme.colors.color03,
+		theme_color: colors.bg,
+		background_color: colors.bg,
 	};
 
 	return new Response(JSON.stringify(manifest), {

@@ -51,6 +51,10 @@ type GraphQLParams = {
 	variables?: object;
 };
 
+type GraphQLConnectionParams = GraphQLParams & {
+	connection: string;
+};
+
 type GraphQLPostWhere = 'author' | 'category' | 'tag';
 
 type GraphQLQueryFormat = 'node' | 'nodes' | 'query' | 'query-all' | 'query-nodes' | 'query-search';
@@ -298,6 +302,8 @@ declare global {
 
 	type CategoriesRawType = CategoriesRaw;
 
+	type GraphQLConnectionParamsType = GraphQLConnectionParams;
+
 	type GraphQLParamsType = GraphQLParams;
 
 	type GraphQLPostWhereType = GraphQLPostWhere;
@@ -306,7 +312,7 @@ declare global {
 
 	type ImageType = Image;
 
-	type ImagesTypes = Images;
+	type ImagesType = Images;
 
 	type ImageRawType = ImageRaw;
 

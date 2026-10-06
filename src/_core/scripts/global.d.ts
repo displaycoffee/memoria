@@ -1,8 +1,13 @@
 /* Packages */
 import type { SyntheticEvent } from 'react';
+import type { UtilsType as UtilsSharedType, UtilsBrowserType as UtilsSharedBrowserType } from '@displaycoffee/scripts/utils-types';
+import type themeJson from '@/_core/tokens/theme.json';
+import type { icons } from '@/_core/data/icons';
 
 /* Type definitions */
 type Events = SyntheticEvent | Event;
+
+type IconName = keyof typeof icons;
 
 type ObjectString = {
 	[key: string]: string;
@@ -15,54 +20,24 @@ type ObjectPrimitive = {
 type Primitive = string | number | boolean;
 
 type Theme = {
-	bps: {
-		bp01: Primitive;
-		bp02: Primitive;
-		bp03: Primitive;
-		bp04: Primitive;
-	};
-	colors: {
-		color01: Primitive;
-		color02: Primitive;
-		color03: Primitive;
-		color04: Primitive;
-		color05: Primitive;
-		color06: Primitive;
-		color07: Primitive;
-		color08: Primitive;
-		color09: Primitive;
-		color10: Primitive;
-		color11: Primitive;
-		color12: Primitive;
-	};
+	breakpoints: (typeof themeJson)['breakpoint'];
+	colors: (typeof themeJson)['color'];
 };
 
-type Utils = {
-	any: {
-		fetch<T = unknown>({ url, query, variables }: GraphQLParams): Promise<T>;
-		getDate: (time: string) => string;
-		getLast: (value: string | string[], delimeter?: string) => string | number;
-		handleize: (value: string) => string;
-		sanitize: (string: string, maxLength = 200) => string;
-		setAttributes: (element: HTMLElement, attributes: ObjectString) => void;
-		stripHTML: (string: string) => string;
-		truncate: (string: string, limit: number) => string;
-	};
-	browser: {
-		focusTrap: {
-			activate: (container: HTMLElement, focusSelector?: string) => void;
-			deactivate: (container: HTMLElement) => void;
-		};
-		getPage: () => string;
-		isSticky: (element: HTMLElement | null, stickyClass: string) => void;
-		scrollTo: (e?: Events, selector?: string, offset?: number) => void;
-	};
+type Utils = UtilsSharedType & {
+	fetch<T = unknown>({ url, query, variables }: GraphQLParamsType): Promise<T>;
+	fetchAll<T = unknown>({ connection, url, query, variables }: GraphQLConnectionParamsType): Promise<T[]>;
+	getDate: (time: string) => string;
+	sanitize: (string: string, maxLength?: number) => string;
 };
+
+type UtilsBrowser = UtilsSharedBrowserType;
 
 type Variables = {
+	paths: {
+		basename: string;
+	};
 	urls: {
-		api: string;
-		base: string;
 		graphQL: string;
 		site: string;
 		wp: string;
@@ -72,7 +47,6 @@ type Variables = {
 declare global {
 	// Declare custom environment variables
 	interface ImportMetaEnv {
-		readonly API_URL: string;
 		readonly GRAPHQL_URL: string;
 		readonly SITE_URL: string;
 		readonly WP_URL: string;
@@ -81,6 +55,8 @@ declare global {
 	// Declare global types
 	type EventsType = Events;
 
+	type IconNameType = IconName;
+
 	type ObjectStringType = ObjectString;
 
 	type ObjectPrimitiveType = ObjectPrimitive;
@@ -88,6 +64,8 @@ declare global {
 	type ThemeType = Theme;
 
 	type UtilsType = Utils;
+
+	type UtilsBrowserType = UtilsBrowser;
 
 	type VariablesType = Variables;
 

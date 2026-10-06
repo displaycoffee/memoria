@@ -1,0 +1,25 @@
+---
+/* Scripts */
+import { context } from '../context/scripts/context.ts';
+
+/* Components */
+import Container from '../layout/container/Container.astro';
+import PageList from '../components/page/PageList.astro';
+
+/* Get site and theme options */
+const site = await context.wp.site.site();
+const themeOptions = await context.wp.themeOptions.themeOptions();
+const sidebarSlug = themeOptions?.sidebar?.slug ?? '';
+
+/* Get pages */
+const pages = sidebarSlug ? await context.wp.page.pages(site.pageSize + 1, [sidebarSlug]) : await context.wp.page.pages(site.pageSize);
+
+/* Page title */
+const pageTitle = 'Pages';
+---
+
+<Container>
+	<h2>{pageTitle}</h2>
+
+	<PageList pages={pages} />
+</Container>

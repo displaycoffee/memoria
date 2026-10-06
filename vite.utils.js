@@ -1,4 +1,15 @@
+/* Packages */
+import Icons from 'unplugin-icons/vite';
+import { cssTarget, tokensWatch } from '@displaycoffee/burmecia/vite';
+
 export const viteUtils = {
+	plugins: [
+		tokensWatch(),
+		Icons({
+			compiler: 'jsx',
+			jsx: 'react',
+		}),
+	],
 	assetFileNames: (file) => {
 		if (file.name.includes('.css')) {
 			const stem = file.name == 'index.css' ? `` : `.${file.name.toLowerCase().replace(/\.css$/, '')}`;
@@ -10,6 +21,7 @@ export const viteUtils = {
 	chunkFileNames: (file) => {
 		return `assets/js/bundle.${file.name.toLowerCase()}.[hash].js`;
 	},
+	cssTarget,
 	entryFileNames: () => {
 		return `assets/js/bundle.[hash].js`;
 	},

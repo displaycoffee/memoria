@@ -1,4 +1,5 @@
 /* Packages */
+import { fileURLToPath } from 'url';
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
@@ -26,7 +27,16 @@ export default defineConfig({
 		assets: 'assets',
 	},
 	vite: {
+		plugins: viteUtils.plugins,
+		css: {
+			preprocessorOptions: {
+				scss: {
+					loadPaths: [fileURLToPath(new URL('./src', import.meta.url))], // Lets Sass @use files from src without relative paths, e.g. @use '_core/styles/_theme'
+				},
+			},
+		},
 		build: {
+			cssTarget: viteUtils.cssTarget,
 			rollupOptions: {
 				output: {
 					assetFileNames: (file) => {

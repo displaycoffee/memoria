@@ -1,0 +1,53 @@
+---
+/* Styles */
+import './styles/container.scss';
+
+// /* Packages */
+// import { useRef } from 'react';
+// import { Link, useLocation } from '@tanstack/react-router';
+
+/* Scripts */
+import type { ContainerProps } from './scripts/container-types';
+// import { useRespond } from '@displaycoffee/scripts/hooks';
+// import { useAvailableMinHeight, useBodyClass } from '@displaycoffee/scripts/hooks-tanstack';
+import { context } from '@/context/scripts/context';
+// import { navigationHeader } from '@/components/navigation/scripts/navigation';
+
+// /* Components */
+// import { ErrorBoundary } from '@/components/error-boundary/ErrorBoundary';
+// import { Navigation } from '@/components/navigation/Navigation';
+// import { ButtonScroll } from '@/components/forms/Forms';
+// import { Slideout } from '@/components/slideout/Slideout';
+import Head from '../head/Head.astro';
+// import { Header } from '@/layout/header/Header';
+// import { Content } from '@/layout/content/Content';
+// import { Sidebar } from '@/layout/sidebar/Sidebar';
+// import { Footer } from '@/layout/footer/Footer';
+// import { Portal } from '@/targets/portal/Portal';
+
+/* Define prop types */
+type Props = ContainerProps;
+
+/* Props */
+const { hideSidebar = false, title } = Astro.props;
+
+/* Get theme options */
+const options = await context.wp.themeOptions.themeOptions();
+
+/* Create body class */
+const bodyClass = title ? context.utils.handleize(title) : 'home';
+
+/* Slideout options */
+const slideoutOptions = {
+	id: 'menu',
+	label: 'Menu',
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<Head title={title} />
+	<body class={`scrollbar page-${bodyClass}`}>
+		<slot />
+	</body>
+</html>

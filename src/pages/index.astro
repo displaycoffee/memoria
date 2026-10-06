@@ -1,15 +1,29 @@
 ---
 /* Packages */
 import packageJSON from '../../package.json' with { type: 'json' };
+
+/* Scripts */
+import { context } from '@/context/scripts/context';
+
+/* Components */
+import Container from '@/layout/container/Container.astro';
+// import PageList from '../components/page/PageList.astro';
+
+// /* Get site and theme options */
+// const site = await context.wp.site.site();
+// const themeOptions = await context.wp.themeOptions.themeOptions();
+// const sidebarSlug = themeOptions?.sidebar?.slug ?? '';
+
+// /* Get pages */
+// const pages = sidebarSlug ? await context.wp.page.pages(site.pageSize + 1, [sidebarSlug]) : await context.wp.page.pages(site.pageSize);
+
+// /* Page title */
+// const pageTitle = 'Pages';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>{packageJSON.displayName}</title>
-	</head>
-	<body>
-		<h1>{packageJSON.displayName}</h1>
-	</body>
-</html>
+<Container>
+	Hello
+	<!-- <h2>{pageTitle}</h2>
+
+	<PageList pages={pages} /> -->
+</Container>

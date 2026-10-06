@@ -1,0 +1,75 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// BASE STYLES
+//// --------------------------------------------------------------------------
+//// Note: all base styles are connected here. 
+
+	// Imports
+
+	@use '_core/styles/_root';
+	@use './_reset';
+	@use './_typography';
+	@use './_base';
+	@use './_layout';
+
+//// CONTAINER
+//// --------------------------------------------------------------------------
+
+	// Configuration 
+
+	$container-main-bp: theme.$breakpoint-md; // breakpoint
+	$container-main-spacing: theme.$spacing-x8; // spacing for layout
+	$container-main-sidebar-width: 300px; // width of sidebar
+
+	// Style block
+	
+	.skip-link {
+		z-index: 9999;
+		&:focus {
+			@include mixins.position($type: fixed, $top: theme.$spacing-x4, $left: theme.$spacing-x4);
+			@include mixins.sizing(auto, auto);
+			margin: 0;
+			padding: theme.$spacing-x2 theme.$spacing-x4;
+			overflow: visible;
+			clip: unset;
+			white-space: unset;
+			border: 1px solid theme.$color-focus;
+			background-color: theme.$color-bg;
+		}
+	}
+	.container {
+		max-width: theme.$container-width;
+		margin: 0 auto;
+		padding: 0 theme.$spacing-x4;
+		& > * {
+			margin: 0 0 theme.$spacing-x8 0;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	.main {
+		.main-layout {
+			@include mixins.gap($container-main-spacing);
+			.content, .sidebar {
+				@include mixins.flex(0 1 auto);
+				width: 100%;
+			}
+		}
+	}
+	@include mixins.respond($container-main-bp) {
+		.main {
+			.main-layout {
+				.content {
+					@include mixins.flex;
+					width: auto;
+				}
+				.sidebar {
+					width: $container-main-sidebar-width;
+				}
+			}
+		}
+	}

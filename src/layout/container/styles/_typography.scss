@@ -1,0 +1,179 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// GENERAL TEXT ELEMENTS
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	html, body {
+		font-family: theme.$font-family-body;
+	}
+	html {
+		text-size-adjust: 100%;
+		font-size: theme.$font-size-base;
+		line-height: 1;
+	}
+	body {
+		font-size: functions.em(theme.$font-size-global, rem);
+		font-weight: normal;
+		color: theme.$color-body;
+		line-height: 1.5;
+	}
+	b, strong {
+		font-weight: theme.$font-weight-body;
+	}
+	dfn, em, i {
+		font-style: theme.$font-style-body;
+	}
+	a, abbr[title] {
+		text-decoration: none;
+	}
+	mark {
+		background: theme.$color-highlight;
+		color: theme.$color-highlight-body;
+	}
+	small {
+		font-size: 80%;
+	}
+	sub, sup {
+		position: relative;
+		vertical-align: baseline;
+		font-size: 75%;
+		line-height: 0;
+	}
+	sup {
+		top: -0.5em;
+	}
+	sub {
+		bottom: -0.25em;
+	}
+
+//// LINKS
+//// --------------------------------------------------------------------------	
+
+	// Configuration 
+
+	$link-has-underline: true; // add underline on link
+	$link-has-underline-hover: true; // add underline on link hover
+	$link-has-underline-offset: true; // decorate link underline
+	$link-transition: color theme.$duration-base ease-in-out, text-decoration-color theme.$duration-base ease-in-out; // value for link transition
+
+	// Link mixin
+
+	@mixin link-default {
+		@if $link-has-underline-offset == true {
+			@if $link-has-underline == true and theme.$color-link-underline != false {
+				@include mixins.text-decoration(1px, 5px, theme.$color-link-underline);
+			} @else {
+				text-decoration: none;
+			}
+		} @else {
+			$decoration: if(sass($link-has-underline == true): underline; else: none);
+			text-decoration: $decoration;
+		}
+	}
+	@mixin link-hover {
+		@if $link-has-underline-offset == true {
+			@if $link-has-underline-hover == true and theme.$color-link-underline-hover != false {
+				@include mixins.text-decoration(1px, 5px, theme.$color-link-underline-hover);
+			} @else {
+				text-decoration: none;
+			}
+		} @else {
+			$decoration: if(sass($link-has-underline-hover == true): underline; else: none);
+			text-decoration: $decoration;
+		}
+	}
+
+	// Style block
+
+	a, .a {
+		& {
+			color: theme.$color-link;
+			@include mixins.transition($link-transition);
+			&:active, &:hover {
+				color: theme.$color-link-hover;
+			}
+		}
+		&:not(.no-decoration) {
+			&:not(:has(.button-label)) {
+				@include link-default;
+				&:active, &:hover {
+					@include link-hover;
+				}
+			}
+			&:has(.button-label) {
+				.button-label {
+					@include link-default;
+				}
+				&:active, &:hover {
+					.button-label {
+						@include link-hover;
+					}
+				}
+			}
+		}
+	}
+
+//// HEADERS
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+		font-family: theme.$font-family-header;
+		font-weight: theme.$font-weight-header;
+		@include mixins.if-exists((
+			font-style: theme.$font-style-header,
+			text-transform: theme.$font-transform-header
+		));
+		color: theme.$color-header;
+		a, .a {
+			color: inherit;
+			&:active, &:hover {
+				color: theme.$color-link;
+			}
+		}
+	}
+	h1, .h1 {
+		font-size: functions.em(34px, rem);
+	}
+	h2, .h2 {
+		font-size: functions.em(30px, rem);
+	}
+	h3, .h3 {
+		font-size: functions.em(26px, rem);
+	}
+	h4, .h4 {
+		font-size: functions.em(22px, rem);
+	}
+	h5, h6, .h5, .h6 {
+		font-size: functions.em(20px, rem);
+	}
+
+//// CONTENT BLOCKS
+//// --------------------------------------------------------------------------
+
+	// Style block
+	
+	code, kbd, pre, samp {
+		background: theme.$color-body;
+		margin: 0;
+		padding: theme.$spacing-x4;
+		font-family: 'Courier New', monospace;
+		font-size: functions.em(16px, rem);
+		color: theme.$color-bg;
+		white-space: pre-wrap;
+		word-break: break-word;
+	}
+	pre code {
+		padding: 0;
+		margin: 0;
+	}
+	blockquote {
+		max-width: 90%;
+		margin: 0 auto theme.$spacing-x4 auto;
+	}

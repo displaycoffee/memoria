@@ -1,0 +1,76 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// ELEMENTS
+//// --------------------------------------------------------------------------
+
+	// Colors
+
+	$base-elements-color-01: theme.$color-bg; // body background
+
+	// Configuration
+
+	$base-elements-spacing: theme.$spacing-x4; // overall spacing of theme
+	$base-elements-body-spacing-vertical: theme.$spacing-x8; // top / bottom spacing for body
+	$base-elements-body-spacing-horizontal: 0; // left / right spacing for body
+
+	// Style block
+
+	html, body {
+		min-height: 100vh;
+	}
+	body {
+		background-color: $base-elements-color-01;
+		@if $base-elements-body-spacing-vertical != 0 or $base-elements-body-spacing-horizontal != 0 {
+			padding: $base-elements-body-spacing-vertical $base-elements-body-spacing-horizontal;
+		}
+	}
+	p, h1, h2, h3, h4, h5, h6, .margin-trim > div, .margin-trim > section {
+		margin: 0 0 $base-elements-spacing 0;
+	}
+	.margin-trim > *:last-child {
+		margin-bottom: 0;
+	}
+
+//// HELPERS
+//// --------------------------------------------------------------------------
+
+	// Colors
+
+	$base-helpers-color-01: theme.$color-scrollbar-bg; // scrollbar background
+	$base-helpers-color-02: theme.$color-scrollbar-foreground; // scrollbar foreground
+
+	// Configuration
+
+	$base-helpers-scrollbar-width: 6px; // width of scrollbar
+	$base-helpers-scrollbar-height: 6px; // height of scrollbar
+
+	// Style block
+
+	.sr-only {
+		@include mixins.sr-only;
+	}
+	.sr-only-important {
+		@include mixins.sr-only(true);
+	}
+	.pointer {
+		cursor: pointer;
+	}
+	.clearfix {
+		@include mixins.clearfix('&');
+	}
+	.scrollbar {
+		@include mixins.scrollbar('&', $base-helpers-scrollbar-width, $base-helpers-scrollbar-height, $base-helpers-color-01, $base-helpers-color-02);
+	}
+	@include mixins.respond(theme.$breakpoint-md - 1, max-width) {
+		html body .hide-mobile {
+			display: none;
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-md) {
+		html body .hide-desktop {
+			display: none;
+		}
+	}

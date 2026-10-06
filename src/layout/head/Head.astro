@@ -1,0 +1,42 @@
+---
+/* Scripts */
+import type { HeadProps } from './scripts/head-types';
+import { createHead } from './scripts/head';
+import { context } from '@/context/scripts/context';
+
+/* Define prop types */
+type Props = HeadProps;
+
+/* Props */
+const { title } = Astro.props;
+
+/* Get site details */
+const site = await context.wp.site.site();
+const pageTitle = title ? `${site.title} - ${title}` : site.title;
+const head = createHead();
+---
+
+<head>
+	<meta charset="utf-8" />
+	<title>{pageTitle}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content={site.description} />
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:site_name" content={site.title} />
+	<meta property="og:url" content={site.url} />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:description" content={site.description} />
+	<meta property="og:type" content="website" />
+	{head.data.themeColors().map((themeColor) => (
+		<meta name="theme-color" content={themeColor.color} media={themeColor.media} />
+	))}
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	{head.data.favicons().map((favicon) => (
+		<link href={favicon.url} rel={favicon.rel} sizes={favicon.sizes} type={favicon.type} />
+	))}
+	<link rel="manifest" href="/manifest.json" />
+	{head.data.fontsPreload().map((font) => (
+		<link rel="preload" href={font.url} as={font.as} type={font.type} crossorigin={font.crossOrigin} />
+	))}
+	<style id="preloaded-styles" is:inline set:html={`${head.styles.fallbacks()}${head.styles.fonts()}`}></style>
+</head>

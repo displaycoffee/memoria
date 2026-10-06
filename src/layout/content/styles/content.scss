@@ -1,0 +1,129 @@
+// Built-in Sass modules
+@use 'sass:list';
+
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// CONTENT
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.content {}
+
+//// CONTENT - VIEW TRANSITIONS
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$content-animation: slide; // cross-fade, fade-scale, slide
+	$content-timing: theme.$duration-base; // duration of transition
+	$content-fade-scale-to: 0.97; // scale to value
+	$content-fade-scale-from: 1.03; // scale from value
+	$content-slide: 500px; // distance content slides in from
+
+	// Variables
+
+	$content-animation-type: if(sass(list.index((cross-fade, fade-scale, slide), $content-animation)): $content-animation; else: slide);
+
+	// Style block
+
+	// Option 1: Cross-fade (pure opacity, no movement)
+	@if $content-animation-type == cross-fade {
+		@keyframes vt-fade-out {
+			to {
+				opacity: 0;
+			}
+		}
+		@keyframes vt-fade-in {
+			from {
+				opacity: 0;
+			}
+		}
+	}
+
+	// Option 2: Fade + scale
+	@if $content-animation-type == fade-scale {
+		@keyframes vt-scale-out {
+			to {
+				opacity: 0;
+				transform: scale($content-fade-scale-to);
+			}
+		}
+		@keyframes vt-scale-in {
+			from {
+				opacity: 0;
+				transform: scale($content-fade-scale-from);
+			}
+		}
+	}
+
+	// Option 3: Slide
+	@if $content-animation-type == slide {
+		@keyframes vt-slide-out {
+			to {
+				opacity: 0;
+			}
+		}
+		@keyframes vt-slide-in {
+			from {
+				opacity: 0;
+				transform: translateX($content-slide);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
+	}
+
+	// Match the size/position morph to the content animation timing
+	::view-transition-group(page-content) {
+		animation-duration: $content-timing;
+	}
+
+	// Clip the slide to the content element's bounds, preventing anything from rendering outside it
+	::view-transition-image-pair(page-content) {
+		overflow: clip;
+	}
+
+	// Disable the full-page snapshot so only .content animates
+	::view-transition-old(root), ::view-transition-new(root) {
+		animation: none;
+	}
+
+	// Option 1: Cross-fade
+	@if $content-animation-type == cross-fade {
+		::view-transition-old(page-content) {
+			animation: none;
+			opacity: 0;
+		}
+		::view-transition-new(page-content) {
+			animation: vt-fade-in $content-timing ease;
+		}
+	}
+
+	// Option 2: Fade + scale
+	@if $content-animation-type == fade-scale {
+		::view-transition-old(page-content) {
+			animation: none;
+			opacity: 0;
+		}
+		::view-transition-new(page-content) {
+			animation: vt-scale-in $content-timing ease;
+		}
+	}
+
+	// Option 3: Slide
+	// Old content disappears instantly so it doesn't overlap/flicker during the incoming slide
+	@if $content-animation-type == slide {
+		::view-transition-old(page-content) {
+			animation: none;
+			opacity: 0;
+		}
+		::view-transition-new(page-content) {
+			animation: vt-slide-in $content-timing ease;
+		}
+	}

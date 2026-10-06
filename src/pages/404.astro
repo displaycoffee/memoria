@@ -1,19 +1,15 @@
 ---
+/* Components */
+import Container from '@/layout/container/Container.astro';
+
 /* Page title */
 const pageTitle = 'Page Not Found';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-		<h1>{pageTitle}</h1>
-
+<Container hideSidebar={true} title={pageTitle}>
+	<div class="not-found">
 		<p>
-			Oops, that page wasn't found. <a href="/">Go back home?</a>
+			Page not found. <a href="/">Go back</a>.
 		</p>
-	</body>
-</html>
+	</div>
+</Container>

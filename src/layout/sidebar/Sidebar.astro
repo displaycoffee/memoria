@@ -4,7 +4,7 @@ import './styles/sidebar.scss';
 
 /* Scripts */
 import type { SidebarProps } from './scripts/sidebar-types';
-import { context } from '../../context/scripts/context';
+import { context } from '@/context/scripts/context';
 
 /* Define prop types */
 type Props = SidebarProps;
@@ -21,7 +21,7 @@ if (slug) {
 
 {sidebar?.content ? (
 	<aside class="sidebar margin-trim">
-		{sidebar?.title ? <h3 class="sidebar-title">{sidebar.title}</h3> : null}
+		{sidebar?.title ? <h3>{sidebar.title}</h3> : null}
 
 		<div class="sidebar-content" set:html={sidebar.content} />
 	</aside>

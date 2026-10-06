@@ -1,0 +1,33 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// ICONS
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.icon-wrapper {
+		@include mixins.flex-layout((display: inline-flex, flex-flow: column nowrap));
+		@include mixins.flex(0 0 auto);
+		@include mixins.icon-sizing(theme.$icon-md);
+		.icon {
+			display: block;
+			margin: auto;
+			@include mixins.sizing(100%, 100%);
+			line-height: 1;
+		}
+	}
+	.icon-wrapper-sm {
+		@include mixins.icon-sizing(theme.$icon-sm);
+	}
+	.icon-wrapper-lg {
+		@include mixins.icon-sizing(theme.$icon-lg);
+	}
+	.icon-wrapper-xl {
+		@include mixins.icon-sizing(theme.$icon-xl);
+	}
+	.icon-wrapper-2xl {
+		@include mixins.icon-sizing(theme.$icon-2xl);
+	}

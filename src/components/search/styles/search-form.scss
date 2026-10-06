@@ -1,0 +1,28 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// SEARCH FORM
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.search-form {
+		&.margin-trim > div {
+			margin-bottom: 0;
+		}
+		&, .form-field {
+			@include mixins.gap(theme.$spacing-x2);
+		}
+		.form-field {
+			@include mixins.flex;
+			.form-field-label {
+				width: auto;
+			}
+		}
+		.form-actions {
+			@include mixins.flex(0 1 auto);
+		}
+	}
+

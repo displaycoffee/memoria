@@ -1,0 +1,89 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// ALERT
+//// --------------------------------------------------------------------------
+
+	// Colors
+
+	$alert-color-01: theme.$color-alert-body; // alert font
+	$alert-color-02: theme.$color-alert-link; // alert link
+
+	// Configuration
+	
+	$alert-spacing: theme.$spacing-x4; // spacing for alert
+	$alert-border-left-width: 5px; // make left border larger
+	$alert-border-radius: false; // alert border radius
+	$alert-icon-size: theme.$icon-xl; // size of icon
+	$alert-icon-vertical: 1px; // top vertical alignment of icon
+
+	// Style block
+
+	.alert {
+		padding: $alert-spacing;
+		@include mixins.gap(calc($alert-spacing / 2));
+		background-color: theme.$color-error-bg;
+		border: 1px solid theme.$color-error-border;
+		@include mixins.if-exists((
+			border-left-width: $alert-border-left-width,
+		));
+		@if $alert-border-radius != false {
+			@include mixins.border-radius($alert-border-radius)
+		}
+		.alert-icon, .alert-message {
+			min-width: 1px;
+		}
+		.alert-icon {
+			@include mixins.flex(0 1 auto);
+			@include mixins.sizing($alert-icon-size, $alert-icon-size);
+			@if $alert-icon-vertical != false {
+				@include mixins.position($type: relative, $top: $alert-icon-vertical);
+			}
+			color: theme.$color-error-border;
+			svg {
+				@include mixins.sizing(100%, 100%);
+			}
+		}
+		.alert-message {
+			@include mixins.flex;
+			@include mixins.if-exists((
+				color: $alert-color-01,
+			));
+			@if $alert-color-02 != false {
+				a, .a {
+					&, &:active, &:hover {
+						color: $alert-color-02;
+						&:not(:has(.button-label)) {
+							@include mixins.text-decoration-color($alert-color-02);
+						}
+						&:has(.button-label) .button-label {
+							@include mixins.text-decoration-color($alert-color-02);
+						}
+					}
+				}
+			}
+		}
+	}
+	.alert-warning {
+		background-color: theme.$color-warning-bg;
+		border-color: theme.$color-warning-border;
+		.alert-icon {
+			color: theme.$color-warning-border;
+		}
+	}
+	.alert-info {
+		background-color: theme.$color-info-bg;
+		border-color: theme.$color-info-border;
+		.alert-icon {
+			color: theme.$color-info-border;
+		}
+	}
+	.alert-success {
+		background-color: theme.$color-success-bg;
+		border-color: theme.$color-success-border;
+		.alert-icon {
+			color: theme.$color-success-border;
+		}
+	}

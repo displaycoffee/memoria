@@ -4,6 +4,9 @@ import type { HeadProps } from './scripts/head-types';
 import { createHead } from './scripts/head';
 import { context } from '@/context/scripts/context';
 
+/* Components */
+import { ClientRouter } from 'astro:transitions';
+
 /* Define prop types */
 type Props = HeadProps;
 
@@ -39,4 +42,5 @@ const head = createHead();
 		<link rel="preload" href={font.url} as={font.as} type={font.type} crossorigin={font.crossOrigin} />
 	))}
 	<style id="preloaded-styles" is:inline set:html={`${head.styles.fallbacks()}${head.styles.fonts()}`}></style>
+	<ClientRouter />
 </head>

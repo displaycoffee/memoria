@@ -1,0 +1,30 @@
+---
+/* Styles */
+import './styles/search-form.scss';
+
+/* Scripts */
+import type { SearchFormProps } from './scripts/search-types';
+
+/* Components */
+import { Icon } from '@/components/icons/Icons';
+import { Button, Form, FormActions, Input } from '@/components/forms/Forms';
+
+/* Define prop types */
+type Props = SearchFormProps;
+
+/* Props */
+const { action, id } = Astro.props;
+
+/* Search form variables */
+const searchInputId = `${id}-input`;
+---
+
+<Form id={id} className="search-form flex-nowrap flex-align-items-center" role="search" method="get" action={action}>
+	<Input id={searchInputId} hasClose={true} label={'Search'} placeholder={'Search for...'} />
+
+	<FormActions>
+		<Button label={'Submit'} type={'submit'}>
+			<Icon name={'search'} />
+		</Button>
+	</FormActions>
+</Form>

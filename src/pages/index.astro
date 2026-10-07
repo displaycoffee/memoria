@@ -2,31 +2,42 @@
 /* Styles */
 import './_index/styles/index.scss';
 
-/* Packages */
-//import packageJSON from '../../package.json' with { type: 'json' };
-
-/* Scripts */
-//import { context } from '@/context/scripts/context';
-
 /* Components */
 import Container from '@/layout/container/Container.astro';
-// import PageList from '../components/page/PageList.astro';
+import { List } from '@/components/blocks/Blocks';
+import { Dropdown } from '@/components/dropdown/Dropdown';
 
-// /* Get site and theme options */
-// const site = await context.wp.site.site();
-// const themeOptions = await context.wp.themeOptions.themeOptions();
-// const sidebarSlug = themeOptions?.sidebar?.slug ?? '';
-
-// /* Get pages */
-// const pages = sidebarSlug ? await context.wp.page.pages(site.pageSize + 1, [sidebarSlug]) : await context.wp.page.pages(site.pageSize);
-
-// /* Page title */
-// const pageTitle = 'Pages';
+/* Page title */
+const title = 'Home';
 ---
 
 <Container>
-	Hello
-	<!-- <h2>{pageTitle}</h2>
+	<div class="index margin-trim">
+		<h2>{title}</h2>
 
-	<PageList pages={pages} /> -->
+		<p>This is an index page.</p>
+
+		<Dropdown buttonLabel={'Label'}>
+			<List>
+				<li>Item 1</li>
+				<li>Item 2</li>
+				<li>Item 3</li>
+				<li>Item 4</li>
+			</List>
+		</Dropdown>
+
+		<List>
+			<li>Item 1</li>
+			<li>Item 2</li>
+			<li>Item 3</li>
+			<li>Item 4</li>
+		</List>
+
+		<List variant={'ol'}>
+			<li>Item 1</li>
+			<li>Item 2</li>
+			<li>Item 3</li>
+			<li>Item 4</li>
+		</List>
+	</div>
 </Container>

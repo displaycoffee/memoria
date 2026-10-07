@@ -28,7 +28,7 @@ const navigationLinkClass = `no-decoration navigation-link`;
 			{navigationList.map((nav) => {
 				return showChildren && nav?.children && nav.children.length !== 0 ? (
 					<NavigationListItem navigationLinkClass={navigationLinkClass} nav={nav}>
-						<Dropdown buttonLabel={`${nav.label} Menu`} closeOnClick={true} hideLabel={true} client:load>
+						<Dropdown buttonLabel={`${nav.label} Menu`} closeOnClick={true} hideLabel={true}>
 							<List className={'navigation-list-submenu'} variant={'ul-unstyled'}>
 								{nav.children.map((child) => {
 									return <NavigationListItem nav={child} navigationLinkClass={navigationLinkClass} />;

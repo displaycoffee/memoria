@@ -44,10 +44,8 @@
 		max-width: theme.$container-width;
 		margin: 0 auto;
 		padding: 0 theme.$spacing-x4;
-		& > *, .slideout-button {
-			margin: 0 0 theme.$spacing-x8 0;
-		}
 		& > * {
+			margin: 0 0 theme.$spacing-x8 0;
 			&:last-child {
 				margin-bottom: 0;
 			}

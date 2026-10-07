@@ -215,7 +215,7 @@
 	// Style block
 
 	.form {
-		&.margin-trim > fieldset {
+		&.margin-trim > fieldset, &.margin-trim > astro-island > fieldset {
 			margin: 0 0 theme.$spacing-x4 0;
 		}
 	}

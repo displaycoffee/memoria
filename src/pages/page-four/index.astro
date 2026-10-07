@@ -1,0 +1,21 @@
+---
+/* Components */
+import Container from '@/layout/container/Container.astro';
+import { PageFourClient } from './PageFourClient';
+import { Form } from '@/components/forms/Forms';
+
+/* Page title */
+const title = 'Page Four';
+---
+
+<Container title={title}>
+	<div class="page-four margin-trim">
+		<h2>{title}</h2>
+
+		<p>This is an example of form fields.</p>
+
+		<Form>
+			<PageFourClient client:load />
+		</Form>
+	</div>
+</Container>

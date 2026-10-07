@@ -7,11 +7,5 @@ type ErrorBoundary = {
 	message: ReactNode;
 };
 
-type ErrorBoundaryState = {
-	hasError: boolean;
-};
-
 /* Export prop types */
 export type ErrorBoundaryProps = ErrorBoundary;
-
-export type ErrorBoundaryStateProps = ErrorBoundaryState;

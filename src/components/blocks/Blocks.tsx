@@ -1,14 +1,10 @@
 /* Styles */
 import './styles/blocks.scss';
 
-/* Packages */
-import { useEffect, useRef } from 'react';
-
 /* Scripts */
 import type { LinkExternalProps, ListProps, SectionProps } from './scripts/blocks-types';
 import { useFormattedId } from '@displaycoffee/scripts/hooks';
 import { context } from '@/context/scripts/context';
-import { blocks } from './scripts/blocks';
 
 /* Components */
 import { ButtonScroll } from '@/components/forms/Forms';
@@ -47,15 +43,10 @@ export const Section = (props: SectionProps) => {
 	const sectionId = `section-${id ? id : title ? utils.handleize(title) : fallbackId}`;
 	const classes = `section ${sectionId} margin-trim`;
 	const className = propClassName ? `${propClassName} ${classes}` : classes;
-	const sectionRef = useRef<HTMLElement>(null);
 
-	// Reveal section with a fade / scroll transition once it comes into view
-	useEffect(() => {
-		blocks.reveal(sectionRef.current, 'section-visible');
-	}, []);
-
+	// Note: blocks.revealAll() (from container.ts) fades / scrolls the section in once it comes into view
 	return (
-		<section id={sectionId} className={className} tabIndex={-1} ref={sectionRef}>
+		<section id={sectionId} className={className} tabIndex={-1}>
 			{title ? <h3 className="section-title">{title}</h3> : null}
 
 			<div className="section-content margin-trim">{children}</div>

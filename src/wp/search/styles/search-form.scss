@@ -16,6 +16,7 @@
 			@include mixins.flex;
 			.form-field-label {
 				width: auto;
+				top: 6px;
 			}
 		}
 		.form-actions {

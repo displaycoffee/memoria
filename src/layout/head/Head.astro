@@ -4,6 +4,7 @@ import type { HeadProps } from './scripts/head-types';
 import { createHead } from './scripts/head';
 import { context } from '@/context/scripts/context';
 import { variables } from '@/_core/scripts/variables';
+import { themeToggle } from '@/components/theme-toggle/scripts/theme-toggle';
 
 /* Components */
 import { ClientRouter } from 'astro:transitions';
@@ -16,7 +17,7 @@ const { title } = Astro.props;
 
 /* Get site details */
 const site = await context.wp.site.site();
-const pageTitle = title ? `${site.title} - ${title}` : site.title;
+const headTitle = title ? `${site.title} - ${title}` : site.title;
 const head = createHead();
 
 /* Full URL of the current page, from SITE_URL so it matches the environment */
@@ -25,10 +26,25 @@ const pageUrl = new URL(Astro.url.pathname, variables.urls.site).href;
 
 <head>
 	<meta charset="utf-8" />
-	<title>{pageTitle}</title>
+	<title>{headTitle}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script define:vars={{ storageKey: themeToggle.storageKey }}>
+		// Apply a saved theme before the first paint, and again after each ClientRouter navigation, which replaces <html>'s attributes
+		// Note: only a saved theme is set here; without one, the prefers-color-scheme rules in _root.scss follow the OS
+		// Note: localStorage can throw (e.g. blocked storage), so it fails quietly and falls back to the OS theme
+		const applyTheme = () => {
+			try {
+				const theme = localStorage.getItem(storageKey);
+				if (theme === 'light' || theme === 'dark') document.documentElement.setAttribute('data-theme', theme);
+			} catch {
+				// Use the OS theme
+			}
+		};
+		applyTheme();
+		document.addEventListener('astro:after-swap', applyTheme);
+	</script>
 	<meta name="description" content={site.description} />
-	<meta property="og:title" content={pageTitle} />
+	<meta property="og:title" content={headTitle} />
 	<meta property="og:site_name" content={site.title} />
 	<link rel="canonical" href={pageUrl} />
 	<meta property="og:url" content={pageUrl} />

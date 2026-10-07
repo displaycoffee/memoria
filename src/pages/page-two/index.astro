@@ -1,0 +1,49 @@
+---
+/* Scripts */
+import { navigationHeader } from '@/components/navigation/scripts/navigation';
+import { navigationUtils } from '@/components/navigation/scripts/navigation-utils';
+
+/* Components */
+import Container from '@/layout/container/Container.astro';
+import { List } from '@/components/blocks/Blocks';
+
+/* Page title */
+const title = 'Page Two';
+
+/* Get navigation menu */
+const navigationList = navigationUtils.get.listItem(navigationHeader, 'page-two');
+---
+
+<Container title={title} hideSidebar={true}>
+	<div class="page-two margin-trim">
+		<h2>{title}</h2>
+
+		{navigationList?.children && navigationList.children.length !== 0 ? (
+			<>
+				<h3>Child Pages</h3>
+
+				<List>
+					{navigationList.children.map((nav) => {
+						return (
+							<li>
+								<a href={nav.url}>{nav.label}</a>
+							</li>
+						);
+					})}
+				</List>
+			</>
+		) : null}
+
+		<p>This is the second page.</p>
+
+		<div class="row row-auto row-spacing-20 row-wrap">
+			<div class="column column-width-33">Column 01</div>
+
+			<div class="column column-width-33">Column 02</div>
+
+			<div class="column column-width-33">Column 03</div>
+		</div>
+
+		<p>An element below the row example.</p>
+	</div>
+</Container>

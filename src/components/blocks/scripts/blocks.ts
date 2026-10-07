@@ -1,25 +1,28 @@
+/* Observer for the current page's revealed elements, replaced on each page load */
+let revealObserver: IntersectionObserver | undefined;
+
 export const blocks = {
-	reveal: (element: HTMLElement | null, revealClass: string) => {
-		if (element) {
-			// Create options and callback for observer
-			// Note: threshold is edge-triggered (fires as soon as the element appears, before its bottom
-			// edge is 10% into the viewport) rather than area-ratio-based, so it works consistently for
-			// sections much taller than the viewport, not just ones that can fit fully on screen
-			// Note 2: rootMargin values need to be in pixels or precentage values
-			const revealOptions = { threshold: 0, rootMargin: '0px 0px -10% 0px' };
+	revealAll: (selector: string, revealClass: string) => {
+		// Add revealClass to each element matching selector once it scrolls into view
+		// Note: call after each page load, since navigation swaps in new elements, and stop watching the old ones first
+		revealObserver?.disconnect();
 
-			// Callback for reveal
-			const revealCallback = (e: IntersectionObserverEntry, observer: IntersectionObserver) => {
+		// Create options for observer
+		// Note: threshold is edge-triggered (fires as soon as the element appears, before its bottom
+		// edge is 10% into the viewport) rather than area-ratio-based, so it works consistently for
+		// sections much taller than the viewport, not just ones that can fit fully on screen
+		// Note 2: rootMargin values need to be in pixels or precentage values
+		const revealOptions = { threshold: 0, rootMargin: '0px 0px -10% 0px' };
+
+		// Add class once revealed, no need to keep observing
+		revealObserver = new IntersectionObserver((entries, observer) => {
+			entries.forEach((e) => {
 				if (!e.isIntersecting) return;
-
-				// Add class once revealed, no need to keep observing
 				e.target.classList.add(revealClass);
 				observer.unobserve(e.target);
-			};
+			});
+		}, revealOptions);
 
-			// Observe to add class once element scrolls into view
-			const revealObserver = new IntersectionObserver(([e], observer) => revealCallback(e, observer), revealOptions);
-			revealObserver.observe(element);
-		}
+		document.querySelectorAll(selector).forEach((element) => revealObserver?.observe(element));
 	},
 };

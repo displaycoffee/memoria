@@ -58,7 +58,8 @@
 		"@astrojs/sitemap": "^3.7.4",
 		"@displaycoffee/scripts": "^2.1.0",
 		"react": "^19.3.0",
-		"react-dom": "^19.3.0"
+		"react-dom": "^19.3.0",
+		"react-error-boundary": "^6.1.6"
 	},
 	"repository": {
 		"type": "git",

@@ -20,7 +20,6 @@ import type {
 	ToggleProps,
 } from './scripts/forms-types';
 import { forms } from './scripts/forms';
-import { context } from '@/context/scripts/context';
 
 /* Components */
 import { Alert } from '@/components/alert/Alert';
@@ -42,9 +41,9 @@ export const Button = (props: ButtonProps) => {
 
 export const ButtonScroll = (props: ButtonScrollProps) => {
 	const { offset = 0, target, ...rest } = props;
-	const { utilsBrowser } = context;
 
-	return <Button variant={'link'} onClick={(e) => utilsBrowser.scrollTo(e, target, offset)} {...rest} />;
+	// Note: forms.scroll handles the click from document, since this renders as static HTML without a client directive
+	return <Button variant={'link'} data-scroll-offset={offset} data-scroll-target={target} {...rest} />;
 };
 
 export const Choice = (props: ChoiceProps) => {
@@ -65,8 +64,9 @@ export const Choice = (props: ChoiceProps) => {
 };
 
 export const Form = (props: FormProps) => {
-	const { children, className: propClassName, ...rest } = props;
-	const className = forms.build.className(`form margin-trim`, propClassName);
+	const { children, className: propClassName, hasMarginTrim = true, ...rest } = props;
+	const formClass = hasMarginTrim ? `form margin-trim` : `form`;
+	const className = forms.build.className(formClass, propClassName);
 
 	return (
 		<form className={className} {...rest}>
@@ -153,18 +153,7 @@ export const Input = (props: InputProps) => {
 };
 
 export const Select = (props: SelectProps) => {
-	const {
-		children,
-		className: propClassName,
-		description = '',
-		error = '',
-		hideLabel = false,
-		icon,
-		id,
-		label,
-		required = false,
-		...rest
-	} = props;
+	const { children, className: propClassName, description = '', error = '', hideLabel = false, icon, id, label, required = false, ...rest } = props;
 	const className = forms.build.className(`select`, propClassName, rest?.disabled, true);
 	const { descriptionId, errorId } = forms.get.ids({ description, error, id });
 

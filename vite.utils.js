@@ -1,9 +1,11 @@
 /* Packages */
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import Icons from 'unplugin-icons/vite';
 import { cssTarget, tokensWatch } from '@displaycoffee/burmecia/vite';
 
 export const viteUtils = {
 	plugins: [
+		basicSsl(),
 		tokensWatch(),
 		Icons({
 			compiler: 'jsx',

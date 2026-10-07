@@ -1,0 +1,83 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// SLIDEOUT
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$slideout-spacing: theme.$spacing-x4; // overall spacing value
+	$slideout-easing-in: cubic-bezier(0.65, 0, 0.80, 0); // slow start, fast finish - used when closing
+	$slideout-easing-out: cubic-bezier(0.25, 1, 0.35, 1); // fast start, slow finish - used when opening
+	$slideout-header: 40px; // height of header (determines scrollable area)
+
+	// Style block
+	// Note: selectors are .overlay.slideout so they win over overlay.scss, which is injected after this file
+	// The open / close animation is driven by the --overlay-* custom properties documented in overlay.scss
+
+	.overlay.slideout {
+		--overlay-easing-closed: #{$slideout-easing-in};
+		--overlay-easing-open: #{$slideout-easing-out};
+		--overlay-opacity-closed: 1; // only the backdrop fades; the panel slides in fully opaque
+		&.slideout-horizontal {
+			height: 100%;
+			max-height: 100%;
+			margin: 0;
+		}
+		&.slideout-vertical {
+			height: calc(100% - calc($slideout-spacing * 2));
+			margin: $slideout-spacing auto;
+		}
+		&.slideout-left {
+			--overlay-transform-closed: translateX(-150%);
+			inset: 0 auto 0 0;
+		}
+		&.slideout-right {
+			--overlay-transform-closed: translateX(150%);
+			inset: 0 0 0 auto;
+		}
+		&.slideout-top {
+			--overlay-transform-closed: translateY(-150%);
+		}
+		&.slideout-bottom {
+			--overlay-transform-closed: translateY(150%);
+		}
+		.overlay-content {
+			height: 100%;
+		}
+		.slideout-header {
+			margin: 0 0 $slideout-spacing 0;
+			height: $slideout-header;
+			@include mixins.flex-layout((align-items: center));
+			@include mixins.gap(theme.$spacing-x2);
+			.slideout-title, .slideout-close {
+				margin: 0;
+				line-height: 1;
+			}
+			.slideout-close {
+				margin-left: auto;
+			}
+		}
+		.slideout-scrollbar {
+			overflow-y: auto;
+			overflow-x: hidden;
+			height: 100%;
+			max-height: 90%;
+			max-height: calc(100% - ($slideout-header + $slideout-spacing));
+			.navigation {
+				.navigation-list {
+					display: block;
+					.navigation-list-item {
+						font-size: functions.em(16px, rem);
+						margin: 0  0 theme.$spacing-x2 0;
+						&:last-child {
+							margin-bottom: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+

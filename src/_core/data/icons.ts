@@ -11,8 +11,16 @@ import IconSearch from '~icons/lucide/search';
 import IconSlidersVertical from '~icons/lucide/sliders-vertical';
 import IconStar from '~icons/lucide/star';
 import IconX from '~icons/lucide/x';
+import IconBrandFacebook from '~icons/tabler/brand-facebook';
+import IconBrandGithub from '~icons/tabler/brand-github';
+import IconBrandInstagram from '~icons/tabler/brand-instagram';
+import IconBrandLinkedin from '~icons/tabler/brand-linkedin';
+import IconBrandTwitch from '~icons/tabler/brand-twitch';
+import IconBrandTwitter from '~icons/tabler/brand-twitter';
+import IconBrandX from '~icons/tabler/brand-x';
+import IconBrandYoutube from '~icons/tabler/brand-youtube';
 
-/* Icons used in this project, keyed by their Lucide name */
+/* Icons used in this project, keyed by their Lucide name, or brand-* for Tabler brand icons (Lucide has no brand icons) */
 /* Note: only icons imported here are bundled, so add new icons here before using them by name */
 export const icons = {
 	check: IconCheck,
@@ -27,4 +35,12 @@ export const icons = {
 	'sliders-vertical': IconSlidersVertical,
 	star: IconStar,
 	x: IconX,
+	'brand-facebook': IconBrandFacebook,
+	'brand-github': IconBrandGithub,
+	'brand-instagram': IconBrandInstagram,
+	'brand-linkedin': IconBrandLinkedin,
+	'brand-twitch': IconBrandTwitch,
+	'brand-twitter': IconBrandTwitter,
+	'brand-x': IconBrandX,
+	'brand-youtube': IconBrandYoutube,
 };

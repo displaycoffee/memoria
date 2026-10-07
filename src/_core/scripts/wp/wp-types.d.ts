@@ -81,6 +81,7 @@ type ImageRawNodes = {
 
 type MenuItem = {
 	id: string;
+	isRoute: boolean;
 	label: string;
 	type: string;
 	url: string;
@@ -224,11 +225,13 @@ type ThemeOptions = {
 		slug: string;
 	};
 	social: {
-		id: string;
+		id: ThemeOptionsSocialId;
 		label: string;
 		url: string;
 	}[];
 };
+
+type ThemeOptionsSocialId = 'facebook' | 'github' | 'instagram' | 'linkedin' | 'twitch' | 'twitter' | 'x' | 'youtube';
 
 type ThemeOptionsRaw = {
 	footerBlock01Order: string;
@@ -361,6 +364,8 @@ declare global {
 	type ThemeOptionsType = ThemeOptions;
 
 	type ThemeOptionsRawType = ThemeOptionsRaw;
+
+	type ThemeOptionsSocialIdType = ThemeOptionsSocialId;
 
 	type WPType = WP;
 }

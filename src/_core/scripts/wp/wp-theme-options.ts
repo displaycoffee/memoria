@@ -40,7 +40,7 @@ export const wpThemeOptions = {
 		}
 
 		// Build social links
-		const buildLink = (id: string, label: string, url: string) => {
+		const buildLink = (id: ThemeOptionsSocialIdType, label: string, url: string) => {
 			themeOptionsData.social.push({ id, label, url });
 		};
 		if (data?.socialFacebook) {

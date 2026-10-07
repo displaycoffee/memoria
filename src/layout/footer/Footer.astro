@@ -1,0 +1,63 @@
+---
+/* Styles */
+import './styles/footer.scss';
+
+/* Scripts */
+import type { FooterProps } from './scripts/footer-types';
+import { context } from '@/context/scripts/context';
+
+/* Components */
+import { Icon } from '@/components/icons/Icons';
+import { LinkExternal } from '@/components/blocks/Blocks';
+import Navigation from '@/components/navigation/Navigation.astro';
+
+/* Define prop types */
+type Props = FooterProps;
+
+/* Props */
+const { options } = Astro.props;
+
+/* Get year */
+const year = new Date().getFullYear();
+
+/* Get footer menu to conditionally render nav block */
+const footerMenu = await context.wp.menu.menu('footer');
+---
+
+<footer class="footer">
+	{options.footer.blocks.length !== 0 ? (
+		<div class="row row-footer row-wrap row-fit row-spacing-20">
+			{options.footer.blocks.map((block) =>
+				block.content == 'nav menu' ? (
+					footerMenu.length !== 0 ? (
+						<div class="column column-footer-navigation">
+							<Navigation data={footerMenu} direction={'vertical'} label={'Footer Navigation'} showChildren={false} />
+						</div>
+					) : null
+				) : (
+					<div class="column column-footer-content" set:html={block.content} />
+				),
+			)}
+		</div>
+	) : null}
+
+	<div class="row row-footer row-wrap row-fit row-spacing-20">
+		{options.social.length !== 0 ? (
+			<div class="column column-footer-social-links">
+				<nav class="social-links" aria-label={'Social Links'}>
+					{options.social.map((social) => (
+						<LinkExternal aria-label={social.label} className={'social-link'} href={social.url}>
+							<Icon name={`brand-${social.id}`} size={'xl'} />
+						</LinkExternal>
+					))}
+				</nav>
+			</div>
+		) : null}
+
+		<div class="column column-footer-copyright">
+			<p>
+				&copy; {year} <LinkExternal href={'https://display.coffee'}>displaycoffee</LinkExternal>
+			</p>
+		</div>
+	</div>
+</footer>

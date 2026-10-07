@@ -1,0 +1,45 @@
+---
+/* Styles */
+import './styles/navigation.scss';
+
+/* Scripts */
+import type { NavigationComponentProps } from './scripts/navigation-types';
+import { navigationUtils } from './scripts/navigation-utils';
+
+/* Components */
+import NavigationListItem from './NavigationListItem.astro';
+import { List } from '@/components/blocks/Blocks';
+import { Dropdown } from '@/components/dropdown/Dropdown';
+
+/* Define prop types */
+type Props = NavigationComponentProps;
+
+/* Props */
+const { data, direction, hideMobile, label, showChildren = true } = Astro.props;
+const navigationClass = typeof hideMobile == 'boolean' && hideMobile === true ? ' hide-mobile' : '';
+const navigationList = Array.isArray(data) ? data : navigationUtils.get.list(data);
+const navigationListDirection = direction == 'horizontal' || direction == 'vertical' ? direction : 'horizontal';
+const navigationLinkClass = `no-decoration navigation-link`;
+---
+
+{navigationList.length != 0 ? (
+	<nav class={`navigation${navigationClass}`} aria-label={label}>
+		<List className={`navigation-list navigation-list-${navigationListDirection}`} variant={'ul-unstyled'}>
+			{navigationList.map((nav) => {
+				return showChildren && nav?.children && nav.children.length !== 0 ? (
+					<NavigationListItem navigationLinkClass={navigationLinkClass} nav={nav}>
+						<Dropdown buttonLabel={`${nav.label} Menu`} closeOnClick={true} hideLabel={true} client:load>
+							<List className={'navigation-list-submenu'} variant={'ul-unstyled'}>
+								{nav.children.map((child) => {
+									return <NavigationListItem nav={child} navigationLinkClass={navigationLinkClass} />;
+								})}
+							</List>
+						</Dropdown>
+					</NavigationListItem>
+				) : (
+					<NavigationListItem navigationLinkClass={navigationLinkClass} nav={nav} />
+				);
+			})}
+		</List>
+	</nav>
+) : null}

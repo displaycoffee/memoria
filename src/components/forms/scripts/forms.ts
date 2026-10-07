@@ -1,6 +1,14 @@
 /* Packages */
 import type { ReactNode } from 'react';
 
+/* Scripts */
+import { utilsBrowser } from '@/_core/scripts/utils';
+
+/* Selector for ButtonScroll (Forms.tsx), which stores its target and offset in data attributes */
+const scroll = {
+	button: '[data-scroll-target]',
+};
+
 /* Selectors for fields with a clear button (FieldClose in Forms.tsx), e.g. <div class="form-field-close"><input class="input" /><button class="button-close" /></div> */
 const clearable = {
 	activeClass: 'button-active',
@@ -78,6 +86,16 @@ export const forms = {
 				input.value = '';
 				input.dispatchEvent(new Event('input', { bubbles: true }));
 				input.focus();
+			});
+		},
+	},
+	scroll: {
+		init: () => {
+			// Handle every ButtonScroll from document, so buttons on new pages work without new listeners
+			// Note: call once, since the listener stays on document across navigations
+			document.addEventListener('click', (e) => {
+				const button = e.target instanceof Element ? e.target.closest<HTMLElement>(scroll.button) : null;
+				if (button) utilsBrowser.scrollTo(e, button.dataset.scrollTarget, Number(button.dataset.scrollOffset ?? 0));
 			});
 		},
 	},

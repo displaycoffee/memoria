@@ -58,6 +58,7 @@ type ErrorField = {
 type Form = {
 	children: ReactNode;
 	className?: string;
+	hasMarginTrim?: boolean;
 } & Omit<FormHTMLAttributes<HTMLFormElement>, 'children' | 'className'>;
 
 type FormActions = {

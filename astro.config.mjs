@@ -18,9 +18,7 @@ export default defineConfig({
 		experimentalDisableStreaming: true, // Disables streaming globally for the Node server
 	}),
 	integrations: [
-		react({
-			experimentalDisableStreaming: true, // Disables streaming for React specifically
-		}),
+		react(), // Note: don't set experimentalDisableStreaming here, since that render path drops each island's useId prefix (duplicate ids + hydration mismatches)
 		sitemap(),
 	],
 	build: {

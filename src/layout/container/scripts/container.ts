@@ -24,6 +24,7 @@ export const container = {
 		// Note: call once, since the listeners stay on document across navigations
 		// Astro doesn't re-run the script after a ClientRouter navigation, but it does dispatch astro:page-load after every navigation (including the first load)
 		forms.clearable.init();
+		forms.scroll.init();
 		image.init();
 		document.addEventListener('astro:page-load', container.pageLoad);
 	},

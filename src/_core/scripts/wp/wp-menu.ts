@@ -19,10 +19,14 @@ export const wpMenu = {
 			type = data.connectedObject.__typename.toLowerCase();
 		}
 
+		// Internal links are relative once the WordPress URL is removed, while custom links to other sites stay absolute
+		const isRoute = url.startsWith('/') || url.startsWith(variables.urls.site);
+
 		// Format menu data
 		return {
 			label: data.label,
 			id: `${menuItemPrefix}-${data.menuItemId}`,
+			isRoute: isRoute,
 			type: type,
 			url: url,
 		};

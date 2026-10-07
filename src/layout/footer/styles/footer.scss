@@ -9,7 +9,61 @@
 	// Style block
 
 	.footer {
-		p {
-			margin: 0;
+		& > * {
+			margin: 0 0 theme.$spacing-x4 0;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		.row-footer {
+			.column-footer-copyright {
+				p {
+					margin: 0;
+				}
+			}
+			.column-footer-social-links {
+				.social-links {
+					@include mixins.flex-layout((align-items: center));
+					@include mixins.gap(theme.$spacing-x2);
+					.social-link {
+						line-height: 0;
+					}
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-md) {
+		.footer {
+			& > * {
+				margin: 0 0 theme.$spacing-x8 0;
+			}
+			.row-footer {
+				@include mixins.gap(theme.$spacing-x8);
+				.column-footer-social-links {
+					order: 99;
+					.social-links {
+						@include mixins.flex-parent(justify-content, flex-end);
+					}
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-lg - 1px, max-width) {
+		.footer {
+			.row-footer {
+				.column {
+					min-width: 40%;
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-md - 1px, max-width) {
+		.footer {
+			.row-footer {
+				.column {
+					@include mixins.flex(1 1 100%);
+					min-width: 1px;
+				}
+			}
 		}
 	}

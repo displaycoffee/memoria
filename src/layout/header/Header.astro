@@ -8,7 +8,7 @@ import { context } from '@/context/scripts/context';
 
 /* Components */
 import { Image } from '@/components/image/Image';
-import SearchForm from '../../components/search/SearchForm.astro';
+import { SearchForm } from '@/wp/search/Search';
 
 /* Define prop types */
 type Props = HeaderProps;
@@ -21,14 +21,14 @@ const site = await context.wp.site.site();
 ---
 
 <header class="header">
-	<div class="header-details flex-wrap flex-align-items-center">
+	<div class="row row-header row-wrap row-align-items-center row-spacing-20">
 		{options.header.logo?.url ? (
-			<div class="header-logo">
-				<Image alt={options.header.logo.alt} hasLazy={true} image={options.header.logo.url} wrapperClasses={['contain']} />
+			<div class="column column-header-logo">
+				<Image alt={options.header.logo.alt} image={options.header.logo.url} wrapperClasses={['contain']} />
 			</div>
 		) : null}
 
-		<div class="header-name">
+		<div class="column column-header-title">
 			<h1 class="header-title">
 				<a class="no-decoration" href={site.url}>
 					{site.title}
@@ -36,16 +36,15 @@ const site = await context.wp.site.site();
 			</h1>
 		</div>
 
-		<div class="header-search">
+		<div class="column column-header-search">
 			<SearchForm action={`${site.url}/search`} id={'header-search-form'} />
 		</div>
 
 		{site?.description ? (
-			<div class="header-description">
+			<div class="column column-header-description">
 				<p>{site.description}</p>
 			</div>
 		) : null}
-
-		<!-- To-do: <ThemeToggle /> -->
 	</div>
+	<!-- To-do: <ThemeToggle /> -->
 </header>

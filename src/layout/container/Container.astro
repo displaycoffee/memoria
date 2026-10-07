@@ -2,28 +2,21 @@
 /* Styles */
 import './styles/container.scss';
 
-// /* Packages */
-// import { useRef } from 'react';
-// import { Link, useLocation } from '@tanstack/react-router';
-
 /* Scripts */
 import type { ContainerProps } from './scripts/container-types';
-// import { useRespond } from '@displaycoffee/scripts/hooks';
-// import { useAvailableMinHeight, useBodyClass } from '@displaycoffee/scripts/hooks-tanstack';
 import { context } from '@/context/scripts/context';
-// import { navigationHeader } from '@/components/navigation/scripts/navigation';
+import { navigationHeader } from '@/components/navigation/scripts/navigation';
+import { navigationUtils } from '@/components/navigation/scripts/navigation-utils';
 
 /* Components */
-// import { ErrorBoundary } from '@/components/error-boundary/ErrorBoundary';
-// import { Navigation } from '@/components/navigation/Navigation';
-// import { ButtonScroll } from '@/components/forms/Forms';
-// import { Slideout } from '@/components/slideout/Slideout';
+import Navigation from '@/components/navigation/Navigation.astro';
+import { ButtonScroll } from '@/components/forms/Forms';
+import { Slideout } from '@/components/slideout/Slideout';
 import Head from '@/layout/head/Head.astro';
 import Header from '@/layout/header/Header.astro';
 import Content from '@/layout/content/Content.astro';
 import Sidebar from '@/layout/sidebar/Sidebar.astro';
-// import { Footer } from '@/layout/footer/Footer';
-// import { Portal } from '@/targets/portal/Portal';
+import Footer from '@/layout/footer/Footer.astro';
 
 /* Define prop types */
 type Props = ContainerProps;
@@ -34,52 +27,57 @@ const { hideSidebar = false, title } = Astro.props;
 /* Get theme options */
 const options = await context.wp.themeOptions.themeOptions();
 
+/* Get primary menu once for both the header and mobile navigation */
+const primaryMenu = await context.wp.menu.menu('primary');
+
+/* Set header navigation */
+const navigationHeaderList = navigationUtils.get.list(navigationHeader);
+const navigationList = [...navigationHeaderList, ...primaryMenu];
+
 /* Create body class */
 const bodyClass = title ? context.utils.handleize(title) : 'index';
 
 /* Slideout options */
-// const slideoutOptions = {
-// 	id: 'menu',
-// 	label: 'Menu',
-// };
+const slideoutOptions = {
+	hideDesktop: true,
+	id: 'menu',
+	label: 'Menu',
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<Head title={title} />
 	<body class={`scrollbar page-${bodyClass}`}>
-		<div class="container">
-			<a href="#main-content" class="skip-link sr-only no-decoration">
-				Skip to main content
-			</a>
+		<div id="index" tabindex="-1">
+			<div class="container">
+				<a href="#main-content" class="skip-link sr-only no-decoration">
+					Skip to main content
+				</a>
 
-			<Header options={options} />
+				<Header options={options} />
 
-			<!-- <Header />
-	
-			{isDesktop ? (
-				<Navigation data={navigationHeader} label={'Header Navigation'} />
-			) : (
-				<Slideout options={slideoutOptions}>
-					<Navigation data={navigationHeader} disableTransition={true} label={'Mobile Navigation'} />
+				<Navigation data={navigationList} hideMobile={true} label={'Header Navigation'} />
+
+				<Slideout options={slideoutOptions} client:load>
+					<Navigation data={navigationList} label={'Mobile Navigation'} />
 				</Slideout>
-			)} -->
 
-			<main id="main-content" class="main">
-				<div class="main-layout flex-wrap">
-					<Content>
-						<slot />
-					</Content>
+				<main id="main-content" class="main">
+					<div class="main-layout flex-wrap">
+						<Content>
+							<slot />
+						</Content>
 
-					{!hideSidebar && <Sidebar slug={options?.sidebar?.slug ?? ''} />}
-				</div>
-			</main>
+						{!hideSidebar && <Sidebar slug={options?.sidebar?.slug ?? ''} />}
+					</div>
+				</main>
 
-			<!-- <Footer />
-	
-			<ButtonScroll target={'#index'} label={'Scroll to top'} /> -->
+				<Footer options={options} />
+
+				<ButtonScroll target={'#index'} label={'Scroll to top'} />
+			</div>
 		</div>
-
 		<script>
 			import { container } from './scripts/container';
 			container.init();

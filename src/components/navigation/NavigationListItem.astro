@@ -1,0 +1,33 @@
+---
+/* Styles */
+import './styles/navigation.scss';
+
+/* Scripts */
+import type { NavigationItemComponentProps } from './scripts/navigation-types';
+import { navigationUtils } from './scripts/navigation-utils';
+
+/* Components */
+import { LinkExternal } from '@/components/blocks/Blocks';
+
+/* Define prop types */
+type Props = NavigationItemComponentProps;
+
+/* Props */
+const { nav, navigationLinkClass } = Astro.props;
+const currentPath = Astro.url.pathname;
+const isCurrent = navigationUtils.is.current(nav.url, currentPath);
+const isActive = navigationUtils.is.active(nav.url, currentPath);
+---
+
+<li class="navigation-list-item">
+	{nav.isRoute ? (
+		<a href={nav.url} class={`${navigationLinkClass}${isActive ? ' navigation-link-active' : ''}`} aria-current={isCurrent ? 'page' : undefined}>
+			{nav.label}
+		</a>
+	) : (
+		<LinkExternal className={navigationLinkClass} href={nav.url}>
+			{nav.label}
+		</LinkExternal>
+	)}
+	<slot />
+</li>

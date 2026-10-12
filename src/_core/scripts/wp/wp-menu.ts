@@ -1,11 +1,16 @@
 /* Scripts */
 import { utils } from '@/_core/scripts/utils';
 import { variables } from '@/_core/scripts/variables';
+import { wpCategory } from './wp-category';
 
 export const wpMenu = {
 	format: (data: MenuRawNodesType, isChild: boolean) => {
 		const menuItemPrefix = isChild ? 'menu-item-child' : 'menu-item';
-		const url = data.url.replace(variables.urls.wp, '');
+		const connectedObject = data?.connectedObject;
+		const categorySlug = connectedObject?.__typename == 'Category' ? connectedObject.slug : undefined;
+
+		// Categories use the site's flat URLs, since WordPress nests child categories under their parent
+		const url = categorySlug ? wpCategory.url(categorySlug) : data.url.replace(variables.urls.wp, '');
 
 		// Check if the link is the home page
 		const homelabels = ['home', 'home page', 'index', 'start'];
@@ -15,8 +20,8 @@ export const wpMenu = {
 		let type = 'link';
 		if (isHome) {
 			type = 'home';
-		} else if (data?.connectedObject?.__typename) {
-			type = data.connectedObject.__typename.toLowerCase();
+		} else if (connectedObject?.__typename) {
+			type = connectedObject.__typename.toLowerCase();
 		}
 
 		// Internal links are relative once the WordPress URL is removed, while custom links to other sites stay absolute
@@ -70,6 +75,9 @@ export const wpMenu = {
 		const urlAttrs = `
 			connectedObject {
 				__typename
+				... on Category {
+					slug
+				}
 			}
 			label
 			menuItemId

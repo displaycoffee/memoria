@@ -1,0 +1,68 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// AUTHOR
+//// --------------------------------------------------------------------------
+
+	.author {
+		.author-details {
+			& > * {
+				margin: 0 0 theme.$spacing-x4 0;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+		.author-posts {
+			margin: theme.$spacing-x4 0 0 0;
+		}
+	}
+
+//// AUTHOR LIST
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.authors {
+		.author {
+			.author-details {
+				& > * {
+					margin: 0 0 theme.$spacing-x2 0;
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-md) {
+		.authors {
+			.author {
+				&, & .author-details {
+					@include mixins.flex-layout((flex-flow: column nowrap));
+				}
+				.author-details {
+					@include mixins.flex;
+					@include mixins.gap(theme.$spacing-x2);
+					& > * {
+						margin: 0;
+					}
+					.author-title {
+						@include mixins.line-clamp(1);
+					}
+					.author-read-more {
+						margin-top: auto;				
+					}
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-xl) {
+		.authors {
+			.author {
+				@include mixins.gap-width(theme.$spacing-x4, 3);
+			}
+		}
+	}

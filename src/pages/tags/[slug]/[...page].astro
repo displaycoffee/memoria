@@ -1,0 +1,50 @@
+---
+/* Scripts */
+import type { GetStaticPathsOptions } from 'astro';
+import { context } from '@/context/scripts/context.ts';
+
+/* Components */
+import Container from '@/layout/container/Container.astro';
+import { Tag } from '@/wp/tag/Tag';
+import { Pagination } from '@/wp/pagination/Pagination';
+
+/* Get tags and their posts */
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+	const site = await context.wp.site.site();
+	const tags = await context.wp.tag.all();
+
+	const tagsWithPosts = await Promise.all(
+		tags.map(async (tag) => {
+			const posts = await context.wp.post.all(tag.slug, 'tag');
+			return { tag, posts };
+		}),
+	);
+
+	return tagsWithPosts.flatMap(({ tag, posts }) => {
+		return paginate(posts, {
+			params: { slug: tag.slug },
+			props: { tag },
+			pageSize: site.pageSize,
+		});
+	});
+};
+
+/* Define prop types */
+import type { InferGetStaticPropsType } from 'astro';
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+/* Props */
+const { tag, page } = Astro.props;
+
+/* Page details */
+const pageDetails = {
+	path: `/tags/${tag.slug}`,
+	title: tag.name,
+};
+---
+
+<Container title={pageDetails.title}>
+	<Tag tag={tag} posts={page.data} />
+
+	<Pagination page={page} basePath={pageDetails.path} />
+</Container>

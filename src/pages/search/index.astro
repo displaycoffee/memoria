@@ -5,8 +5,14 @@ import { context } from '@/context/scripts/context';
 /* Components */
 import Container from '@/layout/container/Container.astro';
 import { SearchResults } from '@/wp/search/Search';
+
+/* Get site details */
+const site = await context.wp.site.site();
+
+/* Page title */
+const title = 'Search Results';
 ---
 
-<Container title={'Search Results'}>
-	<SearchResults graphqlUrl={context.variables.urls.graphQL} client:load />
+<Container title={title}>
+	<SearchResults basePath={'/search'} graphqlUrl={context.variables.urls.graphQL} siteTitle={site.title} title={title} client:load />
 </Container>

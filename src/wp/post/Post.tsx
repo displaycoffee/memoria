@@ -5,7 +5,7 @@ import './styles/post.scss';
 import { Fragment } from 'react';
 
 /* Scripts */
-import type { PostProps, PostListProps, PostBlocksProps } from './scripts/post-types';
+import type { PostProps, PostBlocksProps, PostImageProps, PostListProps } from './scripts/post-types';
 
 /* Components */
 import { Image } from '@/components/image/Image';
@@ -16,12 +16,10 @@ export const Post = (props: PostProps) => {
 
 	return (
 		<div id={post.id} className="post">
-			{!post.image.url.includes('placeholder') ? <PostImage post={post} /> : null}
+			{!post.image.url.includes('placeholder') ? <PostImage hasLink={false} post={post} /> : null}
 
 			<div className="post-details">
-				<h2 className="post-title">
-					<PostLink post={post} />
-				</h2>
+				<h2 className="post-title">{post.title}</h2>
 
 				<PostMeta post={post} />
 
@@ -45,7 +43,9 @@ export const PostList = (props: PostListProps) => {
 
 						<div className="post-details">
 							<h3 className="post-title h5">
-								<PostLink post={post} />
+								<a className="no-decoration" href={post.url}>
+									{post.title}
+								</a>
 							</h3>
 
 							<PostMeta post={post} />
@@ -64,26 +64,11 @@ export const PostList = (props: PostListProps) => {
 };
 
 /* Components for post only; not exported */
-const PostImage = (props: PostBlocksProps) => {
-	const { post } = props;
+const PostImage = (props: PostImageProps) => {
+	const { hasLink = true, post } = props;
+	const image = <Image alt={post.image.alt} hasLazy={true} image={post.image.url} wrapperClasses={['fluid', 'fit']} />;
 
-	return (
-		<div className="post-image">
-			<a href={post.url}>
-				<Image alt={post.image.alt} hasLazy={true} image={post.image.url} wrapperClasses={['fluid', 'fit']} />
-			</a>
-		</div>
-	);
-};
-
-const PostLink = (props: PostBlocksProps) => {
-	const { post } = props;
-
-	return (
-		<a className="no-decoration" href={post.url}>
-			{post.title}
-		</a>
-	);
+	return <div className="post-image">{hasLink ? <a href={post.url}>{image}</a> : image}</div>;
 };
 
 const PostMeta = (props: PostBlocksProps) => {

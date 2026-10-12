@@ -1,0 +1,50 @@
+---
+/* Scripts */
+import type { GetStaticPathsOptions } from 'astro';
+import { context } from '@/context/scripts/context.ts';
+
+/* Components */
+import Container from '@/layout/container/Container.astro';
+import { Author } from '@/wp/author/Author';
+import { Pagination } from '@/wp/pagination/Pagination';
+
+/* Get authors and their posts */
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+	const site = await context.wp.site.site();
+	const authors = await context.wp.author.all();
+
+	const authorsWithPosts = await Promise.all(
+		authors.map(async (author) => {
+			const posts = await context.wp.post.all(author.slug, 'author');
+			return { author, posts };
+		}),
+	);
+
+	return authorsWithPosts.flatMap(({ author, posts }) => {
+		return paginate(posts, {
+			params: { slug: author.slug },
+			props: { author },
+			pageSize: site.pageSize,
+		});
+	});
+};
+
+/* Define prop types */
+import type { InferGetStaticPropsType } from 'astro';
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+/* Props */
+const { author, page } = Astro.props;
+
+/* Page details */
+const pageDetails = {
+	path: `/authors/${author.slug}`,
+	title: author.name,
+};
+---
+
+<Container title={pageDetails.title}>
+	<Author author={author} posts={page.data} />
+
+	<Pagination page={page} basePath={pageDetails.path} />
+</Container>

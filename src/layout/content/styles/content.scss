@@ -79,9 +79,9 @@
 		}
 	}
 
-	// Match the size/position morph to the content animation timing
+	// Skip the size/position morph, so .content doesn't move in from its old position (e.g. from the top when the old page was scrolled)
 	::view-transition-group(page-content) {
-		animation-duration: $content-timing;
+		animation: none;
 	}
 
 	// Clip the slide to the content element's bounds, preventing anything from rendering outside it

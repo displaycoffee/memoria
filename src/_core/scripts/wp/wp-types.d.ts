@@ -40,7 +40,6 @@ type CategoryRaw = {
 	description: string;
 	name: string;
 	slug: string;
-	uri: string;
 };
 
 type CategoriesRaw = CategoryRaw[];
@@ -94,6 +93,7 @@ type Menu = MenuItem & {
 type MenuItemRaw = {
 	connectedObject?: {
 		__typename: string;
+		slug?: string;
 	};
 	label: string;
 	menuItemId: string;
@@ -149,8 +149,8 @@ type Post = {
 type Posts = Post[];
 
 type PostSearchResults = {
-	hasNextPage: boolean;
 	posts: Posts;
+	total: number;
 };
 
 type PostRaw = {
@@ -274,7 +274,7 @@ type WP = {
 	post: {
 		all: (slug?: string, type?: GraphQLPostWhereType) => Promise<Posts>;
 		post: (uri: string) => Promise<Post | null>;
-		search: (query: string, pageSize: number, url?: string) => Promise<PostSearchResults>;
+		search: (query: string, page: number, pageSize: number, url?: string) => Promise<PostSearchResults>;
 	};
 	site: {
 		site: () => Promise<Site>;

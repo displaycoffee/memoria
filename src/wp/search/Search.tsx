@@ -13,6 +13,7 @@ import { context } from '@/context/scripts/context';
 import { ErrorBoundary } from '@/components/error-boundary/ErrorBoundary';
 import { Icon } from '@/components/icons/Icons';
 import { Button, Form, FormActions, Input } from '@/components/forms/Forms';
+import { Pagination } from '@/wp/pagination/Pagination';
 import { PostList } from '@/wp/post/Post';
 
 /* Search settings */
@@ -36,11 +37,10 @@ export const SearchForm = (props: SearchFormProps) => {
 };
 
 export const SearchResults = (props: SearchResultsProps) => {
-	const graphqlUrl = props.graphqlUrl;
+	const { basePath, graphqlUrl, siteTitle, title } = props;
 	const [state, dispatch] = useReducer(search.reducer, search.initialState);
-	const { error, hasNextPage, query, results, status } = state;
+	const { currentPage, error, lastPage, query, results, status } = state;
 	const loading = status === 'loading';
-	const loadingMore = status === 'loadingMore';
 
 	useEffect(() => {
 		let cancelled = false;
@@ -49,23 +49,20 @@ export const SearchResults = (props: SearchResultsProps) => {
 			// Get search params and fetch query
 			const params = new URLSearchParams(window.location.search);
 			const q = context.utils.sanitize(params.get('q') || '');
-			dispatch({ type: 'query_set', query: q });
+			const page = Math.max(1, parseInt(params.get('page') || '', 10) || 1);
+			dispatch({ type: 'query_set', currentPage: page, query: q });
 
 			// If no query, don't search
 			if (!q) return;
-
-			// Restore however many results were loaded before navigating away
-			const loaded = parseInt(params.get('loaded') || '', 10);
-			const count = loaded > pageSize ? loaded : pageSize;
 
 			// If query is present, do search
 			try {
 				// Set loading
 				dispatch({ type: 'search_started' });
 
-				// Get data, set results, and next page (if not cancelled)
-				const data = await context.wp.post.search(q, count, graphqlUrl);
-				if (!cancelled) dispatch({ type: 'loaded', hasNextPage: data.hasNextPage, posts: data.posts });
+				// Get data, set results, and last page (if not cancelled)
+				const data = await context.wp.post.search(q, page, pageSize, graphqlUrl);
+				if (!cancelled) dispatch({ type: 'loaded', lastPage: Math.max(1, Math.ceil(data.total / pageSize)), posts: data.posts });
 			} catch {
 				if (!cancelled) dispatch({ type: 'failed', message: 'Something went wrong. Please try again.' });
 			}
@@ -78,28 +75,26 @@ export const SearchResults = (props: SearchResultsProps) => {
 		};
 	}, [graphqlUrl]);
 
-	const handleLoadMore = async () => {
-		try {
-			// Set loading
-			dispatch({ type: 'load_more_started' });
-
-			// Get data, set results, and next page
-			const data = await context.wp.post.search(query, results.length + pageSize, graphqlUrl);
-			dispatch({ type: 'loaded', hasNextPage: data.hasNextPage, posts: data.posts });
-
-			// Remember how many results are loaded so navigating back restores them
-			const params = new URLSearchParams(window.location.search);
-			params.set('loaded', String(data.posts.length));
-			window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
-		} catch {
-			dispatch({ type: 'failed', message: 'Something went wrong. Please try again.' });
-		}
+	/* Build the URL for a page of results, keeping the query in the query string */
+	const pageUrl = (pageNumber: number) => {
+		const params = new URLSearchParams({ q: query });
+		if (pageNumber > 1) params.set('page', String(pageNumber));
+		return `${basePath}?${params.toString()}`;
 	};
+
+	/* Search title */
+	const searchTitle = query ? `${title} for "${query}"` : title;
+	const searchTitleTag = `${siteTitle} - ${searchTitle}`;
+
+	useEffect(() => {
+		// Update Head.astro's <title> rather than rendering one, since ClientRouter swaps <head> and React would lose track of a hoisted <title>
+		document.title = searchTitleTag;
+	}, [searchTitleTag]);
 
 	return (
 		<ErrorBoundary message={'Something went wrong loading search results.'}>
 			<div className="search-results margin-trim">
-				<h2>Search results for "{query}"</h2>
+				<h2>{searchTitle}</h2>
 
 				{error ? (
 					<p>{error}</p>
@@ -109,13 +104,18 @@ export const SearchResults = (props: SearchResultsProps) => {
 					<>
 						<PostList posts={results} />
 
-						{hasNextPage && (
-							<div className="load-more">
-								<button className="load-more-button button" type="button" disabled={loadingMore} onClick={handleLoadMore}>
-									{loadingMore ? 'Loading...' : 'Load More'}
-								</button>
-							</div>
-						)}
+						<Pagination
+							basePath={basePath}
+							page={{
+								currentPage,
+								lastPage,
+								url: {
+									next: currentPage < lastPage ? pageUrl(currentPage + 1) : undefined,
+									prev: currentPage > 1 ? pageUrl(currentPage - 1) : undefined,
+								},
+							}}
+							pageUrl={pageUrl}
+						/>
 					</>
 				) : (
 					<p>No results found.</p>

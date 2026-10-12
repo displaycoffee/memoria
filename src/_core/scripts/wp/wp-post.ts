@@ -73,14 +73,14 @@ export const wpPost = {
 
 			return postData;
 		},
-		search: async (query: string, pageSize: number, url = variables.urls.graphQL) => {
+		search: async (query: string, page: number, pageSize: number, url = variables.urls.graphQL) => {
 			let searchData: PostsType = [];
 
-			// Get posts data
-			const data = await utils.fetch<{ posts: { pageInfo: { hasNextPage: boolean }; nodes: PostsRawType } }>({
+			// Get posts data for one page (offset and searchTotal are registered by the memoria-headless theme)
+			const data = await utils.fetch<{ posts: { nodes: PostsRawType }; searchTotal: number }>({
 				query: wpPost.query('query-search', pageSize),
 				url,
-				variables: { query },
+				variables: { offset: (page - 1) * pageSize, query },
 			});
 
 			// Format and set data
@@ -89,8 +89,8 @@ export const wpPost = {
 			}
 
 			return {
-				hasNextPage: data?.posts?.pageInfo?.hasNextPage ?? false,
 				posts: searchData,
+				total: data?.searchTotal ?? 0,
 			};
 		},
 	},
@@ -166,11 +166,9 @@ export const wpPost = {
 					}
 				}`;
 			case 'query-search':
-				return `query Search($query: String) {
-					posts(first: ${pageSize}, where: { search: $query }) {
-						pageInfo {
-							hasNextPage
-						}
+				return `query Search($query: String!, $offset: Int) {
+					searchTotal(search: $query)
+					posts(first: ${pageSize}, where: { search: $query, offset: $offset }) {
 						nodes {
 							${query}
 						}

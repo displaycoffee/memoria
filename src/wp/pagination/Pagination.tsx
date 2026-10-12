@@ -18,6 +18,7 @@ export const Pagination = (props: PaginationProps) => {
 
 	/* Build the URL for a given page number */
 	const pageUrl = (pageNumber: number) => {
+		if (props.pageUrl) return props.pageUrl(pageNumber);
 		return pageNumber === 1 ? basePath : `${basePath}/${pageNumber}`;
 	};
 

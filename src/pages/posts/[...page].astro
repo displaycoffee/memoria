@@ -5,8 +5,8 @@ import { context } from '@/context/scripts/context.ts';
 
 /* Components */
 import Container from '@/layout/container/Container.astro';
-import { Pagination } from '@/wp/pagination/Pagination';
 import { PostList } from '@/wp/post/Post';
+import { Pagination } from '@/wp/pagination/Pagination';
 
 /* Get posts */
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {

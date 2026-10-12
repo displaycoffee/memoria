@@ -9,22 +9,25 @@ type SearchFormButton = {
 };
 
 type SearchResults = {
+	basePath: string;
 	graphqlUrl: string;
+	siteTitle: string;
+	title: string;
 };
 
 type SearchState = {
+	currentPage: number;
 	error: string;
-	hasNextPage: boolean;
+	lastPage: number;
 	query: string;
 	results: PostsType;
-	status: 'idle' | 'loading' | 'loadingMore';
+	status: 'idle' | 'loading';
 };
 
 type SearchAction =
-	| { type: 'query_set'; query: string }
+	| { type: 'query_set'; currentPage: number; query: string }
 	| { type: 'search_started' }
-	| { type: 'load_more_started' }
-	| { type: 'loaded'; hasNextPage: boolean; posts: PostsType }
+	| { type: 'loaded'; lastPage: number; posts: PostsType }
 	| { type: 'failed'; message: string };
 
 /* Export types */

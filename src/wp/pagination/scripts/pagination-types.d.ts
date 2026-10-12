@@ -8,6 +8,7 @@ type Page = { number: number; type: 'page' } | { type: 'ellipsis' };
 
 type Pagination = {
 	basePath: string;
+	pageUrl?: (pageNumber: number) => string; // Overrides the default basePath/pageNumber URLs
 	page: {
 		currentPage: number;
 		lastPage: number;

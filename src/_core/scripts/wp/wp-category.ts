@@ -12,7 +12,7 @@ export const wpCategory = {
 			id: `category-${category?.categoryId ?? 0}`,
 			name: category?.name ?? '',
 			slug: category?.slug ?? '',
-			url: category?.uri ?? '',
+			url: category?.slug ? wpCategory.url(category.slug) : '',
 		};
 	},
 	fetch: {
@@ -34,7 +34,6 @@ export const wpCategory = {
 			description
 			name
 			slug
-			uri
 		`;
 
 		// Return different query depending on format
@@ -58,5 +57,9 @@ export const wpCategory = {
 			default:
 				return query;
 		}
+	},
+	url: (slug: string) => {
+		// Slugs are unique, so child categories use flat URLs instead of WordPress's nested uri
+		return `/categories/${slug}`;
 	},
 };

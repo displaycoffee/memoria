@@ -1,12 +1,12 @@
 ---
 /* Scripts */
 import type { GetStaticPathsOptions } from 'astro';
-import { context } from '../../context/scripts/context.ts';
+import { context } from '@/context/scripts/context.ts';
 
 /* Components */
-import Container from '../../layout/container/Container.astro';
-import Pagination from '../../components/pagination/Pagination.astro';
-import PostList from '../../components/post/PostList.astro';
+import Container from '@/layout/container/Container.astro';
+import { Pagination } from '@/wp/pagination/Pagination';
+import { PostList } from '@/wp/post/Post';
 
 /* Get posts */
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {

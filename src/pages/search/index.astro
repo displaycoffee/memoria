@@ -1,0 +1,12 @@
+---
+/* Scripts */
+import { context } from '@/context/scripts/context';
+
+/* Components */
+import Container from '@/layout/container/Container.astro';
+import { SearchResults } from '@/wp/search/Search';
+---
+
+<Container title={'Search Results'}>
+	<SearchResults graphqlUrl={context.variables.urls.graphQL} client:load />
+</Container>

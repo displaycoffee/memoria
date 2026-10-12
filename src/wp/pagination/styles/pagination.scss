@@ -1,0 +1,29 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// PAGINATION
+//// --------------------------------------------------------------------------
+
+	.pagination {
+		margin: theme.$spacing-x4 0 0 0;
+		.pagination-list {
+			&:has(.pagination-list-item-navigation-previous) {
+				margin-left: -#{theme.$spacing-x1};
+			}
+			.pagination-list-item-page a, .pagination-list-item-ellipsis span {
+				color: theme.$color-body;
+			}
+			.pagination-list-item-page a[aria-current='page'] {
+				color: theme.$color-link;
+				font-weight: theme.$font-weight-body;
+			}
+			.pagination-list-item-navigation a {
+				@include mixins.gap(theme.$spacing-x1);
+				.icon-wrapper {
+					@include mixins.position($type: relative, $top: 1.5px);
+				}
+			}
+		}
+	}

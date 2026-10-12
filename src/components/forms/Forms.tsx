@@ -4,6 +4,7 @@ import './styles/forms.scss';
 /* Scripts */
 import type {
 	ButtonProps,
+	ButtonLinkProps,
 	ButtonScrollProps,
 	ChoiceProps,
 	DescriptionProps,
@@ -36,6 +37,20 @@ export const Button = (props: ButtonProps) => {
 			{children}
 			{hideLabel ? null : <span className="button-label">{label}</span>}
 		</button>
+	);
+};
+
+export const ButtonLink = (props: ButtonLinkProps) => {
+	const { children, className: propClassName, hideLabel = false, label, url, variant = 'primary', ...rest } = props;
+	const buttonClass = variant != 'unstyled' && variant != 'link' ? 'button ' : '';
+	const variantClass = variant == 'link' ? `button-${variant} button-unstyled a` : `button-${variant}`;
+	const className = forms.build.className(`${buttonClass}${variantClass}`, propClassName, false, true);
+
+	return (
+		<a className={className} href={url} aria-label={hideLabel ? label : undefined} {...rest}>
+			{children}
+			{hideLabel ? null : <span className="button-label">{label}</span>}
+		</a>
 	);
 };
 

@@ -1,10 +1,10 @@
 ---
 /* Scripts */
-import { context } from '../../context/scripts/context.ts';
+import { context } from '@/context/scripts/context.ts';
 
 /* Components */
-import Container from '../../layout/container/Container.astro';
-import Post from '../../components/post/Post.astro';
+import Container from '@/layout/container/Container.astro';
+import { Post } from '@/wp/post/Post';
 
 /* Get posts */
 export const getStaticPaths = async () => {

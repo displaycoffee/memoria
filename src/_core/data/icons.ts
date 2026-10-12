@@ -1,6 +1,9 @@
 /* Packages */
 import IconCheck from '~icons/lucide/check';
 import IconChevronDown from '~icons/lucide/chevron-down';
+import IconChevronLeft from '~icons/lucide/chevron-left';
+import IconChevronRight from '~icons/lucide/chevron-right';
+import IconChevronUp from '~icons/lucide/chevron-up';
 import IconCircleAlert from '~icons/lucide/circle-alert';
 import IconCircleCheck from '~icons/lucide/circle-check';
 import IconCircleX from '~icons/lucide/circle-x';
@@ -25,6 +28,9 @@ import IconBrandYoutube from '~icons/tabler/brand-youtube';
 export const icons = {
 	check: IconCheck,
 	'chevron-down': IconChevronDown,
+	'chevron-left': IconChevronLeft,
+	'chevron-right': IconChevronRight,
+	'chevron-up': IconChevronUp,
 	'circle-alert': IconCircleAlert,
 	'circle-check': IconCircleCheck,
 	'circle-x': IconCircleX,

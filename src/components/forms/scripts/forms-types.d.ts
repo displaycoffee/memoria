@@ -1,5 +1,6 @@
 /* Packages */
 import type {
+	AnchorHTMLAttributes,
 	ButtonHTMLAttributes,
 	FormHTMLAttributes,
 	InputHTMLAttributes,
@@ -30,6 +31,16 @@ type Button = {
 	type?: 'button' | 'reset' | 'submit';
 	variant?: 'link' | 'primary' | 'secondary' | 'tertiary' | 'unstyled';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className' | 'type' | 'variant'>;
+
+type ButtonLink = {
+	children?: ReactNode;
+	className?: string;
+	hideLabel?: boolean;
+	label: string;
+	ref?: Ref<HTMLAnchorElement>;
+	url: string;
+	variant?: 'link' | 'primary' | 'secondary' | 'tertiary' | 'unstyled';
+} & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'children' | 'className' | 'href' | 'variant'>;
 
 type ButtonScroll = Omit<Button, 'onClick' | 'type' | 'variant'> & {
 	offset?: number;
@@ -131,6 +142,8 @@ type Toggle = {
 
 /* Export prop types */
 export type ButtonProps = Button;
+
+export type ButtonLinkProps = ButtonLink;
 
 export type ButtonScrollProps = ButtonScroll;
 

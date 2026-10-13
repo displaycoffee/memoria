@@ -45,7 +45,7 @@ export const wpTag = {
 				return `nodes { ${query} }`;
 			case 'query-all':
 				return `query Tags($after: String) {
-					tags(first: 100, after: $after) {
+					tags(first: 100, after: $after, where: { hideEmpty: true }) {
 						pageInfo {
 							hasNextPage
 							endCursor

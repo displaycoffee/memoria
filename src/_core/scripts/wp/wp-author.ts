@@ -10,7 +10,7 @@ export const wpAuthor = {
 
 		// Return formatted data
 		return {
-			avatar: wpImage.format(altText, false, { sourceUrl: author?.avatar?.url }),
+			avatar: wpImage.format(altText, { sourceUrl: author?.avatar?.url }),
 			content: author?.description ?? '',
 			excerpt: author?.description ? utils.truncate(utils.stripHTML(author.description), 300) : '',
 			id: `author-${author?.userId ?? 0}`,

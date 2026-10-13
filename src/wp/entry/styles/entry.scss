@@ -3,41 +3,53 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// PAGE
+//// ENTRY
 //// --------------------------------------------------------------------------
 
-	.page {
-		.page-image {
+	.entry {
+		.entry-image {
 			position: relative;
 			margin: 0 0 theme.$spacing-x4 0;
 			.image-wrapper {
 				padding-bottom: 35%;
 			}
 		}
-		.page-details {
+		.entry-details {
 			& > * {
 				margin: 0 0 theme.$spacing-x4 0;
 				&:last-child {
 					margin-bottom: 0;
 				}
 			}
+			.entry-meta {
+				span ~ span {
+					padding: 0 0 0 theme.$spacing-x1;
+				}
+			}
+			.entry-taxonomies {
+				.row .column {
+					strong {
+						padding: 0 theme.$spacing-x1 0 0;
+					}
+				}
+			}
 		}
 	}
 
-//// PAGES LIST
+//// ENTRY LIST
 //// --------------------------------------------------------------------------
 
 	// Style block
 
-	.pages {
-		.page {
-			.page-image {
+	.entry-list {
+		.entry {
+			.entry-image {
 				margin: 0 0 theme.$spacing-x2 0;
 				.image-wrapper {
 					padding-bottom: 50%;
 				}
 			}
-			.page-details {
+			.entry-details {
 				& > * {
 					margin: 0 0 theme.$spacing-x2 0;
 					&:last-child {
@@ -48,34 +60,37 @@
 		}
 	}
 	@include mixins.respond(theme.$breakpoint-md) {
-		.pages {
-			.page {
-				&, & .page-details {
-					@include mixins.flex-layout((flex-flow: column nowrap));
-				}
-				.page-image {
-					@include mixins.flex(0 1 auto);
-				}
-				.page-details {
-					@include mixins.flex;
-					@include mixins.gap(theme.$spacing-x2);
-					& > * {
-						margin: 0;
-					}
-					.page-title {
+		.entry-list {
+			.entry {
+				.entry-details {
+					.entry-title {
 						@include mixins.line-clamp(1);
 					}
-					.page-read-more {
-						margin-top: auto;					
-					}
 				}
 			}
-		}		
+		}
 	}
 	@include mixins.respond(theme.$breakpoint-xl) {
-		.pages {
-			.page {
+		.entry-list {
+			.entry {
 				@include mixins.gap-width(theme.$spacing-x4, 3);
 			}
+		}
+	}
+
+//// ENTRY ARCHIVE
+//// --------------------------------------------------------------------------
+
+	.entry-archive {
+		.entry-archive-details {
+			& > * {
+				margin: 0 0 theme.$spacing-x4 0;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+		.entry-archive-list {
+			margin: theme.$spacing-x4 0 0 0;
 		}
 	}

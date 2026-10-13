@@ -31,7 +31,7 @@ export const wpThemeOptions = {
 
 		// Add header logo
 		if (data?.headerLogo) {
-			themeOptionsData.header.logo = wpImage.format(`Header Logo`, false, data.headerLogo);
+			themeOptionsData.header.logo = wpImage.format(`Header Logo`, data.headerLogo);
 		}
 
 		// Add sidebar slug

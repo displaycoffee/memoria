@@ -1,12 +1,11 @@
 export const wpImage = {
-	format: (alt: string, placeholder: boolean, data?: ImageRawType | ImageRawNodeType) => {
+	format: (alt: string, data?: ImageRawType | ImageRawNodeType) => {
 		const attrs = data && 'node' in data ? data.node : data;
-		const placeholderUrl = placeholder ? '/assets/images/theme/placeholder.jpg' : '';
 
 		// Format image data
 		const imageData: ImageType = {
 			alt: attrs?.altText ? `${attrs.altText} - ${alt}` : alt,
-			url: attrs?.sourceUrl ?? placeholderUrl,
+			url: attrs?.sourceUrl ?? '', // Empty when there's no image, so components can choose to show a placeholder
 		};
 
 		return imageData;

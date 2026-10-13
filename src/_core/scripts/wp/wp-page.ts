@@ -18,7 +18,7 @@ export const wpPage = {
 			excerpt: utils.truncate(utils.stripHTML(page.content), 300),
 			hideSidebar: page?.hideSidebar ?? false,
 			id: `page-${page.pageId}`,
-			image: wpImage.format(`${page.title} - Featured Image`, true, page?.featuredImage),
+			image: wpImage.format(`${page.title} - Featured Image`, page?.featuredImage),
 			slug: page.slug,
 			title: page.title,
 			url: page.uri,

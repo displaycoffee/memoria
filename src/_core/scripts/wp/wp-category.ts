@@ -44,7 +44,7 @@ export const wpCategory = {
 				return `nodes { ${query} }`;
 			case 'query-all':
 				return `query Categories($after: String) {
-					categories(first: 100, after: $after) {
+					categories(first: 100, after: $after, where: { hideEmpty: true }) {
 						pageInfo {
 							hasNextPage
 							endCursor

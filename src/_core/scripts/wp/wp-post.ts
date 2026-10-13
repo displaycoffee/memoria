@@ -37,7 +37,7 @@ export const wpPost = {
 			excerpt: utils.truncate(utils.stripHTML(post.excerpt), 300),
 			hideSidebar: post?.hideSidebar ?? false,
 			id: `post-${post.postId}`,
-			image: wpImage.format(`${post.title} - Featured Image`, true, post?.featuredImage),
+			image: wpImage.format(`${post.title} - Featured Image`, post?.featuredImage),
 			slug: post.slug,
 			tags: tags,
 			title: post.title,

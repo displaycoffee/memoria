@@ -57,3 +57,13 @@
 			}
 		}
 	}
+	@include mixins.respond(theme.$breakpoint-md) {
+		@include mixins.respond(theme.$breakpoint-lg - 1px, max-width) {
+			.navigation .navigation-list .navigation-list-item:has(.dropdown) {
+				.dropdown .dropdown-content {
+					left: auto;
+					right: 0;
+				}
+			}
+		}
+	}

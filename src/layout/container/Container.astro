@@ -17,6 +17,7 @@ import Header from '@/layout/header/Header.astro';
 import Content from '@/layout/content/Content.astro';
 import Sidebar from '@/layout/sidebar/Sidebar.astro';
 import Footer from '@/layout/footer/Footer.astro';
+import { ThemeToggle } from '@/components/theme-toggle/ThemeToggle';
 
 /* Define prop types */
 type Props = ContainerProps;
@@ -77,6 +78,8 @@ const slideoutOptions = {
 
 				<ButtonScroll target={'#index'} label={'Scroll to top'} />
 			</div>
+
+			<ThemeToggle />
 		</div>
 		<script>
 			import { container } from './scripts/container';

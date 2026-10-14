@@ -9,7 +9,6 @@
 	// Style block
 
 	.header {
-		position: relative;
 		& > * {
 			margin: 0 0 theme.$spacing-x4 0;
 			&:last-child {

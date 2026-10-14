@@ -11,7 +11,7 @@ export const Icon = (props: IconsProps) => {
 	const iconClass = 'icon-wrapper';
 
 	// Create icon classes
-	const iconClasses = [iconClass];
+	const iconClasses = [iconClass, `${iconClass}-${name}`];
 	if (size) iconClasses.push(`${iconClass}-${size}`);
 
 	return (

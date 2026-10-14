@@ -1,0 +1,49 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// THEME TOGGLE
+//// --------------------------------------------------------------------------
+
+	// Colors
+
+	$theme-toggle-color-01: theme.$color-focus; // focus visible border color
+	$theme-toggle-color-02: theme.$color-link; // icon color while dark mode is on
+
+	// Configuration
+
+	$theme-toggle-horizontal: right; // horizontal position
+	$theme-toggle-horizontal-position: theme.$spacing-x8; // horizontal position value
+	$theme-toggle-vertical: bottom; // vertical position
+	$theme-toggle-vertical-position: theme.$spacing-x8; // vertical position
+
+	// Style block
+	
+	.theme-toggle {
+		position: fixed;
+		#{$theme-toggle-horizontal}: $theme-toggle-horizontal-position;
+		#{$theme-toggle-vertical}: $theme-toggle-vertical-position;
+		background-color: theme.$color-bg;
+		margin: 0;
+		padding: theme.$spacing-x1;
+		line-height: 0;
+		@include mixins.border-radius(50%);
+		&:has(.theme-toggle-choice:focus-visible) {
+			outline: 1px solid $theme-toggle-color-01;
+			outline-offset: 2px;
+		}
+		&:has(.theme-toggle-choice:not(:checked)) {
+			.icon-wrapper-sun {
+				display: none;
+			}
+		}
+		&:has(.theme-toggle-choice:checked) {
+			.icon-wrapper {
+				color: $theme-toggle-color-02;
+			}
+			.icon-wrapper-moon {
+				display: none;
+			}
+		}
+	}

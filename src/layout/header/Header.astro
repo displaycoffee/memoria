@@ -9,7 +9,6 @@ import { context } from '@/context/scripts/context';
 /* Components */
 import { Image } from '@/components/image/Image';
 import { SearchForm } from '@/wp/search/Search';
-import { ThemeToggle } from '@/components/theme-toggle/ThemeToggle';
 
 /* Define prop types */
 type Props = HeaderProps;
@@ -49,6 +48,4 @@ const site = await context.wp.site.site();
 			<SearchForm action={`${site.url}/search`} id={'header-search-form'} />
 		</div>
 	</div>
-
-	<ThemeToggle />
 </header>

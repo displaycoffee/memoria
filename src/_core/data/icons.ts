@@ -10,9 +10,11 @@ import IconCircleX from '~icons/lucide/circle-x';
 import IconDot from '~icons/lucide/dot';
 import IconHeart from '~icons/lucide/heart';
 import IconInfo from '~icons/lucide/info';
+import IconMoon from '~icons/lucide/moon';
 import IconSearch from '~icons/lucide/search';
 import IconSlidersVertical from '~icons/lucide/sliders-vertical';
 import IconStar from '~icons/lucide/star';
+import IconSun from '~icons/lucide/sun';
 import IconX from '~icons/lucide/x';
 import IconBrandFacebook from '~icons/tabler/brand-facebook';
 import IconBrandGithub from '~icons/tabler/brand-github';
@@ -37,9 +39,11 @@ export const icons = {
 	dot: IconDot,
 	heart: IconHeart,
 	info: IconInfo,
+	moon: IconMoon,
 	search: IconSearch,
 	'sliders-vertical': IconSlidersVertical,
 	star: IconStar,
+	sun: IconSun,
 	x: IconX,
 	'brand-facebook': IconBrandFacebook,
 	'brand-github': IconBrandGithub,

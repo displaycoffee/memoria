@@ -107,5 +107,20 @@ export const forms = {
 			const errorId = error ? `${id}-error` : undefined;
 			return { descriptionId, errorId };
 		},
+		link: (url: string, siteUrl: string) => {
+			// Sort a link into a route on this site, an external http(s) page (opens in a new tab), or anything else (e.g. #hash, mailto:) that stays in the same tab
+			// Note: absolute URLs on this site come back as a path, so the router can handle them
+			const isAbsolute = /^[a-z][a-z\d+.-]*:/i.test(url) || url.startsWith('//');
+			if (!isAbsolute) return { type: url.startsWith('/') ? 'internal' : 'other', url } as const;
+
+			try {
+				const site = new URL(siteUrl);
+				const link = new URL(url, site);
+				if (link.origin === site.origin) return { type: 'internal', url: `${link.pathname}${link.search}${link.hash}` } as const;
+				return { type: /^https?:$/.test(link.protocol) ? 'external' : 'other', url } as const;
+			} catch {
+				return { type: 'other', url } as const;
+			}
+		},
 	},
 };

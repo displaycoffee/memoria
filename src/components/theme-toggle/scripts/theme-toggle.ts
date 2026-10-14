@@ -8,11 +8,9 @@ import { settings } from '@/_core/data/settings';
    Note: everything for the toggle lives in this folder, plus the inline theme script in Head.astro and the calls in container.ts.
    Note: Head.astro applies a saved theme before the first paint; this script only reads and changes it. */
 
-/* Selector for ThemeToggle (ThemeToggle.tsx), e.g. <label class="toggle"><span class="toggle-label" /><input id="theme-toggle" /></label> */
+/* Selector for ThemeToggle (ThemeToggle.tsx), e.g. <label class="theme-toggle"><span class="theme-toggle-label" /><input id="theme-toggle-choice" /></label> */
 const selectors = {
-	input: '#theme-toggle',
-	label: '.toggle-label',
-	toggle: '.toggle',
+	input: '#theme-toggle-choice',
 };
 
 /* OS preference for the alternate theme */
@@ -41,18 +39,10 @@ export const themeToggle = {
 		}
 	},
 	update: () => {
-		// Match the toggle to the current theme
+		// Match the toggle to the current theme (CSS shows the sun or moon icon from :checked)
 		// Note: the server can't know the visitor's theme, so it renders the default theme and this corrects it after each page load
 		const input = document.querySelector<HTMLInputElement>(selectors.input);
-		const toggle = input?.closest(selectors.toggle);
-		if (!input || !toggle) return;
-
-		const isDark = themeToggle.get.theme() === 'dark';
-		input.checked = isDark;
-		toggle.classList.toggle('toggle-active', isDark);
-
-		const label = toggle.querySelector(selectors.label);
-		if (label) label.textContent = `${isDark ? 'Dark' : 'Light'} mode`;
+		if (input) input.checked = themeToggle.get.theme() === 'dark';
 	},
 	init: () => {
 		// Note: call once, since the listeners stay on document across navigations

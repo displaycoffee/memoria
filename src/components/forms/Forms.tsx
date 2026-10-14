@@ -21,6 +21,7 @@ import type {
 	ToggleProps,
 } from './scripts/forms-types';
 import { forms } from './scripts/forms';
+import { context } from '@/context/scripts/context';
 
 /* Components */
 import { Alert } from '@/components/alert/Alert';
@@ -45,11 +46,34 @@ export const ButtonLink = (props: ButtonLinkProps) => {
 	const buttonClass = variant != 'unstyled' && variant != 'link' ? 'button ' : '';
 	const variantClass = variant == 'link' ? `button-${variant} button-unstyled a` : `button-${variant}`;
 	const className = forms.build.className(`${buttonClass}${variantClass}`, propClassName, false, true);
+	const link = forms.get.link(url, context.variables.urls.site);
+	const isExternal = link.type === 'external';
+	const newTabNote = ' (opens in a new tab)';
 
-	return (
-		<a className={className} href={url} aria-label={hideLabel ? label : undefined} {...rest}>
+	// Button attributes
+	// Note: aria-label replaces the content, so it carries the new tab note when the label is hidden
+	const buttonAttributes = {
+		className: className,
+		'aria-label': hideLabel ? `${label}${isExternal ? newTabNote : ''}` : undefined,
+	};
+
+	// Button content
+	const buttonContent = (
+		<>
 			{children}
 			{hideLabel ? null : <span className="button-label">{label}</span>}
+			{isExternal && !hideLabel ? <span className="sr-only">{newTabNote}</span> : null}
+		</>
+	);
+
+	// Note: internal and other links are both a plain <a> here, since ClientRouter handles internal links without a router component
+	return isExternal ? (
+		<a {...buttonAttributes} href={link.url} target="_blank" rel="noreferrer" {...rest}>
+			{buttonContent}
+		</a>
+	) : (
+		<a {...buttonAttributes} href={link.url} {...rest}>
+			{buttonContent}
 		</a>
 	);
 };

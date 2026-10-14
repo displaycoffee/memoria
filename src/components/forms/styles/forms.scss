@@ -177,6 +177,7 @@
 			}
 			.icon {
 				@include mixins.sizing(100%, 100%);
+				visibility: hidden;
 			}
 		}
 	}
@@ -191,7 +192,7 @@
 			}
 		}
 	}
-	.choice-active {
+	.choice:has(.choice-input:checked) {
 		.icon-wrapper {
 			@include mixins.if-exists((
 				background-color: $forms-choice-color-03,
@@ -199,6 +200,9 @@
 				border-width: $forms-choice-active-border-width,
 				color: $forms-choice-color-05,
 			));
+			.icon {
+				visibility: visible;
+			}
 		}
 	}
 

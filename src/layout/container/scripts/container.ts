@@ -5,6 +5,7 @@ import { dropdown } from '@/components/dropdown/scripts/dropdown';
 import { forms } from '@/components/forms/scripts/forms';
 import { image } from '@/components/image/scripts/image';
 import { overlay } from '@/components/overlay/scripts/overlay';
+import { search } from '@/wp/search/scripts/search';
 import { slideout } from '@/components/slideout/scripts/slideout';
 import { themeToggle } from '@/components/theme-toggle/scripts/theme-toggle';
 
@@ -25,6 +26,7 @@ export const container = {
 		blocks.revealAll('.section', 'section-visible');
 		forms.clearable.update();
 		image.checkComplete();
+		search.updateType();
 		themeToggle.update();
 	},
 	init: () => {

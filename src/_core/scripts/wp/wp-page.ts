@@ -70,6 +70,26 @@ export const wpPage = {
 
 			return pagesData;
 		},
+		search: async (query: string, page: number, pageSize: number, url = variables.urls.graphQL) => {
+			let searchData: PagesType = [];
+
+			// Get pages data for one page (offset and searchTotal are registered by the memoria-headless theme)
+			const data = await utils.fetch<{ pages: { nodes: PageRawType[] }; searchTotal: number }>({
+				query: wpPage.query('query-search', pageSize),
+				url,
+				variables: { offset: (page - 1) * pageSize, query },
+			});
+
+			// Format and set data
+			if (data?.pages?.nodes) {
+				searchData = data.pages.nodes.map((node) => wpPage.format(node));
+			}
+
+			return {
+				results: searchData,
+				total: data?.searchTotal ?? 0,
+			};
+		},
 	},
 	query: (format: GraphQLQueryFormatType, pageSize?: number) => {
 		// Shared query function for fetching page data
@@ -116,6 +136,15 @@ export const wpPage = {
 				return `query Pages {
 					pages(first: ${pageSize ?? settings.pageSize}) {
 						nodes { 
+							${query}
+						}
+					}
+				}`;
+			case 'query-search':
+				return `query Search($query: String!, $offset: Int) {
+					searchTotal(search: $query, postType: "page")
+					pages(first: ${pageSize ?? settings.pageSize}, where: { search: $query, offset: $offset }) {
+						nodes {
 							${query}
 						}
 					}

@@ -1,4 +1,6 @@
 /* Type definitions */
+type SearchContentType = 'page' | 'post';
+
 type SearchForm = {
 	action: string;
 	id: string;
@@ -20,18 +22,21 @@ type SearchState = {
 	error: string;
 	lastPage: number;
 	query: string;
-	results: PostsType;
+	results: PagesType | PostsType;
 	status: 'idle' | 'loading';
+	type: SearchContentType;
 };
 
 type SearchAction =
-	| { type: 'query_set'; currentPage: number; query: string }
+	| { type: 'query_set'; contentType: SearchContentType; currentPage: number; query: string }
 	| { type: 'search_started' }
-	| { type: 'loaded'; lastPage: number; posts: PostsType }
+	| { type: 'loaded'; lastPage: number; results: PagesType | PostsType }
 	| { type: 'failed'; message: string };
 
 /* Export types */
 export type SearchActionType = SearchAction;
+
+export type SearchContentTypeType = SearchContentType;
 
 export type SearchStateType = SearchState;
 

@@ -89,7 +89,7 @@ export const wpPost = {
 			}
 
 			return {
-				posts: searchData,
+				results: searchData,
 				total: data?.searchTotal ?? 0,
 			};
 		},

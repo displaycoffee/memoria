@@ -12,9 +12,9 @@ import { context } from '@/context/scripts/context';
 /* Components */
 import { ErrorBoundary } from '@/components/error-boundary/ErrorBoundary';
 import { Icon } from '@/components/icons/Icons';
-import { Button, Form, FormActions, Input } from '@/components/forms/Forms';
+import { Button, Form, FormActions, FormField, Choice, Input } from '@/components/forms/Forms';
+import { EntryList } from '@/wp/entry/Entry';
 import { Pagination } from '@/wp/pagination/Pagination';
-import { PostList } from '@/wp/post/Post';
 
 /* Search settings */
 const pageSize = 12;
@@ -22,14 +22,19 @@ const pageSize = 12;
 export const SearchForm = (props: SearchFormProps) => {
 	const { action, id } = props;
 	const searchInputId = `${id}-input`;
+	const searchTypeId = `${id}-type`;
 
 	return (
-		<Form id={id} className={'search-form flex-nowrap'} hasMarginTrim={false} role={'search'} method={'get'} action={action}>
+		<Form id={id} className={'search-form flex-wrap'} hasMarginTrim={false} role={'search'} method={'get'} action={action}>
 			<Input id={searchInputId} hasClose={true} label={'Search'} name={'q'} placeholder={'Search for...'} />
+
+			<FormField className={'form-field-search-within'} hideLabel={true} id={searchTypeId} label={'Search within'} isChoice={true}>
+				<Choice id={`${searchTypeId}-posts`} name={'type'} value={'post'} label={'Posts'} type={'radio'} defaultChecked />
+				<Choice id={`${searchTypeId}-pages`} name={'type'} value={'page'} label={'Pages'} type={'radio'} />
+			</FormField>
 
 			<FormActions>
 				<SearchFormButton isDesktop={true} />
-
 				<SearchFormButton isDesktop={false} />
 			</FormActions>
 		</Form>
@@ -39,7 +44,7 @@ export const SearchForm = (props: SearchFormProps) => {
 export const SearchResults = (props: SearchResultsProps) => {
 	const { basePath, graphqlUrl, siteTitle, title } = props;
 	const [state, dispatch] = useReducer(search.reducer, search.initialState);
-	const { currentPage, error, lastPage, query, results, status } = state;
+	const { currentPage, error, lastPage, query, results, status, type } = state;
 	const loading = status === 'loading';
 
 	useEffect(() => {
@@ -50,7 +55,8 @@ export const SearchResults = (props: SearchResultsProps) => {
 			const params = new URLSearchParams(window.location.search);
 			const q = context.utils.sanitize(params.get('q') || '');
 			const page = Math.max(1, parseInt(params.get('page') || '', 10) || 1);
-			dispatch({ type: 'query_set', currentPage: page, query: q });
+			const contentType = search.getType(params);
+			dispatch({ type: 'query_set', contentType, currentPage: page, query: q });
 
 			// If no query, don't search
 			if (!q) return;
@@ -61,8 +67,8 @@ export const SearchResults = (props: SearchResultsProps) => {
 				dispatch({ type: 'search_started' });
 
 				// Get data, set results, and last page (if not cancelled)
-				const data = await context.wp.post.search(q, page, pageSize, graphqlUrl);
-				if (!cancelled) dispatch({ type: 'loaded', lastPage: Math.max(1, Math.ceil(data.total / pageSize)), posts: data.posts });
+				const data = await context.wp[contentType].search(q, page, pageSize, graphqlUrl);
+				if (!cancelled) dispatch({ type: 'loaded', lastPage: Math.max(1, Math.ceil(data.total / pageSize)), results: data.results });
 			} catch {
 				if (!cancelled) dispatch({ type: 'failed', message: 'Something went wrong. Please try again.' });
 			}
@@ -75,9 +81,9 @@ export const SearchResults = (props: SearchResultsProps) => {
 		};
 	}, [graphqlUrl]);
 
-	/* Build the URL for a page of results, keeping the query in the query string */
+	/* Build the URL for a page of results, keeping the query and content type in the query string */
 	const pageUrl = (pageNumber: number) => {
-		const params = new URLSearchParams({ q: query });
+		const params = new URLSearchParams({ q: query, type });
 		if (pageNumber > 1) params.set('page', String(pageNumber));
 		return `${basePath}?${params.toString()}`;
 	};
@@ -102,7 +108,7 @@ export const SearchResults = (props: SearchResultsProps) => {
 					<p>Loading...</p>
 				) : results.length !== 0 ? (
 					<>
-						<PostList posts={results} />
+						<EntryList list={results} type={type} hasPlaceholder={true} />
 
 						<Pagination
 							basePath={basePath}

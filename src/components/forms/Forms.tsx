@@ -62,14 +62,14 @@ export const ButtonScroll = (props: ButtonScrollProps) => {
 };
 
 export const Choice = (props: ChoiceProps) => {
-	const { active = false, className: propClassName, hideLabel = false, id, label, name, type = 'checkbox', ...rest } = props;
-	const choiceClass = `choice choice-${type}${active ? ' choice-active' : ''} pointer`;
-	const className = forms.build.className(choiceClass, propClassName, rest?.disabled);
+	const { active, className: propClassName, hideLabel = false, id, label, name, type = 'checkbox', ...rest } = props;
+	const className = forms.build.className(`choice choice-${type} pointer`, propClassName, rest?.disabled);
 
 	// Note: radios in the same group need to share a name, so pass it in (checkboxes fall back to their id)
+	// Note: the icon is always rendered and shown with :checked in CSS, so leave active out (and use defaultChecked) for static choices that need no React state
 	return (
 		<label className={className} htmlFor={id}>
-			{active ? <Icon name={type == 'radio' ? 'dot' : 'check'} /> : <span className="icon-wrapper"></span>}
+			<Icon name={type == 'radio' ? 'dot' : 'check'} />
 
 			<input id={id} className={`choice-input choice-input-${type} sr-only`} checked={active} name={name ?? id} type={type} {...rest} />
 

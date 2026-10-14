@@ -9,6 +9,7 @@
 	// Style block
 
 	.header {
+		position: relative;
 		& > * {
 			margin: 0 0 theme.$spacing-x4 0;
 			&:last-child {
@@ -19,37 +20,35 @@
 			.header-title, p {
 				margin: 0;
 			}
-			.column-header-description, .column-header-search {
+			.column-header-details, .column-header-search {
 				@include mixins.flex(1 1 100%);
 			}
-			.column-header-logo {
-				@include mixins.flex(0 1 auto);
-				width: 50px;
-				.image-wrapper {
-					max-width: 100%;
+			.column-header-details {
+				.column {
+					@include mixins.flex(0 1 auto);
 				}
-			}
-			.column-header-title {
-				@include mixins.flex;
-				.header-title {
-					line-height: 1.5;
+				.column-header-details-logo {
+					width: 50px;
 				}
-			}
-			.column-header-search {
-				order: 99;
+				.column-header-details-title {
+					width: calc(100% - 50px - theme.$spacing-x4);
+					.header-title {
+						line-height: 1;
+						@include mixins.line-clamp(1);
+					}
+				}
 			}
 		}
 	}
 	@include mixins.respond(theme.$breakpoint-md) {
 		.header {
 			.row-header {
-				.column-header-logo {
-					width: 50px;
+				.column-header-details, .column-header-search {
+					@include mixins.flex;
 				}
 				.column-header-search {
-					order: 0;
-					@include mixins.flex(0 1 auto);
-					margin-left: auto;
+					@include mixins.position($type: relative, $top: 6px);
+					max-width: 500px;
 				}
 			}
 		}

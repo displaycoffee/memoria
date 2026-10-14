@@ -9,7 +9,7 @@
 	// Style block
 
 	.search-form {
-		&, .form-field {
+		&, .form-field, .form-field-search-within .form-field-control {
 			@include mixins.gap(theme.$spacing-x2);
 		}
 		.form-field {
@@ -19,8 +19,25 @@
 				top: 6px;
 			}
 		}
+		.form-field-search-within {
+			@include mixins.flex(1 1 100%);
+			order: 99;
+			.form-field-control {
+				@include mixins.flex-layout((flex-flow: row nowrap, align-items: center));
+				.choice {
+					margin: 0;
+				}
+			}
+		}
 		.form-actions {
 			@include mixins.flex(0 1 auto);
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-sm) {
+		.search-form {
+			.form-field-search-within .form-field-control {
+				@include mixins.flex-parent(justify-content, right);
+			}
 		}
 	}
 	@include mixins.respond(theme.$breakpoint-sm - 1, max-width) {

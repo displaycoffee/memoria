@@ -22,30 +22,33 @@ const site = await context.wp.site.site();
 ---
 
 <header class="header">
-	<div class="row row-header row-wrap row-align-items-center row-spacing-20">
-		{options.header.logo?.url ? (
-			<div class="column column-header-logo">
-				<Image alt={options.header.logo.alt} image={options.header.logo.url} wrapperClasses={['contain']} />
-			</div>
-		) : null}
+	<div class="row row-header row-wrap row-spacing-20">
+		<div class="column column-header-details row row-details row-wrap row-align-items-center row-spacing-20">
+			{options.header.logo?.url ? (
+				<div class="column column-header-details-logo">
+					<Image alt={options.header.logo.alt} image={options.header.logo.url} wrapperClasses={['contain']} />
+				</div>
+			) : null}
 
-		<div class="column column-header-title">
-			<h1 class="header-title">
-				<a class="no-decoration" href={site.url}>
-					{site.title}
-				</a>
-			</h1>
+			<div class="column column-header-details-title">
+				<h1 class="header-title">
+					<a class="no-decoration" href={site.url}>
+						{site.title}
+					</a>
+				</h1>
+			</div>
+
+			{site?.description ? (
+				<div class="column column-header-details-description">
+					<p>{site.description}</p>
+				</div>
+			) : null}
 		</div>
 
 		<div class="column column-header-search">
 			<SearchForm action={`${site.url}/search`} id={'header-search-form'} />
 		</div>
-
-		{site?.description ? (
-			<div class="column column-header-description">
-				<p>{site.description}</p>
-			</div>
-		) : null}
 	</div>
+
 	<ThemeToggle />
 </header>

@@ -119,6 +119,11 @@ type Page = {
 
 type Pages = Page[];
 
+type PageSearchResults = {
+	results: Pages;
+	total: number;
+};
+
 type PageRaw = {
 	content: string;
 	featuredImage?: ImageRawNode;
@@ -149,7 +154,7 @@ type Post = {
 type Posts = Post[];
 
 type PostSearchResults = {
-	posts: Posts;
+	results: Posts;
 	total: number;
 };
 
@@ -270,6 +275,7 @@ type WP = {
 		all: (exclude?: string[]) => Promise<Pages>;
 		page: (uri: string) => Promise<Page | null>;
 		pages: (pageSize: number, exclude?: string[]) => Promise<Pages>;
+		search: (query: string, page: number, pageSize: number, url?: string) => Promise<PageSearchResults>;
 	};
 	post: {
 		all: (slug?: string, type?: GraphQLPostWhereType) => Promise<Posts>;
@@ -334,6 +340,8 @@ declare global {
 	type PageType = Page;
 
 	type PagesType = Pages;
+
+	type PageSearchResultsType = PageSearchResults;
 
 	type PageRawType = PageRaw;
 

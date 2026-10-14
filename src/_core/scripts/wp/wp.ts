@@ -23,6 +23,7 @@ export const wp: WPType = {
 		all: wpPage.fetch.all,
 		page: wpPage.fetch.page,
 		pages: wpPage.fetch.pages,
+		search: wpPage.fetch.search,
 	},
 	post: {
 		all: wpPost.fetch.all,

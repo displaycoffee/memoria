@@ -3,6 +3,7 @@ import { utils } from '@/_core/scripts/utils';
 import { variables } from '@/_core/scripts/variables';
 import { wpAuthor } from './wp-author';
 import { wpCategory } from './wp-category';
+import { wpContent } from './wp-content';
 import { wpImage } from './wp-image';
 import { wpTag } from './wp-tag';
 
@@ -32,7 +33,7 @@ export const wpPost = {
 		return {
 			author: wpAuthor.format(post.author?.node),
 			categories: categories,
-			content: post.content,
+			content: wpContent.format(post.content),
 			date: utils.getDate(post.date),
 			excerpt: utils.truncate(utils.stripHTML(post.excerpt), 300),
 			hideSidebar: post?.hideSidebar ?? false,

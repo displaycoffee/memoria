@@ -1,6 +1,7 @@
 /* Scripts */
 import { utils } from '@/_core/scripts/utils';
 import { variables } from '@/_core/scripts/variables';
+import { wpContent } from './wp-content';
 import { wpImage } from './wp-image';
 
 /* Page settings */
@@ -14,7 +15,7 @@ export const wpPage = {
 		// Format page data
 		// Return formatted data
 		return {
-			content: page.content,
+			content: wpContent.format(page.content),
 			excerpt: utils.truncate(utils.stripHTML(page.content), 300),
 			hideSidebar: page?.hideSidebar ?? false,
 			id: `page-${page.pageId}`,

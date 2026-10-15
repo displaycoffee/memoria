@@ -1,7 +1,9 @@
 /* Scripts */
 import { utilsBrowser } from '@/_core/scripts/utils';
 import { blocks } from '@/components/blocks/scripts/blocks';
+import { comments } from '@/wp/comments/scripts/comments';
 import { dropdown } from '@/components/dropdown/scripts/dropdown';
+import { entryContent } from '@/wp/entry/scripts/entry-content';
 import { forms } from '@/components/forms/scripts/forms';
 import { image } from '@/components/image/scripts/image';
 import { overlay } from '@/components/overlay/scripts/overlay';
@@ -24,6 +26,7 @@ export const container = {
 		// Runs after the first load and every ClientRouter navigation
 		container.setMinHeight();
 		blocks.revealAll('.section', 'section-visible');
+		comments.load();
 		forms.clearable.update();
 		image.checkComplete();
 		search.updateType();
@@ -32,7 +35,9 @@ export const container = {
 	init: () => {
 		// Note: call once, since the listeners stay on document across navigations
 		// Astro doesn't re-run the script after a ClientRouter navigation, but it does dispatch astro:page-load after every navigation (including the first load)
+		comments.init();
 		dropdown.init();
+		entryContent.init();
 		forms.clearable.init();
 		forms.scroll.init();
 		image.init();

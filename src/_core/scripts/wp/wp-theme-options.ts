@@ -1,6 +1,7 @@
 /* Scripts */
 import { utils } from '@/_core/scripts/utils';
 import { variables } from '@/_core/scripts/variables';
+import { wpContent } from './wp-content';
 import { wpImage } from './wp-image';
 
 export const wpThemeOptions = {
@@ -10,7 +11,7 @@ export const wpThemeOptions = {
 			themeOptionsData.footer.blocks.push({
 				id: `footer-block-${id}`,
 				order: parseInt(order),
-				content,
+				content: wpContent.format(content),
 			});
 		};
 		if (data?.footerBlock01Order && data?.footerBlock01Content) {

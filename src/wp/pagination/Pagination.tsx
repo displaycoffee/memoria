@@ -42,14 +42,14 @@ export const Pagination = (props: PaginationProps) => {
 
 	return (
 		<nav className="pagination" aria-label="Pagination">
-			<List className={'pagination-list row row-nowrap row-spacing-20 row-align-items-center'} variant={'ul-unstyled'}>
+			<List className={'pagination-list row row-nowrap row-auto row-spacing-20 row-align-items-center'} variant={'ul-unstyled'}>
 				<PaginationNavigation direction={'previous'} url={page.url.prev} />
 
 				{pages.map((item, index) => {
 					// Return ellipsis if not page
 					if (item.type === 'ellipsis') {
 						return (
-							<li className="pagination-list-item pagination-list-item-ellipsis" key={`ellipsis-${index}`}>
+							<li className="pagination-list-item pagination-list-item-ellipsis column" key={`ellipsis-${index}`}>
 								<span>&hellip;</span>
 							</li>
 						);
@@ -60,7 +60,7 @@ export const Pagination = (props: PaginationProps) => {
 					const linkAttributes: PageAnchorAttributesType = isActive ? { 'aria-current': 'page' } : { className: 'no-decoration' };
 
 					return (
-						<li className="pagination-list-item pagination-list-item-page" key={item.number}>
+						<li className="pagination-list-item pagination-list-item-page column" key={item.number}>
 							<a href={pageUrl(item.number)} {...linkAttributes}>
 								{item.number}
 							</a>
@@ -80,7 +80,7 @@ const PaginationNavigation = (props: PaginationNavigationProps) => {
 	const isNext = direction == 'next';
 
 	return url ? (
-		<li className={`pagination-list-item pagination-list-item-navigation pagination-list-item-navigation-${isNext ? 'next' : 'previous'}`}>
+		<li className={`pagination-list-item pagination-list-item-navigation pagination-list-item-navigation-${isNext ? 'next' : 'previous'} column`}>
 			<a className={`flex-nowrap flex-align-items-center`} href={url} rel={isNext ? 'next' : 'prev'}>
 				{isNext ? (
 					<>

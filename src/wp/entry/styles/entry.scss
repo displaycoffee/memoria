@@ -28,8 +28,25 @@
 			}
 			.entry-taxonomies {
 				.row .column {
+					width: 100%;
 					strong {
 						padding: 0 theme.$spacing-x1 0 0;
+					}
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-lg) {
+		.entry {
+			.entry-details {
+				.entry-taxonomies {
+					.row {
+						.column {
+							@include mixins.gap-width(theme.$spacing-x4, 2);
+						}
+						.column-tags {
+							text-align: right;
+						}
 					}
 				}
 			}

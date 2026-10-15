@@ -1,13 +1,14 @@
 /* Scripts */
 import { utils } from '@/_core/scripts/utils';
 import { variables } from '@/_core/scripts/variables';
+import { wpContent } from './wp-content';
 
 export const wpTag = {
 	format: (tag: TagRawType): TagType => {
 		// Format tag data
 		// Return formatted data
 		return {
-			content: tag?.description ?? '',
+			content: wpContent.format(tag?.description ?? ''),
 			excerpt: tag?.description ? utils.truncate(utils.stripHTML(tag.description), 300) : '',
 			id: `tag-${tag?.tagId ?? 0}`,
 			name: tag?.name ?? '',

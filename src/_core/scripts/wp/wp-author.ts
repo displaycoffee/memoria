@@ -1,6 +1,7 @@
 /* Scripts */
 import { utils } from '@/_core/scripts/utils';
 import { variables } from '@/_core/scripts/variables';
+import { wpContent } from './wp-content';
 import { wpImage } from './wp-image';
 
 export const wpAuthor = {
@@ -11,7 +12,7 @@ export const wpAuthor = {
 		// Return formatted data
 		return {
 			avatar: wpImage.format(altText, { sourceUrl: author?.avatar?.url }),
-			content: author?.description ?? '',
+			content: wpContent.format(author?.description ?? ''),
 			excerpt: author?.description ? utils.truncate(utils.stripHTML(author.description), 300) : '',
 			id: `author-${author?.userId ?? 0}`,
 			name: author?.name ?? '',

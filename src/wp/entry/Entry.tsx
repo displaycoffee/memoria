@@ -147,7 +147,7 @@ const EntryTaxonomies = (props: EntryBlockProps) => {
 
 	return data.categories.length !== 0 || data.tags.length !== 0 ? (
 		<div className="entry-taxonomies">
-			<div className="row row-wrap row-fit row-spacing-20">
+			<div className="row row-wrap row-auto row-spacing-20">
 				{data.categories.length !== 0 ? (
 					<div className="column-categories column">
 						<strong>Categories:</strong>

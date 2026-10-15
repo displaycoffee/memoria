@@ -1,13 +1,14 @@
 /* Scripts */
 import { utils } from '@/_core/scripts/utils';
 import { variables } from '@/_core/scripts/variables';
+import { wpContent } from './wp-content';
 
 export const wpCategory = {
 	format: (category: CategoryRawType): CategoryType => {
 		// Format category data
 		// Return formatted data
 		return {
-			content: category?.description ?? '',
+			content: wpContent.format(category?.description ?? ''),
 			excerpt: category?.description ? utils.truncate(utils.stripHTML(category.description), 300) : '',
 			id: `category-${category?.categoryId ?? 0}`,
 			name: category?.name ?? '',

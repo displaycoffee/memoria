@@ -69,6 +69,11 @@
 			display: none;
 		}
 	}
+	@include mixins.respond(theme.$breakpoint-lg - 1, max-width) {
+		html body .hide-tablet {
+			display: none;
+		}
+	}
 	@include mixins.respond(theme.$breakpoint-md) {
 		html body .hide-desktop {
 			display: none;

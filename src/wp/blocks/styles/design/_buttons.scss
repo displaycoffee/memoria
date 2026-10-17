@@ -6,8 +6,6 @@
 //// BUTTONS
 //// --------------------------------------------------------------------------
 
-	$blocks-block__margin: 0.5em;
-
 	.wp-block-buttons {
 		&.is-vertical {
 			@include mixins.flex-direction(column);

@@ -1,0 +1,30 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// COLORS
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$colors-palette: (body, bg, link, highlight); // palette slugs from memoria-headless theme.json, each matching a --color-* variable so they follow the theme
+
+	// Style block
+
+	@each $slug in $colors-palette {
+		.has-#{$slug}-color {
+			color: var(--color-#{$slug});
+		}
+		.has-#{$slug}-background-color {
+			background-color: var(--color-#{$slug});
+		}
+		.has-#{$slug}-border-color {
+			border-color: var(--color-#{$slug});
+		}
+	}
+
+	// Highlight stays light in both themes, so keep text readable on it unless a text color was picked
+	.has-highlight-background-color:not(.has-text-color) {
+		color: var(--color-highlight-body);
+	}

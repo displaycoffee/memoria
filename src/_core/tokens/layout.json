@@ -3,6 +3,10 @@
 		"$type": "dimension",
 		"width": { "$value": "1600px" }
 	},
+	"content": {
+		"$type": "dimension",
+		"width": { "$value": "100%" }
+	},
 	"spacing": {
 		"$type": "dimension",
 		"x1": { "$value": "5px" },

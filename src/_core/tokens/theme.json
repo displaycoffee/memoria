@@ -109,6 +109,9 @@
 	"container": {
 		"width": "1600px"
 	},
+	"content": {
+		"width": "100%"
+	},
 	"spacing": {
 		"x1": "5px",
 		"x2": "10px",

@@ -2,6 +2,7 @@
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
+@use '_extends';
 
 //// FLEX
 //// --------------------------------------------------------------------------
@@ -9,19 +10,19 @@
 	// Style block
 
 	.flex-wrap {
-		@include mixins.flex-layout;
-	}
-	.flex-align-content-center {
-		@include mixins.flex-parent(align-content, center);
+		@extend %flex-wrap;
 	}
 	.flex-nowrap {
-		@include mixins.flex-layout((flex-flow: row nowrap));
+		@extend %flex-nowrap;
+	}
+	.flex-align-content-center {
+		@extend %flex-align-content-center;
 	}
 	.flex-align-items-center {
-		@include mixins.flex-parent(align-items, center);
+		@extend %flex-align-items-center;
 	}
 	.flex-justify-content-center {
-		@include mixins.flex-parent(justify-content, center);
+		@extend %flex-justify-content-center;
 	}
 
 //// ROWS / COLUMNS
@@ -61,19 +62,19 @@
 		}
 	}
 	.row-wrap {
-		@extend .flex-wrap;
+		@extend %flex-wrap;
 	}
 	.row-nowrap {
-		@extend .flex-nowrap;
+		@extend %flex-nowrap;
 	}
 	.row-align-content-center {
-		@extend .flex-align-content-center;
+		@extend %flex-align-content-center;
 	}
 	.row-align-items-center {
-		@extend .flex-align-items-center;
+		@extend %flex-align-items-center;
 	}
 	.row-justify-content-center {
-		@extend .flex-justify-content-center;
+		@extend %flex-justify-content-center;
 	}
 
 	// Create row spacing styles by looping through $row-spacing

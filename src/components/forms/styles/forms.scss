@@ -2,6 +2,7 @@
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
+@use '_extends';
 
 //// FORMS
 //// --------------------------------------------------------------------------
@@ -36,96 +37,26 @@
 //// FORMS - BUTTON
 //// --------------------------------------------------------------------------
 
-	// Colors
-
-	$forms-button-color-01: theme.$color-button-primary-bg; // primary button background
-	$forms-button-color-02: theme.$color-button-primary-border; // primary button border
-	$forms-button-color-03: theme.$color-button-primary-body; // primary button color
-	$forms-button-color-04: theme.$color-button-primary-bg-hover; // primary hover button background
-	$forms-button-color-05: theme.$color-button-primary-border-hover; // primary hover button border
-	$forms-button-color-06: theme.$color-button-primary-body-hover; // primary hover button color
-	$forms-button-color-07: theme.$color-button-secondary-bg; // secondary button background
-	$forms-button-color-08: theme.$color-button-secondary-border; // secondary button border
-	$forms-button-color-09: theme.$color-button-secondary-body; // secondary button color
-	$forms-button-color-10: theme.$color-button-secondary-bg-hover; // secondary hover button background
-	$forms-button-color-11: theme.$color-button-secondary-border-hover; // secondary hover button border
-	$forms-button-color-12: theme.$color-button-secondary-body-hover; // secondary hover button color
-	$forms-button-color-13: theme.$color-button-tertiary-bg; // tertiary button background
-	$forms-button-color-14: theme.$color-button-tertiary-border; // tertiary button border
-	$forms-button-color-15: theme.$color-button-tertiary-body; // tertiary button color
-	$forms-button-color-16: theme.$color-button-tertiary-bg-hover; // tertiary hover button background
-	$forms-button-color-17: theme.$color-button-tertiary-border-hover; // tertiary hover button border
-	$forms-button-color-18: theme.$color-button-tertiary-body-hover; // tertiary hover button color
-
-	// Configuration
-	
-	$forms-button-spacing: 0 theme.$spacing-x4; // button spacing
-	$forms-button-height: 35px; // button height
-	$forms-button-border-width: 1px; // button border width
-
 	// Style block
 
 	button, .button {
-		@include mixins.flex-layout((display: inline-flex, flex-flow: row nowrap, align-items: center, justify-content: center));
-		@include mixins.gap(theme.$spacing-x1);
-		border: 0;
+		@extend %buttons;
 	}
 	.button {
-		max-width: 100%;
-		@include mixins.if-exists((
-			padding: $forms-button-spacing,
-		));
-		@if $forms-button-border-width != false {
-			border: $forms-button-border-width solid transparent;
-		}
-		height: $forms-button-height;
-		line-height: $forms-button-height;
+		@extend %button;
 		.button-label {
 			line-height: 1.5;
 			@include mixins.ellipsis;
 		}
 	}
 	.button-primary {
-		@include mixins.if-exists((
-			background-color: $forms-button-color-01,
-			border-color: $forms-button-color-02,
-			color: $forms-button-color-03,
-		));
-		&:hover {
-			@include mixins.if-exists((
-				background-color: $forms-button-color-04,
-				border-color: $forms-button-color-05,
-				color: $forms-button-color-06,
-			));
-		}
+		@extend %button-primary;
 	}
 	.button-secondary {
-		@include mixins.if-exists((
-			background-color: $forms-button-color-07,
-			border-color: $forms-button-color-08,
-			color: $forms-button-color-09,
-		));
-		&:hover {
-			@include mixins.if-exists((
-				background-color: $forms-button-color-10,
-				border-color: $forms-button-color-11,
-				color: $forms-button-color-12,
-			));
-		}
+		@extend %button-secondary;
 	}
 	.button-tertiary {
-		@include mixins.if-exists((
-			background-color: $forms-button-color-13,
-			border-color: $forms-button-color-14,
-			color: $forms-button-color-15,
-		));
-		&:hover {
-			@include mixins.if-exists((
-				background-color: $forms-button-color-16,
-				border-color: $forms-button-color-17,
-				color: $forms-button-color-18,
-			));
-		}
+		@extend %button-tertiary;
 	}
 	.button-unstyled {
 		padding: 0;

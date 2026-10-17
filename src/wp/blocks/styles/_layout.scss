@@ -1,0 +1,63 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+@use 'layout/container/styles/_extends';
+
+//// LAYOUT
+//// --------------------------------------------------------------------------
+
+	.is-layout-flex, .is-layout-grid {
+		@include mixins.gap(theme.$spacing-x4);
+		& > :is(*, div) {
+			margin: 0;
+		}
+	}
+	.is-layout-flex {
+		@extend %flex-wrap;
+		@extend %flex-align-items-center;
+	}
+	.is-layout-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
+	}
+	.is-layout-flow {
+		& > .alignleft {
+			float: left;
+			margin-inline-start: 0;
+			margin-inline-end: theme.$spacing-x4;
+		}
+		& > .alignright {
+			float: right;
+			margin-inline-start: theme.$spacing-x4;
+			margin-inline-end: 0;
+		}
+		& > .aligncenter {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+	.is-layout-constrained {
+		& > .alignleft {
+			float: left;
+			margin-inline-start: 0;
+			margin-inline-end: theme.$spacing-x4;
+		}
+		& > .alignright {
+			float: right;
+			margin-inline-start: theme.$spacing-x4;
+			margin-inline-end: 0;
+		}
+		& > .aligncenter {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		& > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+			max-width: theme.$content-width;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		& > .alignwide {
+			max-width: theme.$container-width;
+		}
+	}

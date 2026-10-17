@@ -1,0 +1,25 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// FLEX
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	%flex-wrap {
+		@include mixins.flex-layout;
+	}
+	%flex-nowrap {
+		@include mixins.flex-layout((flex-flow: row nowrap));
+	}
+	%flex-align-content-center {
+		@include mixins.flex-parent(align-content, center);
+	}
+	%flex-align-items-center {
+		@include mixins.flex-parent(align-items, center);
+	}
+	%flex-justify-content-center {
+		@include mixins.flex-parent(justify-content, center);
+	}

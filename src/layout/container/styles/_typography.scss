@@ -2,6 +2,7 @@
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
+@use '_extends';
 
 //// GENERAL TEXT ELEMENTS
 //// --------------------------------------------------------------------------
@@ -160,18 +161,10 @@
 	// Style block
 	
 	code, kbd, pre, samp {
-		background: theme.$color-body;
-		margin: 0;
-		padding: theme.$spacing-x4;
-		font-family: 'Courier New', monospace;
-		font-size: functions.em(16px, rem);
-		color: theme.$color-bg;
-		white-space: pre-wrap;
-		word-break: break-word;
+		@extend %code-kbd-pre-samp;
 	}
 	pre code {
-		padding: 0;
-		margin: 0;
+		@extend %pre-code;
 	}
 	blockquote {
 		max-width: 90%;

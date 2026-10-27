@@ -1,18 +1,96 @@
+// Built-in Sass modules
+@use 'sass:map';
+
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// COLORS
+//// COLORS - DEFAULT
 //// --------------------------------------------------------------------------
 
 	// Configuration
-
-	$colors-palette: (body, bg, link, highlight); // palette slugs from memoria-headless theme.json, each matching a --color-* variable so they follow the theme
+	
+	$colors-default: (
+		'black': #000000,
+		'cyan-bluish-gray': #abb8c3,
+		'light-green-cyan': #7bdcb5,
+		'luminous-vivid-orange': #ff6900,
+		'luminous-vivid-amber': #fcb900,
+		'pale-cyan-blue': #8ed1fc,
+		'pale-pink': #f78da7,
+		'vivid-cyan-blue': #0693e3,
+		'vivid-green-cyan': #00d084,
+		'vivid-purple': #9b51e0,
+		'vivid-red': #cf2e2e,
+		'white': #ffffff,
+	);
 
 	// Style block
 
-	@each $slug in $colors-palette {
+	@each $slug, $color in $colors-default {
+		.has-#{$slug}-color {
+			color: $color;
+		}
+		.has-#{$slug}-background-color {
+			background-color: $color;
+		}
+		.has-#{$slug}-border-color {
+			border-color: $color;
+		}
+	}
+
+//// COLORS - DUOTONE
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// The presets, SVG filters and filter rules live in wp/blocks/Duotone.tsx, so the colors are only in one place
+	// Note: keep the SVG out of the way without display: none, which stops some browsers from applying its filters
+	.duotone-filters {
+		@include mixins.position($type: absolute, $top: 0, $left: 0);
+		overflow: hidden;
+		pointer-events: none;
+	}
+	
+//// COLORS - GRADIENT
+//// --------------------------------------------------------------------------
+
+	// Configuration
+	
+	$colors-gradient: (
+		'blush-light-purple': 'rgb(255,206,236) 0%, rgb(152,150,240)',
+		'blush-bordeaux': 'rgb(254,205,165) 0%, rgb(254,45,45) 50%, rgb(107,0,62)',
+		'cool-to-warm-spectrum': 'rgb(74,234,220) 0%, rgb(151,120,209) 20%, rgb(207,42,186) 40%, rgb(238,44,130) 60%, rgb(251,105,98) 80%, rgb(254,248,76)',
+		'electric-grass': 'rgb(202,248,128) 0%, rgb(113,206,126)',
+		'light-green-cyan-to-vivid-green-cyan': 'rgb(122,220,180) 0%, rgb(0,208,130)',
+		'luminous-dusk': 'rgb(255,203,112) 0%, rgb(199,81,192) 50%, rgb(65,88,208)',
+		'luminous-vivid-amber-to-luminous-vivid-orange': 'rgb(252,185,0) 0%, rgb(255,105,0)',
+		'luminous-vivid-orange-to-vivid-red': 'rgb(255,105,0) 0%, rgb(207,46,46)',
+		'midnight': 'rgb(2,3,129) 0%, rgb(40,116,252)',
+		'pale-ocean': 'rgb(255,245,203) 0%, rgb(182,227,212) 50%, rgb(51,167,181)',
+		'very-light-gray-to-cyan-bluish-gray': 'rgb(238,238,238) 0%, rgb(169,184,195)',
+		'vivid-cyan-blue-to-vivid-purple': 'rgb(6,147,227) 0%, rgb(155,81,224)',
+	);
+
+	// Style block
+
+	@each $slug, $color in $colors-gradient {
+		.has-#{$slug}-background-color {
+			background: linear-gradient(135deg, #{$color} 100%);
+		}
+	}
+
+//// COLORS - THEME
+//// --------------------------------------------------------------------------
+
+	// Configuration
+	
+	$colors-theme: (body, bg, highlight, link); // palette slugs from memoria-headless theme.json, each matching a --color-* variable so they follow the theme
+	
+	// Style block
+
+	@each $slug in $colors-theme {
 		.has-#{$slug}-color {
 			color: var(--color-#{$slug});
 		}

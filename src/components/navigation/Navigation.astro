@@ -15,16 +15,15 @@ import { Dropdown } from '@/components/dropdown/Dropdown';
 type Props = NavigationComponentProps;
 
 /* Props */
-const { data, direction, hideMobile, label, showChildren = true } = Astro.props;
+const { data, direction = 'horizontal', hideMobile, label, showChildren = true } = Astro.props;
 const navigationClass = typeof hideMobile == 'boolean' && hideMobile === true ? ' hide-mobile' : '';
 const navigationList = Array.isArray(data) ? data : navigationUtils.get.list(data);
-const navigationListDirection = direction == 'horizontal' || direction == 'vertical' ? direction : 'horizontal';
 const navigationLinkClass = `no-decoration navigation-link`;
 ---
 
 {navigationList.length != 0 ? (
 	<nav class={`navigation${navigationClass}`} aria-label={label}>
-		<List className={`navigation-list navigation-list-${navigationListDirection}`} variant={'ul-unstyled'}>
+		<List className={`navigation-list navigation-list-${direction}`} variant={'ul-unstyled'}>
 			{navigationList.map((nav) => {
 				return showChildren && nav?.children && nav.children.length !== 0 ? (
 					<NavigationListItem navigationLinkClass={navigationLinkClass} nav={nav}>

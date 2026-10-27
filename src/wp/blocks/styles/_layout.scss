@@ -7,6 +7,8 @@
 //// LAYOUT
 //// --------------------------------------------------------------------------
 
+	// Style block
+
 	.is-layout-flex, .is-layout-grid {
 		@include mixins.gap(theme.$spacing-x4);
 		& > :is(*, div) {

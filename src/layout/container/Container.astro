@@ -18,6 +18,7 @@ import Content from '@/layout/content/Content.astro';
 import Sidebar from '@/layout/sidebar/Sidebar.astro';
 import Footer from '@/layout/footer/Footer.astro';
 import { ThemeToggle } from '@/components/theme-toggle/ThemeToggle';
+import { DuotoneFilters } from '@/wp/blocks/Blocks';
 
 /* Define prop types */
 type Props = ContainerProps;
@@ -49,6 +50,7 @@ const slideoutOptions = {
 <!doctype html>
 <html lang="en">
 	<Head title={title} />
+
 	<body class={`scrollbar page-${bodyClass}`}>
 		<div id="index" tabindex="-1">
 			<div class="container">
@@ -61,7 +63,7 @@ const slideoutOptions = {
 				<Navigation data={navigationList} hideMobile={true} label={'Header Navigation'} />
 
 				<Slideout options={slideoutOptions}>
-					<Navigation data={navigationList} label={'Mobile Navigation'} />
+					<Navigation data={navigationList} direction={'vertical'} label={'Mobile Navigation'} />
 				</Slideout>
 
 				<main id="main-content" class="main">
@@ -81,6 +83,9 @@ const slideoutOptions = {
 
 			<ThemeToggle />
 		</div>
+
+		<DuotoneFilters />
+
 		<script>
 			import { container } from './scripts/container';
 			container.init();

@@ -6,6 +6,8 @@
 //// BUTTONS
 //// --------------------------------------------------------------------------
 
+	// Style block
+
 	.wp-block-buttons {
 		&.is-vertical {
 			@include mixins.flex-direction(column);

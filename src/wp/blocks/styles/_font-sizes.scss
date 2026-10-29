@@ -1,0 +1,33 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+@use 'layout/container/styles/_extends';
+
+//// FONT SIZES
+//// --------------------------------------------------------------------------
+//// Note: classes for the font size presets in memoria-headless's theme.json (WordPress adds a dash before numbers in slugs, so h1 becomes has-h-1-font-size)
+
+	// Style block
+
+	.has-small-font-size {
+		font-size: functions.em(12px, rem);
+	}
+	.has-normal-font-size {
+		font-size: functions.em(theme.$font-size-global, rem);
+	}
+	.has-h-1-font-size {
+		@extend %h1;
+	}
+	.has-h-2-font-size {
+		@extend %h2;
+	}
+	.has-h-3-font-size {
+		@extend %h3;
+	}
+	.has-h-4-font-size {
+		@extend %h4;
+	}
+	.has-h-5-font-size, .has-h-6-font-size {
+		@extend %h5-h6;
+	}

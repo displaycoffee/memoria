@@ -3,7 +3,7 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// FLEX
+//// LAYOUT - FLEX
 //// --------------------------------------------------------------------------
 
 	// Style block
@@ -24,7 +24,43 @@
 		@include mixins.flex-parent(justify-content, center);
 	}
 
-//// CONTENT BLOCKS
+//// TYPOGRAPHY - HEADERS
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	%headers {
+		font-family: theme.$font-family-header;
+		font-weight: theme.$font-weight-header;
+		@include mixins.if-exists((
+			font-style: theme.$font-style-header,
+			text-transform: theme.$font-transform-header
+		));
+		color: theme.$color-header;
+		a, .a {
+			color: inherit;
+			&:active, &:hover {
+				color: theme.$color-link;
+			}
+		}
+	}
+	%h1 {
+		font-size: functions.em(34px, rem);
+	}
+	%h2 {
+		font-size: functions.em(30px, rem);
+	}
+	%h3 {
+		font-size: functions.em(26px, rem);
+	}
+	%h4 {
+		font-size: functions.em(22px, rem);
+	}
+	%h5-h6 {
+		font-size: functions.em(20px, rem);
+	}	
+
+//// TYPOGRAPHY - CONTENT BLOCKS
 //// --------------------------------------------------------------------------
 
 	// Style block

@@ -125,34 +125,22 @@
 	// Style block
 
 	h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-		font-family: theme.$font-family-header;
-		font-weight: theme.$font-weight-header;
-		@include mixins.if-exists((
-			font-style: theme.$font-style-header,
-			text-transform: theme.$font-transform-header
-		));
-		color: theme.$color-header;
-		a, .a {
-			color: inherit;
-			&:active, &:hover {
-				color: theme.$color-link;
-			}
-		}
+		@extend %headers;
 	}
 	h1, .h1 {
-		font-size: functions.em(34px, rem);
+		@extend %h1;
 	}
 	h2, .h2 {
-		font-size: functions.em(30px, rem);
+		@extend %h2;
 	}
 	h3, .h3 {
-		font-size: functions.em(26px, rem);
+		@extend %h3;
 	}
 	h4, .h4 {
-		font-size: functions.em(22px, rem);
+		@extend %h4;
 	}
 	h5, h6, .h5, .h6 {
-		font-size: functions.em(20px, rem);
+		@extend %h5-h6;
 	}
 
 //// CONTENT BLOCKS

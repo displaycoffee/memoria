@@ -2,8 +2,49 @@
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
+@use 'layout/container/styles/_extends';
 
 //// HEADING
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	h1, h2, h3, h4, h5, h6, .wp-block-heading {
+		&.has-background {
+			padding: theme.$spacing-x4;
+		}
+		&.has-text-align-right[style*='writing-mode']:where([style*='vertical-rl']), &.has-text-align-left[style*='writing-mode']:where([style*='vertical-lr']) {
+			rotate: 180deg;
+		}
+		@extend %headers;
+	}
+	h1 {
+		@extend %h1;
+	}
+	h2 {
+		@extend %h2;
+	}
+	h3 {
+		@extend %h3;
+	}
+	h4 {
+		@extend %h4;
+	}
+	h5, h6 {
+		@extend %h5-h6;
+	}	
+
+	// h1,
+	// h2,
+	// h3,
+	// h4,
+	// h5,
+	// h6 {
+	// 	&:where(.wp-block-heading).has-background {
+	// 		padding: $block-bg-padding;
+	// 	}
+	// 	&.has-text-align-right[style*="writing-mode"]:where([style*="vertical-rl"]),
+	// 	&.has-text-align-left[style*="writing-mode"]:where([style*="vertical-lr"]) {
+	// 		rotate: 180deg;
+	// 	}
+	// }

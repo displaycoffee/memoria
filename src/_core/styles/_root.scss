@@ -37,8 +37,8 @@
 	--color-info-border: #0062d6;
 	--color-link: #4762cb;
 	--color-link-hover: #333333;
-	--color-link-underline: #4762cb;
-	--color-link-underline-hover: #333333;
+	--color-link-underline: inherit;
+	--color-link-underline-hover: inherit;
 	--color-overlay: color-mix(in srgb, #000000 75%, transparent);
 	--color-required: #f85149;
 	--color-scrollbar-bg: #fdfdfd;
@@ -79,8 +79,8 @@
 		--color-inactive: #fdfdfd;
 		--color-link: #7f93e6;
 		--color-link-hover: #fdfdfd;
-		--color-link-underline: #7f93e6;
-		--color-link-underline-hover: #fdfdfd;
+		--color-link-underline: inherit;
+		--color-link-underline-hover: inherit;
 		--color-scrollbar-bg: #1a1a1a;
 	}
 }
@@ -103,7 +103,7 @@
 	--color-inactive: #fdfdfd;
 	--color-link: #7f93e6;
 	--color-link-hover: #fdfdfd;
-	--color-link-underline: #7f93e6;
-	--color-link-underline-hover: #fdfdfd;
+	--color-link-underline: inherit;
+	--color-link-underline-hover: inherit;
 	--color-scrollbar-bg: #1a1a1a;
 }

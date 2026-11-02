@@ -8,6 +8,15 @@
 
 	// Style block
 
+	p, .wp-block-paragraph {
+		&.has-background {
+			padding: theme.$spacing-x4;
+		}
+		&.has-text-align-right[style*='writing-mode']:where([style*='vertical-rl']), &.has-text-align-left[style*='writing-mode']:where([style*='vertical-lr']) {
+			rotate: 180deg;
+		}
+	}
+
 	// .is-small-text {
 	// 	font-size: 0.875em;
 	// }

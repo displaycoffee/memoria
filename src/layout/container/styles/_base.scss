@@ -2,6 +2,7 @@
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
+@use '_extends';
 
 //// ELEMENTS
 //// --------------------------------------------------------------------------
@@ -27,12 +28,7 @@
 			padding: $base-elements-body-spacing-vertical $base-elements-body-spacing-horizontal;
 		}
 	}
-	p, h1, h2, h3, h4, h5, h6, .margin-trim > div, .margin-trim > section, .margin-trim > astro-island > div, .margin-trim > astro-island > section {
-		margin: 0 0 $base-elements-spacing 0;
-	}
-	.margin-trim > *:last-child {
-		margin-bottom: 0;
-	}
+	@include extends.margin-trim($spacing: $base-elements-spacing);
 
 //// HELPERS
 //// --------------------------------------------------------------------------

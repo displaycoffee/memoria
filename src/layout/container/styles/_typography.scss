@@ -2,7 +2,6 @@
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
-@use '_extends';
 
 //// GENERAL TEXT ELEMENTS
 //// --------------------------------------------------------------------------
@@ -50,6 +49,12 @@
 	}
 	sub {
 		bottom: -0.25em;
+	}
+	.has-small-font-size {
+		font-size: functions.em(12px, rem);
+	}
+	.has-normal-font-size {
+		font-size: functions.em(theme.$font-size-global, rem);
 	}
 
 //// LINKS
@@ -99,7 +104,7 @@
 				color: theme.$color-link-hover;
 			}
 		}
-		&:not(.no-decoration, .wp-block-button__link) {
+		&:not(.no-decoration) {
 			&:not(:has(.button-label)) {
 				@include link-default;
 				&:active, &:hover {
@@ -125,22 +130,41 @@
 	// Style block
 
 	h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-		@extend %headers;
+		font-family: theme.$font-family-header;
+		font-weight: theme.$font-weight-header;
+		@include mixins.if-exists((
+			font-style: theme.$font-style-header,
+			text-transform: theme.$font-transform-header
+		));
+		color: theme.$color-header;
+		a, .a {
+			color: inherit;
+			&:active, &:hover {
+				color: theme.$color-link;
+			}
+			&:not(.no-decoration) {
+				&:not(:has(.button-label)) {
+					&, &:active, &:hover {
+						text-decoration-thickness: 3px;
+					}
+				}
+			}
+		}
 	}
-	h1, .h1 {
-		@extend %h1;
+	h1, .h1, .has-h-1-font-size {
+		font-size: functions.em(34px, rem);
 	}
-	h2, .h2 {
-		@extend %h2;
+	h2, .h2, .has-h-2-font-size {
+		font-size: functions.em(30px, rem);
 	}
-	h3, .h3 {
-		@extend %h3;
+	h3, .h3, .has-h-3-font-size {
+		font-size: functions.em(26px, rem);
 	}
-	h4, .h4 {
-		@extend %h4;
+	h4, .h4, .has-h-4-font-size {
+		font-size: functions.em(22px, rem);
 	}
-	h5, h6, .h5, .h6 {
-		@extend %h5-h6;
+	h5, h6, .h5, .h6, .has-h-5-font-size, .has-h-6-font-size {
+		font-size: functions.em(20px, rem);
 	}
 
 //// CONTENT BLOCKS
@@ -149,12 +173,35 @@
 	// Style block
 	
 	code, kbd, pre, samp {
-		@extend %code-kbd-pre-samp;
+		background: theme.$color-body;
+		margin: 0;
+		padding: theme.$spacing-x4;
+		font-family: 'Courier New', monospace;
+		font-size: functions.em(16px, rem);
+		color: theme.$color-bg;
+		white-space: pre-wrap;
+		word-break: break-word;
 	}
 	pre code {
-		@extend %pre-code;
+		padding: 0;
+		margin: 0;
 	}
 	blockquote {
 		max-width: 90%;
 		margin: 0 auto theme.$spacing-x4 auto;
 	}
+
+//// TEXT ALIGNMENT
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.has-text-align-center {
+		text-align: center;
+	}
+	.has-text-align-left {
+		text-align: left;
+	}
+	.has-text-align-right {
+		text-align: right;
+	}	

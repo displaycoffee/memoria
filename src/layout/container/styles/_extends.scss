@@ -24,58 +24,17 @@
 		@include mixins.flex-parent(justify-content, center);
 	}
 
-//// TYPOGRAPHY - HEADERS
+//// LAYOUT - MARGIN TRIM
 //// --------------------------------------------------------------------------
+//// Note: a mixin instead of a placeholder, since the editor swaps .margin-trim for .is-root-container
 
 	// Style block
 
-	%headers {
-		font-family: theme.$font-family-header;
-		font-weight: theme.$font-weight-header;
-		@include mixins.if-exists((
-			font-style: theme.$font-style-header,
-			text-transform: theme.$font-transform-header
-		));
-		color: theme.$color-header;
-		a, .a {
-			color: inherit;
-			&:active, &:hover {
-				color: theme.$color-link;
-			}
+	@mixin margin-trim($parent: '.margin-trim', $spacing: theme.$spacing-x4) {
+		p, h1, h2, h3, h4, h5, h6, #{$parent} > div, #{$parent} > section, #{$parent} > [class*='wp-block'], #{$parent} > astro-island > div, #{$parent} > astro-island > section {
+			margin: 0 0 $spacing 0;
+		}
+		#{$parent} > *:last-child {
+			margin-bottom: 0;
 		}
 	}
-	%h1 {
-		font-size: functions.em(34px, rem);
-	}
-	%h2 {
-		font-size: functions.em(30px, rem);
-	}
-	%h3 {
-		font-size: functions.em(26px, rem);
-	}
-	%h4 {
-		font-size: functions.em(22px, rem);
-	}
-	%h5-h6 {
-		font-size: functions.em(20px, rem);
-	}	
-
-//// TYPOGRAPHY - CONTENT BLOCKS
-//// --------------------------------------------------------------------------
-
-	// Style block
-	
-	%code-kbd-pre-samp {
-		background: theme.$color-body;
-		margin: 0;
-		padding: theme.$spacing-x4;
-		font-family: 'Courier New', monospace;
-		font-size: functions.em(16px, rem);
-		color: theme.$color-bg;
-		white-space: pre-wrap;
-		word-break: break-word;
-	}
-	%pre-code {
-		padding: 0;
-		margin: 0;
-	}	

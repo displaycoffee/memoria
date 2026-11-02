@@ -7,3 +7,25 @@
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	.wp-block-details {
+		&[open] {
+			summary {
+				margin: 0 0 theme.$spacing-x2 0;
+			}
+		}
+		summary {
+			cursor: pointer;
+		}
+		p {
+			margin: 0;
+		}
+	}
+	
+	// .wp-block-details {
+	// 	box-sizing: border-box;
+	// }
+
+	// .wp-block-details summary {
+	// 	cursor: pointer;
+	// }

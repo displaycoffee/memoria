@@ -1,0 +1,34 @@
+// Built-in Sass modules
+@use 'sass:meta';
+
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '_core/styles/_theme';
+@use 'layout/container/styles/_extends';
+
+//// EDITOR
+//// --------------------------------------------------------------------------
+//// Note: block styles come from memoria, so the editor matches the frontend. Astro doesn't import this file; memoria-headless compiles it (see memoriaImporter in its vite.config.js).
+
+	// Imports
+
+	@use '_core/styles/_root';
+
+	// Style block
+	// Note: the canvas uses memoria's background and text colors, since _root switches color-scheme to dark with the OS, but WordPress keeps the canvas white
+	// Note: block styles are nested in .editor-styles-wrapper, since this file also loads on the admin page around the editor's iframe (e.g. memoria's h1 - h6 rules would style the sidebar's panel headings)
+	// Note: body text styles are set here, since _typography's html and body rules don't match once nested (the iframe's body is .editor-styles-wrapper)
+
+	.editor-styles-wrapper {
+		background-color: theme.$color-bg;
+		font-family: theme.$font-family-body;
+		font-size: functions.em(theme.$font-size-global, rem);
+		color: theme.$color-body;
+		line-height: 1.5;
+		*, *:after, *:before {
+			box-sizing: border-box;
+		}
+		@include meta.load-css('layout/container/styles/_typography');
+		@include meta.load-css('wp/blocks/styles/blocks');
+		@include extends.margin-trim('.is-root-container');
+	}

@@ -2,19 +2,13 @@
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
-@use 'layout/container/styles/_extends';
 
 //// CODE
 //// --------------------------------------------------------------------------
 
 	// Style block
 
-	.wp-block-code {
-		@extend %code-kbd-pre-samp;
-		code {
-			@extend %pre-code;
-		}
-	}
+	.wp-block-code {}
 
 	// .wp-block-code {
 	// 	// This block has customizable padding, border-box makes that more predictable.

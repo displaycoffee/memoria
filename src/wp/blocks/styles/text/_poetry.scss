@@ -5,5 +5,17 @@
 
 //// POETRY
 //// --------------------------------------------------------------------------
+//// Note: This block is called "verse" in wp block code.
 
 	// Style block
+
+	pre.wp-block-verse {
+		overflow: auto;
+		white-space: pre-wrap;
+		word-break: normal;
+		overflow-wrap: break-word;
+		font-family: inherit;
+		&.has-fit-text {
+			white-space: pre !important;
+		}
+	}

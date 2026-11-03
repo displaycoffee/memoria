@@ -3,8 +3,8 @@
 
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
+@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
-@use 'layout/container/styles/_extends';
 
 //// EDITOR
 //// --------------------------------------------------------------------------
@@ -30,5 +30,5 @@
 		}
 		@include meta.load-css('layout/container/styles/_typography');
 		@include meta.load-css('wp/blocks/styles/blocks');
-		@include extends.margin-trim('.is-root-container');
+		@include mixins-custom.margin-trim('.is-root-container');
 	}

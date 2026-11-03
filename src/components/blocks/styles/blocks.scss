@@ -2,53 +2,28 @@
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
+@use '_extends';
 
 //// BLOCKS - LIST
 //// --------------------------------------------------------------------------
 
-	// Configuration
-	
-	$blocks-list-spacing: theme.$spacing-x4; // spacing for list elements
-
 	// Style block
 
 	.list-ordered, .list-unordered, .list-unstyled {
-		padding: 0;
+		@extend %list-base;
 	}
 	.list-ordered, .list-unordered {
-		margin: 0 0 theme.$spacing-x4 0;
-		& > li {
-			position: relative;
-			margin: 0 0 calc($blocks-list-spacing / 4) 0;
-			padding: 0 0 0 $blocks-list-spacing;
-			&:before {
-				display: block;
-				@include mixins.position($type: absolute, $left: 0);
-			}
-			&:last-child, ul, ol {
-				margin-bottom: 0;
-			}
-		}
+		@extend %list-styled;
 	}
 	.list-ordered {
-		counter-reset: section;
-		& > li:before {
-			top: 0;
-			counter-increment: section;
-			content: counter(section)'.';
-		}
+		@extend %list-ordered;
 	}
 	.list-unordered {
-		& > li:before {
-			top: 0;
-			content: '\002022';
-			font-size: 22px;
-			line-height: 1;
-		}
+		@extend %list-unordered;
 	}
 	.list-unstyled {
-		margin: 0;
-	}	
+		@extend %list-unstyled;
+	}
 	
 //// BLOCKS - SECTION
 //// --------------------------------------------------------------------------

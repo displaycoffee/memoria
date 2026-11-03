@@ -23,18 +23,3 @@
 	%flex-justify-content-center {
 		@include mixins.flex-parent(justify-content, center);
 	}
-
-//// LAYOUT - MARGIN TRIM
-//// --------------------------------------------------------------------------
-//// Note: a mixin instead of a placeholder, since the editor swaps .margin-trim for .is-root-container
-
-	// Style block
-
-	@mixin margin-trim($parent: '.margin-trim', $spacing: theme.$spacing-x4) {
-		p, h1, h2, h3, h4, h5, h6, #{$parent} > div, #{$parent} > section, #{$parent} > [class*='wp-block'], #{$parent} > astro-island > div, #{$parent} > astro-island > section {
-			margin: 0 0 $spacing 0;
-		}
-		#{$parent} > *:last-child {
-			margin-bottom: 0;
-		}
-	}

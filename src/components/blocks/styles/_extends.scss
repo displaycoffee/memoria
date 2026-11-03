@@ -1,0 +1,54 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// BLOCKS - LIST
+//// --------------------------------------------------------------------------
+
+	// Configuration
+	
+	$blocks-list-spacing: theme.$spacing-x4; // spacing for list elements
+
+	// Style block
+
+	%list-base {
+		padding: 0;
+	}
+	%list-styled {
+		margin: 0 0 theme.$spacing-x4 0;
+		& > li {
+			position: relative;
+			margin: 0 0 calc($blocks-list-spacing / 4) 0;
+			padding: 0 0 0 $blocks-list-spacing;
+			&:before {
+				display: block;
+				@include mixins.position($type: absolute, $left: 0);
+			}
+			&:last-child, ul, ol {
+				margin-bottom: 0;
+			}
+			ul, ol {
+				margin-top: calc($blocks-list-spacing / 4);
+			}
+		}
+	}
+	%list-ordered {
+		counter-reset: section;
+		& > li:before {
+			top: 0;
+			counter-increment: section;
+			content: counter(section)'.';
+		}
+	}
+	%list-unordered {
+		& > li:before {
+			top: 0;
+			content: '\002022';
+			font-size: 22px;
+			line-height: 1;
+		}
+	}
+	%list-unstyled {
+		margin: 0;
+	}

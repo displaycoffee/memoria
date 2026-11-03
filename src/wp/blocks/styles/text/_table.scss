@@ -7,3 +7,51 @@
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	.wp-block-table {
+		overflow-x: auto;
+		&.is-style-stripes {
+			border-bottom: 1px solid theme.$color-border;
+			table {
+				&, th, td {
+					border: 0;
+				}
+				tbody tr:nth-child(odd) {
+					background-color: color-mix(in srgb, currentColor 8%, transparent);
+				}
+			}
+		}
+		&.alignleft, &.aligncenter, &.alignright {
+			display: table;
+			width: auto;
+			td, th {
+				word-break: normal;
+				overflow-wrap: anywhere;
+			}
+		}
+		&:not([class*='-font-size'], [style*='font-size']) thead th {
+			font-size: functions.em(20px, rem);
+		}
+		table {
+			border-collapse: collapse;
+			border: 1px solid theme.$color-border;
+			width: 100%;
+			&.has-fixed-layout {
+				table-layout: fixed;
+				td, th {
+					word-break: normal;
+					overflow-wrap: anywhere;
+				}
+			}
+			thead {
+				border-bottom: 3px solid theme.$color-border;
+			}
+			tfoot {
+				border-top: 3px solid theme.$color-border;
+			}
+			td, th {
+				border: 1px solid theme.$color-border;
+				padding: theme.$spacing-x1;
+			}
+		}
+	}

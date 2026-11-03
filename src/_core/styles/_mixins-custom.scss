@@ -1,0 +1,28 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+// WordPress rule for has-background
+@mixin has-background {
+	&.has-background {
+		padding: theme.$spacing-x4;
+	}
+}
+
+// Margin-trim reset
+@mixin margin-trim($parent: '.margin-trim', $spacing: theme.$spacing-x4) {
+	p, h1, h2, h3, h4, h5, h6, #{$parent} > div, #{$parent} > section, #{$parent} > [class*='wp-block'], #{$parent} > astro-island > div, #{$parent} > astro-island > section {
+		margin: 0 0 $spacing 0;
+	}
+	#{$parent} > *:last-child {
+		margin-bottom: 0;
+	}
+}
+
+// WordPress rule for writing-mode
+@mixin writing-mode {
+	&.has-text-align-right[style*='writing-mode']:where([style*='vertical-rl']), &.has-text-align-left[style*='writing-mode']:where([style*='vertical-lr']) {
+		rotate: 180deg;
+	}
+}

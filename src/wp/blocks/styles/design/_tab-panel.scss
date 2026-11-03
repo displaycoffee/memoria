@@ -1,0 +1,26 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// TAB - PANEL
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// .wp-block-tab-panel {
+	// 	&:empty {
+	// 		display: none !important;
+	// 	}
+
+	// 	// Prevent blockGap, borders, box-shadows and padding from adding extra spacing or
+	// 	// rendering when the panel is closed, which the panel would otherwise keep
+	// 	// along with its layout box.
+	// 	&[hidden] {
+	// 		box-shadow: none !important;
+	// 		border: none !important;
+	// 		margin-block-start: 0;
+	// 		padding: 0 !important;
+	// 	}
+	// }
+	

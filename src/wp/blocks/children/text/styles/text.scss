@@ -1,0 +1,16 @@
+//// TEXT
+//// --------------------------------------------------------------------------
+
+	// Imports
+
+	@use 'wp/blocks/children/text/code/styles/code';
+	@use 'wp/blocks/children/text/details/styles/details';
+	@use 'wp/blocks/children/text/heading/styles/heading';
+	@use 'wp/blocks/children/text/list/styles/list';
+	@use 'wp/blocks/children/text/math/styles/math';
+	@use 'wp/blocks/children/text/paragraph/styles/paragraph';
+	@use 'wp/blocks/children/text/poetry/styles/poetry';
+	@use 'wp/blocks/children/text/preformatted/styles/preformatted';
+	@use 'wp/blocks/children/text/pullquote/styles/pullquote';
+	@use 'wp/blocks/children/text/quote/styles/quote';
+	@use 'wp/blocks/children/text/table/styles/table';

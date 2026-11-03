@@ -1,0 +1,29 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// TEXT - QUOTE
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-quote {
+		max-width: none;
+		overflow-wrap: break-word;
+		border-left: 3px solid theme.$color-border;
+		padding: theme.$spacing-x4 theme.$spacing-x8;
+		&.is-style-plain {
+			border: 0;
+			padding: 0;
+		}
+		&.alignleft, &.alignright {
+			max-width: calc(theme.$content-width / 2);
+		}
+		&:not([class*='-font-size'], [style*='font-size']) {
+			font-size: functions.em(22px, rem);
+		}
+		cite {
+			font-size: functions.em(theme.$font-size-global, em, 22px);
+		}
+	}

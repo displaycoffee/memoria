@@ -1,0 +1,20 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// DESIGN - ACCORDION
+//// --------------------------------------------------------------------------
+
+	// Imports
+
+	@use './_accordion-heading';
+	@use './_accordion-item';
+	@use './_accordion-panel';
+
+	// Style block
+
+	// .wp-block-accordion {
+	// 	// This block has customizable padding, border-box makes that more predictable.
+	// 	box-sizing: border-box;
+	// }

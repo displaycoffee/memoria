@@ -5,12 +5,12 @@
 //// BLOCKS
 //// --------------------------------------------------------------------------
 
-	// Style block
+	// Imports
 
-	@use 'common';
-	@use 'design';
-	@use 'embed';
-	@use 'media';
-	@use 'text';
-	@use 'theme';
-	@use 'widgets';
+	@use 'wp/blocks/children/common/styles/common';
+	@use 'wp/blocks/children/design/styles/design';
+	@use 'wp/blocks/children/embed/styles/embed';
+	@use 'wp/blocks/children/media/styles/media';
+	@use 'wp/blocks/children/text/styles/text';
+	@use 'wp/blocks/children/theme/styles/theme';
+	@use 'wp/blocks/children/widgets/styles/widgets';

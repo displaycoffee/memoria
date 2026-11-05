@@ -1,5 +1,6 @@
 /* Scripts */
 import { utilsBrowser } from '@/_core/scripts/utils';
+import { accordion } from '@/wp/blocks/children/design/accordion/scripts/accordion';
 import { blocks } from '@/components/blocks/scripts/blocks';
 import { comments } from '@/wp/comments/scripts/comments';
 import { dropdown } from '@/components/dropdown/scripts/dropdown';
@@ -25,6 +26,7 @@ export const container = {
 	pageLoad: () => {
 		// Runs after the first load and every ClientRouter navigation
 		container.setMinHeight();
+		accordion.update();
 		blocks.revealAll('.section', 'section-visible');
 		comments.load();
 		forms.clearable.update();
@@ -35,6 +37,7 @@ export const container = {
 	init: () => {
 		// Note: call once, since the listeners stay on document across navigations
 		// Astro doesn't re-run the script after a ClientRouter navigation, but it does dispatch astro:page-load after every navigation (including the first load)
+		accordion.init();
 		comments.init();
 		dropdown.init();
 		entryContent.init();

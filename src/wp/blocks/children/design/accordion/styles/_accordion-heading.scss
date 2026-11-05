@@ -8,6 +8,42 @@
 
 	// Style block
 
+	.wp-block-accordion-heading {
+		.wp-block-accordion-heading__toggle {
+			@include mixins.flex-display(flex);
+			@include mixins.flex-parent(justify-content, flex-start);
+			@include mixins.gap(theme.$spacing-x2);
+			width: 100%;
+			border: 0;
+			background-color: transparent;
+			padding: 0;
+			font-family: theme.$font-family-body;
+			font-size: functions.em(16px, rem);
+			line-height: 1.5;
+			text-align: left;
+			text-transform: none;
+			cursor: pointer;
+			&:not(:focus-visible) {
+				outline: 0;
+			}
+			&:hover .wp-block-accordion-heading__toggle-title {
+				text-decoration: none;
+			}
+			.wp-block-accordion-heading__toggle-title {
+				@include mixins.flex;
+			}
+			.wp-block-accordion-heading__toggle-icon {
+				@include mixins.flex(0 1 auto);
+				@include mixins.flex-layout((display: inline-flex, flex-flow: column nowrap));
+				@include mixins.sizing(theme.$icon-xl, theme.$icon-xl);
+				line-height: theme.$icon-xl;
+				font-weight: 400;
+				font-size: theme.$icon-xl;
+				text-align: center;
+			}
+		}	
+	}
+
 	// .wp-block-accordion-heading__toggle {
 	// 	font-family: inherit;
 	// 	font-size: inherit;

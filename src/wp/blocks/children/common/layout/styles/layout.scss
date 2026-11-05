@@ -24,42 +24,57 @@
 		grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
 	}
 	.is-layout-flow {
-		& > .alignleft {
-			float: left;
-			margin-inline-start: 0;
-			margin-inline-end: theme.$spacing-x4;
-		}
-		& > .alignright {
-			float: right;
-			margin-inline-start: theme.$spacing-x4;
-			margin-inline-end: 0;
-		}
-		& > .aligncenter {
-			margin-left: auto;
-			margin-right: auto;
+		& > {
+			.alignleft {
+				float: left;
+				margin-inline-start: 0;
+				margin-inline-end: theme.$spacing-x4;
+			}
+			.alignright {
+				float: right;
+				margin-inline-start: theme.$spacing-x4;
+				margin-inline-end: 0;
+			}
+			.aligncenter {
+				margin-left: auto;
+				margin-right: auto;
+			}
 		}
 	}
 	.is-layout-constrained {
-		& > .alignleft {
-			float: left;
-			margin-inline-start: 0;
-			margin-inline-end: theme.$spacing-x4;
+		& > {
+			.alignleft {
+				float: left;
+				margin-inline-start: 0;
+				margin-inline-end: theme.$spacing-x4;
+			}
+			.alignright {
+				float: right;
+				margin-inline-start: theme.$spacing-x4;
+				margin-inline-end: 0;
+			}
+			.aligncenter {
+				margin-left: auto;
+				margin-right: auto;
+			}
+			:where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+				max-width: theme.$content-width;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.alignwide {
+				max-width: theme.$container-width;
+			}
 		}
-		& > .alignright {
-			float: right;
-			margin-inline-start: theme.$spacing-x4;
-			margin-inline-end: 0;
+		&.is-content-justification-left {
+			& > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+				margin-left: 0;
+			}
 		}
-		& > .aligncenter {
-			margin-left: auto;
-			margin-right: auto;
+		&.is-content-justification-right {
+			& > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+				margin-right: 0;
+			}
 		}
-		& > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-			max-width: theme.$content-width;
-			margin-left: auto;
-			margin-right: auto;
-		}
-		& > .alignwide {
-			max-width: theme.$container-width;
-		}
+		&.is-content-justification-center {}
 	}

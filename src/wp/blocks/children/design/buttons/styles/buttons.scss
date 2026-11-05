@@ -12,6 +12,56 @@
 
 	// Style block
 
+	.wp-block-buttons {
+		&.is-vertical {
+			@include mixins.flex-direction(column);
+			& > .wp-block-button:last-child {
+				margin-bottom: 0;
+			}
+		}
+		&.is-content-justification-left {
+			@include mixins.flex-parent(justify-content, flex-start);
+			&.is-vertical {
+				@include mixins.flex-parent(align-items, flex-start);
+			}
+		}
+		&.is-content-justification-center {
+			@include mixins.flex-parent(justify-content, center);
+			&.is-vertical {
+				@include mixins.flex-parent(align-items, center);
+			}
+		}
+		&.is-content-justification-right {
+			@include mixins.flex-parent(justify-content, flex-end);
+			&.is-vertical {
+				@include mixins.flex-parent(align-items, flex-end);
+			}
+		}
+		&.is-content-justification-space-between {
+			@include mixins.flex-parent(justify-content, space-between);
+		}
+		&.aligncenter {
+			text-align: center;
+		}
+		&[style*='text-decoration'] {
+			.wp-block-button, .wp-block-button > .wp-block-button__link {
+				text-decoration: inherit;
+			}
+		}
+		&.has-custom-font-size {
+			.wp-block-button > .wp-block-button__link {
+				font-size: inherit;
+			}
+		}
+		& > .wp-block-button {
+			display: inline-block;
+			margin: 0;
+		}
+		.wp-block-button > .wp-block-button__link {
+			width: 100%;
+		}
+	}	
+
 	// // This variable is repeated across Button, Buttons, and Buttons editor styles.
 	// $blocks-block__margin: 0.5em;
 
@@ -106,56 +156,4 @@
 	// // Legacy buttons that did not come in a wrapping container.
 	// .wp-block-button.aligncenter {
 	// 	text-align: center;
-	// }
-
-	// OLD
-
-	// .wp-block-buttons {
-	// 	&.is-vertical {
-	// 		@include mixins.flex-direction(column);
-	// 		& > .wp-block-button:last-child {
-	// 			margin-bottom: 0;
-	// 		}
-	// 	}
-	// 	&.is-content-justification-left {
-	// 		@include mixins.flex-parent(justify-content, flex-start);
-	// 		&.is-vertical {
-	// 			@include mixins.flex-parent(align-items, flex-start);
-	// 		}
-	// 	}
-	// 	&.is-content-justification-center {
-	// 		@include mixins.flex-parent(justify-content, center);
-	// 		&.is-vertical {
-	// 			@include mixins.flex-parent(align-items, center);
-	// 		}
-	// 	}
-	// 	&.is-content-justification-right {
-	// 		@include mixins.flex-parent(justify-content, flex-end);
-	// 		&.is-vertical {
-	// 			@include mixins.flex-parent(align-items, flex-end);
-	// 		}
-	// 	}
-	// 	&.is-content-justification-space-between {
-	// 		@include mixins.flex-parent(justify-content, space-between);
-	// 	}
-	// 	&.aligncenter {
-	// 		text-align: center;
-	// 	}
-	// 	&[style*='text-decoration'] {
-	// 		.wp-block-button, .wp-block-button > .wp-block-button__link {
-	// 			text-decoration: inherit;
-	// 		}
-	// 	}
-	// 	&.has-custom-font-size {
-	// 		.wp-block-button > .wp-block-button__link {
-	// 			font-size: inherit;
-	// 		}
-	// 	}
-	// 	& > .wp-block-button {
-	// 		display: inline-block;
-	// 		margin: 0;
-	// 	}
-	// 	.wp-block-button > .wp-block-button__link {
-	// 		width: 100%;
-	// 	}
 	// }

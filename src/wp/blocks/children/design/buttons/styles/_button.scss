@@ -9,6 +9,69 @@
 
 	// Style block
 
+	.wp-block-button {
+		&[style*='text-decoration'] .wp-block-button__link {
+			text-decoration: inherit;
+		}
+		.wp-block-button__link {
+			cursor: pointer;
+			@extend %buttons;
+			@extend %button;
+			@include mixins.border-radius(0);
+			@extend %button-primary;
+			&.has-background:not(.has-border-color) {
+				&, &:hover {
+					border-color: transparent;
+				}
+			}
+			&.aligncenter {
+				text-align: center;
+			}
+			&.alignright {
+				text-align: right;
+			}
+		}
+	}
+	.wp-block-button.is-style-outline > .wp-block-button__link {
+		// Outline style: a currentColor border around the surrounding text color, with picked colors still winning (palette classes are !important)
+		// Note: :not() adds the specificity to beat %button-primary's hover and the transparent border above, so the outline stays on hover
+		&:not(.has-border-color) {
+			&, &:hover {
+				border-color: currentColor;
+			}
+		}
+		&:not(.has-text-color) {
+			color: inherit;
+		}
+		&:not(.has-background) {
+			background-color: transparent;
+			background-image: none;
+		}
+	}
+	.wp-block-buttons > .wp-block-button {
+		&.has-custom-width {
+			max-width: none;
+			.wp-block-button__link {
+				width: 100%;
+			}
+		}
+		&.has-custom-font-size {
+			.wp-block-button__link {
+				font-size: inherit;
+			}
+		}
+		&[class*='wp-block-button__width'] {
+			// Percentage widths (--wp--block-button--width is set inline), minus this button's share of the gap so they fit on one row
+			width: calc(var(--wp--block-button--width) * 1% - #{theme.$spacing-x4} * (1 - var(--wp--block-button--width) / 100));
+		}
+	}
+	.wp-block-buttons.is-vertical > .wp-block-button {
+		&[class*='wp-block-button__width'] {
+			// Vertical buttons are stacked, so the gap doesn't factor into their width
+			width: calc(var(--wp--block-button--width) * 1%);
+		}
+	}	
+
 	// // This variable is repeated across Button, Buttons, and Buttons editor styles.
 	// $blocks-block__margin: 0.5em;
 
@@ -174,48 +237,5 @@
 	// 		background-color: transparent;
 	// 		// background-image is required to overwrite a gradient background
 	// 		background-image: none;
-	// 	}
-	// }
-
-	// OLD
-
-	// .wp-block-button {
-	// 	&[style*='text-decoration'] .wp-block-button__link {
-	// 		text-decoration: inherit;
-	// 	}
-	// 	.wp-block-button__link {
-	// 		cursor: pointer;
-	// 		@extend %buttons;
-	// 		@extend %button;
-	// 		@extend %button-primary;
-	// 		&.aligncenter {
-	// 			text-align: center;
-	// 		}
-	// 		&.alignright {
-	// 			text-align: right;
-	// 		}
-	// 	}
-	// }
-	// .wp-block-buttons > .wp-block-button {
-	// 	&.has-custom-width {
-	// 		max-width: none;
-	// 		.wp-block-button__link {
-	// 			width: 100%;
-	// 		}
-	// 	}
-	// 	&.has-custom-font-size {
-	// 		.wp-block-button__link {
-	// 			font-size: inherit;
-	// 		}
-	// 	}
-	// 	&[class*='wp-block-button__width'] {
-	// 		// Percentage widths (--wp--block-button--width is set inline), minus this button's share of the gap so they fit on one row
-	// 		width: calc(var(--wp--block-button--width) * 1% - #{theme.$spacing-x4} * (1 - var(--wp--block-button--width) / 100));
-	// 	}
-	// }
-	// .wp-block-buttons.is-vertical > .wp-block-button {
-	// 	&[class*='wp-block-button__width'] {
-	// 		// Vertical buttons are stacked, so the gap doesn't factor into their width
-	// 		width: calc(var(--wp--block-button--width) * 1%);
 	// 	}
 	// }

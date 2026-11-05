@@ -6,7 +6,32 @@
 //// ACCORDION - PANEL
 //// --------------------------------------------------------------------------
 
+	// Configuration
+
+	$accordion-duration: theme.$duration-base; // duration of open / close transitions
+	$accordion-transform-closed: translateY(-4px); // content position when closed - slides and grows slightly from the button
+	$accordion-transition-closed: opacity $accordion-duration ease, transform $accordion-duration ease, visibility $accordion-duration, z-index 0s $accordion-duration; // transition properties for closing - z-index drop is delayed until the close finishes
+	$accordion-transition-open: opacity $accordion-duration ease, transform $accordion-duration ease, visibility $accordion-duration; // transition properties for opening
+
 	// Style block
+
+	.wp-block-accordion-panel {
+		@include mixins.transition($accordion-transition-open);
+		z-index: 1;
+		opacity: 1;
+		visibility: visible;
+		transform: none;		
+		&[hidden] {
+			@include mixins.position($type: absolute, $top: auto, $left: 0, $right: 0, $z: -1);
+			opacity: 0;
+			visibility: hidden;
+			@include mixins.transition($accordion-transition-closed);
+			transform-origin: top;
+			@media (prefers-reduced-motion: no-preference) {
+				transform: $accordion-transform-closed;
+			}
+		}
+	}
 
 	// .wp-block-accordion-panel {
 	// 	// Prevent blockGap, borders, box-shadows, and padding from adding extra spacing or rendering when the panel is closed.

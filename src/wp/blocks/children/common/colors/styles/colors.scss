@@ -30,13 +30,13 @@
 
 	@each $slug, $color in $colors-default {
 		.has-#{$slug}-color {
-			color: $color;
+			color: $color !important;
 		}
 		.has-#{$slug}-background-color {
-			background-color: $color;
+			background-color: $color !important;
 		}
 		.has-#{$slug}-border-color {
-			border-color: $color;
+			border-color: $color !important;
 		}
 	}
 
@@ -45,7 +45,7 @@
 
 	// Style block
 
-	// The presets, SVG filters and filter rules live in wp/blocks/Duotone.tsx, so the colors are only in one place
+	// The presets, SVG filters and filter rules live in wp/blocks/Colors.tsx, so the colors are only in one place
 	// Note: keep the SVG out of the way without display: none, which stops some browsers from applying its filters
 	.duotone-filters {
 		@include mixins.position($type: absolute, $top: 0, $left: 0);
@@ -76,7 +76,7 @@
 	// Style block
 
 	@each $slug, $color in $colors-gradient {
-		.has-#{$slug}-background-color {
+		.has-#{$slug}-gradient-background {
 			background: linear-gradient(135deg, #{$color} 100%);
 		}
 	}

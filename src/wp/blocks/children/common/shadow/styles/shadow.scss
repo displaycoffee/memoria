@@ -1,0 +1,22 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// COMMON - SHADOW
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$shadow-presets: (crisp, deep, natural, outlined, sharp); // WordPress's default shadow presets, each matching a --shadow-* token so they follow the theme
+
+	// Style block
+
+	// WordPress writes picked shadows inline as box-shadow: var(--wp--preset--shadow--{slug}), and only defines those variables on its own pages, so point them at memoria's tokens
+	// Note: the tokens can't be named --wp--preset--* themselves, since the token generator's kebab-case names collapse the double dashes
+	// Note: the theme overrides are on :root too, so these resolve to the current theme's shadow
+	:root {
+		@each $slug in $shadow-presets {
+			--wp--preset--shadow--#{$slug}: var(--shadow-#{$slug});
+		}
+	}

@@ -1,0 +1,60 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// DESIGN - COLUMN
+//// --------------------------------------------------------------------------
+
+	.wp-block-column {
+		word-break: normal;
+		overflow-wrap: break-word;
+		&.is-vertically-aligned-top {
+			align-self: flex-start;
+		}
+		&.is-vertically-aligned-center {
+			align-self: center;
+		}
+		&.is-vertically-aligned-bottom {
+			align-self: flex-end;
+		}
+		&.is-vertically-aligned-stretch {
+			align-self: stretch;
+		}	
+	}
+
+	// .wp-block-column {
+	// 	flex-grow: 1;
+
+	// 	// Prevent the columns from growing wider than their distributed sizes.
+	// 	min-width: 0;
+
+	// 	// Prevent long unbroken words from overflowing.
+	// 	word-break: normal;
+	// 	overflow-wrap: break-word;
+
+	// 	/**
+	// 	* Individual Column Alignment
+	// 	*/
+	// 	&.is-vertically-aligned-top {
+	// 		align-self: flex-start;
+	// 	}
+
+	// 	&.is-vertically-aligned-center {
+	// 		align-self: center;
+	// 	}
+
+	// 	&.is-vertically-aligned-bottom {
+	// 		align-self: flex-end;
+	// 	}
+
+	// 	&.is-vertically-aligned-stretch {
+	// 		align-self: stretch;
+	// 	}
+
+	// 	&.is-vertically-aligned-top,
+	// 	&.is-vertically-aligned-center,
+	// 	&.is-vertically-aligned-bottom {
+	// 		width: 100%;
+	// 	}
+	// }

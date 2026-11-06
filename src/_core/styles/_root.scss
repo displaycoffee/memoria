@@ -58,6 +58,11 @@
 	--duration-fast: 0.15s;
 	--duration-base: 0.35s;
 	--duration-slow: 0.6s;
+	--shadow-crisp: 6px 6px 0 rgb(0, 0, 0);
+	--shadow-deep: 12px 12px 50px rgba(0, 0, 0, 0.4);
+	--shadow-natural: 6px 6px 9px rgba(0, 0, 0, 0.2);
+	--shadow-outlined: 6px 6px 0 -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);
+	--shadow-sharp: 6px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -82,6 +87,11 @@
 		--color-link-underline: inherit;
 		--color-link-underline-hover: inherit;
 		--color-scrollbar-bg: #1a1a1a;
+		--shadow-crisp: 6px 6px 0 rgb(255, 255, 255);
+		--shadow-deep: 12px 12px 50px rgba(255, 255, 255, 0.4);
+		--shadow-natural: 6px 6px 9px rgba(255, 255, 255, 0.2);
+		--shadow-outlined: 6px 6px 0 -3px rgb(0, 0, 0), 6px 6px rgb(255, 255, 255);
+		--shadow-sharp: 6px 6px 0 rgba(255, 255, 255, 0.2);
 	}
 }
 
@@ -106,4 +116,9 @@
 	--color-link-underline: inherit;
 	--color-link-underline-hover: inherit;
 	--color-scrollbar-bg: #1a1a1a;
+	--shadow-crisp: 6px 6px 0 rgb(255, 255, 255);
+	--shadow-deep: 12px 12px 50px rgba(255, 255, 255, 0.4);
+	--shadow-natural: 6px 6px 9px rgba(255, 255, 255, 0.2);
+	--shadow-outlined: 6px 6px 0 -3px rgb(0, 0, 0), 6px 6px rgb(255, 255, 255);
+	--shadow-sharp: 6px 6px 0 rgba(255, 255, 255, 0.2);
 }

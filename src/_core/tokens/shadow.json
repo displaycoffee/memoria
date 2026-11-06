@@ -1,0 +1,12 @@
+{
+	"shadow": {
+		"crisp": { "$value": "6px 6px 0 rgb(0, 0, 0)", "$extensions": { "dark": "6px 6px 0 rgb(255, 255, 255)" } },
+		"deep": { "$value": "12px 12px 50px rgba(0, 0, 0, 0.4)", "$extensions": { "dark": "12px 12px 50px rgba(255, 255, 255, 0.4)" } },
+		"natural": { "$value": "6px 6px 9px rgba(0, 0, 0, 0.2)", "$extensions": { "dark": "6px 6px 9px rgba(255, 255, 255, 0.2)" } },
+		"outlined": {
+			"$value": "6px 6px 0 -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0)",
+			"$extensions": { "dark": "6px 6px 0 -3px rgb(0, 0, 0), 6px 6px rgb(255, 255, 255)" }
+		},
+		"sharp": { "$value": "6px 6px 0 rgba(0, 0, 0, 0.2)", "$extensions": { "dark": "6px 6px 0 rgba(255, 255, 255, 0.2)" } }
+	}
+}

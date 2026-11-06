@@ -1,12 +1,56 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
+@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
+@use 'layout/container/styles/_extends';
 
 //// DESIGN - COLUMNS
 //// --------------------------------------------------------------------------
 
+	// Imports
+
+	@use './_column';
+
 	// Style block
+
+	.wp-block-columns {
+		@extend %flex-wrap;
+		@include mixins-custom.has-background;
+		&:not(.is-not-stacked-on-mobile) {
+			& > .wp-block-column {
+				@include mixins.flex(1 1 100%);
+			}			
+		}
+		&.is-not-stacked-on-mobile {
+			@include mixins.flex-wrap(nowrap);
+			& > .wp-block-column {
+				@include mixins.flex;
+			}
+		}
+		&.are-vertically-aligned-top {
+			@include mixins.flex-parent(align-items, flex-start);
+		}
+		&.are-vertically-aligned-center {
+			@include mixins.flex-parent(align-items, center);
+		}
+		&.are-vertically-aligned-bottom {
+			@include mixins.flex-parent(align-items, flex-end);
+		}
+		& > .wp-block-column {
+			min-width: 1px;
+			& > * {
+				margin-bottom: 0;
+			}
+		}
+		@include mixins.respond(theme.$breakpoint-md) {
+			&:not(.is-not-stacked-on-mobile) {
+				& > .wp-block-column {
+					@include mixins.flex;
+				}
+			}
+		}
+	}
 
 	// .wp-block-columns {
 	// 	display: flex;
@@ -94,38 +138,3 @@
 	// }
 
 
-	// .wp-block-column {
-	// 	flex-grow: 1;
-
-	// 	// Prevent the columns from growing wider than their distributed sizes.
-	// 	min-width: 0;
-
-	// 	// Prevent long unbroken words from overflowing.
-	// 	word-break: normal;
-	// 	overflow-wrap: break-word;
-
-	// 	/**
-	// 	* Individual Column Alignment
-	// 	*/
-	// 	&.is-vertically-aligned-top {
-	// 		align-self: flex-start;
-	// 	}
-
-	// 	&.is-vertically-aligned-center {
-	// 		align-self: center;
-	// 	}
-
-	// 	&.is-vertically-aligned-bottom {
-	// 		align-self: flex-end;
-	// 	}
-
-	// 	&.is-vertically-aligned-stretch {
-	// 		align-self: stretch;
-	// 	}
-
-	// 	&.is-vertically-aligned-top,
-	// 	&.is-vertically-aligned-center,
-	// 	&.is-vertically-aligned-bottom {
-	// 		width: 100%;
-	// 	}
-	// }

@@ -21,7 +21,7 @@
 			@extend %button-primary;
 			&.has-background:not(.has-border-color) {
 				&, &:hover {
-					border-color: transparent;
+					border-width: 0;
 				}
 			}
 			&.aligncenter {

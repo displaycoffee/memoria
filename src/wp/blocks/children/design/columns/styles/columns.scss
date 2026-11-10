@@ -39,9 +39,6 @@
 		}
 		& > .wp-block-column {
 			min-width: 1px;
-			& > * {
-				margin-bottom: 0;
-			}
 		}
 		@include mixins.respond(theme.$breakpoint-md) {
 			&:not(.is-not-stacked-on-mobile) {

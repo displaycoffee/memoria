@@ -15,6 +15,16 @@
 			margin: 0;
 		}
 	}
+	.is-layout-flow, .is-layout-constrained {
+		// Space out stacked children, like WordPress's block gap (nested groups have no margin of their own, since margin-trim only reaches the entry content's direct children)
+		// Note: margin-bottom only, so constrained layout's auto left and right margins stay
+		& > * {
+			margin-bottom: theme.$spacing-x4;
+		}
+		& > :last-child {
+			margin-bottom: 0;
+		}
+	}
 	.is-layout-flex {
 		@extend %flex-wrap;
 		@extend %flex-align-items-center;

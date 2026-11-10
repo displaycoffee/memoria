@@ -15,8 +15,8 @@
 	// Style block
 
 	.wp-block-columns {
-		@extend %flex-wrap;
 		@include mixins-custom.has-background;
+		@extend %flex-wrap;
 		&:not(.is-not-stacked-on-mobile) {
 			& > .wp-block-column {
 				@include mixins.flex(1 1 100%);
@@ -47,6 +47,9 @@
 				}
 			}
 		}
+	}
+	:where(.wp-block-columns) {
+		margin-bottom: theme.$spacing-x4;
 	}
 
 	// .wp-block-columns {

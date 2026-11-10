@@ -8,6 +8,11 @@
 
 	// Style block
 
+	.wp-block-group {}
+	:where(.wp-block-group.wp-block-group-is-layout-constrained) {
+		position: relative;
+	}
+
 	// .wp-block-group {
 	// 	// This block has customizable padding, border-box makes that more predictable.
 	// 	box-sizing: border-box;

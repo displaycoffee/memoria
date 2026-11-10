@@ -27,6 +27,10 @@
 		&:not([class*='-font-size'], [style*='font-size']) {
 			font-size: functions.em(22px, rem);
 		}
+		& :where(cite) {
+			color: inherit;
+			display: block;
+		}
 		blockquote {
 			margin-bottom: 0;
 		}

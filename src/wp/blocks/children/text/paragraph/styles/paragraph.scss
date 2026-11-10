@@ -30,3 +30,6 @@
 			}
 		}
 	}
+	:where(p.has-text-color:not(.has-link-color)) a {
+		color: inherit;
+	}

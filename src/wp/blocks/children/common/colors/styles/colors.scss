@@ -51,7 +51,7 @@
 
 	// Style block
 
-	// The presets, SVG filters and filter rules live in wp/blocks/Colors.tsx, so the colors are only in one place
+	// The presets, SVG filters and filter rules live in wp/blocks/children/common/colors/Colors.tsx, so the colors are only in one place
 	// Note: keep the SVG out of the way without display: none, which stops some browsers from applying its filters
 	.duotone-filters {
 		@include mixins.position($type: absolute, $top: 0, $left: 0);

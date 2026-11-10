@@ -14,8 +14,11 @@
 		white-space: pre-wrap;
 		word-break: normal;
 		overflow-wrap: break-word;
-		font-family: inherit;
 		&.has-fit-text {
 			white-space: pre !important;
 		}
+	}
+	:where(pre.wp-block-verse) {
+		min-width: 1em;
+		font-family: inherit;
 	}

@@ -113,6 +113,7 @@ type Page = {
 	id: string;
 	image: Image;
 	slug: string;
+	styles: string;
 	title: string;
 	url: string;
 };
@@ -125,10 +126,10 @@ type PageSearchResults = {
 };
 
 type PageRaw = {
-	content: string;
 	featuredImage?: ImageRawNode;
 	hideSidebar?: boolean;
 	pageId: number;
+	renderedContent?: RenderedContentRaw | null;
 	slug: string;
 	title: string;
 	uri: string;
@@ -146,6 +147,7 @@ type Post = {
 	id: string;
 	image: Image;
 	slug: string;
+	styles: string;
 	tags: Tags;
 	title: string;
 	url: string;
@@ -165,12 +167,12 @@ type PostRaw = {
 	categories: {
 		nodes: CategoriesRaw;
 	};
-	content: string;
 	date: string;
 	excerpt: string;
 	featuredImage?: ImageRawNode;
 	hideSidebar?: boolean;
 	postId: number;
+	renderedContent?: RenderedContentRaw | null;
 	slug: string;
 	tags: {
 		nodes: TagsRaw;
@@ -180,6 +182,11 @@ type PostRaw = {
 };
 
 type PostsRaw = PostRaw[];
+
+type RenderedContentRaw = {
+	html?: string | null;
+	styles?: string | null;
+};
 
 type Site = {
 	description: string;
@@ -356,6 +363,8 @@ declare global {
 	type PostRawType = PostRaw;
 
 	type PostsRawType = PostsRaw;
+
+	type RenderedContentRawType = RenderedContentRaw;
 
 	type SiteType = Site;
 

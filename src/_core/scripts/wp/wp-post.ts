@@ -33,13 +33,14 @@ export const wpPost = {
 		return {
 			author: wpAuthor.format(post.author?.node),
 			categories: categories,
-			content: wpContent.format(post.content),
+			content: wpContent.format(post.renderedContent?.html ?? ''),
 			date: utils.getDate(post.date),
 			excerpt: utils.truncate(utils.stripHTML(post.excerpt), 300),
 			hideSidebar: post?.hideSidebar ?? false,
 			id: `post-${post.postId}`,
 			image: wpImage.format(`${post.title} - Featured Image`, post?.featuredImage),
 			slug: post.slug,
+			styles: post.renderedContent?.styles ?? '',
 			tags: tags,
 			title: post.title,
 			url: post.uri,
@@ -104,7 +105,6 @@ export const wpPost = {
 			categories {
 				${wpCategory.query('nodes')}
 			}
-			content
 			date
 			excerpt(format: RENDERED)
 			featuredImage {
@@ -112,6 +112,10 @@ export const wpPost = {
 			}
 			hideSidebar
 			postId
+			renderedContent {
+				html
+				styles
+			}
 			slug
 			tags {
 				nodes {

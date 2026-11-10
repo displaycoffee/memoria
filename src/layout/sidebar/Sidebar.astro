@@ -23,6 +23,9 @@ if (slug) {
 	<aside class="sidebar margin-trim">
 		{sidebar?.title ? <h3>{sidebar.title}</h3> : null}
 
+		{/* Block support CSS for the sidebar page's content, like EntryStyles in Entry.tsx (is:inline so Astro doesn't scope or bundle it) */}
+		{sidebar?.styles ? <style is:inline set:html={sidebar.styles} /> : null}
+
 		<div class="sidebar-content" set:html={sidebar.content} />
 	</aside>
 ) : null}

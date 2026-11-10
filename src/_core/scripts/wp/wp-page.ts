@@ -15,12 +15,13 @@ export const wpPage = {
 		// Format page data
 		// Return formatted data
 		return {
-			content: wpContent.format(page.content),
-			excerpt: utils.truncate(utils.stripHTML(page.content), 300),
+			content: wpContent.format(page.renderedContent?.html ?? ''),
+			excerpt: utils.truncate(utils.stripHTML(page.renderedContent?.html ?? ''), 300),
 			hideSidebar: page?.hideSidebar ?? false,
 			id: `page-${page.pageId}`,
 			image: wpImage.format(`${page.title} - Featured Image`, page?.featuredImage),
 			slug: page.slug,
+			styles: page.renderedContent?.styles ?? '',
 			title: page.title,
 			url: page.uri,
 		};
@@ -95,12 +96,15 @@ export const wpPage = {
 	query: (format: GraphQLQueryFormatType, pageSize?: number) => {
 		// Shared query function for fetching page data
 		const query = `
-			content
 			featuredImage {
 				${wpImage.query('node', settings.imageSize)}
 			}
 			hideSidebar
 			pageId
+			renderedContent {
+				html
+				styles
+			}
 			slug
 			title
 			uri

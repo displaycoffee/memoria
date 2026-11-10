@@ -28,6 +28,12 @@
 
 	// Style block
 
+	// WordPress's own CSS (e.g. per-block link colors from renderedContent's styles) uses --wp--preset--{type}--{slug} variables, which it only defines on its own pages
+	:root {
+		@each $slug, $color in $colors-default {
+			--wp--preset--color--#{$slug}: #{$color};
+		}
+	}
 	@each $slug, $color in $colors-default {
 		.has-#{$slug}-color {
 			color: $color !important;
@@ -75,6 +81,11 @@
 
 	// Style block
 
+	:root {
+		@each $slug, $color in $colors-gradient {
+			--wp--preset--gradient--#{$slug}: linear-gradient(135deg, #{$color} 100%);
+		}
+	}
 	@each $slug, $color in $colors-gradient {
 		.has-#{$slug}-gradient-background {
 			background: linear-gradient(135deg, #{$color} 100%);
@@ -86,19 +97,32 @@
 
 	// Configuration
 	
-	$colors-theme: (body, bg, highlight, link); // palette slugs from memoria-headless theme.json, each matching a --color-* variable so they follow the theme
+	// palette slugs from memoria-headless theme.json and the --color-* variable each one uses, so they follow the theme
+	// Note: the link color's slug is link-body, since a "link" slug would make WordPress's .has-link-color palette class, which clashes with the has-link-color class it adds to any block with a link color
+	$colors-theme: (
+		'body': body,
+		'bg': bg,
+		'highlight': highlight,
+		'link-body': link,
+	);	
 	
 	// Style block
 
-	@each $slug in $colors-theme {
+	// Note: the theme overrides are on :root too, so these resolve to the current theme's color
+	:root {
+		@each $slug, $token in $colors-theme {
+			--wp--preset--color--#{$slug}: var(--color-#{$token});
+		}
+	}
+	@each $slug, $token in $colors-theme {
 		.has-#{$slug}-color {
-			color: var(--color-#{$slug});
+			color: var(--color-#{$token});
 		}
 		.has-#{$slug}-background-color {
-			background-color: var(--color-#{$slug});
+			background-color: var(--color-#{$token});
 		}
 		.has-#{$slug}-border-color {
-			border-color: var(--color-#{$slug});
+			border-color: var(--color-#{$token});
 		}
 	}
 

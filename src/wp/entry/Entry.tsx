@@ -34,6 +34,8 @@ export const Entry = (props: EntryProps) => {
 
 				<EntryMeta data={data} />
 
+				<EntryStyles data={data} />
+
 				<div className="entry-content margin-trim" dangerouslySetInnerHTML={{ __html: data.content }}></div>
 
 				<EntryTaxonomies data={data} />
@@ -137,6 +139,16 @@ const EntryMeta = (props: EntryBlockProps) => {
 			<span className="entry-date">{data.date}</span>
 		</div>
 	);
+};
+
+const EntryStyles = (props: EntryBlockProps) => {
+	const { data } = props;
+
+	// Block support CSS for the content's wp-container-* / wp-elements-* classes (renderedContent's styles, from memoria-headless), which WordPress only prints in its own page head
+	// Note: only used on posts and pages; the CSS goes through dangerouslySetInnerHTML so React doesn't escape the > in its selectors
+	if (!('styles' in data) || !data.styles) return null;
+
+	return <style dangerouslySetInnerHTML={{ __html: data.styles }} />;
 };
 
 const EntryTaxonomies = (props: EntryBlockProps) => {

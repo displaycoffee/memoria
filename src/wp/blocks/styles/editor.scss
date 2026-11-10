@@ -18,6 +18,7 @@
 	// Note: the canvas uses memoria's background and text colors, since _root switches color-scheme to dark with the OS, but WordPress keeps the canvas white
 	// Note: block styles are nested in .editor-styles-wrapper, since this file also loads on the admin page around the editor's iframe (e.g. memoria's h1 - h6 rules would style the sidebar's panel headings)
 	// Note: body text styles are set here, since _typography's html and body rules don't match once nested (the iframe's body is .editor-styles-wrapper)
+	// Note: typography and block styles are nested in :where(), so they keep the same specificity as on the frontend. Nesting in .editor-styles-wrapper itself would add a class and beat the editor's per-block styles (e.g. a grid's column count in .wp-container-core-group-is-layout-*), which only have one
 
 	.editor-styles-wrapper {
 		background-color: theme.$color-bg;
@@ -28,6 +29,8 @@
 		*, *:after, *:before {
 			box-sizing: border-box;
 		}
+	}
+	:where(.editor-styles-wrapper) {
 		@include meta.load-css('layout/container/styles/_typography');
 		@include meta.load-css('wp/blocks/styles/blocks');
 		@include mixins-custom.margin-trim('.is-root-container');

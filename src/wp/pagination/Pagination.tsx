@@ -2,7 +2,7 @@
 import './styles/pagination.scss';
 
 /* Scripts */
-import type { PageAnchorAttributesType, PageType, PaginationProps, PaginationNavigationProps } from './scripts/pagination-types';
+import type { PageType, PaginationProps, PaginationNavigationProps } from './scripts/pagination-types';
 
 /* Componentns */
 import { List } from '@/components/blocks/Blocks';
@@ -57,13 +57,10 @@ export const Pagination = (props: PaginationProps) => {
 
 					// Check if page is active
 					const isActive = item.number === page.currentPage;
-					const linkAttributes: PageAnchorAttributesType = isActive ? { 'aria-current': 'page' } : { className: 'no-decoration' };
 
 					return (
-						<li className="pagination-list-item pagination-list-item-page column" key={item.number}>
-							<a href={pageUrl(item.number)} {...linkAttributes}>
-								{item.number}
-							</a>
+						<li className={`pagination-list-item pagination-list-item-${isActive ? 'page-active' : 'page'} column`} key={item.number}>
+							{isActive ? <span aria-current="page">{item.number}</span> : <a href={pageUrl(item.number)}>{item.number}</a>}
 						</li>
 					);
 				})}

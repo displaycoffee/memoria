@@ -6,7 +6,7 @@
 // WordPress rule for has-background
 @mixin has-background {
 	&:where(.has-background) {
-			padding: theme.$spacing-x4;
+		padding: theme.$spacing-x4;
 	}
 }
 

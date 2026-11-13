@@ -12,11 +12,10 @@
 			&:has(.pagination-list-item-navigation-previous) {
 				margin-left: -#{theme.$spacing-x1};
 			}
-			.pagination-list-item-page a, .pagination-list-item-ellipsis span {
+			span {
 				color: theme.$color-body;
 			}
-			.pagination-list-item-page a[aria-current='page'] {
-				color: theme.$color-link;
+			.pagination-list-item-page-active span {
 				font-weight: theme.$font-weight-body;
 			}
 			.pagination-list-item-navigation a {

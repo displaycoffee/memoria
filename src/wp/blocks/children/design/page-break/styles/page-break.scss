@@ -7,3 +7,17 @@
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	// On an Astro theme, this own't show. The post content sends <!--nextpage-->
+	// For standard WordPress themes, this shows with post-nav-links element. Example:
+	// <p class="post-nav-links">
+	//   Pages: <span class="post-page-numbers current" aria-current="page">1</span><a href="url" class="post-page-numbers">2</a>
+	// </p>
+
+	.post-nav-links {
+		font-weight: theme.$font-weight-body;
+		a, span {
+			font-weight: normal;
+		}
+		.post-page-numbers {}
+	}

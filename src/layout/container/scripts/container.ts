@@ -10,6 +10,7 @@ import { image } from '@/components/image/scripts/image';
 import { overlay } from '@/components/overlay/scripts/overlay';
 import { search } from '@/wp/search/scripts/search';
 import { slideout } from '@/components/slideout/scripts/slideout';
+import { tabs } from '@/wp/blocks/children/design/tabs/scripts/tabs';
 import { themeToggle } from '@/components/theme-toggle/scripts/theme-toggle';
 
 /* Cleanup for the previous page's min-height observer */
@@ -32,6 +33,7 @@ export const container = {
 		forms.clearable.update();
 		image.checkComplete();
 		search.updateType();
+		tabs.update();
 		themeToggle.update();
 	},
 	init: () => {
@@ -46,6 +48,7 @@ export const container = {
 		image.init();
 		overlay.init();
 		slideout.init();
+		tabs.init();
 		themeToggle.init();
 		document.addEventListener('astro:page-load', container.pageLoad);
 	},

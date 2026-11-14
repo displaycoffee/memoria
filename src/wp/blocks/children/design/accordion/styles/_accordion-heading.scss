@@ -9,6 +9,13 @@
 	// Style block
 
 	.wp-block-accordion-heading {
+		// Typography defaults go on the heading and the toggle inherits them, so typography picked in the editor (classes and inline styles on the heading) still reaches the toggle
+		font-family: theme.$font-family-body;
+		line-height: 1.5;
+		text-transform: none;
+		&:not([class*='-font-size']) {
+			font-size: functions.em(16px, rem);
+		}
 		.wp-block-accordion-heading__toggle {
 			@include mixins.flex-display(flex);
 			@include mixins.flex-parent(justify-content, flex-start);
@@ -17,11 +24,11 @@
 			border: 0;
 			background-color: transparent;
 			padding: 0;
-			font-family: theme.$font-family-body;
-			font-size: functions.em(16px, rem);
-			line-height: 1.5;
+			color: inherit;
+			font: inherit;
+			letter-spacing: inherit;
 			text-align: left;
-			text-transform: none;
+			text-transform: inherit;
 			cursor: pointer;
 			&:not(:focus-visible) {
 				outline: 0;
@@ -43,45 +50,3 @@
 			}
 		}	
 	}
-
-	// .wp-block-accordion-heading__toggle {
-	// 	font-family: inherit;
-	// 	font-size: inherit;
-	// 	font-weight: inherit;
-	// 	line-height: inherit;
-	// 	letter-spacing: inherit;
-	// 	text-transform: inherit;
-	// 	text-decoration: inherit;
-	// 	word-spacing: inherit;
-	// 	font-style: inherit;
-	// 	background: none;
-	// 	border: none;
-	// 	color: inherit;
-	// 	padding: var(--wp--preset--spacing--20, 1em) 0;
-	// 	cursor: pointer;
-	// 	overflow: hidden;
-	// 	display: flex;
-	// 	align-items: center;
-	// 	text-align: inherit;
-	// 	width: 100%;
-
-	// 	&:not(:focus-visible) {
-	// 		outline: none;
-	// 	}
-
-	// 	&:hover .wp-block-accordion-heading__toggle-title {
-	// 		text-decoration: underline;
-	// 	}
-	// }
-
-	// .wp-block-accordion-heading__toggle-title {
-	// 	flex: 1;
-	// }
-
-	// .wp-block-accordion-heading__toggle-icon {
-	// 	width: 1.2em;
-	// 	height: 1.2em;
-	// 	display: flex;
-	// 	align-items: center;
-	// 	justify-content: center;
-	// }

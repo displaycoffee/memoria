@@ -8,43 +8,28 @@
 
 	// Style block
 
-	// :where(.wp-block-tab-list button) {
-	// 	box-sizing: border-box;
-	// 	color: inherit;
-	// 	display: block;
-	// 	width: max-content;
-	// 	text-decoration: none;
-	// 	cursor: pointer;
-	// 	flex-basis: inherit !important;
-	// 	flex-grow: inherit !important;
-	// 	position: relative;
-
-	// 	// Button reset
-	// 	border: none;
-	// 	background: none;
-	// 	appearance: none;
-	// 	-webkit-appearance: none;
-
-	// 	margin: 0;
-	// 	padding: var(--wp--preset--spacing--20, 0.5em) var(--wp--preset--spacing--30, 1em);
-
-	// 	// Inherit typography from parent
-	// 	font-size: inherit;
-	// 	font-family: inherit;
-	// 	font-weight: inherit;
-	// 	line-height: inherit;
-	// 	letter-spacing: inherit;
-	// 	text-transform: inherit;
-	// 	text-align: inherit;
-
-	// 	&[aria-selected="true"]::before {
-	// 		content: "";
-	// 		position: absolute;
-	// 		border-bottom: 2px solid currentColor;
-	// 		pointer-events: none;
-	// 		left: 0;
-	// 		width: 100%;
-	// 		bottom: 0;
-	// 	}
-	// }
-	
+	.wp-block-tab-list {
+		button {
+			position: relative;
+			cursor: pointer;
+			padding: 0 0 theme.$spacing-x1 0;
+			background-color: transparent;
+			color: inherit;
+			&:where(.has-background) {
+				padding: theme.$spacing-x2 theme.$spacing-x4;
+			}
+			&[aria-selected='true'] {
+				cursor: default;
+				font-weight: theme.$font-weight-body;
+				&:not([class*='-font-size']) {
+					font-size: functions.em(16px, rem);
+				}
+				&:after {
+					content: '';
+					display: block;
+					@include mixins.position($type: absolute, $bottom: 0, $left: 0, $right: 0);
+					border-bottom: 1px solid currentColor;
+				}
+			}
+		}
+	}

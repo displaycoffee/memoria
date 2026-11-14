@@ -11,7 +11,8 @@
 	.wp-block-accordion-item {
 		position: relative;
 		&.is-open {
-			.wp-block-accordion-heading .wp-block-accordion-heading__toggle .wp-block-accordion-heading__toggle-icon {
+			// Child selector, so an open item doesn't rotate the icons of closed items in nested accordions
+			& > .wp-block-accordion-heading .wp-block-accordion-heading__toggle .wp-block-accordion-heading__toggle-icon {
 				transform: rotate(45deg);
 			}
 		}
@@ -22,18 +23,3 @@
 			}
 		}
 	}
-
-	// .wp-block-accordion-item {
-	// 	&.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon {
-	// 		transform: rotate(45deg);
-	// 	}
-
-	// 	/* Add transitions only for users who do not prefer reduced motion */
-	// 	@media (prefers-reduced-motion: no-preference) {
-	// 		transition: grid-template-rows 0.3s ease-out;
-
-	// 		> .wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon {
-	// 			transition: transform 0.2s ease-in-out;
-	// 		}
-	// 	}
-	// }

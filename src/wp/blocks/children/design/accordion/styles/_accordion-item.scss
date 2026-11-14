@@ -18,7 +18,7 @@
 		}
 		// Add transitions only for users who do not prefer reduced motion
 		@media (prefers-reduced-motion: no-preference) {
-			.wp-block-accordion-heading .wp-block-accordion-heading__toggle .wp-block-accordion-heading__toggle-icon {
+			& > .wp-block-accordion-heading .wp-block-accordion-heading__toggle .wp-block-accordion-heading__toggle-icon {
 				@include mixins.transition(transform theme.$duration-base ease);
 			}
 		}

@@ -15,15 +15,16 @@
 			padding: 0 0 theme.$spacing-x1 0;
 			background-color: transparent;
 			color: inherit;
+			&:not([class*='-font-size']) {
+				font-size: functions.em(16px, rem);
+			}
 			&:where(.has-background) {
 				padding: theme.$spacing-x2 theme.$spacing-x4;
 			}
 			&[aria-selected='true'] {
 				cursor: default;
 				font-weight: theme.$font-weight-body;
-				&:not([class*='-font-size']) {
-					font-size: functions.em(16px, rem);
-				}
+				
 				&:after {
 					content: '';
 					display: block;

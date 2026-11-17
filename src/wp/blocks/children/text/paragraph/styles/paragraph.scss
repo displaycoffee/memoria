@@ -13,7 +13,7 @@
 		@include mixins-custom.has-background;
 		@include mixins-custom.writing-mode;
 		&.has-drop-cap {
-			&:not(:focus)::first-letter {
+			&:not(:focus):first-letter {
 				float: left;
 				margin: theme.$spacing-x1 theme.$spacing-x4 theme.$spacing-x4 -#{theme.$spacing-x1};
 				font-size: functions.em(80px, em, theme.$font-size-global);

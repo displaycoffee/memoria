@@ -3,7 +3,11 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// EMBED - TITOK
+//// EMBED - TIKTOK
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	.wp-block-embed-tiktok {
+		.wp-block-embed__wrapper {}
+	}

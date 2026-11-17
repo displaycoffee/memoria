@@ -30,6 +30,10 @@
 			box-sizing: border-box;
 		}
 	}
+	
+	// Note: lets mixins that need the wrapper as a parent (e.g. embed-responsive) add it, since & is null inside meta.load-css()
+	@include mixins-custom.is-editor;
+
 	:where(.editor-styles-wrapper) {
 		@include meta.load-css('layout/container/styles/_typography');
 		@include meta.load-css('wp/blocks/styles/blocks');

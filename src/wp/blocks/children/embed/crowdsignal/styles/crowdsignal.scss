@@ -7,3 +7,68 @@
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	.wp-block-embed-crowdsignal {
+		.wp-block-embed__wrapper {
+			.css-answer {
+				.css-answer-group {
+					.css-answer-row {
+						.css-answer-input {
+							@include mixins.position($type: relative, $top: 1px);
+							@include mixins.sizing(16px, 16px);
+							border: 1px solid theme.$color-form-field-border;
+							background-color: theme.$color-form-field-bg;
+							&:has(input[type='radio']:checked) {
+								&:after {
+									background-color: theme.$color-form-field-border;
+								}
+							}
+							// Show keyboard focus on the visible circle, since the radio itself is visually hidden
+							&:has(input[type='radio']:focus-visible) {
+								outline: 2px solid currentColor;
+								outline-offset: 2px;
+							}
+							&, &:after {
+								@include mixins.border-radius(50%);
+							}
+							&:after {
+								content: '';
+								display: block;
+								@include mixins.sizing(8px, 8px);
+								@include mixins.position-fill;
+							}
+							input[type='radio'] {
+								@include mixins.sr-only;
+							}
+						}
+					}
+				}
+			}
+			.css-vote {
+				.css-vote-button {
+					cursor: pointer;
+				}
+			}
+		}
+	}
+	:root[data-theme=dark] {
+		.wp-block-embed-crowdsignal {
+			.wp-block-embed__wrapper {
+				.css-answer {
+					.css-answer-group {
+						.css-answer-row {
+							.css-answer-input {
+								border: 1px solid theme.$color-form-field-bg;
+								background-color: theme.$color-form-field-border;
+								&:has(input[type='radio']:checked) {
+									&:after {
+										background-color: theme.$color-form-field-bg;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}

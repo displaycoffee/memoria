@@ -3,6 +3,22 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
+// WordPress caption style
+@mixin caption-style {
+	margin-top: theme.$spacing-x2;
+	margin-bottom: theme.$spacing-x4;
+}
+
+// WordPress theme caption style
+@mixin caption-style-theme {
+	color: theme.$color-body;
+	font-size: functions.em(theme.$font-size-global, rem);
+	text-align: center;
+	// .is-dark-theme & {
+	// 	color: colors.$light-gray-placeholder;
+	// }
+}
+
 // WordPress border styles for embed blocks
 @mixin embed-border($display: inline-block, $border-radius: '', $border-color: theme.$color-border) {
 	position: relative;

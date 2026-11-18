@@ -3,4 +3,12 @@
 
 	// Imports
 
-	@use 'wp/blocks/children/media/sample/styles/sample';
+	@use 'wp/blocks/children/media/audio/styles/audio';
+	@use 'wp/blocks/children/media/cover/styles/cover';
+	@use 'wp/blocks/children/media/file/styles/file';
+	@use 'wp/blocks/children/media/gallery/styles/gallery';
+	@use 'wp/blocks/children/media/icon/styles/icon';
+	@use 'wp/blocks/children/media/image/styles/image';
+	@use 'wp/blocks/children/media/media-text/styles/media-text';
+	@use 'wp/blocks/children/media/playlist/styles/playlist';
+	@use 'wp/blocks/children/media/video/styles/video';

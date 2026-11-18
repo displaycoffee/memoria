@@ -30,8 +30,7 @@
 	.wp-block-embed {
 		overflow-wrap: break-word;
 		:where(figcaption) {
-			margin-top: theme.$spacing-x2;
-			margin-bottom: theme.$spacing-x4;
+			@include mixins-custom.caption-style;
 		}
 		.wp-block-embed__wrapper {
 			position: relative;

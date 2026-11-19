@@ -19,6 +19,7 @@ import Sidebar from '@/layout/sidebar/Sidebar.astro';
 import Footer from '@/layout/footer/Footer.astro';
 import { ThemeToggle } from '@/components/theme-toggle/ThemeToggle';
 import { DuotoneFilters } from '@/wp/blocks/children/common/colors/Colors';
+import { Lightbox } from '@/wp/blocks/children/common/lightbox/Lightbox';
 
 /* Define prop types */
 type Props = ContainerProps;
@@ -85,6 +86,8 @@ const slideoutOptions = {
 		</div>
 
 		<DuotoneFilters />
+
+		<Lightbox />
 
 		<script>
 			import { container } from './scripts/container';

@@ -8,6 +8,133 @@
 
 	// Style block
 
+	figure.wp-block-gallery.has-nested-images:where(.is-layout-flex) {
+		@include mixins.flex-parent(align-items, normal);
+	}
+	.wp-block-gallery.has-nested-images:where(.is-layout-flex) {		
+		&:not(.is-cropped) {
+			figure.wp-block-image:not(#individual-image) {
+				margin-top: 0;
+				margin-bottom: auto;
+			}
+		}
+		&.is-cropped figure.wp-block-image:not(#individual-image) {
+			@include mixins.flex-child(align-self, inherit);
+			& > div:not(.components-drop-zone), & > a {
+				display: flex;
+			}
+			a, img {
+				@include mixins.sizing(100%, 100%);
+				@include mixins.flex(1 0 0%);
+				object-fit: cover;
+			}
+		}
+		&.columns-1 figure.wp-block-image:not(#individual-image) {
+			width: 100%;
+		}
+		&.alignleft, &.alignright {
+			max-width: calc(theme.$content-width * 0.5);
+			width: 100%;
+		}
+		&.aligncenter {
+			justify-content: center;
+		}
+		figure.wp-block-image:not(#individual-image) {
+			@include mixins.gap-width(theme.$spacing-x4, 2);
+			margin: 0;
+		}
+		figure.wp-block-image {
+			position: relative;
+			@include mixins.flex-layout((flex-flow: column nowrap, justify-content: center));
+			flex-grow: 1;
+			max-width: 100%;
+			& > div, & > a {
+				margin: 0;
+				flex-direction: column;
+				flex-grow: 1;
+			}
+			img {
+				display: block;
+				height: auto;
+				max-width: 100% !important;
+				width: auto;
+			}
+		}
+		figcaption {
+			flex-grow: 1;
+			flex-basis: 100%;
+			text-align: center;
+		}
+		@include mixins.respond(theme.$breakpoint-md) {
+			@for $i from 3 through 8 {
+				&.columns-#{$i} figure.wp-block-image:not(#individual-image) {
+					@include mixins.gap-width(theme.$spacing-x4, $i);
+				}
+			}
+			&.columns-default {
+				figure.wp-block-image:not(#individual-image) {
+					@include mixins.gap-width(theme.$spacing-x4, 3);
+				}
+				figure.wp-block-image:not(#individual-image):first-child:nth-last-child(2),	figure.wp-block-image:not(#individual-image):first-child:nth-last-child(2) ~ figure.wp-block-image:not(#individual-image) {
+					@include mixins.gap-width(theme.$spacing-x4, 2);
+				}
+				figure.wp-block-image:not(#individual-image):first-child:nth-last-child(1) {
+					width: 100%;
+				}
+			}
+		}
+	}
+	.wp-block-gallery.has-nested-images {
+		figure.wp-block-image {
+			position: relative;
+			margin: 0;
+			&:has(figcaption):before, figcaption {
+				@include mixins.position($type: absolute, $bottom: 0, $right: 0, $left: 0);
+				max-height: 100%;
+			}
+			&:has(figcaption):before {
+				content: '';
+				height: 100%;
+				max-height: 3em;
+				pointer-events: none;
+				backdrop-filter: blur(3px);
+				mask-image: linear-gradient(0deg, theme.$color-black 20%, transparent 100%);
+			}
+			&.is-style-rounded, &.has-custom-border {
+				& > div, & > a {
+					@include mixins.flex(1 1 auto);
+				}
+				&:before {
+					content: none;
+				}
+				figcaption {
+					position: relative;
+					flex: initial;
+					background: none;
+					color: inherit;
+					margin: 0;
+					padding: theme.$spacing-x2 theme.$spacing-x2 theme.$spacing-x2 - 1 theme.$spacing-x2;
+					text-shadow: none;
+				}
+			}
+			figcaption {
+				color: theme.$color-white;
+				text-shadow: 0 0 1.5px theme.$color-black;
+				margin: 0;
+				overflow: auto;
+				padding: theme.$spacing-x2;
+				text-align: center;
+				background: linear-gradient(0deg, rgba($color: theme.$color-black, $alpha: 0.4) 0%, transparent 100%);
+				img {
+					display: inline;
+				}
+				a {
+					color: inherit;
+				}
+			}
+		}
+	}
+
 	// @use "sass:math";
 	// @use "@wordpress/base-styles/colors" as *;
 	// @use "@wordpress/base-styles/mixins" as *;

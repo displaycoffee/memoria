@@ -4,16 +4,19 @@
 @use '_core/styles/_theme';
 
 // WordPress caption style
-@mixin caption-style {
-	margin-top: theme.$spacing-x2;
-	margin-bottom: theme.$spacing-x4;
+@mixin caption-style($margin: true) {
+	@if $margin == true {
+		margin-top: theme.$spacing-x2;
+		margin-bottom: theme.$spacing-x4;
+	}
+	font-size: functions.em(12px, rem);
 }
 
 // WordPress theme caption style
 @mixin caption-style-theme {
-	color: theme.$color-body;
 	font-size: functions.em(theme.$font-size-global, rem);
 	text-align: center;
+	color: theme.$color-body;
 	// .is-dark-theme & {
 	// 	color: colors.$light-gray-placeholder;
 	// }

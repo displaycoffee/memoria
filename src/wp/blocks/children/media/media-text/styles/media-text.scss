@@ -8,6 +8,122 @@
 
 	// Style block
 
+	.wp-block-media-text {
+		direction: ltr;
+		display: grid;
+		grid-template-columns: 50% 1fr;
+		grid-template-rows: auto;
+		@include mixins.gap(theme.$spacing-x4);
+		&.has-media-on-the-right {
+			grid-template-columns: 1fr 50%;
+		}
+		&.is-vertically-aligned-top {
+			& > .wp-block-media-text__content, & > .wp-block-media-text__media {
+				@include mixins.flex-child(align-self, start);
+			}
+		}
+		&, &.is-vertically-aligned-center {
+			& > .wp-block-media-text__content, & > .wp-block-media-text__media {
+				@include mixins.flex-child(align-self, center);
+			}
+		}
+		&.is-vertically-aligned-bottom {
+			& > .wp-block-media-text__content, & > .wp-block-media-text__media {
+				@include mixins.flex-child(align-self, end);
+			}
+		}
+		&.has-media-on-the-right {
+			&  > .wp-block-media-text__media {
+				grid-column: 2;
+				grid-row: 1;
+			}
+			& > .wp-block-media-text__content {
+				grid-column: 1;
+				grid-row: 1;
+			}
+		}
+		&.is-image-fill {
+			& > .wp-block-media-text__media {
+				height: 100%;
+				min-height: 250px;
+				background-size: cover;
+				& > a {
+					display: block;
+					height: 100%;
+				}
+				img {
+					position: absolute;
+					width: 1px;
+					height: 1px;
+					padding: 0;
+					margin: -1px;
+					overflow: hidden;
+					clip-path: inset(50%);
+					border: 0;
+				}
+			}
+		}
+		&.is-image-fill-element {
+			& > .wp-block-media-text__media {
+				position: relative;
+				height: 100%;
+				min-height: 250px;
+				& > a {
+					display: block;
+					height: 100%;
+				}
+				img {
+					position: absolute;
+					@include mixins.sizing(100%, 100%);
+					object-fit: cover;
+				}
+			}
+		}
+		& > .wp-block-media-text__media {
+			grid-column: 1;
+			grid-row: 1;
+			margin: 0;
+		}
+		& > .wp-block-media-text__content {
+			direction: ltr;
+			grid-column: 2;
+			grid-row: 1;
+			word-break: normal;
+			overflow-wrap: anywhere;
+			min-width: 0;
+			padding: 0;
+		}
+		.wp-block-media-text__media {
+			a {
+				display: block;
+			}
+			img, video {
+				height: auto;
+				max-width: unset;
+				width: 100%;
+				vertical-align: middle;
+			}
+		}
+		.wp-block-media-text__content {
+			*:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-md, max-width) {
+		.wp-block-media-text.is-stacked-on-mobile {
+			grid-template-columns: 100% !important;
+			& > .wp-block-media-text__media {
+				grid-column: 1;
+				grid-row: 1;
+			}
+			& > .wp-block-media-text__content {
+				grid-column: 1;
+				grid-row: 2;
+			}
+		}		
+	}
+
 	// @use "@wordpress/base-styles/breakpoints" as *;
 
 	// .wp-block-media-text {

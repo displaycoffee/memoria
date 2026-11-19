@@ -1,6 +1,7 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
+@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// MEDIA - GALLERY
@@ -39,6 +40,7 @@
 		&.aligncenter {
 			justify-content: center;
 		}
+		@include mixins-custom.has-background;
 		figure.wp-block-image:not(#individual-image) {
 			@include mixins.gap-width(theme.$spacing-x4, 2);
 			margin: 0;
@@ -63,6 +65,7 @@
 		figcaption {
 			flex-grow: 1;
 			flex-basis: 100%;
+			@include mixins-custom.caption-style(false);
 			text-align: center;
 		}
 		@include mixins.respond(theme.$breakpoint-md) {

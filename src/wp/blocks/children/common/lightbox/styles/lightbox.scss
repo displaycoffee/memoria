@@ -112,6 +112,9 @@
 			}
 		}
 		.lightbox-navigation {
+			&:has(.lightbox-navigation-button[hidden]) {
+				display: none;
+			}
 			.lightbox-navigation-button {
 				@include mixins.position($top: 0, $bottom: 0);
 				margin: auto 0;

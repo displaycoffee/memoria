@@ -1,0 +1,29 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// COMMON - BORDER
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$border-sides: (top, right, bottom, left); // sides a block can set its own border color / width for
+
+	// Style block
+	// WordPress's border block support only saves a color and / or width (as a class or inline style), never a style, so give those a solid style like its common.css does, otherwise the border doesn't show
+	// Note: html :where() keeps the specificity low, so a style picked in the editor (inline border-style) still wins
+
+	html :where(.has-border-color) {
+		border-style: solid;
+	}
+	@each $property in (color, width) {
+		html :where([style^='border-#{$property}'], [style*=';border-#{$property}'], [style*='; border-#{$property}']) {
+			border-style: solid;
+		}
+		@each $side in $border-sides {
+			html :where([style^='border-#{$side}-#{$property}'], [style*=';border-#{$side}-#{$property}'], [style*='; border-#{$side}-#{$property}']) {
+				border-#{$side}-style: solid;
+			}
+		}
+	}

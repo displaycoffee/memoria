@@ -1,0 +1,11 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// THEME - AUTHOR NAME
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-post-author-name {}

@@ -3,4 +3,37 @@
 
 	// Imports
 
-	@use 'wp/blocks/children/theme/sample/styles/sample';
+	@use 'wp/blocks/children/theme/archive-title/styles/archive-title';
+	@use 'wp/blocks/children/theme/author-biography/styles/author-biography';
+	@use 'wp/blocks/children/theme/author-name/styles/author-name';
+	@use 'wp/blocks/children/theme/avatar/styles/avatar';
+	@use 'wp/blocks/children/theme/breadcrumbs/styles/breadcrumbs';
+	@use 'wp/blocks/children/theme/categories/styles/categories';
+	@use 'wp/blocks/children/theme/comments/styles/comments';
+	@use 'wp/blocks/children/theme/comments-count/styles/comments-count';
+	@use 'wp/blocks/children/theme/comments-form/styles/comments-form';
+	@use 'wp/blocks/children/theme/comments-link/styles/comments-link';
+	@use 'wp/blocks/children/theme/date/styles/date';
+	@use 'wp/blocks/children/theme/excerpt/styles/excerpt';
+	@use 'wp/blocks/children/theme/featured-image/styles/featured-image';
+	@use 'wp/blocks/children/theme/login-out/styles/login-out';
+	@use 'wp/blocks/children/theme/modified-date/styles/modified-date';
+	@use 'wp/blocks/children/theme/navigation/styles/navigation';
+	@use 'wp/blocks/children/theme/next-post/styles/next-post';
+	@use 'wp/blocks/children/theme/post-date/styles/post-date';
+	@use 'wp/blocks/children/theme/post-types-label/styles/post-types-label';
+	@use 'wp/blocks/children/theme/previous-post/styles/previous-post';
+	@use 'wp/blocks/children/theme/query-loop/styles/query-loop';
+	@use 'wp/blocks/children/theme/read-more/styles/read-more';
+	@use 'wp/blocks/children/theme/search-results-title/styles/search-results-title';
+	@use 'wp/blocks/children/theme/site-logo/styles/site-logo';
+	@use 'wp/blocks/children/theme/site-tagline/styles/site-tagline';
+	@use 'wp/blocks/children/theme/site-title/styles/site-title';
+	@use 'wp/blocks/children/theme/tags/styles/tags';
+	@use 'wp/blocks/children/theme/term-count/styles/term-count';
+	@use 'wp/blocks/children/theme/term-description/styles/term-description';
+	@use 'wp/blocks/children/theme/term-name/styles/term-name';
+	@use 'wp/blocks/children/theme/terms-query/styles/terms-query';
+	@use 'wp/blocks/children/theme/time-to-read/styles/time-to-read';
+	@use 'wp/blocks/children/theme/title/styles/title';
+	@use 'wp/blocks/children/theme/word-count/styles/word-count';

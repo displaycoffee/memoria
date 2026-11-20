@@ -1,0 +1,24 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_mixins-custom';
+@use '_core/styles/_theme';
+@use 'components/blocks/styles/_extends';
+
+//// TEXT - LIST
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-list, .wp-block-footnotes {
+		list-style: none;
+		@extend %list-base;
+		@extend %list-styled;
+		@include mixins-custom.has-background;
+	}
+	ol.wp-block-list, ol.wp-block-footnotes {
+		@extend %list-ordered;
+	}
+	ul.wp-block-list, ul.wp-block-footnotes {
+		@extend %list-unordered;
+	}

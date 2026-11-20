@@ -1,0 +1,16 @@
+// Note: block styles are adapted from each block's style.scss in the WordPress block library (Gutenberg trunk, 6a6642e, 2026-10-17)
+// https://github.com/WordPress/gutenberg/tree/trunk/packages/block-library/src
+// Gutenberg is © the WordPress contributors and licensed GPL-2.0-or-later: https://github.com/WordPress/gutenberg/blob/trunk/LICENSE.md
+
+//// BLOCKS
+//// --------------------------------------------------------------------------
+
+	// Imports
+
+	@use 'wp/blocks/children/common/styles/common';
+	@use 'wp/blocks/children/design/styles/design';
+	@use 'wp/blocks/children/embed/styles/embed';
+	@use 'wp/blocks/children/media/styles/media';
+	@use 'wp/blocks/children/text/styles/text';
+	@use 'wp/blocks/children/theme/styles/theme';
+	@use 'wp/blocks/children/widgets/styles/widgets';

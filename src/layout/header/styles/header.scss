@@ -1,0 +1,54 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// HEADER
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.header {
+		& > * {
+			margin: 0 0 theme.$spacing-x4 0;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		.row-header {
+			.header-title, p {
+				margin: 0;
+			}
+			.column-header-details, .column-header-search {
+				@include mixins.flex(1 1 100%);
+			}
+			.column-header-details {
+				.column {
+					@include mixins.flex(0 1 auto);
+				}
+				.column-header-details-logo {
+					width: 50px;
+				}
+				.column-header-details-title {
+					width: calc(100% - 50px - theme.$spacing-x4);
+					.header-title {
+						line-height: 1;
+						@include mixins.line-clamp(1);
+					}
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-md) {
+		.header {
+			.row-header {
+				.column-header-details, .column-header-search {
+					@include mixins.flex;
+				}
+				.column-header-search {
+					@include mixins.position($type: relative, $top: 6px);
+					max-width: 500px;
+				}
+			}
+		}
+	}	

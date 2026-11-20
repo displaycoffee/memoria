@@ -1,0 +1,13 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// EMBED - YOUTUBE
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-embed-youtube {
+		.wp-block-embed__wrapper {}
+	}

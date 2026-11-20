@@ -1,0 +1,23 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// COMMON - TERMS
+//// --------------------------------------------------------------------------
+
+	// Style block
+	// Note: shared by the theme Categories and Tags blocks (core/post-terms, with taxonomy-category / taxonomy-tag).
+	// E.g. <div class="taxonomy-category wp-block-post-terms"><span class="wp-block-post-terms__prefix" /><a /><span class="wp-block-post-terms__separator">, </span><a /><span class="wp-block-post-terms__suffix" /></div>
+
+	.wp-block-post-terms {
+		.wp-block-post-terms__separator, .wp-block-post-terms__prefix {
+			padding-right: theme.$spacing-x1;
+		}
+		.wp-block-post-terms__prefix {
+			font-weight: theme.$font-weight-body;
+		}
+		.wp-block-post-terms__suffix {
+			padding-left: theme.$spacing-x1;
+		}
+	}

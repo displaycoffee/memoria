@@ -1,0 +1,30 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// DESIGN - SEPARATOR
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-separator {
+		border: none;
+		border-top: 1px solid currentColor;
+		&.is-style-dots {
+			border-top: 0;
+			background: none !important;
+		}
+	}
+	:where(.wp-block-separator.is-style-dots) {
+		text-align: center;
+		line-height: 0.25;
+		&:before {
+			content: '\00b7\00b7\00b7';
+			padding-left: theme.$spacing-x8;
+			letter-spacing: theme.$spacing-x8;
+			font-size: 50px;
+			font-family: serif;
+			color: currentColor;
+		}
+	}

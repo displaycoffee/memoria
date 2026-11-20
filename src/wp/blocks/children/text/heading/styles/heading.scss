@@ -1,0 +1,15 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_mixins-custom';
+@use '_core/styles/_theme';
+
+//// TEXT - HEADING
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	h1, h2, h3, h4, h5, h6, .wp-block-heading {
+		@include mixins-custom.has-background;
+		@include mixins-custom.writing-mode;
+	}

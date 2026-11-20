@@ -1,0 +1,52 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// ACCORDION - HEADING
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-accordion-heading {
+		// Typography defaults go on the heading and the toggle inherits them, so typography picked in the editor (classes and inline styles on the heading) still reaches the toggle
+		font-family: theme.$font-family-body;
+		line-height: 1.5;
+		text-transform: none;
+		&:not([class*='-font-size']) {
+			font-size: functions.em(16px, rem);
+		}
+		.wp-block-accordion-heading__toggle {
+			@include mixins.flex-display(flex);
+			@include mixins.flex-parent(justify-content, flex-start);
+			@include mixins.gap(theme.$spacing-x2);
+			width: 100%;
+			border: 0;
+			background-color: transparent;
+			padding: 0;
+			color: inherit;
+			font: inherit;
+			letter-spacing: inherit;
+			text-align: left;
+			text-transform: inherit;
+			cursor: pointer;
+			&:not(:focus-visible) {
+				outline: 0;
+			}
+			&:hover .wp-block-accordion-heading__toggle-title {
+				text-decoration: none;
+			}
+			.wp-block-accordion-heading__toggle-title {
+				@include mixins.flex;
+			}
+			.wp-block-accordion-heading__toggle-icon {
+				@include mixins.flex(0 1 auto);
+				@include mixins.flex-layout((display: inline-flex, flex-flow: column nowrap));
+				@include mixins.sizing(theme.$icon-xl, theme.$icon-xl);
+				line-height: theme.$icon-xl;
+				font-weight: 400;
+				font-size: theme.$icon-xl;
+				text-align: center;
+			}
+		}	
+	}

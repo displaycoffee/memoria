@@ -1,0 +1,154 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// MEDIA - COVER
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-cover-image, .wp-block-cover {
+		position: relative;
+		min-height: 430px;
+		padding: theme.$spacing-x2;
+		background-position: center center;
+		@include mixins.flex-layout((justify-content: center, align-items: center));
+		overflow: hidden;
+		overflow: clip;
+		&.has-background-dim:not([class*='-background-color']),	.has-background-dim:not([class*='-background-color']) {
+			background-color: theme.$color-black;
+		}
+		&.has-background-dim:before {
+			content: '';
+			background-color: inherit;
+		}
+		&.has-background-dim:not(.has-background-gradient):before, .wp-block-cover__background, .wp-block-cover__gradient-background {
+			@include mixins.position($type: absolute, $top: 0, $left: 0, $right: 0, $bottom: 0);
+			opacity: 0.5;
+		}
+		@for $i from 1 through 10 {
+			&.has-background-dim.has-background-dim-#{$i * 10} {
+				&:not(.has-background-gradient):before, .wp-block-cover__background, .wp-block-cover__gradient-background {
+					opacity: $i * 0.1;
+				}
+			}
+		}
+		&.alignleft, &.alignright {
+			max-width: calc(theme.$content-width * 0.5);
+			width: 100%;
+		}
+		&.aligncenter, &.alignleft,	&.alignright {
+			display: flex;
+		}
+		&.is-position-top-left, &.is-position-top-center, &.is-position-top-right {
+			@include mixins.flex-parent(align-items, flex-start);
+		}
+		&.is-position-center-left, &.is-position-center-center, &.is-position-center-right {
+			@include mixins.flex-parent(align-items, center);
+		}
+		&.is-position-bottom-left, &.is-position-bottom-center, &.is-position-bottom-right {
+			@include mixins.flex-parent(align-items, flex-end);
+		}
+		&.is-position-top-left, &.is-position-center-left, &.is-position-bottom-left, &.has-left-content {
+			@include mixins.flex-parent(justify-content, flex-start);
+		}
+		&.is-position-top-center, &.is-position-center-center, &.is-position-bottom-center {
+			@include mixins.flex-parent(justify-content, center);
+		}
+		&.is-position-top-right, &.is-position-center-right, &.is-position-bottom-right, &.has-right-content {
+			@include mixins.flex-parent(justify-content, flex-end);
+		}
+		&.has-custom-content-position.has-custom-content-position {
+			.wp-block-cover__inner-container {
+				margin: 0;
+			}
+			&.is-position-top-left,	&.is-position-top-right, &.is-position-center-left,	&.is-position-center-right,	&.is-position-bottom-left, &.is-position-bottom-right {
+				.wp-block-cover__inner-container {
+					margin: 0;
+					width: auto;
+				}
+			}
+		}
+		&.has-aspect-ratio {
+			@supports (-webkit-hyphens: none) {
+				min-height: fit-content !important;
+			}
+		}
+		@for $i from 0 through 10 {
+			.wp-block-cover__gradient-background.has-background-dim.has-background-dim-#{$i * 10}, .wp-block-cover__background.has-background-dim.has-background-dim-#{$i * 10} {
+				opacity: $i * 0.1;
+			}
+		}		
+		.has-background-dim.has-background-gradient {
+			background-color: transparent;
+		}
+		.wp-block-cover__inner-container {
+			position: relative;
+			width: 100%;
+			color: inherit;
+		}
+		.wp-block-cover__image-background, video.wp-block-cover__video-background, .wp-block-cover__embed-background, .wp-block-cover__embed-background .wp-block-embed__wrapper {
+			@include mixins.position($type: absolute, $top: 0, $left: 0, $right: 0, $bottom: 0);
+			margin: 0;
+			padding: 0;
+			@include mixins.sizing(100%, 100%);
+		}
+		.wp-block-cover__image-background, video.wp-block-cover__video-background, .wp-block-cover__embed-background {
+			max-width: none;
+			max-height: none;
+			outline: none;
+			border: none;
+			box-shadow: none;
+		}
+		.wp-block-cover__image-background, video.wp-block-cover__video-background {
+			object-fit: cover;
+		}
+		.wp-block-cover__embed-background {
+			pointer-events: none;
+			iframe,	.wp-block-embed__wrapper iframe {
+				@include mixins.position($type: absolute, $top: 50%, $left: 50%);
+				@include mixins.sizing(100vw, 100vh);
+				min-width: 100%;
+				min-height: 100%;
+				@include mixins.transform(translate(-50%, -50%));
+				pointer-events: none;
+			}
+		}
+	}
+	.wp-block-cover-image, .wp-block-cover,	.wp-block-cover__image-background, video.wp-block-cover__video-background {
+		&.has-parallax {
+			background-attachment: fixed;
+			background-size: cover;
+			background-repeat: no-repeat;
+			@supports (-webkit-touch-callout: inherit) {
+				background-attachment: scroll;
+			}
+			@media (prefers-reduced-motion: reduce) {
+				background-attachment: scroll;
+			}
+		}
+		&.is-repeated {
+			background-repeat: repeat;
+			background-size: auto;
+		}
+	}
+	:where(.wp-block-cover:not(.has-text-color)), :where(.wp-block-cover-image:not(.has-text-color)) {
+		color: theme.$color-white;
+	}
+	:where(.wp-block-cover.is-light:not(.has-text-color)), :where(.wp-block-cover-image.is-light:not(.has-text-color)) {
+		color: theme.$color-black;
+	}
+	:where(.wp-block-cover p:not(.has-text-color)), :where(.wp-block-cover h1:not(.has-text-color)), :where(.wp-block-cover h2:not(.has-text-color)),
+	:where(.wp-block-cover h3:not(.has-text-color)), :where(.wp-block-cover h4:not(.has-text-color)), :where(.wp-block-cover h5:not(.has-text-color)),
+	:where(.wp-block-cover h6:not(.has-text-color)) {
+		color: inherit;
+	}
+	body:not(.editor-styles-wrapper) .wp-block-cover:not(.wp-block-cover:has(.wp-block-cover__background + .wp-block-cover__inner-container)) {
+		.wp-block-cover__video-background, .wp-block-cover__embed-background, .wp-block-cover__image-background  {
+			z-index: 0;
+		}
+		&.has-background-dim:not(.has-background-gradient):before,	.wp-block-cover__background, .wp-block-cover__gradient-background, .wp-block-cover__inner-container {
+			z-index: 1;
+		}
+	}

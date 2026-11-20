@@ -3,6 +3,10 @@ dist/
 
 # generated types
 .astro/
+.claude/
+.husky/
+.tanstack/
+.vscode/
 
 # dependencies
 node_modules/
@@ -15,6 +19,7 @@ pnpm-debug.log*
 
 # environment variables
 .env
+.env.preview
 .env.production
 
 # macOS-specific files

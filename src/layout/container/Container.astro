@@ -1,0 +1,97 @@
+---
+/* Styles */
+import './styles/container.scss';
+
+/* Scripts */
+import type { ContainerProps } from './scripts/container-types';
+import { context } from '@/context/scripts/context';
+import { navigationHeader } from '@/components/navigation/scripts/navigation';
+import { navigationUtils } from '@/components/navigation/scripts/navigation-utils';
+
+/* Components */
+import Navigation from '@/components/navigation/Navigation.astro';
+import { ButtonScroll } from '@/components/forms/Forms';
+import { Slideout } from '@/components/slideout/Slideout';
+import Head from '@/layout/head/Head.astro';
+import Header from '@/layout/header/Header.astro';
+import Content from '@/layout/content/Content.astro';
+import Sidebar from '@/layout/sidebar/Sidebar.astro';
+import Footer from '@/layout/footer/Footer.astro';
+import { ThemeToggle } from '@/components/theme-toggle/ThemeToggle';
+import { DuotoneFilters } from '@/wp/blocks/children/common/colors/Colors';
+import { Lightbox } from '@/wp/blocks/children/common/lightbox/Lightbox';
+
+/* Define prop types */
+type Props = ContainerProps;
+
+/* Props */
+const { hideSidebar = false, title } = Astro.props;
+
+/* Get theme options */
+const options = await context.wp.themeOptions.themeOptions();
+
+/* Get primary menu once for both the header and mobile navigation */
+const primaryMenu = await context.wp.menu.menu('primary');
+
+/* Set header navigation */
+const navigationHeaderList = navigationUtils.get.list(navigationHeader);
+const navigationList = [...navigationHeaderList, ...primaryMenu];
+
+/* Create body class */
+const bodyClass = title ? context.utils.handleize(title) : 'index';
+
+/* Slideout options */
+const slideoutOptions = {
+	hideDesktop: true,
+	id: 'menu',
+	label: 'Menu',
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<Head title={title} />
+
+	<body class={`scrollbar page-${bodyClass}`}>
+		<div id="index" tabindex="-1">
+			<div class="container">
+				<a href="#main-content" class="skip-link sr-only no-decoration">
+					Skip to main content
+				</a>
+
+				<Header options={options} />
+
+				<Navigation data={navigationList} hideMobile={true} label={'Header Navigation'} />
+
+				<Slideout options={slideoutOptions}>
+					<Navigation data={navigationList} direction={'vertical'} label={'Mobile Navigation'} />
+				</Slideout>
+
+				<main id="main-content" class="main">
+					<div class="main-layout flex-wrap">
+						<Content>
+							<slot />
+						</Content>
+
+						{!hideSidebar && <Sidebar slug={options?.sidebar?.slug ?? ''} />}
+					</div>
+				</main>
+
+				<Footer options={options} />
+
+				<ButtonScroll target={'#index'} label={'Scroll to top'} />
+			</div>
+
+			<ThemeToggle />
+		</div>
+
+		<DuotoneFilters />
+
+		<Lightbox />
+
+		<script>
+			import { container } from './scripts/container';
+			container.init();
+		</script>
+	</body>
+</html>

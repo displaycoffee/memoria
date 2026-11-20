@@ -1,0 +1,95 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// MEDIA - PLAYLIST
+//// --------------------------------------------------------------------------
+
+	// Imports
+
+	@use './_playlist-track';
+
+	// Configuration
+
+	$waveform-player-height: 100px; // Waveform player dimensions
+
+	// Style block
+
+	.wp-block-playlist {
+		.wp-block-playlist__waveform-player {
+			width: 100%;
+			margin: theme.$spacing-x2 0;
+			position: relative;
+			// Hide the player's container while it's empty, since memoria doesn't build the waveform player (see _etc/docs/memoria-astro/playlist-waveform)
+			&:empty {
+				display: none;
+			}
+			&:focus-visible {
+				outline: revert;
+				outline-offset: revert;
+			}
+		}
+		.waveform-track {
+			height: $waveform-player-height;
+			gap: 0;
+		}
+		.waveform-btn {
+			border: none;
+			@include mixins.border-radius(0);
+			border-end-start-radius: 2px;
+			border-start-start-radius: 2px;
+			width: $waveform-player-height;
+			height: $waveform-player-height;
+			min-width: $waveform-player-height;
+			background: currentColor;
+			margin: 0;
+			&:hover:not(:disabled) {
+				transform: none;
+			}
+			svg {
+				@include mixins.sizing(48px, 48px);
+			}
+			.waveform-icon-pause svg {
+				@include mixins.sizing(42px, 42px);
+			}
+		}
+		.waveform-player.has-play-button-artwork {
+			.waveform-btn {
+				background-image: var(--wp--playlist--play-button-artwork);
+				background-position: center;
+				background-size: cover;
+				color: theme.$color-white;
+				svg {
+					filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
+					path {
+						fill: theme.$color-white !important;
+					}
+				}
+			}
+		}
+		.waveform-track.waveform-align-bottom .waveform-btn {
+			margin-bottom: 0;
+		}
+		.waveform-btn:focus-visible, .waveform-container:focus-visible {
+			outline: revert;
+			outline-offset: revert;
+		}
+		.waveform-artist {
+			opacity: 0.7;
+		}
+		.waveform-info, .waveform-artist, .waveform-title, .waveform-time {
+			font-size: inherit;
+		}
+		.wp-block-playlist__tracklist {
+			margin: 0;
+			padding-left: 0;
+			list-style: none;
+			&.wp-block-playlist__tracklist-is-hidden, &.wp-block-playlist__tracklist-artist-is-hidden .wp-block-playlist-track__artist, &.wp-block-playlist__tracklist-length-is-hidden .wp-block-playlist-track__length {
+				display: none;
+			}
+			&.wp-block-playlist__tracklist-show-numbers {
+				counter-reset: playlist-track;
+			}
+		}
+	}

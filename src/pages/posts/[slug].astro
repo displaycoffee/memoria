@@ -1,0 +1,37 @@
+---
+/* Scripts */
+import { context } from '@/context/scripts/context.ts';
+
+/* Components */
+import Container from '@/layout/container/Container.astro';
+import { Post } from '@/wp/post/Post';
+
+/* Get posts (newest first, so the older post is next in the list) */
+export const getStaticPaths = async () => {
+	const posts = await context.wp.post.all();
+	return posts.map((post, index) => ({
+		params: { slug: post.slug },
+		props: {
+			adjacent: {
+				next: posts[index - 1],
+				previous: posts[index + 1],
+			},
+			post,
+		},
+	}));
+};
+
+/* Define prop types */
+import type { InferGetStaticPropsType } from 'astro';
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+/* Props */
+const { adjacent, post } = Astro.props;
+
+/* Page title */
+const title = post.title;
+---
+
+<Container title={title} hideSidebar={post.hideSidebar}>
+	<Post adjacent={adjacent} post={post} />
+</Container>

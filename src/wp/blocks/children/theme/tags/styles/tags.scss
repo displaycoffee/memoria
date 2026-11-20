@@ -1,0 +1,14 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// THEME - TAGS
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// Note: WordPress does have specific styles for tags.
+	// Instead, we use styles from wp/blocks/children/common/terms for categories and tags.
+
+	.taxonomy-tag.wp-block-post-terms {}

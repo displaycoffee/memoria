@@ -1,0 +1,85 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// OVERLAY
+//// --------------------------------------------------------------------------
+
+	// Colors
+
+	$overlay-color-01: theme.$color-overlay; // backdrop
+	$overlay-color-02: theme.$color-bg; // content background
+
+	// Configuration
+
+	$overlay-spacing: theme.$spacing-x4; // overall spacing value
+	$overlay-duration: theme.$duration-slow; // duration of open / close transitions
+	$overlay-duration-discrete: max($overlay-duration, var(--overlay-duration-transform)); // lasts as long as the longest transition
+	$overlay-transition-discrete: display $overlay-duration-discrete ease-in-out, overlay $overlay-duration-discrete ease-in-out; // keeps the dialog in the top layer until the close transition finishes
+	$overlay-transition-backdrop: opacity $overlay-duration ease-in-out, display $overlay-duration ease-in-out, overlay $overlay-duration ease-in-out; // transition properties for backdrop
+	$overlay-transition-closed: opacity $overlay-duration ease-in-out, transform var(--overlay-duration-transform) var(--overlay-easing-closed), $overlay-transition-discrete; // transition properties for closing
+	$overlay-transition-open: opacity $overlay-duration ease-in-out, transform var(--overlay-duration-transform) var(--overlay-easing-open), $overlay-transition-discrete; // transition properties for opening
+
+	// Style block
+	// Note: variants customize the open / close animation by setting these custom properties with a more specific selector (e.g. .overlay.slideout)
+	// --overlay-duration-transform: transform duration (opacity always uses $overlay-duration)
+	// --overlay-easing-closed: transform easing when closing
+	// --overlay-easing-open: transform easing when opening
+	// --overlay-opacity-closed: opacity when closed (set to 1 to disable the fade)
+	// --overlay-transform-closed: transform when closed (the open state is always none)
+
+	body:has(.overlay[open]) {
+		overflow: hidden;
+	}
+	.overlay {
+		--overlay-duration-transform: #{$overlay-duration};
+		--overlay-easing-closed: ease-in-out;
+		--overlay-easing-open: ease-in-out;
+		--overlay-opacity-closed: 0;
+		--overlay-transform-closed: none;
+		@include mixins.transition($overlay-transition-closed);
+		transition-behavior: allow-discrete;
+		padding: 0;
+		border: 0;
+		margin: auto; // restores the native centering in case a layout rule (e.g. .container > *) resets it
+		max-width: 100%;
+		max-height: 100%;
+		background-color: $overlay-color-02;
+		color: inherit; // the native dialog styles set color: CanvasText instead of inheriting the page color
+		opacity: var(--overlay-opacity-closed);
+		transform: var(--overlay-transform-closed);
+		&::backdrop {
+			@include mixins.transition($overlay-transition-backdrop);
+			transition-behavior: allow-discrete;
+			background-color: $overlay-color-01;
+			opacity: 0;
+		}
+		&.overlay-dismissible::backdrop {
+			cursor: pointer;
+		}
+		&[open] {
+			@include mixins.transition($overlay-transition-open);
+			transition-behavior: allow-discrete;
+			opacity: 1;
+			transform: none;
+			&::backdrop {
+				opacity: 1;
+			}
+		}
+		.overlay-content {
+			padding: $overlay-spacing;
+		}
+	}
+
+	// Starting styles for the open transition (the dialog goes from display: none to open in one frame)
+
+	@starting-style {
+		.overlay[open] {
+			opacity: var(--overlay-opacity-closed);
+			transform: var(--overlay-transform-closed);
+		}
+		.overlay[open]::backdrop {
+			opacity: 0;
+		}
+	}

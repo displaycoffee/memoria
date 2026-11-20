@@ -1,0 +1,29 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// THEME - BREADCRUMBS
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-breadcrumbs {
+		ol {
+			list-style: none;
+			&, li {
+				@include mixins.flex-layout((align-items: center));
+				margin: 0;
+				padding: 0;
+			}
+			li {
+				&:not(:last-child):after {
+					content: var(--separator, '/') / '';
+					margin: 0 theme.$spacing-x2;
+				}
+				span {
+					color: inherit;
+				}
+			}
+		}
+	}

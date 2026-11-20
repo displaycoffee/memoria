@@ -1,0 +1,51 @@
+---
+/* Styles */
+import './styles/header.scss';
+
+/* Scripts */
+import type { HeaderProps } from './scripts/header-types';
+import { context } from '@/context/scripts/context';
+
+/* Components */
+import { Image } from '@/components/image/Image';
+import { SearchForm } from '@/wp/search/Search';
+
+/* Define prop types */
+type Props = HeaderProps;
+
+/* Props */
+const { options } = Astro.props;
+
+/* Get site details */
+const site = await context.wp.site.site();
+---
+
+<header class="header">
+	<div class="row row-header row-wrap row-spacing-20">
+		<div class="column column-header-details row row-details row-wrap row-align-items-center row-spacing-20">
+			{options.header.logo?.url ? (
+				<div class="column column-header-details-logo">
+					<Image alt={options.header.logo.alt} image={options.header.logo.url} wrapperClasses={['contain']} />
+				</div>
+			) : null}
+
+			<div class="column column-header-details-title">
+				<h1 class="header-title">
+					<a class="no-decoration" href={site.url}>
+						{site.title}
+					</a>
+				</h1>
+			</div>
+
+			{site?.description ? (
+				<div class="column column-header-details-description">
+					<p>{site.description}</p>
+				</div>
+			) : null}
+		</div>
+
+		<div class="column column-header-search">
+			<SearchForm action={`${site.url}/search`} id={'header-search-form'} />
+		</div>
+	</div>
+</header>

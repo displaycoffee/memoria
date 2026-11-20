@@ -1,0 +1,29 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// POST NAVIGATION
+//// --------------------------------------------------------------------------
+
+	.post-navigation {
+		margin: theme.$spacing-x8 0 0 0;
+		.post-navigation-list {
+			margin: 0 -4px;
+			.post-navigation-list-item {
+				width: 50%;
+				a {
+					@include mixins.gap(theme.$spacing-x1);
+					.post-navigation-list-item-title {
+						margin-left: -#{theme.$spacing-x1};
+					}
+					.icon-wrapper {
+						@include mixins.position($type: relative, $top: 1.5px);
+					}
+				}
+			}
+			.post-navigation-list-item-next a {
+				@include mixins.flex-parent(justify-content, flex-end);
+			}
+		}
+	}

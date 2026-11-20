@@ -1,0 +1,84 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_mixins-custom';
+@use '_core/styles/_theme';
+
+//// EMBED - COMMON
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block[data-align='left'] > [data-type='core/embed'], .wp-block[data-align='right'] > [data-type='core/embed'], 
+	.wp-block-embed.alignleft, .wp-block-embed.alignright {
+		width: 100%;
+		max-width: 360px;
+		.wp-block-embed__wrapper {
+			min-width: 280px;
+		}
+	}
+	:where(.wp-block-cover .wp-block-embed) {
+		min-width: 320px;
+		min-height: 240px;
+	}
+	.wp-block-group.is-layout-flex .wp-block-embed {
+		@include mixins.flex;
+	}
+	:where(.wp-block-group.is-layout-flex .wp-block-embed) {
+		min-width: 0;
+	}
+	.wp-block-embed {
+		overflow-wrap: break-word;
+		:where(figcaption) {
+			@include mixins-custom.caption-style;
+		}
+		.wp-block-embed__wrapper {
+			position: relative;
+		}
+		iframe {
+			max-width: 100%;
+		}
+	}
+	@include mixins-custom.embed-responsive {
+		.wp-has-aspect-ratio {
+			.wp-block-embed__wrapper:before {
+				content: '';
+				display: block;
+				padding-top: 50%;
+			}
+			iframe {
+				@include mixins.position($type: absolute, $top: 0, $bottom: 0, $left: 0, $right: 0);
+				@include mixins.sizing(100%, 100%);
+			}
+		}
+		.wp-embed-aspect-21-9 .wp-block-embed__wrapper:before {
+			padding-top: 42.85%;
+		}
+		.wp-embed-aspect-18-9 .wp-block-embed__wrapper:before {
+			padding-top: 50%;
+		}
+		.wp-embed-aspect-16-9 .wp-block-embed__wrapper:before {
+			padding-top: 56.25%;
+		}
+		.wp-embed-aspect-4-3 .wp-block-embed__wrapper:before {
+			padding-top: 75%;
+		}
+		.wp-embed-aspect-1-1 .wp-block-embed__wrapper:before {
+			padding-top: 100%;
+		}
+		.wp-embed-aspect-9-16 .wp-block-embed__wrapper:before {
+			padding-top: 177.77%;
+		}
+		.wp-embed-aspect-1-2 .wp-block-embed__wrapper:before {
+			padding-top: 200%;
+		}
+	}
+	:where(.entry-content) {
+		.wp-block-embed-twitter, .wp-block-embed-x {
+			.wp-block-embed__wrapper {
+				.twitter-tweet {
+					@include mixins-custom.embed-border($border-radius: 14px, $border-color: #cfd9de);
+				}
+			}
+		}
+	}

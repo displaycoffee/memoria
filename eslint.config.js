@@ -1,4 +1,4 @@
-// @ts-nocheck
+/* Packages */
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
@@ -11,7 +11,7 @@ import astro from 'eslint-plugin-astro';
 
 export default tseslint.config(
 	{
-		ignores: ['*.js', '*.mjs'],
+		ignores: ['**/*.js', '**/*.mjs'],
 	},
 	{
 		languageOptions: {
@@ -23,7 +23,6 @@ export default tseslint.config(
 				...globals.es2022,
 			},
 			parserOptions: {
-				project: './tsconfig.json',
 				ecmaFeatures: { jsx: true },
 				tsconfigRootDir: import.meta.dirname,
 			},
@@ -40,8 +39,21 @@ export default tseslint.config(
 	},
 	js.configs.recommended,
 	tseslint.configs.recommended,
-	tseslint.configs.recommendedTypeChecked,
+	{
+		files: ['**/*.ts', '**/*.tsx'],
+		extends: tseslint.configs.recommendedTypeChecked,
+		languageOptions: {
+			parserOptions: {
+				projectService: true,
+				tsconfigRootDir: import.meta.dirname,
+			},
+		},
+		rules: {
+			'@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: { attributes: false } }],
+		},
+	},
 	react.configs.flat.recommended,
+	react.configs.flat['jsx-runtime'],
 	reactHooks.configs.flat.recommended,
 	jsxA11y.flatConfigs.recommended,
 	importPlugin.flatConfigs.errors,
@@ -49,27 +61,30 @@ export default tseslint.config(
 	eslintConfigPrettier,
 	{
 		rules: {
+			'no-undef': 'off',
 			'prefer-const': 'error',
-			'@typescript-eslint/no-base-to-string': 'off',
+			'@typescript-eslint/consistent-type-imports': 'error',
 			'@typescript-eslint/no-empty-function': 'off',
-			'@typescript-eslint/no-misused-promises': 'off',
-			'@typescript-eslint/no-redundant-type-constituents': 'off',
 			'@typescript-eslint/no-require-await': 'off',
-			'@typescript-eslint/no-unsafe-argument': 'off',
-			'@typescript-eslint/no-unsafe-assignment': 'off',
-			'@typescript-eslint/no-unsafe-call': 'off',
-			'@typescript-eslint/no-unsafe-function-type': 'off',
-			'@typescript-eslint/no-unsafe-member-access': 'off',
-			'@typescript-eslint/no-unsafe-return': 'off',
 			'@typescript-eslint/no-explicit-any': 'error',
 			'@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
 			'@typescript-eslint/require-await': 'off',
-			'@typescript-eslint/restrict-template-expressions': 'off',
 			'import/no-unresolved': 'off',
 			'react/no-unescaped-entities': 'off',
+			'react/no-unknown-property': [
+				'error',
+				{ ignore: ['set:html', 'set:text', 'is:raw', 'is:global', 'is:inline', 'class:list', 'define:vars'] },
+			],
 			'react/prop-types': 'off',
-			'react/react-in-jsx-scope': 'off',
 			'react-hooks/exhaustive-deps': 'error',
+		},
+	},
+	{
+		files: ['**/*.astro'],
+		rules: {
+			'jsx-a11y/label-has-associated-control': 'off',
+			'react/jsx-key': 'off',
+			'react/no-unknown-property': 'off',
 		},
 	},
 );

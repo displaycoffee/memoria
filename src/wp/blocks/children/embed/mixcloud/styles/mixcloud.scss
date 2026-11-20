@@ -1,0 +1,32 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_mixins-custom';
+@use '_core/styles/_theme';
+
+//// EMBED - MIXCLOUD
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$mixcloud-height: 120px; // height of Mixcloud's classic player, which doesn't scale with its width
+
+	// Style block
+
+	.wp-block-embed-mixcloud {
+		.wp-block-embed__wrapper {}
+	}
+	@include mixins-custom.embed-responsive {
+		.wp-block-embed-mixcloud {
+			.wp-block-embed__wrapper {
+				// Drop the aspect ratio WordPress saves (e.g. 21:9), since a percentage height leaves whitespace or squashes the fixed-height player as the width changes
+				&:before {
+					display: none;
+				}
+				iframe {
+					position: static;
+					height: $mixcloud-height;
+				}
+			}
+		}
+	}

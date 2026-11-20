@@ -1,0 +1,26 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_mixins-custom';
+@use '_core/styles/_theme';
+
+//// EMBED - TUMBLR
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-embed-tumblr {
+		.wp-block-embed__wrapper {
+			iframe {
+				margin-top: 0 !important;
+				margin-bottom: 0 !important;
+			}
+		}
+	}
+	:where(.entry-content) {
+		.wp-block-embed-tumblr {
+			.wp-block-embed__wrapper {
+				@include mixins-custom.embed-border($border-color: rgba(0, 0, 0, 0.1));				
+			}
+		}
+	}

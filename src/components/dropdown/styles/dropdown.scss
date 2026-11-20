@@ -1,0 +1,108 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// DROPDOWN
+//// --------------------------------------------------------------------------
+
+	// Colors
+
+	$dropdown-color-01: theme.$color-border; // dropdown button border
+	$dropdown-color-02: theme.$color-bg; // dropdown button background
+	$dropdown-color-03: theme.$color-body; // dropdown button label
+	$dropdown-color-04: false; // dropdown content border
+	$dropdown-color-05: false; // dropdown content background
+
+	// Configuration
+
+	$dropdown-height: 35px; // height of dropdown button
+	$dropdown-spacing: theme.$spacing-x2; // overall spacing of dropdown
+	$dropdown-content-gap: -1px; // spacing between dropdown button and content
+	$dropdown-duration: theme.$duration-base; // duration of open / close transitions
+	$dropdown-transform-closed: translateY(-4px) scale(0.98); // content position when closed - slides and grows slightly from the button
+	$dropdown-transition-closed: opacity $dropdown-duration ease, transform $dropdown-duration ease, visibility $dropdown-duration, z-index 0s $dropdown-duration; // transition properties for closing - z-index drop is delayed until the close finishes
+	$dropdown-transition-open: opacity $dropdown-duration ease, transform $dropdown-duration ease, visibility $dropdown-duration; // transition properties for opening
+
+	// Style block
+
+	.dropdown {
+		position: relative;
+		&.dropdown-expanded {
+			.dropdown-button {
+				.dropdown-button-toggle .icon-wrapper {
+					@include mixins.transform(rotate(180deg));
+				}
+			}
+			.dropdown-content {
+				@include mixins.transition($dropdown-transition-open);
+				z-index: 1;
+				opacity: 1;
+				visibility: visible;
+				transform: none;
+			}
+		}
+		.dropdown-button, .dropdown-content {
+			border: 1px solid transparent;
+			@if $dropdown-color-04 == false or $dropdown-color-01 == $dropdown-color-04 {
+				border-color: $dropdown-color-01;
+			}
+			@if $dropdown-color-05 == false or $dropdown-color-02 == $dropdown-color-05 {
+				background-color: $dropdown-color-02;
+			}
+		}
+		.dropdown-button {
+			height: $dropdown-height;
+			line-height: $dropdown-height;
+			@include mixins.gap($dropdown-spacing);
+			padding: 0 $dropdown-spacing;
+			@if $dropdown-color-01 != $dropdown-color-04 {
+				border-color: $dropdown-color-01;
+			}
+			@if $dropdown-color-02 != $dropdown-color-05 {
+				background-color: $dropdown-color-02;
+			}
+			&, .dropdown-button-toggle {
+				@include mixins.flex-layout((flex-flow: row nowrap, align-items: center));
+				cursor: pointer;
+			}
+			a, .dropdown-button-toggle {
+				min-width: 1px;
+			}
+			a {
+				@include mixins.flex(0 1 auto);
+			}
+			.dropdown-button-toggle {
+				@include mixins.flex;
+				.icon-wrapper {
+					@include mixins.transition(transform ease $dropdown-duration);
+					margin-left: auto;
+					order: 9999;
+					.icon path {
+						@include mixins.if-exists((stroke: $dropdown-color-03));
+					}
+				}
+				.button-label {
+					@include mixins.if-exists((color: $dropdown-color-03));
+				}
+			}
+		}
+		.dropdown-content {
+			@include mixins.position($type: absolute, $top: auto, $left: 0, $right: 0, $z: -1);
+			margin: $dropdown-content-gap 0 0 0;
+			opacity: 0;
+			visibility: hidden;
+			@include mixins.transition($dropdown-transition-closed);
+			transform-origin: top;
+			@media (prefers-reduced-motion: no-preference) {
+				transform: $dropdown-transform-closed;
+			}
+			padding: $dropdown-spacing;
+			@if $dropdown-color-04 != false and $dropdown-color-01 != $dropdown-color-04 {
+				border-color: $dropdown-color-04;
+			}
+			@if $dropdown-color-05 != false and $dropdown-color-02 != $dropdown-color-05 {
+				background-color: $dropdown-color-05;
+			}
+		}
+	}

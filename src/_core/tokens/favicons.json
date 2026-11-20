@@ -1,0 +1,36 @@
+{
+	"favicon": {
+		"manifest": {
+			"favicon-32": { "$value": true, "$extensions": { "sass": false } },
+			"favicon-192": { "$value": true, "$extensions": { "sass": false } },
+			"favicon-512": { "$value": true, "$extensions": { "sass": false } }
+		},
+		"head": {
+			"favicon-32": { "$value": true, "$extensions": { "sass": false } },
+			"favicon-92": { "$value": true, "$extensions": { "sass": false } },
+			"favicon-180": { "$value": true, "$extensions": { "sass": false } }
+		},
+		"purpose": {
+			"favicon-512": { "$value": "maskable", "$extensions": { "sass": false } }
+		},
+		"size": {
+			"favicon-16": { "$value": "16x16", "$extensions": { "sass": false } },
+			"favicon-32": { "$value": "32x32", "$extensions": { "sass": false } },
+			"favicon-92": { "$value": "92x92", "$extensions": { "sass": false } },
+			"favicon-180": { "$value": "180x180", "$extensions": { "sass": false } },
+			"favicon-192": { "$value": "192x192", "$extensions": { "sass": false } },
+			"favicon-512": { "$value": "512x512", "$extensions": { "sass": false } }
+		},
+		"sizes": {
+			"favicon-32": { "$value": "any", "$extensions": { "sass": false } }
+		},
+		"src": {
+			"favicon-16": { "$value": "/favicon.ico", "$extensions": { "sass": false } },
+			"favicon-32": { "$value": "/favicon.svg", "$extensions": { "sass": false } },
+			"favicon-92": { "$value": "/favicon-92x92.png", "$extensions": { "sass": false } },
+			"favicon-180": { "$value": "/apple-touch-icon.png", "$extensions": { "sass": false } },
+			"favicon-192": { "$value": "/favicon-192x192.png", "$extensions": { "sass": false } },
+			"favicon-512": { "$value": "/favicon-512x512.png", "$extensions": { "sass": false } }
+		}
+	}
+}

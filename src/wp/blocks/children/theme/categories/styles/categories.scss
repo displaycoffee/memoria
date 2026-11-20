@@ -1,0 +1,14 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// THEME - CATEGORIES
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// Note: WordPress used the class wp-block-categories, but this doesn't seem to be present on the markup.
+	// Instead, we use styles from wp/blocks/children/common/terms for categories and tags.
+
+	.taxonomy-category.wp-block-post-terms {}

@@ -1,0 +1,71 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_mixins-custom';
+@use '_core/styles/_theme';
+
+//// MEDIA - IMAGE
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-image {
+		& > a, & > figure > a {
+			display: inline-block;
+			color: inherit;
+		}
+		&[style*='border-radius'] {
+			& > a, img {
+				border-radius: inherit;
+			}
+		}
+		&.aligncenter {
+			text-align: center;
+		}
+		&.alignfull, &.alignwide {
+			& > a {
+				width: 100%;
+			}
+		}
+		&.alignfull, &.alignwide {
+			img {
+				height: auto;
+				width: 100%;
+			}
+		}
+		&.alignleft, &.alignright, &.aligncenter {
+			display: table;
+			& > figcaption {
+				display: table-caption;
+				caption-side: bottom;
+			}
+		}
+		&.alignleft {
+			float: left;
+			margin-right: theme.$spacing-x4;
+			margin-top: theme.$spacing-x2;
+		}
+		&.alignright {
+			float: right;
+			margin-left: theme.$spacing-x4;
+			margin-top: theme.$spacing-x2;
+		}
+		&.aligncenter {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		:where(figcaption) {
+			@include mixins-custom.caption-style;
+		}
+		img {
+			height: auto;
+			max-width: 100%;
+			vertical-align: bottom;
+		}
+		figure {
+			margin: 0;
+		}
+	}
+	:where(.wp-block-image.is-style-rounded img, .wp-block-image .is-style-rounded img) {
+		@include mixins.border-radius(9999px);
+	}

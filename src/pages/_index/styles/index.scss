@@ -1,0 +1,15 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// INDEX
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.page-index {
+		.dropdown {
+			max-width: 400px;
+		}
+	}

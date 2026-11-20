@@ -1,0 +1,14 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// DESIGN - MORE
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// On an Astro theme, this own't show. The post content sends <!--more Read More-->.
+	// For standard WordPress themes, this shows with a hidden span. Example: <span id="more-378"></span>
+	
+	span[id*='more'] {}

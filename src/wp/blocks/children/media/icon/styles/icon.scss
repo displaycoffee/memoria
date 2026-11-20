@@ -1,0 +1,47 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// MEDIA - ICON
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-icon {
+		line-height: 0;		
+		&:has(svg[style*='width']) svg {
+			height: auto;
+			line-height: 1;
+		}
+		&.aligncenter {
+			display: flex;
+			@include mixins.flex-parent(justify-content, center);
+		}
+		svg {
+			display: block;
+			margin: auto;
+			@include mixins.icon-sizing(theme.$icon-md);
+			fill: currentColor;
+			&.is-flip-horizontal {
+				transform: scaleX(-1);
+			}
+			&.is-flip-vertical {
+				transform: scaleY(-1);
+			}
+			&.is-flip-horizontal.is-flip-vertical {
+				transform: scaleX(-1) scaleY(-1);
+			}
+		}		
+	}
+	:where(.entry-content) {
+		.wp-block-icon {
+			@include mixins.flex-layout((display: inline-flex, flex-flow: column nowrap));
+			@include mixins.flex(0 0 auto);
+		}
+	}
+	:where(.wp-block-icon) svg {
+		:where(path, rect, circle, ellipse, line, polygon, polyline) {
+			vector-effect: none;
+		}
+	}

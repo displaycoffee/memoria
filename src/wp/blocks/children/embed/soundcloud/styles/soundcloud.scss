@@ -1,0 +1,13 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// EMBED - SOUNDCLOUD
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-embed-soundcloud {
+		.wp-block-embed__wrapper {}
+	}

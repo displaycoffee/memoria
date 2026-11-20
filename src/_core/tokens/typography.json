@@ -1,0 +1,59 @@
+{
+	"fallback": {
+		"name": {
+			"body": { "$value": "Fallback", "$extensions": { "sass": false } },
+			"header": { "$value": "Fallback Header", "$extensions": { "sass": false } }
+		},
+		"size": {
+			"body": { "$value": "105%", "$extensions": { "sass": false } },
+			"header": { "$value": "98%", "$extensions": { "sass": false } }
+		},
+		"src": {
+			"body": { "$value": "local('Arial')", "$extensions": { "sass": false } },
+			"header": { "$value": "local('Arial Black')", "$extensions": { "sass": false } }
+		}
+	},
+	"font": {
+		"family": {
+			"$type": "fontFamily",
+			"body": { "$value": "'{font.name.body}', '{fallback.name.body}', sans-serif" },
+			"header": { "$value": "'{font.name.header}', '{fallback.name.header}', sans-serif" }
+		},
+		"name": {
+			"body": { "$value": "Open Sans", "$extensions": { "sass": false } },
+			"header": { "$value": "Montserrat", "$extensions": { "sass": false } }
+		},
+		"path": {
+			"body": { "$value": "/assets/fonts/open-sans", "$extensions": { "sass": false } },
+			"header": { "$value": "/assets/fonts/montserrat", "$extensions": { "sass": false } }
+		},
+		"size": {
+			"$type": "dimension",
+			"base": { "$value": "16px" },
+			"global": { "$value": "14px" }
+		},
+		"src": {
+			"body": { "$value": "{font.path.body}-regular.woff2", "$extensions": { "sass": false } },
+			"body-bold": { "$value": "{font.path.body}-bold.woff2", "$extensions": { "sass": false } },
+			"body-bold-italic": { "$value": "{font.path.body}-bold-italic.woff2", "$extensions": { "sass": false } },
+			"body-italic": { "$value": "{font.path.body}-italic.woff2", "$extensions": { "sass": false } },
+			"header": { "$value": "{font.path.header}-regular.woff2", "$extensions": { "sass": false } },
+			"header-bold": { "$value": "{font.path.header}-bold.woff2", "$extensions": { "sass": false } },
+			"header-bold-italic": { "$value": "{font.path.header}-bold-italic.woff2", "$extensions": { "sass": false } },
+			"header-italic": { "$value": "{font.path.header}-italic.woff2", "$extensions": { "sass": false } }
+		},
+		"style": {
+			"body": { "$value": "italic" },
+			"header": { "$value": false }
+		},
+		"transform": {
+			"body": { "$value": false },
+			"header": { "$value": "uppercase" }
+		},
+		"weight": {
+			"$type": "fontWeight",
+			"body": { "$value": 700 },
+			"header": { "$value": 700 }
+		}
+	}
+}

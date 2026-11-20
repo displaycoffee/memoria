@@ -1,0 +1,35 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+@use 'components/forms/styles/_extends';
+
+//// MEDIA - FILE
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-file {
+		&.aligncenter {
+			text-align: center;
+		}
+		&.alignright {
+			text-align: right;
+		}
+		* + .wp-block-file__button {
+			margin-left: theme.$spacing-x2;
+		}
+		.wp-block-file__button {			
+			cursor: pointer;
+			@extend %buttons;
+			@extend %button;
+			@include mixins.border-radius(0);
+			@extend %button-primary;
+		}
+		.wp-block-file__embed {
+			margin: 0 0 theme.$spacing-x4 0;
+		}
+	}
+	:where(.wp-block-file:not(.wp-element-button)) {
+		font-size: functions.em(12px, rem);
+	}

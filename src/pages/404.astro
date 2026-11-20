@@ -1,0 +1,15 @@
+---
+/* Components */
+import Container from '@/layout/container/Container.astro';
+
+/* Page title */
+const title = 'Page Not Found';
+---
+
+<Container hideSidebar={true} title={title}>
+	<div class="not-found">
+		<p>
+			Page not found. <a href="/">Go back</a>.
+		</p>
+	</div>
+</Container>

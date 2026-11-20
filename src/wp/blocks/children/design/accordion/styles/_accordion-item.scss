@@ -1,0 +1,25 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// ACCORDION - ITEM
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-accordion-item {
+		position: relative;
+		&.is-open {
+			// Child selector, so an open item doesn't rotate the icons of closed items in nested accordions
+			& > .wp-block-accordion-heading .wp-block-accordion-heading__toggle .wp-block-accordion-heading__toggle-icon {
+				transform: rotate(45deg);
+			}
+		}
+		// Add transitions only for users who do not prefer reduced motion
+		@media (prefers-reduced-motion: no-preference) {
+			& > .wp-block-accordion-heading .wp-block-accordion-heading__toggle .wp-block-accordion-heading__toggle-icon {
+				@include mixins.transition(transform theme.$duration-base ease);
+			}
+		}
+	}

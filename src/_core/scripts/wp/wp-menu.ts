@@ -1,0 +1,107 @@
+/* Scripts */
+import { utils } from '@/_core/scripts/utils';
+import { variables } from '@/_core/scripts/variables';
+import { wpCategory } from './wp-category';
+
+export const wpMenu = {
+	format: (data: MenuRawNodesType, isChild: boolean) => {
+		const menuItemPrefix = isChild ? 'menu-item-child' : 'menu-item';
+		const connectedObject = data?.connectedObject;
+		const categorySlug = connectedObject?.__typename == 'Category' ? connectedObject.slug : undefined;
+
+		// Categories use the site's flat URLs, since WordPress nests child categories under their parent
+		const url = categorySlug ? wpCategory.url(categorySlug) : data.url.replace(variables.urls.wp, '');
+
+		// Check if the link is the home page
+		const homelabels = ['home', 'home page', 'index', 'start'];
+		const isHome = homelabels.includes(data.label.toLowerCase()) || url == '/';
+
+		// Determine link type
+		let type = 'link';
+		if (isHome) {
+			type = 'home';
+		} else if (connectedObject?.__typename) {
+			type = connectedObject.__typename.toLowerCase();
+		}
+
+		// Internal links are relative once the WordPress URL is removed, while custom links to other sites stay absolute
+		const isRoute = url.startsWith('/') || url.startsWith(variables.urls.site);
+
+		// Format menu data
+		return {
+			label: data.label,
+			id: `${menuItemPrefix}-${data.menuItemId}`,
+			isRoute: isRoute,
+			type: type,
+			url: url,
+		};
+	},
+	fetch: {
+		menu: async (id: string) => {
+			let menuData: MenuType[] = [];
+
+			// Fetch menu data
+			const data = await utils.fetch<{ menu: { menuItems: { nodes: MenuRawNodesType[] } } }>({
+				url: variables.urls.graphQL,
+				query: wpMenu.query(),
+				variables: { id },
+			});
+
+			// Format and set data
+			if (data?.menu?.menuItems?.nodes) {
+				menuData = data.menu.menuItems.nodes.map((node: MenuRawNodesType) => {
+					// Format main menu item
+					const menu: MenuType = {
+						children: [],
+						...wpMenu.format(node, false),
+					};
+
+					// Then format children
+					if (node?.childItems?.nodes && node.childItems.nodes.length !== 0) {
+						menu.children = node.childItems.nodes.map((child) => {
+							return wpMenu.format(child, true);
+						});
+					}
+
+					return menu;
+				});
+			}
+
+			return menuData;
+		},
+	},
+	query: () => {
+		// Shared query function for fetching menu data
+		const urlAttrs = `
+			connectedObject {
+				__typename
+				... on Category {
+					slug
+				}
+			}
+			label
+			menuItemId
+			url
+		`;
+
+		const query = `
+			query Menu($id: ID!) {
+				menu(id: $id, idType: NAME) {
+					menuItems(first: 20, where: {parentId: 0}) {
+						nodes {
+							${urlAttrs}
+							childItems(first: 20) {
+								nodes {
+									${urlAttrs}
+								}
+							}
+						}
+					}
+				}
+			}
+		`;
+
+		// Return query
+		return query;
+	},
+};

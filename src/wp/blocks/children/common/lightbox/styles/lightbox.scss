@@ -1,0 +1,134 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// IMAGE - LIGHTBOX
+//// --------------------------------------------------------------------------
+
+	// Colors
+
+	$lightbox-color-01: theme.$color-overlay; // overlay
+
+	// Configuration
+
+	$lightbox-spacing: theme.$spacing-x4; // overall spacing value
+	$lightbox-easing-in: cubic-bezier(0.65, 0, 0.80, 0); // slow start, fast finish - used when closing
+	$lightbox-easing-out: cubic-bezier(0.25, 1, 0.35, 1); // fast start, slow finish - used when opening
+	$lightbox-button-width: 82px; // max-width for buttons inside overlay
+	$lightbox-button-height: 30px; // height for buttons inside overlay
+
+	// Style block
+
+	.wp-lightbox-container {
+		position: relative;
+		&:hover {
+			cursor: zoom-in;
+			& > .lightbox-trigger {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+		& > .lightbox-trigger {
+			cursor: pointer;
+			@include mixins.position($type: absolute, $top: theme.$spacing-x2, $right: theme.$spacing-x2);
+			background-color: color-mix(in srgb, theme.$color-black 25%, transparent);
+			padding: theme.$spacing-x1;
+			@include mixins.border-radius(theme.$spacing-x1);
+			opacity: 0;
+			visibility: hidden;
+			@include mixins.transition(opacity 0.5s ease-in-out);
+			svg path {
+				fill: theme.$color-white;
+			}
+		}
+	}
+	.overlay.lightbox {
+		--overlay-duration-transform: 1s;
+		--overlay-easing-closed: #{$lightbox-easing-in};
+		--overlay-easing-open: #{$lightbox-easing-out};
+		--overlay-transform-closed: translateY(-150%);
+		@include mixins.sizing(100%, 100%);
+		background-color: $lightbox-color-01; // the dialog itself is the dark layer, so it slides in with the image
+		&[data-navigation-button-type='icon'] {
+			.lightbox-close, .lightbox-navigation .lightbox-navigation-button {
+				width: $lightbox-button-height;
+				.icon-wrapper {
+					@include mixins.icon-sizing(100%);
+				}
+				.button-label {
+					display: none;
+				}
+			}
+			.lightbox-image {
+				padding-left: calc($lightbox-spacing * 2 + $lightbox-button-height);
+				padding-right: calc($lightbox-spacing * 2 + $lightbox-button-height);
+			}
+		}
+		&[data-navigation-button-type='text'] {
+			$lightbox-button-text-width: $lightbox-button-width - 20px;
+			.lightbox-close, .lightbox-navigation .lightbox-navigation-button {
+				width: $lightbox-button-text-width;
+				.icon-wrapper {
+					display: none;
+				}
+			}
+			.lightbox-image {
+				padding: calc($lightbox-spacing * 2 + $lightbox-button-height) calc($lightbox-spacing * 2 + $lightbox-button-text-width);
+			}
+		}
+		&::backdrop {
+			background-color: transparent;
+		}
+		.overlay-content {
+			height: 100%;
+			padding: 0;
+		}
+		.lightbox-content {
+			@include mixins.flex-layout((flex-flow: column nowrap, justify-content: center, align-items: center));
+			height: 100%;
+		}
+		.lightbox-close, .lightbox-navigation .lightbox-navigation-button {
+			@include mixins.sizing($lightbox-button-width, $lightbox-button-height);
+			line-height: $lightbox-button-height;
+			padding: 0;
+			position: absolute;
+		}
+		.lightbox-close {
+			@include mixins.position($top: $lightbox-spacing, $right: $lightbox-spacing);
+			@include mixins.flex-parent(justify-content, flex-end);
+		}
+		.lightbox-image {
+			cursor: default;
+			max-width: 100%;
+			max-height: 100%;
+			padding: calc($lightbox-spacing * 2 + $lightbox-button-height) calc($lightbox-spacing * 2 + $lightbox-button-width);
+			.image-wrapper {
+				@include mixins.sizing(100%, 100%);
+				img {
+					max-height: 100%;
+					margin: auto;
+				}
+			}
+		}
+		.lightbox-navigation {
+			&:has(.lightbox-navigation-button[hidden]) {
+				display: none;
+			}
+			.lightbox-navigation-button {
+				@include mixins.position($top: 0, $bottom: 0);
+				margin: auto 0;
+			}
+			.lightbox-navigation-previous {
+				@include mixins.flex-parent(justify-content, flex-start);
+				left: $lightbox-spacing;
+			}
+			.lightbox-navigation-next {
+				@include mixins.flex-parent(justify-content, flex-end);
+				right: $lightbox-spacing;
+				.button-label {
+					order: -1;
+				}
+			}
+		}
+	}

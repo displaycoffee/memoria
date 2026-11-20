@@ -1,0 +1,93 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+@use 'components/forms/styles/_extends';
+
+//// BUTTON
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-button {
+		&[style*='text-decoration'] .wp-block-button__link {
+			text-decoration: inherit;
+		}
+		.wp-block-button__link {
+			cursor: pointer;
+			@extend %buttons;
+			@extend %button;
+			@include mixins.border-radius(0);
+			@extend %button-primary;
+			// Grow with wrapping text (e.g. custom widths on mobile) instead of the form button's fixed height and line-height
+			height: auto;
+			min-height: extends.$forms-button-height;
+			line-height: 1.5;
+			word-break: break-word;
+			&.has-background:not(.has-border-color) {
+				&, &:hover {
+					border-width: 0;
+				}
+			}
+			&.aligncenter {
+				text-align: center;
+			}
+			&.alignright {
+				text-align: right;
+			}
+		}
+	}
+	.wp-block-button.is-style-outline > .wp-block-button__link {
+		// Outline style: a currentColor border around the surrounding text color, with picked colors still winning (palette classes are !important)
+		// Note: :not() adds the specificity to beat %button-primary's hover and the transparent border above, so the outline stays on hover
+		&:not(.has-border-color) {
+			&, &:hover {
+				border-color: currentColor;
+			}
+		}
+		&:not(.has-text-color) {
+			color: inherit;
+		}
+		&:not(.has-background) {
+			background-color: transparent;
+			background-image: none;
+		}
+	}
+	.wp-block-buttons > .wp-block-button {
+		&.has-custom-width {
+			max-width: none;
+			.wp-block-button__link {
+				width: 100%;
+			}
+		}
+		&.has-custom-font-size {
+			.wp-block-button__link {
+				font-size: inherit;
+			}
+		}
+		&[class*='wp-block-button__width'] {
+			// Percentage widths (--wp--block-button--width is set inline), minus this button's share of the gap so they fit on one row
+			width: calc(var(--wp--block-button--width) * 1% - #{theme.$spacing-x4} * (1 - var(--wp--block-button--width) / 100));
+		}
+		// Legacy width classes, for buttons saved before --wp--block-button--width
+		@each $width in (25, 50, 75) {
+			&.wp-block-button__width-#{$width} {
+				width: calc(#{$width * 1%} - #{theme.$spacing-x4} * #{1 - $width * 0.01});
+			}
+		}
+		&.wp-block-button__width-100 {
+			width: 100%;
+			flex-basis: 100%;
+		}
+	}
+	.wp-block-buttons.is-vertical > .wp-block-button {
+		&[class*='wp-block-button__width'] {
+			// Vertical buttons are stacked, so the gap doesn't factor into their width
+			width: calc(var(--wp--block-button--width) * 1%);
+		}
+		@each $width in (25, 50, 75) {
+			&.wp-block-button__width-#{$width} {
+				width: $width * 1%;
+			}
+		}
+	}

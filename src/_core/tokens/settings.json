@@ -1,0 +1,8 @@
+{
+	"setting": {
+		"theme": {
+			"default": { "$value": "light", "$extensions": { "sass": false } },
+			"system": { "$value": true, "$extensions": { "sass": false } }
+		}
+	}
+}

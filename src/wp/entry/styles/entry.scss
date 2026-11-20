@@ -1,0 +1,113 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// ENTRY
+//// --------------------------------------------------------------------------
+
+	.entry {
+		.entry-image {
+			position: relative;
+			margin: 0 0 theme.$spacing-x4 0;
+			.image-wrapper {
+				padding-bottom: 35%;
+			}
+		}
+		.entry-details {
+			& > * {
+				margin: 0 0 theme.$spacing-x4 0;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+			.entry-meta {
+				span ~ span {
+					padding: 0 0 0 theme.$spacing-x1;
+				}
+			}
+			.entry-taxonomies {
+				.row .column {
+					width: 100%;
+					strong {
+						padding: 0 theme.$spacing-x1 0 0;
+					}
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-lg) {
+		.entry {
+			.entry-details {
+				.entry-taxonomies {
+					.row {
+						.column {
+							@include mixins.gap-width(theme.$spacing-x4, 2);
+						}
+						.column-tags {
+							text-align: right;
+						}
+					}
+				}
+			}
+		}
+	}
+
+//// ENTRY LIST
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.entry-list {
+		.entry {
+			.entry-image {
+				margin: 0 0 theme.$spacing-x2 0;
+				.image-wrapper {
+					padding-bottom: 50%;
+				}
+			}
+			.entry-details {
+				& > * {
+					margin: 0 0 theme.$spacing-x2 0;
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-md) {
+		.entry-list {
+			.entry {
+				.entry-details {
+					.entry-title {
+						@include mixins.line-clamp(1);
+					}
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-xl) {
+		.entry-list {
+			.entry {
+				@include mixins.gap-width(theme.$spacing-x4, 3);
+			}
+		}
+	}
+
+//// ENTRY ARCHIVE
+//// --------------------------------------------------------------------------
+
+	.entry-archive {
+		.entry-archive-details {
+			& > * {
+				margin: 0 0 theme.$spacing-x4 0;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+		.entry-archive-list {
+			margin: theme.$spacing-x4 0 0 0;
+		}
+	}

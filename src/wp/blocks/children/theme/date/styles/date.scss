@@ -3,7 +3,9 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// THEME - SAMPLE
+//// THEME - DATE
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	.wp-block-post-date {}

@@ -6,7 +6,7 @@ import { overlay } from '@/components/overlay/scripts/overlay';
 const selectors = {
 	body: '.slideout-body',
 	bodyLink: 'a, button.a',
-	hideDesktop: 'dialog.slideout.hide-desktop[open]',
+	hideDesktop: 'dialog.slideout.hide-desktop[open], dialog.slideout[data-close-on-desktop][open]', // data-close-on-desktop is for mobile-only slideouts that still show their content on desktop (e.g. a navigation block's overlay)
 	slideout: 'dialog.slideout',
 };
 

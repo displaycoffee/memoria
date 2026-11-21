@@ -2,8 +2,310 @@
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
+@use 'layout/container/styles/_extends';
 
-//// THEME - SAMPLE
+//// THEME - NAVIGATION
 //// --------------------------------------------------------------------------
 
+	// Imports
+
+	@use './_navigation-link';
+	@use './_navigation-overlay-close';
+
+	// Configuration
+
+	$navigation-spacing: theme.$spacing-x4; // space between items, like the header navigation
+	$navigation-submenu-spacing: theme.$spacing-x2; // space between an item and its submenu, like the header navigation's dropdowns
+	$navigation-submenu-padding: theme.$spacing-x2; // submenu padding (matches $dropdown-spacing in dropdown.scss)
+	$navigation-submenu-border-width: 1px; // submenu border width (matches dropdown.scss)
+	$navigation-submenu-width: 200px; // minimum width of submenus, like the header navigation's dropdowns
+	$navigation-overlay-width: 350px; // width of the overlay, like the slideout's default
+	$navigation-duration: theme.$duration-base; // duration of the submenu open transition and icon rotation (matches $dropdown-duration in dropdown.scss)
+
+	// Mixins
+
+	@mixin submenu-open {
+		// Same as an expanded dropdown's content in dropdown.scss
+		@include mixins.transition((opacity $navigation-duration ease, transform $navigation-duration ease, visibility $navigation-duration));
+		z-index: 1;
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+	}
+
 	// Style block
+	// Note: memoria-headless turns submenus into dropdowns (dropdown.ts toggles them, like the header navigation) and the responsive container into a slideout dialog (overlay.ts and slideout.ts open and close it), since WordPress's Interactivity API script never reaches Astro
+	// Note: open / close rules only target those added classes and the dialog, so the editor keeps WordPress's own submenu and overlay behavior
+
+	.wp-block-navigation {
+		position: relative;
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.wp-block-navigation__container {
+			@include mixins.flex-layout((flex-flow: row wrap, align-items: center));
+			@include mixins.gap($navigation-spacing);
+			width: 100%;
+		}
+		&.no-wrap .wp-block-navigation__container {
+			flex-wrap: nowrap;
+		}
+		&.items-justified-center .wp-block-navigation__container {
+			justify-content: center;
+		}
+		&.items-justified-right .wp-block-navigation__container {
+			justify-content: flex-end;
+		}
+		&.items-justified-space-between .wp-block-navigation__container {
+			justify-content: space-between;
+		}
+		&.is-vertical {
+			.wp-block-navigation__container {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+			&.items-justified-center .wp-block-navigation__container {
+				align-items: center;
+			}
+			&.items-justified-right .wp-block-navigation__container {
+				align-items: flex-end;
+			}
+		}
+		.wp-block-navigation-item {
+			position: relative;
+			@include mixins.flex-layout((flex-flow: row nowrap, align-items: center));
+			@include mixins.gap(theme.$spacing-x1);
+		}
+		&.has-text-color .wp-block-navigation-item__content {
+			color: inherit;
+		}
+		&.has-background:not(.wp-block-navigation__container) {
+			// Note: the item list also gets the nav's classes (wp-block-navigation, has-background), so it's left out to keep the padding on the nav only
+			padding: theme.$spacing-x2;
+			dialog, div, ul, li {
+				background-color: inherit;
+			}
+		}
+
+		// Buttons
+
+		.wp-block-navigation-submenu__toggle, .wp-block-navigation__responsive-container-open, .wp-block-navigation__responsive-container-close {
+			padding: 0;
+			background-color: transparent;
+			color: inherit;
+			cursor: pointer;
+		}
+		button.wp-block-navigation-item__content {
+			// Open on click: the toggle is the item's label, so it looks like the other items' links
+			font: inherit;
+			line-height: inherit;
+			color: theme.$color-link;
+			@include mixins.transition(color theme.$duration-base ease-in-out);
+			&:active, &:hover {
+				color: theme.$color-link-hover;
+			}
+		}
+		&.has-text-color button.wp-block-navigation-item__content {
+			color: inherit;
+		}
+		.wp-block-navigation__submenu-icon {
+			@include mixins.flex-layout((display: inline-flex, flex-flow: column nowrap));
+			@include mixins.flex(0 0 auto);
+			@include mixins.icon-sizing(theme.$icon-md);
+			padding: 2.5px;
+			svg {
+				display: block;
+				margin: auto;
+				@include mixins.sizing(100%, 100%);
+				line-height: 1;
+				@include mixins.transition(transform ease $navigation-duration);
+				stroke: theme.$color-body;
+			}
+		}
+		&.has-text-color .wp-block-navigation__submenu-icon svg {
+			stroke: currentColor;
+		}
+		.dropdown-expanded > .wp-block-navigation__submenu-icon svg {
+			@include mixins.transform(rotate(180deg));
+		}
+		.open-on-click {
+			// Open on click: the arrow is a span after the toggle, not inside it, so the toggle's padding goes under the arrow and the arrow lets clicks through to it (like WordPress)
+			// Note: the arrow's negative margin cancels the item's gap and its own width
+			& > .wp-block-navigation-submenu__toggle {
+				padding-right: calc(#{theme.$icon-md} + #{theme.$spacing-x1});
+			}
+			& > .wp-block-navigation__submenu-icon {
+				margin-left: calc(-1 * (#{theme.$icon-md} + #{theme.$spacing-x1}));
+				pointer-events: none;
+			}
+		}
+
+		// Submenus
+		// Note: dropdown.scss gives them the dropdown's border, background, and open / close transition
+
+		.dropdown > .dropdown-content {
+			@include mixins.position($type: absolute, $top: 100%, $left: 0, $right: auto);
+			min-width: $navigation-submenu-width;
+			margin: $navigation-submenu-spacing 0 0 0;
+			&:before {
+				// Covers the gap above the submenu, so moving the pointer down to it keeps it open on hover
+				content: '';
+				@include mixins.position($type: absolute, $bottom: 100%, $left: 0, $right: 0);
+				height: $navigation-submenu-spacing + $navigation-submenu-border-width;
+			}
+		}
+		.dropdown-content {
+			.wp-block-navigation-item {
+				margin: 0 0 theme.$spacing-x1 0;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+			.wp-block-navigation-item__content {
+				@include mixins.flex(1 1 auto);
+				@include mixins.flex-parent(justify-content, flex-start);
+				min-width: 1px;
+			}
+
+			// Nested submenus open to the right, lined up with their item
+
+			.dropdown > .dropdown-content {
+				top: -($navigation-submenu-padding + $navigation-submenu-border-width);
+				left: 100%;
+				margin: 0 0 0 ($navigation-submenu-padding + $navigation-submenu-border-width + $navigation-submenu-spacing);
+				&:before {
+					@include mixins.position($top: 0, $bottom: 0, $left: auto, $right: 100%);
+					width: $navigation-submenu-padding + $navigation-submenu-border-width + $navigation-submenu-spacing;
+					height: auto;
+				}
+			}
+			.dropdown > .wp-block-navigation__submenu-icon svg {
+				@include mixins.transform(rotate(-90deg));
+			}
+		}
+
+		// Open on hover (and on focus when there's no arrow to click), like WordPress
+		// Note: open on hover with an arrow only opens on focus from the arrow (dropdown.ts)
+
+		@media (hover: hover) {
+			.dropdown:not(.open-on-click):hover > .dropdown-content {
+				@include submenu-open;
+			}
+		}
+		.dropdown:not(.open-on-click, .open-on-hover-click):focus-within > .dropdown-content {
+			@include submenu-open;
+		}
+
+		// Overlay
+
+		.wp-block-navigation__responsive-container-open {
+			line-height: 0;
+			svg {
+				@include mixins.icon-sizing(theme.$icon-lg);
+				fill: currentColor;
+			}
+		}
+		dialog.wp-block-navigation__responsive-container {
+			width: $navigation-overlay-width;
+			overflow-y: hidden;
+			.wp-block-navigation__responsive-dialog {
+				height: 100%;
+			}
+			.wp-block-navigation__responsive-container-close {
+				@include mixins.flex-layout((display: flex));
+				margin: 0 0 $navigation-spacing auto;
+				line-height: 0;
+				svg {
+					@include mixins.icon-sizing(theme.$icon-2xl);
+					fill: currentColor;
+				}
+			}
+			.wp-block-navigation__responsive-container-content.slideout-body {
+				overflow-y: auto;
+				overflow-x: hidden;
+				height: 100%;
+				max-height: 90%;
+				max-height: calc(100% - (#{theme.$icon-2xl} + #{$navigation-spacing})); // leaves room for the close button and its margin
+				@extend %scrollbar;
+			}
+			&[open] {
+				// Show the items as a vertical list with every submenu open, like WordPress
+				.wp-block-navigation__container {
+					flex-flow: column nowrap;
+					align-items: flex-start;
+					@include mixins.gap(theme.$spacing-x2);
+					font-size: functions.em(16px, rem);
+				}
+				.wp-block-navigation-item {
+					display: block;
+				}
+				.wp-block-navigation__submenu-icon {
+					display: none;
+				}
+				.open-on-click > .wp-block-navigation-submenu__toggle {
+					padding-right: 0;
+				}
+				.dropdown-content {
+					position: static;
+					z-index: auto;
+					min-width: 0;
+					margin: theme.$spacing-x2 0 0 0;
+					padding: 0 0 0 $navigation-spacing;
+					border: 0;
+					background-color: transparent;
+					opacity: 1;
+					visibility: visible;
+					transform: none;
+					transition: none;
+					&:before {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-lg - 1px, max-width) {
+		// Smaller views: line submenus up with their item's right side, so they don't run off the right edge (like the header navigation)
+		// Note: only right-aligned navigations and the last three items, since a left item's submenu would run off the left edge instead
+		// Note: their nested submenus open to the left for the same reason, and the open overlay is left out since its submenus aren't positioned
+		.wp-block-navigation:not(:has(> dialog[open])) {
+			&.items-justified-right .wp-block-navigation__container > .dropdown, .wp-block-navigation__container > .dropdown:nth-last-child(-n + 3) {
+				& > .dropdown-content {
+					left: auto;
+					right: 0;
+				}
+				.dropdown-content .dropdown > .dropdown-content {
+					left: auto;
+					right: 100%;
+					margin: 0 ($navigation-submenu-padding + $navigation-submenu-border-width + $navigation-submenu-spacing) 0 0;
+					&:before {
+						left: 100%;
+						right: auto;
+					}
+				}
+				.dropdown-content .dropdown > .wp-block-navigation__submenu-icon svg {
+					@include mixins.transform(rotate(90deg));
+				}
+			}
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-md) {
+		// Overlay on mobile: show the items inline on desktop, with the dialog and its wrappers out of the layout
+		// Note: the open button stays for overlay always (always-shown), whose dialog stays hidden until it's opened (hidden-by-default)
+		.wp-block-navigation {
+			.wp-block-navigation__responsive-container-open:not(.always-shown) {
+				display: none;
+			}
+			dialog.wp-block-navigation__responsive-container:not(.hidden-by-default, [open]) {
+				display: contents;
+				.wp-block-navigation__responsive-close, .wp-block-navigation__responsive-dialog, .wp-block-navigation__responsive-container-content {
+					display: contents;
+				}
+				.wp-block-navigation__responsive-container-close {
+					display: none;
+				}
+			}
+		}
+	}

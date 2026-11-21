@@ -1,0 +1,42 @@
+
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// THEME - NAVIGATION OVERLAY CLOSE
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-navigation-overlay-close {
+		@include mixins.flex-parent(justify-content, center);
+		gap: 0.5em;
+		padding: 0;
+		background: transparent;
+		cursor: pointer;
+		text-decoration: none;
+		&, .wp-block-navigation-overlay-close__text {
+			@include mixins.flex-layout((display: inline-flex, align-items: center));
+		}
+		&:focus {
+			outline-offset: 2px;
+		}
+		svg {
+			@include mixins.sizing(24px, 24px);
+			fill: currentColor;
+			display: block;
+			flex-shrink: 0;
+		}
+	}
+	:where(.wp-block-navigation-overlay-close) {
+		color: inherit;
+		font-family: inherit;
+		font-size: inherit;
+		font-style: inherit;
+		font-weight: inherit;
+		letter-spacing: inherit;
+		line-height: inherit;
+		text-transform: inherit;
+		border: none;
+	}

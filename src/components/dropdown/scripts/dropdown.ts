@@ -19,9 +19,9 @@ export const dropdown = {
 		element.querySelector(selectors.toggle)?.setAttribute('aria-expanded', String(isExpanded));
 	},
 	closeAll: (except?: Element | null) => {
-		// Close every open dropdown, except the one being interacted with
+		// Close every open dropdown, except the one being interacted with and the dropdowns around it (e.g. a navigation block's parent submenus)
 		document.querySelectorAll(selectors.expanded).forEach((element) => {
-			if (element !== except) dropdown.set(element, false);
+			if (!except || !element.contains(except)) dropdown.set(element, false);
 		});
 	},
 	init: () => {
@@ -36,10 +36,11 @@ export const dropdown = {
 			if (!target || !current) return;
 
 			// Toggle from the button, or close from inside the content when the dropdown has closeOnClick
+			// Note: closeOnClick closes every dropdown, so a nested dropdown's parents close with it
 			if (target.closest(selectors.toggle)) {
 				dropdown.set(current, !current.classList.contains(classes.expanded));
 			} else if (target.closest(selectors.content) && current instanceof HTMLElement && current.dataset.closeOnClick === 'true') {
-				dropdown.set(current, false);
+				dropdown.closeAll();
 			}
 		});
 		document.addEventListener('keydown', (e) => {

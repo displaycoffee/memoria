@@ -29,12 +29,13 @@
 	.dropdown {
 		position: relative;
 		&.dropdown-expanded {
-			.dropdown-button {
+			// Note: child combinators, so an expanded dropdown doesn't also open the dropdowns nested in its content (e.g. a navigation block's submenus)
+			& > .dropdown-button {
 				.dropdown-button-toggle .icon-wrapper {
 					@include mixins.transform(rotate(180deg));
 				}
 			}
-			.dropdown-content {
+			& > .dropdown-content {
 				@include mixins.transition($dropdown-transition-open);
 				z-index: 1;
 				opacity: 1;

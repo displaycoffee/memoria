@@ -1,0 +1,29 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// THEME - NAVIGATION LINK
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-navigation {
+		.wp-block-navigation-item__label {
+			overflow-wrap: break-word;
+		}
+		.wp-block-navigation-item__description {
+			display: none;
+		}
+	}
+	.link-ui-tools {
+		outline: 1px solid theme.$color-border;
+		padding: theme.$spacing-x2;
+	}
+	.link-ui-block-inserter {
+		padding-top: theme.$spacing-x2;
+	}
+	.link-ui-block-inserter__back {
+		margin-left: theme.$spacing-x2;
+		text-transform: uppercase;
+	}

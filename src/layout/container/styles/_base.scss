@@ -34,16 +34,6 @@
 //// HELPERS
 //// --------------------------------------------------------------------------
 
-	// Colors
-
-	$base-helpers-color-01: theme.$color-scrollbar-bg; // scrollbar background
-	$base-helpers-color-02: theme.$color-scrollbar-foreground; // scrollbar foreground
-
-	// Configuration
-
-	$base-helpers-scrollbar-width: 6px; // width of scrollbar
-	$base-helpers-scrollbar-height: 6px; // height of scrollbar
-
 	// Style block
 
 	.sr-only {
@@ -59,7 +49,7 @@
 		@include mixins.clearfix('&');
 	}
 	.scrollbar {
-		@include mixins.scrollbar('&', $base-helpers-scrollbar-width, $base-helpers-scrollbar-height, $base-helpers-color-01, $base-helpers-color-02);
+		@extend %scrollbar;
 	}
 	@include mixins.respond(theme.$breakpoint-md - 1, max-width) {
 		html body .hide-mobile {

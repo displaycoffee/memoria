@@ -1,8 +1,8 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
+@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
-@use 'components/forms/styles/_extends';
 
 //// THEME - COMMENTS FORM
 //// --------------------------------------------------------------------------
@@ -36,72 +36,13 @@
 			}
 		}
 		.comment-form {
-			[class*='comment-form']:not(.comment-form-cookies-consent) {
-				@include mixins.flex-layout((flex-flow: row wrap));
-				@include mixins.gap(theme.$spacing-x2 theme.$spacing-x4);
-				& > * {
-					min-width: 1px;
-					@include mixins.flex(1 1 100%);
-				}
-			}
-			input[type='text'], input[type='email'], input[type='url'] {
-				@extend %input-freeform;
-			}
-			input[type='checkbox'], input[type='submit'] {
-				cursor: pointer;
-			}
-			input[type='checkbox'] {
-				@include mixins.position($type: relative, $top: 2.5px);
-				appearance: none;
-				@include mixins.sizing(16px, 16px);
-				padding: 2px;
-				background-color: theme.$color-form-field-bg;
-				border: 1px solid theme.$color-form-field-border;
-				&:before {
-					content: '';
-					display: block;
-					@include mixins.sizing(100%, 100%);
-				}
-				&:checked:before {
-					// Note: the check is a mask so it takes the field text color and follows the theme toggle
-					$checkbox-mask-image: functions.svg-encode('<svg viewBox="0 0 24 24"><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"></path></svg>');
-					background-color: theme.$color-form-field-body;
-					mask: $checkbox-mask-image center / contain no-repeat;
-				}
-			}
-			input[type='submit'] {
-				@extend %buttons;
-				@extend %button;
-				@include mixins.border-radius(0);
-				@extend %button-primary;
-				line-height: 1.5;
-			}
-			textarea {
-				@extend %textarea;
-			}
-			.required {
-				@extend %form-required;
-			}
-			.comment-form-cookies-consent {
-				input[type='checkbox'] {
-					margin: 0 theme.$spacing-x2 0 0;
-				}
-			}
+			@include mixins-custom.form-field;
 		}
 	}
 	@include mixins.respond(theme.$breakpoint-sm) {
 		.wp-block-post-comments-form {
 			.comment-form {
-				[class*='comment-form']:not(.comment-form-cookies-consent) {
-					& > * {
-						@include mixins.flex;
-					}
-					& > label {
-						@include mixins.flex(0 1 auto);
-						width: 100px;
-						@include mixins.position($type: relative, $top: 5px);
-					}
-				}
+				@include mixins-custom.form-field-desktop;
 			}
 		}
 	}

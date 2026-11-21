@@ -107,7 +107,7 @@
 				color: theme.$color-link-hover;
 			}
 		}
-		&:not(.no-decoration, .wp-block-button__link, .wp-block-file__button) {
+		&:not(.no-decoration, .wp-block-button__link, .wp-block-file__button, .wp-block-navigation-item__content) {
 			&:not(:has(.button-label)) {
 				@include link-default;
 				&:active, &:hover {

@@ -3,7 +3,21 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// THEME - SAMPLE
+//// THEME - COMMENTS
 //// --------------------------------------------------------------------------
 
+	// Imports
+
+	@use './_comment-template';
+	@use './_comment-author-name';
+	@use './_comment-date';
+	@use './_comment-edit-link';
+	@use './_comment-content';
+	@use './_comment-reply-link';
+	@use './_comments-pagination';
+	@use './_comments-pagination-next';
+	@use './_comments-pagination-previous';
+
 	// Style block
+
+	.wp-block-comments {}

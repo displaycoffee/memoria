@@ -132,7 +132,7 @@
 
 	// Style block
 
-	h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .wp-block-query-total {
 		font-family: theme.$font-family-header;
 		font-weight: theme.$font-weight-header;
 		@include mixins.if-exists((
@@ -163,7 +163,7 @@
 	h3, .h3, .has-h-3-font-size {
 		font-size: functions.em(26px, rem);
 	}
-	h4, .h4, .has-h-4-font-size {
+	h4, .h4, .has-h-4-font-size, .wp-block-query-total {
 		font-size: functions.em(22px, rem);
 	}
 	h5, h6, .h5, .h6, .has-h-5-font-size, .has-h-6-font-size {

@@ -1,18 +1,18 @@
 /* Scripts */
 import { utilsBrowser } from '@/_core/scripts/utils';
-import { accordion } from '@/wp/blocks/children/design/accordion/scripts/accordion';
+import { accordion } from '@/wp/gutenberg/blocks/design/accordion/scripts/accordion';
 import { blocks } from '@/components/blocks/scripts/blocks';
 import { comments } from '@/wp/comments/scripts/comments';
 import { dropdown } from '@/components/dropdown/scripts/dropdown';
 import { entryContent } from '@/wp/entry/scripts/entry-content';
-import { file } from '@/wp/blocks/children/media/file/scripts/file';
+import { file } from '@/wp/gutenberg/blocks/media/file/scripts/file';
 import { forms } from '@/components/forms/scripts/forms';
 import { image } from '@/components/image/scripts/image';
-import { lightbox } from '@/wp/blocks/children/common/lightbox/scripts/lightbox';
+import { lightbox } from '@/wp/gutenberg/common/lightbox/scripts/lightbox';
 import { overlay } from '@/components/overlay/scripts/overlay';
 import { search } from '@/wp/search/scripts/search';
 import { slideout } from '@/components/slideout/scripts/slideout';
-import { tabs } from '@/wp/blocks/children/design/tabs/scripts/tabs';
+import { tabs } from '@/wp/gutenberg/blocks/design/tabs/scripts/tabs';
 import { themeToggle } from '@/components/theme-toggle/scripts/theme-toggle';
 
 /* Cleanup for the previous page's min-height observer */

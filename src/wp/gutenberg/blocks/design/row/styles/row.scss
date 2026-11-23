@@ -1,0 +1,12 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// DESIGN - ROW
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// Styles for row blocks are under wp/gutenberg/common/layout/styles/layout.scss.
+	// WP uses the class "is-layout-flex".	

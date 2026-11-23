@@ -1,0 +1,40 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// THEME - COMMENTS PAGINATION
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-comments-pagination {
+		margin: 0 0 theme.$spacing-x4 0;
+		& > .wp-block-comments-pagination-next, & > .wp-block-comments-pagination-previous, & > .wp-block-comments-pagination-numbers {
+			font-size: inherit;
+		}
+		&.aligncenter {
+			@include mixins.flex-parent(justify-content, center);
+		}
+		.wp-block-comments-pagination-previous, .wp-block-comments-pagination-next {
+			.wp-block-comments-pagination-previous-arrow, .wp-block-comments-pagination-next-arrow {
+				display: inline-block;
+			}
+		}
+		.wp-block-comments-pagination-previous:not([aria-label]) .wp-block-comments-pagination-previous-arrow {
+			margin-right: theme.$spacing-x2;
+		}
+		.wp-block-comments-pagination-next:not([aria-label]) .wp-block-comments-pagination-next-arrow {
+			margin-left: theme.$spacing-x2;
+		}
+		.wp-block-comments-pagination-numbers {
+			@include mixins.flex-layout((align-items: center));
+			@include mixins.gap(theme.$spacing-x4);
+			.page-numbers {
+				min-width: 1px;
+			}
+			.current {
+				font-weight: theme.$font-weight-body;
+			}
+		}
+	}

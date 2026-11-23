@@ -1,0 +1,16 @@
+//// TEXT
+//// --------------------------------------------------------------------------
+
+	// Imports
+
+	@use 'wp/gutenberg/blocks/text/code/styles/code';
+	@use 'wp/gutenberg/blocks/text/details/styles/details';
+	@use 'wp/gutenberg/blocks/text/heading/styles/heading';
+	@use 'wp/gutenberg/blocks/text/list/styles/list';
+	@use 'wp/gutenberg/blocks/text/math/styles/math';
+	@use 'wp/gutenberg/blocks/text/paragraph/styles/paragraph';
+	@use 'wp/gutenberg/blocks/text/poetry/styles/poetry';
+	@use 'wp/gutenberg/blocks/text/preformatted/styles/preformatted';
+	@use 'wp/gutenberg/blocks/text/pullquote/styles/pullquote';
+	@use 'wp/gutenberg/blocks/text/quote/styles/quote';
+	@use 'wp/gutenberg/blocks/text/table/styles/table';

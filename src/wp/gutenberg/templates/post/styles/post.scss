@@ -1,0 +1,65 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// TEMPLATES - POST
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-post-template {
+		max-width: 100%;
+		list-style: none;
+		padding: 0;
+		&.is-flex-container {
+			@include mixins.flex-layout;
+			@include mixins.gap(theme.$spacing-x4);
+			& > li {
+				margin: 0;
+				width: 100%;
+			}
+			@include mixins.respond(theme.$breakpoint-md) {
+				@for $i from 2 through 6 {
+					&.columns-#{$i} > li {
+						@include mixins.gap-width(theme.$spacing-x4, $i);
+					}
+				}
+			}
+		}
+		.wp-block-post {
+			& > *, & > .wp-block-columns .wp-block-column > *, & > .wp-block-group > * {
+				margin-bottom: theme.$spacing-x2;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+			.wp-block-post-title a {
+				text-decoration: none;
+			}
+			.wp-block-separator {
+				border-color: theme.$color-border;
+			}
+		}
+	}
+	.wp-block-post-template-is-layout-constrained, .wp-block-post-template-is-layout-flow {
+		& > li > .alignright {
+			float: right;
+			margin-inline-start: theme.$spacing-x4;
+			margin-inline-end: 0;
+		}
+		& > li > .alignleft {
+			float: left;
+			margin-inline-start: 0;
+			margin-inline-end: theme.$spacing-x4;
+		}
+		& > li > .aligncenter {
+			margin-inline-start: auto;
+			margin-inline-end: auto;
+		}
+	}
+	@include mixins.respond(theme.$breakpoint-md - 1px, max-width) {
+		.wp-block-post-template-is-layout-grid[class*='columns-']:not(.has-native-responsive-grid) {
+			grid-template-columns: 1fr;
+		}
+	}

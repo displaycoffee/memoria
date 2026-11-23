@@ -1,0 +1,19 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// TEMPLATES - COMMENT CONTENT
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-comment-content {
+		& > :last-child {
+			margin-bottom: 0;
+		}
+	}	
+	.comment-awaiting-moderation {
+		display: block;
+		font-size: functions.em(12px, rem);
+	}

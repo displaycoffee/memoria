@@ -48,7 +48,7 @@
 	}
 }
 
-// Whether block styles are being compiled for the editor (set with is-editor() by wp/blocks/styles/editor.scss before it loads them)
+// Whether block styles are being compiled for the editor (set with is-editor() by wp/gutenberg/styles/editor.scss before it loads them)
 $is-editor: false;
 
 // Mark block styles as compiled for the editor

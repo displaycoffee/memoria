@@ -1,0 +1,39 @@
+//// THEME
+//// --------------------------------------------------------------------------
+
+	// Imports
+
+	@use 'wp/gutenberg/blocks/theme/archive-title/styles/archive-title';
+	@use 'wp/gutenberg/blocks/theme/author-biography/styles/author-biography';
+	@use 'wp/gutenberg/blocks/theme/author-name/styles/author-name';
+	@use 'wp/gutenberg/blocks/theme/avatar/styles/avatar';
+	@use 'wp/gutenberg/blocks/theme/breadcrumbs/styles/breadcrumbs';
+	@use 'wp/gutenberg/blocks/theme/categories/styles/categories';
+	@use 'wp/gutenberg/blocks/theme/comments/styles/comments';
+	@use 'wp/gutenberg/blocks/theme/comments-count/styles/comments-count';
+	@use 'wp/gutenberg/blocks/theme/comments-form/styles/comments-form';
+	@use 'wp/gutenberg/blocks/theme/comments-link/styles/comments-link';
+	@use 'wp/gutenberg/blocks/theme/date/styles/date';
+	@use 'wp/gutenberg/blocks/theme/excerpt/styles/excerpt';
+	@use 'wp/gutenberg/blocks/theme/featured-image/styles/featured-image';
+	@use 'wp/gutenberg/blocks/theme/login-out/styles/login-out';
+	@use 'wp/gutenberg/blocks/theme/modified-date/styles/modified-date';
+	@use 'wp/gutenberg/blocks/theme/navigation/styles/navigation';
+	@use 'wp/gutenberg/blocks/theme/next-post/styles/next-post';
+	@use 'wp/gutenberg/blocks/theme/post-date/styles/post-date';
+	@use 'wp/gutenberg/blocks/theme/post-types-label/styles/post-types-label';
+	@use 'wp/gutenberg/blocks/theme/previous-post/styles/previous-post';
+	@use 'wp/gutenberg/blocks/theme/query-loop/styles/query-loop';
+	@use 'wp/gutenberg/blocks/theme/read-more/styles/read-more';
+	@use 'wp/gutenberg/blocks/theme/search-results-title/styles/search-results-title';
+	@use 'wp/gutenberg/blocks/theme/site-logo/styles/site-logo';
+	@use 'wp/gutenberg/blocks/theme/site-tagline/styles/site-tagline';
+	@use 'wp/gutenberg/blocks/theme/site-title/styles/site-title';
+	@use 'wp/gutenberg/blocks/theme/tags/styles/tags';
+	@use 'wp/gutenberg/blocks/theme/term-count/styles/term-count';
+	@use 'wp/gutenberg/blocks/theme/term-description/styles/term-description';
+	@use 'wp/gutenberg/blocks/theme/term-name/styles/term-name';
+	@use 'wp/gutenberg/blocks/theme/terms-query/styles/terms-query';
+	@use 'wp/gutenberg/blocks/theme/time-to-read/styles/time-to-read';
+	@use 'wp/gutenberg/blocks/theme/title/styles/title';
+	@use 'wp/gutenberg/blocks/theme/word-count/styles/word-count';

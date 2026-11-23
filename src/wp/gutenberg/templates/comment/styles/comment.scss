@@ -1,0 +1,71 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// TEMPLATES - COMMENT
+//// --------------------------------------------------------------------------
+
+	// Imports
+
+	@use './_comment-author-name';
+	@use './_comment-date';
+	@use './_comment-edit-link';
+	@use './_comment-content';
+	@use './_comment-reply-link';
+
+	// Style block
+
+	.wp-block-comment-template {
+		margin: 0 0 theme.$spacing-x4 0;
+		padding: 0;
+		&.alignleft {
+			float: left;
+		}
+		&.aligncenter {
+			margin-left: auto;
+			margin-right: auto;
+			width: fit-content;
+		}
+		&.alignright {
+			float: right;
+		}
+		&, ol {
+			max-width: 100%;
+			list-style: none;
+		}
+		li {
+			clear: both;
+		}
+		.comment, .block-editor-block-list__layout, .comment-respond {
+			margin: 0 0 theme.$spacing-x4 0;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		.comment, .block-editor-block-list__layout {
+			.wp-block-columns {
+				.wp-block-column {
+					@include mixins.flex;
+					min-width: 1px;
+					&:has(.wp-block-avatar) {
+						@include mixins.flex(0 1 auto);
+					}
+					&:has(.wp-block-comment-content) {
+						@include mixins.flex-layout;
+						@include mixins.gap(theme.$spacing-x4 theme.$spacing-x2);
+						& > div {
+							min-width: 1px;
+							margin: 0;
+						}
+						.wp-block-group {
+							@include mixins.gap(theme.$spacing-x2);
+						}
+						.wp-block-comment-content {
+							@include mixins.flex(1 1 100%);
+						}
+					}
+				}
+			}
+		}
+	}

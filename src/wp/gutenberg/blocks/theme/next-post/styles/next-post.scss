@@ -1,0 +1,14 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// THEME - NEXT POST
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// Note: WordPress uses the class wp-block-post-navigation-link from core/wp-block-post-navigation-link.
+	// Main styles are from wp/gutenberg/common/layout/styles/_post-navigation-link.scss.
+
+	.post-navigation-link-next.wp-block-post-navigation-link {}

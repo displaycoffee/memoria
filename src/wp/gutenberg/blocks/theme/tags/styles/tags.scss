@@ -1,0 +1,14 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// THEME - TAGS
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// Note: WordPress uses the class wp-block-post-terms from core/post-terms.
+	// Main styles are from wp/gutenberg/common/layout/styles/_post-terms.scss.
+
+	.taxonomy-tag.wp-block-post-terms {}

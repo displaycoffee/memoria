@@ -1,0 +1,13 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// THEME - POST TYPES LABEL
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// Note: this is under core/query-title.
+
+	.wp-block-query-title {}

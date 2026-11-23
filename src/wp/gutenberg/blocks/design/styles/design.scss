@@ -1,0 +1,17 @@
+//// DESIGN
+//// --------------------------------------------------------------------------
+
+	// Imports
+
+	@use 'wp/gutenberg/blocks/design/accordion/styles/accordion';
+	@use 'wp/gutenberg/blocks/design/buttons/styles/buttons';
+	@use 'wp/gutenberg/blocks/design/columns/styles/columns';
+	@use 'wp/gutenberg/blocks/design/grid/styles/grid';
+	@use 'wp/gutenberg/blocks/design/group/styles/group';
+	@use 'wp/gutenberg/blocks/design/more/styles/more';
+	@use 'wp/gutenberg/blocks/design/page-break/styles/page-break';
+	@use 'wp/gutenberg/blocks/design/row/styles/row';
+	@use 'wp/gutenberg/blocks/design/separator/styles/separator';
+	@use 'wp/gutenberg/blocks/design/spacer/styles/spacer';
+	@use 'wp/gutenberg/blocks/design/stack/styles/stack';
+	@use 'wp/gutenberg/blocks/design/tabs/styles/tabs';

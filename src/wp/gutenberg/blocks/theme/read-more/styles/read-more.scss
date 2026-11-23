@@ -3,7 +3,13 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// THEME - SAMPLE
+//// THEME - READ MORE
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	// Note: _typography leaves it out of the link underline, so a text decoration set in the editor still applies
+	.wp-block-read-more {
+		display: block;
+		width: fit-content;
+	}

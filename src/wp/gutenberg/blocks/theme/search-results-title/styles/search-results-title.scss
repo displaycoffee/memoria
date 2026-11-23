@@ -3,7 +3,11 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// THEME - SAMPLE
+//// THEME - SEARCH RESULTS TITLE
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	// Note: this is under core/query-title.
+
+	.wp-block-query-title {}

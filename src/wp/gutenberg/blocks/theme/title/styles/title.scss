@@ -3,7 +3,15 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// THEME - SAMPLE
+//// THEME - TITLE
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	.wp-block-post-title {
+		word-break: normal;
+		overflow-wrap: anywhere;
+		a:not(.no-decoration, .wp-block-button__link, .wp-block-file__button, .wp-block-navigation-item__content):not(:has(.button-label)) {
+			text-decoration: none;
+		}
+	}

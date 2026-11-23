@@ -10,7 +10,23 @@
 
 	.wp-block-term-template {
 		max-width: 100%;
-		margin: 0;
 		padding: 0;
 		list-style: none;
+		&, .wp-block-term .wp-block-term-name {
+			margin: 0;
+		}
+		.wp-block-term {
+			margin: 0 0 theme.$spacing-x1 0;
+			&:last-child {
+				margin-bottom: 0;
+			}
+			.wp-block-term-count {
+				@include mixins.position($type: relative, $top: 1px);
+				font-size: functions.em(12px, rem);
+			}
+		}
+	}
+	:where(.wp-block-term-template .wp-block-term) .is-layout-flex {
+		// Note: :where() keeps it at the same specificity as layout's gap, so it beats that, but a block gap set in the editor (wp-container-*, loaded later) still applies
+		@include mixins.gap(theme.$spacing-x2);
 	}

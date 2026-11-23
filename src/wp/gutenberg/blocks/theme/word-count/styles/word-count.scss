@@ -3,7 +3,11 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// THEME - SAMPLE
+//// THEME - WORD COUNT
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	// Note: "Time to Read" and "Word Count" both use wp-block-post-time-to-read.
+
+	.wp-block-post-time-to-read {}

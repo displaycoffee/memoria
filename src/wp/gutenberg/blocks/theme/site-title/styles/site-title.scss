@@ -3,7 +3,17 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// THEME - SAMPLE
+//// THEME - SITE TITLE
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	.wp-block-site-title {
+		a {
+			// Same as headings, so a paragraph site title's link matches its text
+			color: inherit;
+		}
+		a:not(.no-decoration, .wp-block-button__link, .wp-block-file__button, .wp-block-navigation-item__content):not(:has(.button-label)) {
+			text-decoration: none;
+		}
+	}

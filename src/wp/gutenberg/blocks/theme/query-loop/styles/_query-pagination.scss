@@ -1,6 +1,7 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
+@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// THEME - QUERY PAGINATION
@@ -17,28 +18,5 @@
 				margin-inline-start: auto;
 			}
 		}
-		&.aligncenter {
-			@include mixins.flex-parent(justify-content, center);
-		}
-		.wp-block-query-pagination-previous, .wp-block-query-pagination-next {
-			.wp-block-query-pagination-previous-arrow, .wp-block-query-pagination-next-arrow {
-				display: inline-block;
-			}
-		}
-		.wp-block-query-pagination-previous:not([aria-label]) .wp-block-query-pagination-previous-arrow {
-			margin-right: theme.$spacing-x2;
-		}
-		.wp-block-query-pagination-next:not([aria-label]) .wp-block-query-pagination-next-arrow {
-			margin-left: theme.$spacing-x2;
-		}
-		.wp-block-query-pagination-numbers {
-			@include mixins.flex-layout((align-items: center));
-			@include mixins.gap(theme.$spacing-x4);
-			.page-numbers {
-				min-width: 1px;
-			}
-			.current {
-				font-weight: theme.$font-weight-body;
-			}
-		}
 	}
+	@include mixins-custom.pagination('.wp-block-query-pagination');

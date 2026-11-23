@@ -3,4 +3,16 @@
 
 	// Imports
 
-	@use 'wp/gutenberg/blocks/widgets/sample/styles/sample';
+	@use 'wp/gutenberg/blocks/widgets/archives/styles/archives';
+	@use 'wp/gutenberg/blocks/widgets/calendar/styles/calendar';
+	@use 'wp/gutenberg/blocks/widgets/categories-list/styles/categories-list';
+	@use 'wp/gutenberg/blocks/widgets/custom-html/styles/custom-html';
+	@use 'wp/gutenberg/blocks/widgets/latest-comments/styles/latest-comments';
+	@use 'wp/gutenberg/blocks/widgets/latest-posts/styles/latest-posts';
+	@use 'wp/gutenberg/blocks/widgets/page-list/styles/page-list';
+	@use 'wp/gutenberg/blocks/widgets/rss/styles/rss';
+	@use 'wp/gutenberg/blocks/widgets/search/styles/search';
+	@use 'wp/gutenberg/blocks/widgets/shortcode/styles/shortcode';
+	@use 'wp/gutenberg/blocks/widgets/social-icons/styles/social-icons';
+	@use 'wp/gutenberg/blocks/widgets/tag-cloud/styles/tag-cloud';
+	@use 'wp/gutenberg/blocks/widgets/terms-list/styles/terms-list';

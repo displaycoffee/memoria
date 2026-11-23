@@ -158,6 +158,36 @@ $is-editor: false;
 	}
 }
 
+// Mixin for WordPress pagination blocks
+@mixin pagination($selector: '.wp-block-comments-pagination') {
+	#{$selector} {
+		&.aligncenter {
+			@include mixins.flex-parent(justify-content, center);
+		}
+		#{$selector}-previous, #{$selector}-next {
+			#{$selector}-previous-arrow, #{$selector}-next-arrow {
+				display: inline-block;
+			}
+		}
+		#{$selector}-previous:not([aria-label]) #{$selector}-previous-arrow {
+			margin-right: theme.$spacing-x2;
+		}
+		#{$selector}-next:not([aria-label]) #{$selector}-next-arrow {
+			margin-left: theme.$spacing-x2;
+		}
+		#{$selector}-numbers {
+			@include mixins.flex-layout((align-items: center));
+			@include mixins.gap(theme.$spacing-x4);
+			.page-numbers {
+				min-width: 1px;
+			}
+			.current {
+				font-weight: theme.$font-weight-body;
+			}
+		}
+	}	
+}
+
 // WordPress rule for writing-mode
 @mixin writing-mode {
 	&.has-text-align-right[style*='writing-mode']:where([style*='vertical-rl']), &.has-text-align-left[style*='writing-mode']:where([style*='vertical-lr']) {

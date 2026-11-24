@@ -3,9 +3,8 @@
 
 	// Imports
 
-	@use 'wp/gutenberg/common/border/styles/border';
-	@use 'wp/gutenberg/common/colors/styles/colors';
-	@use 'wp/gutenberg/common/image/styles/image';
+	@use 'wp/gutenberg/common/blocks/styles/blocks';
+	@use 'wp/gutenberg/common/forms/styles/forms';
 	@use 'wp/gutenberg/common/layout/styles/layout';
 	@use 'wp/gutenberg/common/lightbox/styles/lightbox';
-	@use 'wp/gutenberg/common/shadow/styles/shadow';
+	@use 'wp/gutenberg/common/supports/styles/supports';

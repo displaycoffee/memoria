@@ -1,12 +1,45 @@
-// Built-in Sass modules
-@use 'sass:map';
-
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// COMMON - COLORS - DEFAULT
+//// COMMON - SUPPORTS - BACKGROUND
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// Pad blocks with a background color, like WordPress's has-background rules, so text doesn't touch the edges
+	// Note: a class's specificity rather than :where(), since the editor also loads WordPress's block styles, whose padding would beat :where() (e.g. h1:where(.wp-block-heading).has-background and :root :where(p.has-background))
+	:is(p, h1, h2, h3, h4, h5, h6, .wp-block-paragraph, .wp-block-heading, .wp-block-list, .wp-block-footnotes, .wp-block-preformatted, .wp-block-details, .wp-block-group, .wp-block-columns, .wp-block-gallery).has-background {
+		padding: theme.$spacing-x4;
+	}
+
+//// COMMON - SUPPORTS - BORDER
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$border-sides: (top, right, bottom, left); // sides a block can set its own border color / width for
+
+	// Style block
+	// WordPress's border block support only saves a color and / or width (as a class or inline style), never a style, so give those a solid style like its common.css does, otherwise the border doesn't show
+	// Note: html :where() keeps the specificity low, so a style picked in the editor (inline border-style) still wins
+
+	html :where(.has-border-color) {
+		border-style: solid;
+	}
+	@each $property in (color, width) {
+		html :where([style^='border-#{$property}'], [style*=';border-#{$property}'], [style*='; border-#{$property}']) {
+			border-style: solid;
+		}
+		@each $side in $border-sides {
+			html :where([style^='border-#{$side}-#{$property}'], [style*=';border-#{$side}-#{$property}'], [style*='; border-#{$side}-#{$property}']) {
+				border-#{$side}-style: solid;
+			}
+		}
+	}
+
+//// COMMON - SUPPORTS - DEFAULT COLORS
 //// --------------------------------------------------------------------------
 
 	// Configuration
@@ -46,12 +79,12 @@
 		}
 	}
 
-//// COMMON - COLORS - DUOTONE
+//// COMMON - SUPPORTS - DUOTONE
 //// --------------------------------------------------------------------------
 
 	// Style block
 
-	// The presets, SVG filters and filter rules live in wp/gutenberg/common/colors/Colors.tsx, so the colors are only in one place
+	// The presets, SVG filters and filter rules live in wp/gutenberg/common/supports/Supports.tsx, so the colors are only in one place
 	// Note: keep the SVG out of the way without display: none, which stops some browsers from applying its filters
 	.duotone-filters {
 		@include mixins.position($type: absolute, $top: 0, $left: 0);
@@ -59,7 +92,7 @@
 		pointer-events: none;
 	}
 	
-//// COMMON - COLORS - GRADIENT
+//// COMMON - SUPPORTS - GRADIENT
 //// --------------------------------------------------------------------------
 
 	// Configuration
@@ -92,7 +125,25 @@
 		}
 	}
 
-//// COMMON - COLORS - THEME
+//// COMMON - SUPPORTS - SHADOW
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$shadow-presets: (crisp, deep, natural, outlined, sharp); // WordPress's default shadow presets, each matching a --shadow-* token so they follow the theme
+
+	// Style block
+
+	// WordPress writes picked shadows inline as box-shadow: var(--wp--preset--shadow--{slug}), and only defines those variables on its own pages, so point them at memoria's tokens
+	// Note: the tokens can't be named --wp--preset--* themselves, since the token generator's kebab-case names collapse the double dashes
+	// Note: the theme overrides are on :root too, so these resolve to the current theme's shadow
+	:root {
+		@each $slug in $shadow-presets {
+			--wp--preset--shadow--#{$slug}: var(--shadow-#{$slug});
+		}
+	}
+
+//// COMMON - SUPPORTS - THEME COLORS
 //// --------------------------------------------------------------------------
 
 	// Configuration
@@ -129,4 +180,15 @@
 	// Highlight stays light in both themes, so keep text readable on it unless a text color was picked
 	.has-highlight-background-color:not(.has-text-color) {
 		color: var(--color-highlight-body);
+	}
+
+//// COMMON - SUPPORTS - WRITING MODE
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	h1, h2, h3, h4, h5, h6, .wp-block-heading, p, .wp-block-paragraph, .wp-block-post-navigation-link {
+		&.has-text-align-right[style*='writing-mode']:where([style*='vertical-rl']), &.has-text-align-left[style*='writing-mode']:where([style*='vertical-lr']) {
+			rotate: 180deg;
+		}
 	}

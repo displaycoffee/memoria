@@ -1,0 +1,134 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+@use 'components/forms/styles/_extends';
+
+//// COMMON - FORMS - BUTTON
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-button .wp-block-button__link, .wp-block-file .wp-block-file__button, 
+	.comment-form .form-submit input[type='submit'], #loginform .login-submit input[type='submit'] {
+		cursor: pointer;
+		@extend %buttons;
+		@extend %button;
+		@include mixins.border-radius(0);
+		@extend %button-primary;
+		word-break: break-word;
+	}
+	.wp-block-button .wp-block-button__link {
+		// Grow with wrapping text (e.g. custom widths on mobile) instead of the form button's fixed height and line-height
+		height: auto;
+		min-height: extends.$forms-button-height;
+		line-height: 1.5;
+	}
+
+//// COMMON - FORMS - CHOICE
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.comment-form, #loginform {
+		input[type='checkbox'] {
+			cursor: pointer;
+			@include mixins.position($type: relative, $top: 2.5px);
+			appearance: none;
+			@include mixins.sizing(16px, 16px);
+			padding: 2px;
+			background-color: theme.$color-form-field-bg;
+			border: 1px solid theme.$color-form-field-border;
+			&:before {
+				content: '';
+				display: block;
+				@include mixins.sizing(100%, 100%);
+			}
+			&:checked:before {
+				// Note: the check is a mask so it takes the field text color and follows the theme toggle
+				$checkbox-mask-image: functions.svg-encode('<svg viewBox="0 0 24 24"><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"></path></svg>');
+				background-color: theme.$color-form-field-body;
+				mask: $checkbox-mask-image center / contain no-repeat;
+			}
+		}
+	}
+	.comment-form .comment-form-cookies-consent, #loginform .login-remember {
+		input[type='checkbox'] {
+			margin: 0 theme.$spacing-x2 0 0;
+		}
+	}
+
+//// COMMON - FORMS - FORM FIELD
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.comment-form [class*="comment-form"]:not(.comment-form-cookies-consent), #loginform [class*="login"]:not(.login-remember, .login-submit) {
+		@include mixins.flex-layout((flex-flow: row wrap));
+		@include mixins.gap(theme.$spacing-x2 theme.$spacing-x4);
+		& > * {
+			min-width: 1px;
+			@include mixins.flex(1 1 100%);
+		}
+		@include mixins.respond(theme.$breakpoint-sm) {
+			& > * {
+				@include mixins.flex;
+			}
+			& > label {
+				@include mixins.flex(0 1 auto);
+				width: 100px;
+				@include mixins.position($type: relative, $top: 5px);
+			}
+		}
+	}
+	#loginform [class*="login"]:not(.login-remember, .login-submit) {
+		@include mixins.respond(theme.$breakpoint-sm) {
+			& > label {
+				width: 200px;
+			}
+		}
+	}
+
+//// COMMON - FORMS - INPUT
+//// --------------------------------------------------------------------------	
+
+	// Style block
+
+	.comment-form, #loginform {
+		input[type='email'], input[type='password'], input[type='text'], input[type='url'] {
+			@extend %input-freeform;
+		}
+	}
+
+//// COMMON - FORMS - LABEL
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.comment-form, #loginform {
+		label {
+			cursor: pointer;
+		}
+	}
+
+//// COMMON - FORMS - REQUIRED
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.comment-form, #loginform {
+		.required {
+			@extend %form-required;
+		}
+	}
+
+//// COMMON - FORMS - TEXTAREA
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.comment-form, #loginform {
+		textarea {
+			@extend %textarea;
+		}
+	}

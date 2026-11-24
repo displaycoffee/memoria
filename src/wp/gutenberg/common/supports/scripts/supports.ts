@@ -1,5 +1,5 @@
 /* Scripts */
-import type { DuotoneChannelsType, DuotonePresetsType } from './colors-types';
+import type { DuotoneChannelsType, DuotonePresetsType } from './supports-types';
 
 /* WordPress's default duotone presets (wp-includes/theme.json), as [shadow, highlight]
    Note: memoria-headless turns off custom duotones, so these presets are the only wp-duotone-* classes that reach Astro */

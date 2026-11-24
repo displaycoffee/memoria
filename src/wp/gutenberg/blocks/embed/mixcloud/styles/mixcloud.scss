@@ -1,7 +1,6 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// EMBED - MIXCLOUD
@@ -16,7 +15,8 @@
 	.wp-block-embed-mixcloud {
 		.wp-block-embed__wrapper {}
 	}
-	@include mixins-custom.embed-responsive {
+	// Note: :is() matches memoria's entry content, plus the editor's root block list (.is-root-container), and keeps a single class's specificity
+	:is(.wp-embed-responsive, .entry-content, .is-root-container) {
 		.wp-block-embed-mixcloud {
 			.wp-block-embed__wrapper {
 				// Drop the aspect ratio WordPress saves (e.g. 21:9), since a percentage height leaves whitespace or squashes the fixed-height player as the width changes

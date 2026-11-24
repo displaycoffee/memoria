@@ -1,7 +1,6 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// EMBED - PINTEREST
@@ -11,11 +10,4 @@
 
 	.wp-block-embed-pinterest {
 		.wp-block-embed__wrapper {}
-	}
-	:where(.entry-content) {
-		.wp-block-embed-pinterest {
-			.wp-block-embed__wrapper {
-				@include mixins-custom.embed-border($border-radius: 18px, $border-color: rgba(0, 0, 0, 0.1));
-			}
-		}
 	}

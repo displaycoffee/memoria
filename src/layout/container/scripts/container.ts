@@ -10,6 +10,7 @@ import { forms } from '@/components/forms/scripts/forms';
 import { image } from '@/components/image/scripts/image';
 import { lightbox } from '@/wp/gutenberg/common/lightbox/scripts/lightbox';
 import { overlay } from '@/components/overlay/scripts/overlay';
+import { playlist } from '@/wp/gutenberg/blocks/media/playlist/scripts/playlist';
 import { search } from '@/wp/search/scripts/search';
 import { slideout } from '@/components/slideout/scripts/slideout';
 import { tabs } from '@/wp/gutenberg/blocks/design/tabs/scripts/tabs';
@@ -36,6 +37,7 @@ export const container = {
 		forms.clearable.update();
 		image.checkComplete();
 		lightbox.update();
+		playlist.update();
 		search.updateType();
 		tabs.update();
 		themeToggle.update();
@@ -52,6 +54,7 @@ export const container = {
 		image.init();
 		lightbox.init();
 		overlay.init();
+		playlist.init();
 		slideout.init();
 		tabs.init();
 		themeToggle.init();

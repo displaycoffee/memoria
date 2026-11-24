@@ -2,6 +2,7 @@
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
+@use '@arraypress/waveform-player/dist/waveform-player';
 
 //// MEDIA - PLAYLIST
 //// --------------------------------------------------------------------------
@@ -21,7 +22,7 @@
 			width: 100%;
 			margin: theme.$spacing-x2 0;
 			position: relative;
-			// Hide the player's container while it's empty, since memoria doesn't build the waveform player (see _etc/docs/memoria-astro/playlist-waveform)
+			// Hide the player's container while it's empty, until playlist.ts builds the waveform player in it
 			&:empty {
 				display: none;
 			}

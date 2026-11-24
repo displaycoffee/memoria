@@ -1,7 +1,6 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// MEDIA - VIDEO
@@ -16,9 +15,6 @@
 		video {
 			@include mixins.sizing(100%, auto);
 			vertical-align: middle;
-		}
-		:where(figcaption) {
-			@include mixins-custom.caption-style;
 		}
 		@supports (position: sticky) {
 			[poster] {

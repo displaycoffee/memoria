@@ -55,6 +55,7 @@
 		"unplugin-icons": "^24.0.0"
 	},
 	"dependencies": {
+		"@arraypress/waveform-player": "^1.30.2",
 		"@astrojs/sitemap": "^3.7.4",
 		"@displaycoffee/scripts": "^2.1.0",
 		"react": "^19.3.0",

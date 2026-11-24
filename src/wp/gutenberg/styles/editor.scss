@@ -3,7 +3,6 @@
 
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// EDITOR
@@ -30,12 +29,15 @@
 			box-sizing: border-box;
 		}
 	}
-	
-	// Note: lets mixins that need the wrapper as a parent (e.g. embed-responsive) add it, since & is null inside meta.load-css()
-	@include mixins-custom.is-editor;
 
 	:where(.editor-styles-wrapper) {
 		@include meta.load-css('layout/container/styles/_typography');
 		@include meta.load-css('wp/gutenberg/styles/gutenberg');
-		@include mixins-custom.margin-trim('.is-root-container');
+		// Note: the editor's version of layout/container/styles/_base's .margin-trim rules, with the root block list as the parent
+		p, h1, h2, h3, h4, h5, h6, .is-root-container > div, .is-root-container > section, .is-root-container > [class*='wp-block'] {
+			margin: 0 0 theme.$spacing-x4 0;
+		}
+		.is-root-container > *:last-child {
+			margin-bottom: 0;
+		}
 	}

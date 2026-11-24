@@ -1,7 +1,6 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// THEME - COMMENTS PAGINATION
@@ -9,10 +8,12 @@
 
 	// Style block
 
+	// Note: core/comments-pagination and core/query-pagination share the same class structure.
+	// Main styles are from wp/gutenberg/common/blocks/styles/blocks.scss.
+
 	.wp-block-comments-pagination {
 		margin: 0 0 theme.$spacing-x4 0;
 		& > .wp-block-comments-pagination-next, & > .wp-block-comments-pagination-previous, & > .wp-block-comments-pagination-numbers {
 			font-size: inherit;
 		}
 	}
-	@include mixins-custom.pagination;

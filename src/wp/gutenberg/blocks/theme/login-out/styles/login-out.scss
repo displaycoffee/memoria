@@ -1,7 +1,6 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// THEME - LOGIN/OUT
@@ -9,19 +8,4 @@
 
 	// Style block
 
-	.wp-block-loginout {
-		&.has-login-form {
-			#loginform {
-				@include mixins-custom.form-field('[class*="login"]:not(.login-remember, .login-submit)', '.login-remember');
-			}
-		}
-	}
-	@include mixins.respond(theme.$breakpoint-sm) {
-		.wp-block-loginout {
-			&.has-login-form {
-				#loginform {
-					@include mixins-custom.form-field-desktop('[class*="login"]:not(.login-remember, .login-submit)', 200px);
-				}
-			}
-		}
-	}
+	.wp-block-loginout {}

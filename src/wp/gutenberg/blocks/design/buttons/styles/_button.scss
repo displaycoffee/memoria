@@ -2,28 +2,17 @@
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
-@use 'components/forms/styles/_extends';
 
 //// BUTTON
 //// --------------------------------------------------------------------------
 
 	// Style block
-
+	
 	.wp-block-button {
 		&[style*='text-decoration'] .wp-block-button__link {
 			text-decoration: inherit;
 		}
 		.wp-block-button__link {
-			cursor: pointer;
-			@extend %buttons;
-			@extend %button;
-			@include mixins.border-radius(0);
-			@extend %button-primary;
-			// Grow with wrapping text (e.g. custom widths on mobile) instead of the form button's fixed height and line-height
-			height: auto;
-			min-height: extends.$forms-button-height;
-			line-height: 1.5;
-			word-break: break-word;
 			&.has-background:not(.has-border-color) {
 				&, &:hover {
 					border-width: 0;

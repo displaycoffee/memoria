@@ -1,7 +1,6 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// DESIGN - GROUP
@@ -9,9 +8,6 @@
 
 	// Style block
 
-	.wp-block-group {
-		@include mixins-custom.has-background;
-	}
 	:where(.wp-block-group.wp-block-group-is-layout-constrained) {
 		position: relative;
 	}

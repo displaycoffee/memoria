@@ -1,7 +1,6 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// MEDIA - IMAGE
@@ -53,9 +52,6 @@
 		&.aligncenter {
 			margin-left: auto;
 			margin-right: auto;
-		}
-		:where(figcaption) {
-			@include mixins-custom.caption-style;
 		}
 		img {
 			height: auto;

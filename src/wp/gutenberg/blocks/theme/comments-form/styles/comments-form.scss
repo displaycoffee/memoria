@@ -1,7 +1,6 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// THEME - COMMENTS FORM
@@ -33,16 +32,6 @@
 				@include mixins.position($type: relative, $top: -5px);
 				padding: 0 0 0 theme.$spacing-x4;
 				font-size: functions.em(12px, rem);
-			}
-		}
-		.comment-form {
-			@include mixins-custom.form-field;
-		}
-	}
-	@include mixins.respond(theme.$breakpoint-sm) {
-		.wp-block-post-comments-form {
-			.comment-form {
-				@include mixins-custom.form-field-desktop;
 			}
 		}
 	}

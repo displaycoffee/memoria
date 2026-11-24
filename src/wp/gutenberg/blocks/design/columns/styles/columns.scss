@@ -1,7 +1,6 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 @use 'layout/container/styles/_extends';
 
@@ -15,7 +14,6 @@
 	// Style block
 
 	.wp-block-columns {
-		@include mixins-custom.has-background;
 		@extend %flex-wrap;
 		// Wrap on mobile, beating the layout support's flex-wrap: nowrap (printed by EntryStyles after this stylesheet at the same specificity)
 		@include mixins.flex-wrap(wrap !important);

@@ -1,5 +1,5 @@
 /* Scripts */
-import { duotone, duotonePresets } from './scripts/colors';
+import { duotone, duotonePresets } from './scripts/supports';
 
 export const DuotoneFilters = () => {
 	// WordPress prints these SVG filters into its own pages, which never reach Astro, so render the same ones here

@@ -1,7 +1,6 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// MEDIA - AUDIO
@@ -10,9 +9,6 @@
 	// Style block
 
 	.wp-block-audio {
-		:where(figcaption) {
-			@include mixins-custom.caption-style;
-		}
 		audio {
 			width: 100%;
 			min-width: 300px;

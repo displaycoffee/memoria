@@ -1,0 +1,110 @@
+// Local Sass modules
+@use '@displaycoffee/styles/functions';
+@use '@displaycoffee/styles/mixins';
+@use '_core/styles/_theme';
+
+//// COMMON - BLOCKS - CAPTION STYLE
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$common-blocks-caption-font-size: functions.em(12px, rem); // font size for caption
+
+	// Style block
+
+	.wp-block-audio, .wp-block-embed, .wp-block-image, .wp-block-video {
+		:where(figcaption) {
+			margin-top: theme.$spacing-x2;
+			margin-bottom: theme.$spacing-x4;
+			font-size: $common-blocks-caption-font-size;
+		}
+	}
+	.wp-block-gallery.has-nested-images:where(.is-layout-flex) figcaption {
+		font-size: $common-blocks-caption-font-size;
+	}
+	
+//// COMMON - BLOCKS - IMAGE
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	[class*='wp-image'] {
+		display: inline-block;
+	}
+	
+//// COMMON - BLOCKS - PAGINATION
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// Note: shared by the theme Comments pagination and Query pagination blocks (core/comments-pagination and core/query-pagination), which use the same class structure.
+	// E.g. <nav class="wp-block-query-pagination"><a class="wp-block-query-pagination-previous"><span class="wp-block-query-pagination-previous-arrow" /></a><div class="wp-block-query-pagination-numbers"><span class="page-numbers current" /><a class="page-numbers" /></div><a class="wp-block-query-pagination-next" /></nav>
+
+	@each $block in (comments-pagination, query-pagination) {
+		$selector: '.wp-block-#{$block}';
+		#{$selector} {
+			&.aligncenter {
+				@include mixins.flex-parent(justify-content, center);
+			}
+			#{$selector}-previous, #{$selector}-next {
+				#{$selector}-previous-arrow, #{$selector}-next-arrow {
+					display: inline-block;
+				}
+			}
+			#{$selector}-previous:not([aria-label]) #{$selector}-previous-arrow {
+				margin-right: theme.$spacing-x2;
+			}
+			#{$selector}-next:not([aria-label]) #{$selector}-next-arrow {
+				margin-left: theme.$spacing-x2;
+			}
+			#{$selector}-numbers {
+				@include mixins.flex-layout((align-items: center));
+				@include mixins.gap(theme.$spacing-x4);
+				.page-numbers {
+					min-width: 1px;
+				}
+				.current {
+					font-weight: theme.$font-weight-body;
+				}
+			}
+		}
+	}
+
+//// COMMON - BLOCKS - POST NAVIGATION LINK
+//// --------------------------------------------------------------------------
+
+	// Style block
+	
+	// Note: shared by the theme Next post and Previous post blocks (core/post-navigation-link).
+	// E.g. <div class="post-navigation-link-next wp-block-post-navigation-link"><a rel="next">Next post</a><span class="wp-block-post-navigation-link__arrow-next is-arrow-chevron" aria-hidden="true">»</span></div>
+
+	.wp-block-post-navigation-link {
+		@include mixins.flex-layout((align-items: center));
+		@include mixins.gap(theme.$spacing-x1);
+		&.has-text-align-center {
+			@include mixins.flex-parent(justify-content, center);
+		}
+		&.has-text-align-right {
+			@include mixins.flex-parent(justify-content, flex-end);
+		}
+	}
+
+//// COMMON - BLOCKS - POST TERMS
+//// --------------------------------------------------------------------------
+
+	// Style block
+	
+	// Note: shared by the theme Categories and Tags blocks (core/post-terms, with taxonomy-category / taxonomy-tag).
+	// E.g. <div class="taxonomy-category wp-block-post-terms"><span class="wp-block-post-terms__prefix" /><a /><span class="wp-block-post-terms__separator">, </span><a /><span class="wp-block-post-terms__suffix" /></div>
+
+	.wp-block-post-terms {
+		.wp-block-post-terms__separator, .wp-block-post-terms__prefix {
+			padding-right: theme.$spacing-x1;
+		}
+		.wp-block-post-terms__prefix {
+			font-weight: theme.$font-weight-body;
+		}
+		.wp-block-post-terms__suffix {
+			padding-left: theme.$spacing-x1;
+		}
+	}	

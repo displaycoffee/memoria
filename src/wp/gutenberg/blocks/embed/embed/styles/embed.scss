@@ -1,7 +1,6 @@
 // Local Sass modules
 @use '@displaycoffee/styles/functions';
 @use '@displaycoffee/styles/mixins';
-@use '_core/styles/_mixins-custom';
 @use '_core/styles/_theme';
 
 //// EMBED - COMMON
@@ -29,9 +28,6 @@
 	}
 	.wp-block-embed {
 		overflow-wrap: break-word;
-		:where(figcaption) {
-			@include mixins-custom.caption-style;
-		}
 		.wp-block-embed__wrapper {
 			position: relative;
 		}
@@ -39,7 +35,8 @@
 			max-width: 100%;
 		}
 	}
-	@include mixins-custom.embed-responsive {
+	// Note: :is() matches memoria's entry content, plus the editor's root block list (.is-root-container), and keeps a single class's specificity
+	:is(.wp-embed-responsive, .entry-content, .is-root-container) {
 		.wp-has-aspect-ratio {
 			.wp-block-embed__wrapper:before {
 				content: '';
@@ -73,11 +70,77 @@
 			padding-top: 200%;
 		}
 	}
+
+//// EMBED - BORDER
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$embed-wrapper-selector: '.wp-block-embed__wrapper:not(:has(.twitter-tweet)), .wp-block-embed__wrapper:has(.twitter-tweet) .twitter-tweet'; // selector for embed wrapper
+
+	// Style block
+
 	:where(.entry-content) {
+		.wp-block-embed-pinterest, .wp-block-embed-scribd, .wp-block-embed-speaker-deck, .wp-block-embed-tumblr, .wp-block-embed-twitter, .wp-block-embed-x {
+			#{$embed-wrapper-selector} {
+				position: relative;
+				display: inline-block;
+				line-height: 0;
+				&, &:after, iframe {
+					overflow: hidden;	
+				}	
+				&:after {
+					pointer-events: none;
+					content: '';
+					display: block;
+					@include mixins.position-fill;
+					border: 1px solid theme.$color-border;
+				}
+				// Fill the width where inline-block would collapse: embeds with an aspect ratio (the iframe is absolute and the ratio's :before has no width of its own)
+				// Note: :where() keeps the specificity, so this wins over the display above by coming after it
+				&:where(.wp-has-aspect-ratio *) {
+					display: block;
+				}
+			}
+		}
+		.wp-block-embed-pinterest, .wp-block-embed-tumblr {
+			#{$embed-wrapper-selector} {
+				&:after {
+					border-color: rgba(0, 0, 0, 0.1);
+				}
+			}
+		}
+		.wp-block-embed-pinterest {
+			#{$embed-wrapper-selector} {
+				&, &:after, iframe {
+					@include mixins.border-radius(18px);
+				}
+			}
+		}
+		.wp-block-embed-scribd {
+			#{$embed-wrapper-selector} {
+				&:after {
+					border-color: #dedede;
+				}
+			}
+		}
+		.wp-block-embed-speaker-deck {
+			#{$embed-wrapper-selector} {
+				&, &:after, iframe {
+					@include mixins.border-radius(10px);
+				}
+				&:after {
+					border-color: rgba(0, 0, 0, 0.5);
+				}
+			}
+		}
 		.wp-block-embed-twitter, .wp-block-embed-x {
-			.wp-block-embed__wrapper {
-				.twitter-tweet {
-					@include mixins-custom.embed-border($border-radius: 14px, $border-color: #cfd9de);
+			#{$embed-wrapper-selector} {
+				&, &:after, iframe {
+					@include mixins.border-radius(14px);
+				}
+				&:after {
+					border-color: #cfd9de;
 				}
 			}
 		}

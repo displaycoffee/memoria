@@ -10,7 +10,7 @@
 	// Style block
 
 	.wp-block-button .wp-block-button__link, .wp-block-file .wp-block-file__button, 
-	.comment-form .form-submit input[type='submit'], #loginform .login-submit input[type='submit'] {
+	.comment-form .form-submit input[type='submit'], #loginform .login-submit input[type='submit'], .wp-block-search .wp-block-search__button {
 		cursor: pointer;
 		@extend %buttons;
 		@extend %button;
@@ -63,7 +63,8 @@
 
 	// Style block
 
-	.comment-form [class*="comment-form"]:not(.comment-form-cookies-consent), #loginform [class*="login"]:not(.login-remember, .login-submit) {
+	.comment-form [class*="comment-form"]:not(.comment-form-cookies-consent), #loginform [class*="login"]:not(.login-remember, .login-submit), 
+	.wp-block-archives-dropdown, .wp-block-categories-dropdown, .wp-block-search .wp-block-search__inside-wrapper {
 		@include mixins.flex-layout((flex-flow: row wrap));
 		@include mixins.gap(theme.$spacing-x2 theme.$spacing-x4);
 		& > * {
@@ -74,8 +75,10 @@
 			& > * {
 				@include mixins.flex;
 			}
-			& > label {
+			& > label:not(.screen-reader-text), & > button {
 				@include mixins.flex(0 1 auto);
+			}
+			& > label:not(.screen-reader-text) {
 				width: 100px;
 				@include mixins.position($type: relative, $top: 5px);
 			}
@@ -83,8 +86,16 @@
 	}
 	#loginform [class*="login"]:not(.login-remember, .login-submit) {
 		@include mixins.respond(theme.$breakpoint-sm) {
-			& > label {
+			& > label:not(.screen-reader-text) {
 				width: 200px;
+			}
+		}
+	}
+	.wp-block-archives-dropdown, .wp-block-categories-dropdown {
+		@include mixins.respond(theme.$breakpoint-sm) {
+			max-width: 50%;
+			& > label:not(.screen-reader-text) {
+				width: 75px;
 			}
 		}
 	}
@@ -94,8 +105,8 @@
 
 	// Style block
 
-	.comment-form, #loginform {
-		input[type='email'], input[type='password'], input[type='text'], input[type='url'] {
+	.comment-form, #loginform, .wp-block-search {
+		input[type='email'], input[type='password'], input[type='search'], input[type='text'], input[type='url'] {
 			@extend %input-freeform;
 		}
 	}
@@ -105,7 +116,7 @@
 
 	// Style block
 
-	.comment-form, #loginform {
+	.comment-form, #loginform, .wp-block-archives-dropdown, .wp-block-categories-dropdown, .wp-block-search {
 		label {
 			cursor: pointer;
 		}
@@ -120,6 +131,37 @@
 		.required {
 			@extend %form-required;
 		}
+	}
+
+//// COMMON - FORMS - SELECT
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	.wp-block-archives-dropdown, .wp-block-categories-dropdown {
+		position: relative;
+		select {
+			cursor: pointer;
+			@extend %select;
+		}
+	}
+	// Note: frontend only, since the chevron shifted when the dropdown was clicked in the editor
+	:where(.entry-content) {
+		.wp-block-archives-dropdown, .wp-block-categories-dropdown {
+			// The select can't show a pseudo-element, so the wrapper puts the chevron over the select's right edge
+			// Note: bottom works since the select is the wrapper's last child, so it lines up whether the label is above it (mobile) or beside it
+			// Note: the chevron is a mask so it takes the field text color and follows the theme toggle
+			&:after {
+				$select-icon-size: 16px;
+				$select-mask-image: functions.svg-encode('<svg viewBox="0 0 24 24"><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"></path></svg>');
+				content: '';
+				@include mixins.position($type: absolute, $right: theme.$spacing-x2, $bottom: (extends.$forms-select-height - $select-icon-size) * 0.5);
+				@include mixins.sizing($select-icon-size, $select-icon-size);
+				background-color: theme.$color-form-field-body;
+				mask: $select-mask-image center / contain no-repeat;
+				pointer-events: none;
+			}
+		}	
 	}
 
 //// COMMON - FORMS - TEXTAREA

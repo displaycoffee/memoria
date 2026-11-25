@@ -18,9 +18,18 @@
 	// Style block
 
 	.wp-block-playlist {
+		&.has-background {
+			.wp-block-playlist__waveform-player {
+				.waveform-player-inner .waveform-body {
+					.waveform-info {
+						padding-left: theme.$spacing-x2;
+						padding-right: theme.$spacing-x2;
+					}
+				}
+			}
+		}
 		.wp-block-playlist__waveform-player {
 			width: 100%;
-			margin: theme.$spacing-x2 0;
 			position: relative;
 			// Hide the player's container while it's empty, until playlist.ts builds the waveform player in it
 			&:empty {
@@ -30,6 +39,12 @@
 				outline: revert;
 				outline-offset: revert;
 			}
+			.waveform-player-inner .waveform-body {
+				@include mixins.gap(0);
+				.waveform-info {
+					padding: theme.$spacing-x2 0;
+				}
+			}
 		}
 		.waveform-track {
 			height: $waveform-player-height;
@@ -38,8 +53,6 @@
 		.waveform-btn {
 			border: none;
 			@include mixins.border-radius(0);
-			border-end-start-radius: 2px;
-			border-start-start-radius: 2px;
 			width: $waveform-player-height;
 			height: $waveform-player-height;
 			min-width: $waveform-player-height;
@@ -76,11 +89,17 @@
 			outline: revert;
 			outline-offset: revert;
 		}
+		.waveform-info, .waveform-artist, .waveform-title, .waveform-time {
+			font-size: inherit;
+		}
+		.waveform-info {
+			@include mixins.gap(theme.$spacing-x2);
+		}
 		.waveform-artist {
 			opacity: 0.7;
 		}
-		.waveform-info, .waveform-artist, .waveform-title, .waveform-time {
-			font-size: inherit;
+		.waveform-artwork {
+			@include mixins.border-radius(0 !important);
 		}
 		.wp-block-playlist__tracklist {
 			margin: 0;

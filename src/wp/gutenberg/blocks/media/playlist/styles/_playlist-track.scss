@@ -21,6 +21,7 @@
 		.wp-block-playlist-track__button {
 			cursor: pointer;
 			@include mixins.flex-layout((align-items: center));
+			@include mixins.gap(theme.$spacing-x2);
 			width: 100%;
 			padding: theme.$spacing-x2;
 			font-size: inherit;
@@ -33,14 +34,12 @@
 			.wp-block-playlist__tracklist-show-numbers &:before {
 				content: counter(playlist-track);
 				width: 14px;
-				margin-right: theme.$spacing-x2;
 				font-size: functions.em(12px, rem);
 				opacity: 0.7;
 			}
 			.wp-block-playlist-track__image {
 				@include mixins.flex(0 0 50px);
 				@include mixins.sizing(50px, 50px);
-				margin-right: theme.$spacing-x2;
 				border: 1px solid rgb(0 0 0 / 8%);
 				object-fit: cover;
 			}

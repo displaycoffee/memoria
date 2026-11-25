@@ -3,7 +3,51 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// WIDGETS - SAMPLE
+//// WIDGETS - CATEGORIES LIST
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	// Note: list styles are from wp/gutenberg/common/blocks/styles/blocks.scss, and dropdown styles are from wp/gutenberg/common/forms/styles/forms.scss.
+
+	.wp-block-categories {
+		&.alignleft {
+			margin-right: theme.$spacing-x4;
+		}
+		&.alignright {
+			margin-left: theme.$spacing-x4;
+		}
+		&.wp-block-categories-dropdown.aligncenter {
+			text-align: center;
+		}
+	}
+	.wp-block-categories-list {}
+	.wp-block-categories-dropdown {
+		// Note: the editor's label is a div (the frontend's is a label, which common/forms sizes)
+		& > div.wp-block-categories__label:not(.screen-reader-text) {
+			@include mixins.flex(0 1 auto);
+			width: auto;
+		}
+	}
+	
+	// .wp-block-categories {
+	// 	// This block has customizable padding, border-box makes that more predictable.
+	// 	box-sizing: border-box;
+
+	// 	&.alignleft {
+	// 		/*rtl:ignore*/
+	// 		margin-right: 2em;
+	// 	}
+	// 	&.alignright {
+	// 		/*rtl:ignore*/
+	// 		margin-left: 2em;
+	// 	}
+	// 	/* Only apply the text align on dropdowns, not lists. */
+	// 	&.wp-block-categories-dropdown.aligncenter {
+	// 		text-align: center;
+	// 	}
+	// }
+	// :where(.wp-block-categories__label:not(.screen-reader-text)) {
+	// 	width: 100%;
+	// 	display: block;
+	// }	

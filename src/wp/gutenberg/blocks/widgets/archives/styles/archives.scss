@@ -3,7 +3,24 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// WIDGETS - SAMPLE
+//// WIDGETS - ARCHIVES
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	// Note: list styles are from wp/gutenberg/common/blocks/styles/blocks.scss, and dropdown styles are from wp/gutenberg/common/forms/styles/forms.scss.
+
+	.wp-block-archives {}
+	.wp-block-archives-list {}
+	.wp-block-archives-dropdown {}
+
+	// .wp-block-archives {
+	// 	// This block has customizable padding, border-box makes that more predictable.
+	// 	box-sizing: border-box;
+	// }
+
+	// .wp-block-archives-dropdown {
+	// 	label {
+	// 		display: block;
+	// 	}
+	// }

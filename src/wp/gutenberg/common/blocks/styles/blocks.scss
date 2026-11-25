@@ -3,6 +3,37 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
+//// COMMON - BLOCKS - ARCHIVES, CATEGORIES LIST, AND TERMS LIST
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// Note: the post count (e.g. "(3)") is bare text after the link, so the li sets the count's smaller size and the link goes back to the global size
+	.wp-block-archives-list, .wp-block-categories-list {
+		max-width: 100%;
+		&, ul, li {
+			list-style: none;
+		}
+		&, ul {
+			padding: 0;
+		}
+		li {
+			font-size: functions.em(12px, rem);
+			margin: 0 0 theme.$spacing-x1 0;
+			&:last-child {
+				margin-bottom: 0;
+			}
+			a {
+				font-size: functions.em(theme.$font-size-global, rem);
+				margin: 0 theme.$spacing-x1 0 0;
+			}
+		}
+		ul {
+			margin: theme.$spacing-x1 0 0 0;
+			padding-left: theme.$spacing-x4;
+		}
+	}	
+
 //// COMMON - BLOCKS - CAPTION STYLE
 //// --------------------------------------------------------------------------
 
@@ -107,4 +138,14 @@
 		.wp-block-post-terms__suffix {
 			padding-left: theme.$spacing-x1;
 		}
-	}	
+	}
+
+//// COMMON - BLOCKS - SCREEN READER TEXT
+//// --------------------------------------------------------------------------
+
+	// Style block
+
+	// Note: WordPress's class for visually hidden text in block markup (e.g. a hidden archives or categories dropdown label)
+	.screen-reader-text {
+		@include mixins.sr-only;
+	}

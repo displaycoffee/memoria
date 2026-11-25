@@ -3,7 +3,16 @@
 @use '@displaycoffee/styles/mixins';
 @use '_core/styles/_theme';
 
-//// WIDGETS - SAMPLE
+//// WIDGETS - TERMS LIST
 //// --------------------------------------------------------------------------
 
 	// Style block
+
+	// Note: WordPress uses the classes from core/categories, with taxonomy-post_tag.
+	// Note: list styles are from wp/gutenberg/common/blocks/styles/blocks.scss, and dropdown styles are from wp/gutenberg/common/forms/styles/forms.scss.
+
+	.wp-block-categories-taxonomy-post_tag {
+		&.wp-block-categories {}
+		&.wp-block-categories-list {}
+		&.wp-block-categories-dropdown {}
+	}

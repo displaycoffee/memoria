@@ -27,6 +27,7 @@
 		}
 	}
 	:where(.wp-block-term-template .wp-block-term) .is-layout-flex {
+		// Matches the link-to-count spacing in the archives and categories list widgets, whose count has a space before it (the term count doesn't), hence the extra 3px
 		// Note: :where() keeps it at the same specificity as layout's gap, so it beats that, but a block gap set in the editor (wp-container-*, loaded later) still applies
-		@include mixins.gap(theme.$spacing-x2);
+		@include mixins.gap(theme.$spacing-x1 + 3px);
 	}
